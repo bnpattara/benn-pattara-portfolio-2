@@ -67,25 +67,29 @@ const CaseStudyDetail: React.FC = () => {
     },
     'nike-snkrs': {
       heroTitle: "Nike SNKRS: Bridging the Confidence Gap",
-      challenge: "For years, Nike relied on direct-to-consumer scarcity and high-heat drops. While demand surged, the long-term impact was a cultural disconnect. Consumers now report feeling 'lost' and overwhelmed by choice in an overhyped marketplace.",
-      ask: "How should Nike reimagine its sneaker reservation applications to better align with the behaviors and beliefs of today’s value-conscious young consumer?",
-      strategy: "Confidence Over Exclusivity. The core insight is that consumers don’t need more sneakers; they need confidence in how to wear them. Today, 'cool' is defined by integration rather than rarity.",
+      challenge: "For nearly a decade, Nike's digital growth was fueled by direct-to-consumer scarcity and high-heat 'shock drops.' While this drove SNKRS demand up ~70% during peak years, it created a toxic culture of exclusion and 'bot-fighting' that began to alienate the core consumer. The brief: How should Nike reimagine its sneaker reservation ecosystem to align with the shifting attitudes of a new, value-conscious generation?",
+      ask: "How should Nike transition from a 'Hype Machine' to a 'Confidence Leader' to capture the overlooked 80% of consumers seeking integration over exclusivity?",
+      strategy: "The Polyculture Audit: A cross-category analysis of mainstream fashion, streetwear strategy, and luxury collaborations revealed that consumers don't need more sneakers—they need confidence in how to wear them. Evidence: 40% own 7–10+ pairs but only rotate 2–3 due to fear of 'style mistakes.' The strategic shift focuses on removing styling paralysis through platform evolution and cultural leadership.",
       insights: [
-        { metric: '40%', label: 'Individualists', detail: 'Largest growth segment; need styling confidence to move past safe options.' },
-        { metric: '40%', label: 'Pragmatists', detail: 'Value approachability and expertise; willing to trade up for meaning.' },
-        { metric: '20%', label: 'Curators', detail: 'Motivated by rarity and resale; Nike\'s current focus, but declining in relevance.' }
+        { metric: '40%', label: 'Aesthetic Individualists', detail: 'Want sneakers to integrate into their existing style. High growth segment needs styling support.' },
+        { metric: '40%', label: 'Function-First Pragmatists', detail: 'Dislike hype; value durability and expertise. Willing to pay premium for approachable guidance.' },
+        { metric: '20%', label: 'Culture Curators', detail: 'Motivated by rarity and resale. Nike\'s current focus but represents saturated market.' },
+        { metric: '78%', label: 'Vintage Over Hype', detail: 'Would choose vintage market over shock drops to curate unique looks vs. just collecting.' },
+        { metric: '70%', label: 'Price Sensitivity', detail: 'Would halt purchase at 5% price increase unless item is emotionally meaningful.' }
       ],
       solutions: [
-        { title: "The Style Gym", desc: "Contextual outfit toggling and user-generated styling examples to remove styling paralysis at the point of purchase." },
-        { title: "Nike Stylist AI", desc: "An AI tool for closet analysis and visual search ('Shazam for Outfits') to help users integrate new purchases." },
-        { title: "The Confidence Index", desc: "A data-driven annual report that establishes Nike as the definitive guide for global street culture." },
-        { title: "Certified Pre-Worn", desc: "A Nike-led buyback loop and authenticated resale market to capitalize on the shift toward vintage value." }
+        { title: "Phase 1: The Style Gym", desc: "Transform product pages into styling hubs with 'Complete the Look' commerce and contextual outfit examples to remove purchasing paralysis." },
+        { title: "Phase 1: The Confidence Drop", desc: "Replace stressful raffles with 48-hour pre-order windows for Core Releases, guaranteeing access for committed fans." },
+        { title: "Phase 2: Nike Stylist AI", desc: "AI-powered closet analysis and 'Shazam for Outfits' to help users visualize new purchases with existing wardrobe." },
+        { title: "Phase 2: Certified Pre-Worn", desc: "Authenticated resale and buy-back loops to capture the value-conscious vintage market." },
+        { title: "Phase 3: The Confidence Index", desc: "Annual data-driven report transforming user interactions into the definitive guide for global street culture." }
       ],
       impact: [
-        { title: "Building Confidence", desc: "Increased Average Order Value (AOV), brand loyalty, and long-term wearability." },
-        { title: "Cultural Catalyst", desc: "Reclaiming the role of identity expression rather than just high-heat scarcity." }
+        { title: "Increased AOV", desc: "Reducing the 'unworn product' barrier leads to more frequent, high-value purchases as consumers gain confidence." },
+        { title: "Defensive Strategy", desc: "Combat 'Dupe Culture' by providing brand storytelling and styling support that knockoffs cannot replicate." },
+        { title: "Market Expansion", desc: "Capture the overlooked 80% (Individualists + Pragmatists) while maintaining Culture Curator relationships." }
       ],
-      quote: "The path forward is clear: Build confidence, not exclusivity."
+      quote: "The market hasn't collapsed because people lost interest. It's stalled because people lost certainty."
     },
     'stylect': {
       heroTitle: "Stylect: Humanizing Fashion Discovery",
@@ -158,7 +162,7 @@ const CaseStudyDetail: React.FC = () => {
               {study.category}
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pt-12 border-t border-stone-200">
             <div className="md:col-span-4 space-y-6">
               <div>
@@ -182,9 +186,9 @@ const CaseStudyDetail: React.FC = () => {
       {/* Hero Visual */}
       <section className="px-6 md:px-12 py-12 max-w-[1440px] mx-auto">
         <div className="aspect-[21/9] bg-stone-200 grayscale overflow-hidden border border-stone-200">
-          <img 
-            src={study.imageUrl} 
-            alt={study.title} 
+          <img
+            src={study.imageUrl}
+            alt={study.title}
             className="w-full h-full object-cover opacity-90 transition-all duration-1000 hover:grayscale-0"
           />
         </div>
@@ -192,7 +196,7 @@ const CaseStudyDetail: React.FC = () => {
 
       {/* Content Grid */}
       <section className="px-6 md:px-12 py-24 max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24">
-        
+
         {/* Left Column: Context */}
         <div className="md:col-span-4 space-y-24">
           <div className="space-y-8">
@@ -213,7 +217,7 @@ const CaseStudyDetail: React.FC = () => {
 
         {/* Right Column: Insights & Solution */}
         <div className="md:col-span-8 space-y-32">
-          
+
           {/* Insights Table */}
           {data.insights.length > 0 && (
             <div className="space-y-12">
@@ -239,7 +243,7 @@ const CaseStudyDetail: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 {data.solutions.map((sol: any, i: number) => (
                   <div key={i} className="p-10 bg-white border border-stone-200 space-y-6">
-                    <span className="text-[10px] font-bold tracking-widest text-stone-400 uppercase">0{i+1}</span>
+                    <span className="text-[10px] font-bold tracking-widest text-stone-400 uppercase">0{i + 1}</span>
                     <h3 className="text-xl font-light uppercase tracking-tight">{sol.title}</h3>
                     <p className="text-sm text-stone-500 font-light leading-relaxed">
                       {sol.desc}
@@ -252,22 +256,22 @@ const CaseStudyDetail: React.FC = () => {
 
           {/* Impact */}
           <div className="bg-stone-900 text-white p-12 md:p-24 space-y-12 relative overflow-hidden">
-             <div className="relative z-10 space-y-12">
-               <h2 className="text-[11px] font-bold tracking-[0.4em] uppercase text-stone-400">The Impact</h2>
-               <blockquote className="text-3xl md:text-5xl font-light tracking-tight italic leading-snug">
-                 "{data.quote}"
-               </blockquote>
-               {data.impact.length > 0 && (
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-12 border-t border-stone-800">
-                    {data.impact.map((imp: any, i: number) => (
-                      <div key={i} className="space-y-4">
-                        <h4 className="text-[10px] font-bold tracking-widest uppercase">{imp.title}</h4>
-                        <p className="text-stone-400 font-light text-sm">{imp.desc}</p>
-                      </div>
-                    ))}
-                 </div>
-               )}
-             </div>
+            <div className="relative z-10 space-y-12">
+              <h2 className="text-[11px] font-bold tracking-[0.4em] uppercase text-stone-400">The Impact</h2>
+              <blockquote className="text-3xl md:text-5xl font-light tracking-tight italic leading-snug">
+                "{data.quote}"
+              </blockquote>
+              {data.impact.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-12 border-t border-stone-800">
+                  {data.impact.map((imp: any, i: number) => (
+                    <div key={i} className="space-y-4">
+                      <h4 className="text-[10px] font-bold tracking-widest uppercase">{imp.title}</h4>
+                      <p className="text-stone-400 font-light text-sm">{imp.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
         </div>

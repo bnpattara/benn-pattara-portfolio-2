@@ -23,11 +23,11 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'nike-snkrs',
     title: 'Nike SNKRS: Bridging the Confidence Gap',
-    category: 'Brand Strategy | User Research | Innovation',
+    category: 'Brand Strategy | Consumer Research | Digital Innovation',
     description: 'Reimagining digital product innovation through a business model shift from exclusivity to confidence.',
     imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=1200',
     year: '2026',
-    role: 'Strategy & Consumer Research'
+    role: 'Lead Strategist & Consumer Researcher'
   },
   {
     id: 'diesel',
