@@ -1,49 +1,47 @@
 
-export interface Insight {
-    metric: string;
-    label: string;
-    detail: string;
-}
+import React from 'react';
 
-export interface Solution {
+export interface Methodology {
     title: string;
-    desc: string;
+    description: string;
 }
 
-export interface Impact {
+export interface Evidence {
     title: string;
-    desc: string;
+    description: string;
 }
 
-export interface CaseStudyHeroProps {
-    title: string;
-    category: string;
-    role: string;
-    year: string;
-    ask: string;
+export interface Segment {
+    name: string;
+    share: string;
+    mindset: string;
+    opportunity: string;
 }
 
-export interface ChallengeSectionProps {
-    challenge: string;
+export interface Media {
+    type: 'image' | 'video';
+    src?: string;
+    caption: string;
+    alt?: string;
 }
 
-export interface StrategySectionProps {
-    strategy: string;
-}
-
-export interface InsightsTableProps {
-    insights: Insight[];
+export interface MethodologySectionProps {
     title?: string;
+    methods: Methodology[];
 }
 
-export interface SolutionsGridProps {
-    solutions: Solution[];
+export interface EvidenceListProps {
     title?: string;
+    evidence: Evidence[];
+}
+
+export interface SegmentationTableProps {
+    title?: string;
+    segments: Segment[];
+}
+
+export interface MediaGalleryProps {
+    title?: string;
+    media: Media[];
     columns?: number;
-}
-
-export interface ImpactSectionProps {
-    quote: string;
-    impact: Impact[];
-    title?: string;
 }
