@@ -6,7 +6,7 @@ const MethodologySection: React.FC<MethodologySectionProps> = ({ title = "Method
     if (!methods || methods.length === 0) return null;
 
     return (
-        <div className="space-y-12">
+        <div className="space-y-8">
             <h2 className="text-[11px] font-bold tracking-[0.4em] text-stone-900 uppercase">{title}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {methods.map((method, i) => (

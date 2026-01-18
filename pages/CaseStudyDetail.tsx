@@ -79,23 +79,23 @@ const CaseStudyDetail: React.FC = () => {
     },
     'nike-snkrs': {
       heroTitle: "Nike SNKRS: Bridging the Confidence Gap",
-      challenge: "For nearly a decade, Nike's digital growth was fueled by direct-to-consumer scarcity and high-heat 'shock drops.' While this drove SNKRS demand up ~70% during peak years, it created a toxic culture of exclusion and 'bot-fighting' that began to alienate the core consumer. The brief: How should Nike reimagine its sneaker reservation ecosystem to align with the shifting attitudes of a new, value-conscious generation?",
-      ask: "How should Nike transition from a 'Hype Machine' to a 'Confidence Leader' to capture the overlooked 80% of consumers seeking integration over exclusivity?",
-      strategy: "The Polyculture Audit: A cross-category analysis of mainstream fashion, streetwear strategy, and luxury collaborations revealed that consumers don't need more sneakers—they need confidence in how to wear them. Evidence: 40% own 7–10+ pairs but only rotate 2–3 due to fear of 'style mistakes.' The strategic shift focuses on removing styling paralysis through platform evolution and cultural leadership.",
+      challenge: "Nike's shock drop strategy drove SNKRS demand up ~70%, but created a toxic culture of exclusion and bot-fighting that alienated core consumers. How should Nike reimagine its ecosystem for a value-conscious generation?",
+      ask: "How can Nike transition from 'Hype Machine' to 'Confidence Leader' and capture the 80% seeking integration over exclusivity?",
+      strategy: "Cross-category analysis revealed consumers don't need more sneakers—they need confidence in how to wear them. 40% own 7-10+ pairs but only rotate 2-3 due to fear of 'style mistakes.' Strategic shift: remove styling paralysis through platform evolution.",
       methodology: [
-        { title: "Mainstream Fashion", description: "Analyzed the move away from single trends toward a 'Polyculture' (Balletcore, Gorpcore, and Retro-Running existing simultaneously)." },
-        { title: "Streetwear Strategy", description: "Evaluated the shift where music and musicians (e.g., Travis Scott) have replaced social media influencers as the primary drivers of credibility." },
-        { title: "High Fashion/Luxury", description: "Studied how luxury collaborations (e.g., Dior x Jordan) taught consumers that footwear can be 'wrong' if styled incorrectly, raising the stakes for the everyday buyer." }
+        { title: "Mainstream Fashion", description: "Shift from single trends to 'Polyculture'—Balletcore, Gorpcore, Retro-Running coexisting." },
+        { title: "Streetwear Strategy", description: "Musicians (Travis Scott) replacing influencers as credibility drivers." },
+        { title: "High Fashion/Luxury", description: "Luxury collabs (Dior x Jordan) taught consumers footwear styling stakes." }
       ],
       evidence: [
-        { title: "The Rotation Problem", description: "Around 40% of respondents own 7–10+ pairs but only rotate 2–3 because they fear making a 'style mistake.'" },
-        { title: "Aesthetic Tribes", description: "Sneakers are now the clearest signal of identity, but 78% of users would choose a vintage market over a shock drop to ensure they can 'curate' a unique look rather than just 'collect' hype." },
-        { title: "The Price of Uncertainty", description: "70% of consumers say they would halt a purchase at even a 5% price increase unless they feel the item is 'emotionally meaningful.'" }
+        { title: "The Rotation Problem", description: "40% own 7-10+ pairs but rotate only 2-3 due to fear of style mistakes." },
+        { title: "Aesthetic Tribes", description: "78% prefer vintage markets over shock drops to curate unique looks vs. collect hype." },
+        { title: "The Price of Uncertainty", description: "70% halt purchases at 5% price increases unless item feels emotionally meaningful." }
       ],
       segments: [
-        { name: "Aesthetic Individualists", share: "40%", mindset: "Want sneakers to integrate into their existing 'lived' style.", opportunity: "High Growth: Needs styling support to move past 'safe' choices." },
-        { name: "Function-First Pragmatists", share: "40%", mindset: "Dislike hype; value durability and technical 'expert' brands.", opportunity: "Premium Value: Willing to pay more for approachable expertise." },
-        { name: "Culture Curators", share: "20%", mindset: "Motivated by rarity, social status, and resale value.", opportunity: "Saturated: Nike's current comfort zone." }
+        { name: "Aesthetic Individualists", share: "40%", mindset: "Want integration into existing style.", opportunity: "Needs styling support for growth." },
+        { name: "Function-First Pragmatists", share: "40%", mindset: "Value durability over hype.", opportunity: "Pay premium for expertise." },
+        { name: "Culture Curators", share: "20%", mindset: "Motivated by rarity and resale.", opportunity: "Nike's current focus—saturated." }
       ],
       media: [
         { type: 'image' as const, caption: "Cross-category trend analysis showing the fragmentation of fashion aesthetics (2024-2026)" },
