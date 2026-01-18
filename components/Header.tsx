@@ -14,24 +14,24 @@ const Header: React.FC = () => {
             BENN PATTARA
           </h1>
           <p className="text-[10px] md:text-[11px] tracking-[0.3em] font-medium text-stone-500 mt-2 uppercase">
-            Product Design & Retail Strategy
+            Product Manager & UX Designer
           </p>
         </Link>
-        
+
         <div className="flex gap-8 items-center text-[11px] font-bold tracking-[0.15em] uppercase">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className={`hover:text-stone-400 transition-colors ${!isAbout ? 'text-stone-900 underline underline-offset-8 decoration-1' : 'text-stone-400'}`}
           >
             Works
           </Link>
-          <Link 
-            to="/about" 
+          <Link
+            to="/about"
             className={`hover:text-stone-400 transition-colors ${isAbout ? 'text-stone-900 underline underline-offset-8 decoration-1' : 'text-stone-400'}`}
           >
             About
           </Link>
-          <a 
+          <a
             href="mailto:bennpattara@gmail.com"
             className="px-6 py-2 bg-stone-900 text-white rounded-none hover:bg-stone-800 transition-colors"
           >
