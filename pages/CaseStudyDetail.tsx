@@ -215,26 +215,90 @@ const CaseStudyDetail: React.FC = () => {
       quote: "Fashion is paralyzed by choice. Stylect provides the clarity of a human voice."
     },
     'diesel': {
-      heroTitle: "Diesel Tokyo: The Brand Temple",
-      challenge: "Since Glenn Martens’ appointment as Creative Director in 2020, Diesel has regained its critical and commercial 'cool factor'. However, to capture the next generation, the brand requires a major physical statement that elevates its prestige and moves beyond retail to become a lived universe.",
-      ask: "How might we create a definitive global power move in a market that demands depth, tradition, and forward-thinking trends?",
-      strategy: "The Iceberg. Conceptual alignment with Harajuku's landmark structure: What you see on the surface is only 10% (rebellious product); the submerged 90% is the soul (Italian heritage and craftsmanship). Success in Tokyo serves as a powerful global benchmark for Asian expansion.",
-      insights: [
-        { metric: 'Market', label: 'Tokyo Tuning', detail: 'Deep appreciation for premium denim and durable craftsmanship.' },
-        { metric: 'Resilient', label: 'Physical First', detail: 'Market continues to prioritize in-person retail experiences over e-commerce.' },
-        { metric: 'Gateway', label: 'Asia Expansion', detail: 'Success in Tokyo serves as a powerful global benchmark and launchpad.' }
+      // 1. Project Overview
+      title: "Diesel Tokyo: The Brand Temple",
+      quickPitch: "A five-story flagship concept transforming retail into an immersive cultural destination—the 'Iceberg' where 10% surface meets 90% soul.",
+      metadata: {
+        role: "Lead Retail Strategist & Spatial Designer",
+        timeline: "8 months (Concept to Pitch)",
+        tools: ["Figma", "SketchUp", "Adobe Creative Suite", "Market Analysis"],
+        industry: "Luxury Retail, Fashion"
+      },
+
+      // 2. Background & Problem
+      challenge: "Since Glenn Martens' appointment as Creative Director in 2020, Diesel has regained its critical and commercial 'cool factor'. However, to capture the next generation and elevate global prestige, the brand requires a major physical statement that moves beyond retail to become a lived universe.",
+      hmw: "How might we create a definitive global power move in Tokyo—a market that demands depth, tradition, and forward-thinking trends?",
+      goal: "Establish Diesel's Tokyo flagship as a cultural temple that deepens brand loyalty, serves as a gateway for Asian expansion, and defines the brand for the next generation through immersive experience.",
+
+      // 3. Insight & Strategy
+      insight: "Japanese consumers don't just buy luxury—they demand depth. Tokyo's market shows resilience to global fluctuations and prioritizes physical retail experiences. Brands like Louis Vuitton and Gucci aren't just opening stores; they're creating architectural cultural destinations to capture younger luxury consumers.",
+      strategy: "The Iceberg Concept: Secure 'The Iceberg'—a landmark Harajuku structure that physically mirrors our brand philosophy. What you see on the surface (rebellious product) is only 10%. Beneath lies 90%: Italian heritage, craftsmanship, and culture. This flagship brings the hidden DNA to the surface.",
+
+      // 4. Implementation & Process
+      workflow: [
+        "Market analysis of luxury retail expansion in Tokyo",
+        "Competitive analysis of flagship strategies (LV, Gucci, Calvin Klein)",
+        "Site selection and securing 'The Iceberg' Harajuku landmark",
+        "Multi-floor concept development (Retail, Lab, Cafe, Archive, Restaurant)",
+        "Material palette curation blending Tokyo brutalism with Italian craftsmanship",
+        "Partnership planning for Denim Lab and Cafe 1978 operations"
       ],
-      solutions: [
-        { title: "Retail & Gallery", desc: "A sculptural 'Cash Wrap' anchor carved from raw stone grounds the glass structure, with mirrors optimized for social sharing." },
-        { title: "The Denim Lab", desc: "A glass-walled space for co-creation through laser distressing and vintage repair, delivered in vacuum-sealed packaging." },
-        { title: "Cafe 1978 & Archive", desc: "A curated library of history and a coworking cafe balancing Tokyo brutalism with Italian walnut and leather." },
-        { title: "Ghiaccio Ice Bar", desc: "A monolithic molded-glass bar with gold 'Kintsugi' joinery serving as the building's social heart." }
+      designDecisions: [
+        {
+          title: "Flagship Location",
+          decision: "'The Iceberg' landmark structure in Harajuku rather than traditional luxury district locations.",
+          reasoning: "Physical structure literally mirrors brand philosophy (surface vs. submerged iceberg). Harajuku's cultural capital attracts younger demographics and positions Diesel as a cultural curator rather than luxury follower."
+        },
+        {
+          title: "Experience Model",
+          decision: "Hub for Culture, Community, and Commerce—not just high-velocity retail.",
+          reasoning: "Japanese market values immersive experiences over transactional retail. Multi-floor concept (retail, customization lab, cafe, restaurant) creates reasons to linger and deepens emotional brand connection."
+        },
+        {
+          title: "Material Strategy",
+          decision: "Cultural fusion of Tokyo brutalism (concrete, glass) with Italian warmth (walnut, distressed leather, gold Kintsugi accents).",
+          reasoning: "Blending Japanese aesthetics with Italian heritage creates innovative retail concept that appeals to local and international audiences while maintaining brand authenticity."
+        }
       ],
-      impact: [
-        { title: "Mobile Billboards", desc: "Sustainable, durable packaging turns every customer into a brand ambassador on Tokyo's streets." },
-        { title: "Elevated Prestige", desc: "Solidifies Diesel's return to the top tier of global fashion through a definitive physical statement." }
+
+      // 5. Mockups & Reasoning
+      mockups: [
+        {
+          caption: "Ground Floor: High-velocity retail in gallery setting with sculptural stone Cash Wrap anchor.",
+          annotations: [
+            { x: 30, y: 40, label: "Sculptural Cash Wrap", reasoning: "Carved from rough-hewn stone to ground the ethereal glass structure in raw nature, creating memorable transaction moment." },
+            { x: 70, y: 35, label: "Fit Check Zones", reasoning: "Optimized lighting and backdrops designed for social sharing, instantly connecting physical trial to digital conversation." },
+            { x: 50, y: 70, label: "Mobile Billboard Packaging", reasoning: "Sustainable, durable packaging designed to be reused, turning customers into brand ambassadors on Tokyo streets." }
+          ]
+        },
+        {
+          caption: "Floor 2: Denim Lab—glass-walled 'theater of craftsmanship' for co-creation via laser distressing and vintage repair.",
+          annotations: [
+            { x: 40, y: 50, label: "Artisan Cube", reasoning: "Glass-walled workspace makes circular economy visible luxury experience, elevating customization to theater." },
+            { x: 75, y: 60, label: "Vacuum-Sealed Packaging", reasoning: "Premium take-home presentation reinforces customization value and sustainability commitment." }
+          ]
+        },
+        {
+          caption: "Floor 5: Cafe 1978 Archive + Ghiaccio Ice Bar with premier dining for top-tier clients.",
+          annotations: [
+            { x: 25, y: 30, label: "Brand Archive Library", reasoning: "Curated visual history creates cultural depth, positioning Diesel as heritage brand beyond rebellious image." },
+            { x: 60, y: 55, label: "Monolithic Ice Bar", reasoning: "Molded glass internally cooled to appear frozen—visual anchor reinforcing 'Iceberg' concept and social heart of building." },
+            { x: 80, y: 70, label: "Gold Kintsugi Details", reasoning: "Japanese art of precious repair contrasted with industrial materials creates cultural fusion narrative." }
+          ]
+        }
       ],
-      quote: "We cannot just open a store. We must open a temple."
+
+      // 6. KPIs & Success
+      quantitative: [
+        { metric: "Market Resilience", value: "Stable", description: "Japan's luxury market shows remarkable resilience to global fluctuations, contributing significantly to luxury brand profitability." },
+        { metric: "Gateway Effect", value: "Asia Expansion", description: "Success in Tokyo serves as launchpad for broader expansion across Asia with 'Cool Japan' halo effect." },
+        { metric: "Customer Connection", value: "Deep Loyalty", description: "Physical flagship creates immersive experiences that foster lasting emotional connections in market valuing personalized service." }
+      ],
+      qualitative: [
+        { source: "Strategic Vision", quote: "To capture a market that demands depth, we cannot just open a store. We must open a temple." },
+        { source: "Brand Positioning", quote: "Diesel is at the peak of its creative resurgence. A Tokyo flagship is the necessary strategic move to capitalize on this momentum." }
+      ],
+      reflection: "If revisiting this concept, I would develop more detailed financial modeling for each floor's revenue potential and explore partnerships with Japanese artisans earlier in the process to deepen local cultural integration beyond aesthetic references."
     }
   };
 
