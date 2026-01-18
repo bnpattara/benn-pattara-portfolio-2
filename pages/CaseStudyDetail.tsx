@@ -1,8 +1,16 @@
 
+
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CASE_STUDIES } from '../constants';
 import ProjectNavigation from '../components/ProjectNavigation';
+import CaseStudyHero from '../components/case-study/CaseStudyHero';
+import ChallengeSection from '../components/case-study/ChallengeSection';
+import StrategySection from '../components/case-study/StrategySection';
+import InsightsTable from '../components/case-study/InsightsTable';
+import SolutionsGrid from '../components/case-study/SolutionsGrid';
+import ImpactSection from '../components/case-study/ImpactSection';
+
 
 const CaseStudyDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -150,38 +158,14 @@ const CaseStudyDetail: React.FC = () => {
 
   return (
     <main className="min-h-screen">
-      {/* Editorial Hero */}
-      <section className="px-6 md:px-12 py-24 md:py-32 max-w-[1440px] mx-auto border-b border-stone-200">
-        <div className="space-y-12">
-          <div className="flex flex-col md:flex-row md:justify-between items-baseline gap-4">
-            <h1 className="text-5xl md:text-9xl font-light tracking-tighter text-stone-900 leading-[0.9] uppercase">
-              {data.heroTitle.split(':')[0]} <br />
-              <span className="italic">{data.heroTitle.split(':')[1] || ''}</span>
-            </h1>
-            <div className="text-[11px] font-bold tracking-[0.3em] uppercase text-stone-500 max-w-[200px] text-right">
-              {study.category}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pt-12 border-t border-stone-200">
-            <div className="md:col-span-4 space-y-6">
-              <div>
-                <h4 className="text-[10px] font-bold tracking-[0.4em] uppercase text-stone-400 mb-2">Role</h4>
-                <p className="text-stone-900 font-medium">{study.role}</p>
-              </div>
-              <div>
-                <h4 className="text-[10px] font-bold tracking-[0.4em] uppercase text-stone-400 mb-2">Year</h4>
-                <p className="text-stone-900 font-medium">{study.year}</p>
-              </div>
-            </div>
-            <div className="md:col-span-8">
-              <p className="text-xl md:text-3xl font-light leading-relaxed text-stone-800">
-                {data.ask}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section with components */}
+      <CaseStudyHero
+        title={data.heroTitle}
+        category={study.category}
+        role={study.role}
+        year={study.year}
+        ask={data.ask}
+      />
 
       {/* Hero Visual */}
       <section className="px-6 md:px-12 py-12 max-w-[1440px] mx-auto">
@@ -199,81 +183,15 @@ const CaseStudyDetail: React.FC = () => {
 
         {/* Left Column: Context */}
         <div className="md:col-span-4 space-y-24">
-          <div className="space-y-8">
-            <h2 className="text-[11px] font-bold tracking-[0.4em] text-stone-900 uppercase">The Challenge</h2>
-            <p className="text-stone-600 font-light leading-relaxed">
-              {data.challenge}
-            </p>
-          </div>
-
-          <div className="space-y-8">
-            <h2 className="text-[11px] font-bold tracking-[0.4em] text-stone-900 uppercase">The Strategy</h2>
-            <div className="h-px w-12 bg-stone-200 mb-8"></div>
-            <p className="text-stone-600 font-light leading-relaxed italic">
-              {data.strategy}
-            </p>
-          </div>
+          <ChallengeSection challenge={data.challenge} />
+          <StrategySection strategy={data.strategy} />
         </div>
 
         {/* Right Column: Insights & Solution */}
         <div className="md:col-span-8 space-y-32">
-
-          {/* Insights Table */}
-          {data.insights.length > 0 && (
-            <div className="space-y-12">
-              <h2 className="text-[11px] font-bold tracking-[0.4em] text-stone-900 uppercase">Market Intel & Insights</h2>
-              <div className="border-t border-stone-200">
-                {data.insights.map((row: any, i: number) => (
-                  <div key={i} className="grid grid-cols-1 md:grid-cols-4 py-8 border-b border-stone-200 items-center gap-4">
-                    <span className="text-4xl font-light tracking-tighter text-stone-900">{row.metric}</span>
-                    <span className="md:col-span-3 text-sm text-stone-500 font-light leading-relaxed uppercase tracking-wider">
-                      <strong className="text-stone-900 block mb-1">{row.label}</strong>
-                      {row.detail}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Solutions */}
-          {data.solutions.length > 0 && (
-            <div className="space-y-12">
-              <h2 className="text-[11px] font-bold tracking-[0.4em] text-stone-900 uppercase">The Solution</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                {data.solutions.map((sol: any, i: number) => (
-                  <div key={i} className="p-10 bg-white border border-stone-200 space-y-6">
-                    <span className="text-[10px] font-bold tracking-widest text-stone-400 uppercase">0{i + 1}</span>
-                    <h3 className="text-xl font-light uppercase tracking-tight">{sol.title}</h3>
-                    <p className="text-sm text-stone-500 font-light leading-relaxed">
-                      {sol.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Impact */}
-          <div className="bg-stone-900 text-white p-12 md:p-24 space-y-12 relative overflow-hidden">
-            <div className="relative z-10 space-y-12">
-              <h2 className="text-[11px] font-bold tracking-[0.4em] uppercase text-stone-400">The Impact</h2>
-              <blockquote className="text-3xl md:text-5xl font-light tracking-tight italic leading-snug">
-                "{data.quote}"
-              </blockquote>
-              {data.impact.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-12 border-t border-stone-800">
-                  {data.impact.map((imp: any, i: number) => (
-                    <div key={i} className="space-y-4">
-                      <h4 className="text-[10px] font-bold tracking-widest uppercase">{imp.title}</h4>
-                      <p className="text-stone-400 font-light text-sm">{imp.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-
+          <InsightsTable insights={data.insights} />
+          <SolutionsGrid solutions={data.solutions} />
+          <ImpactSection quote={data.quote} impact={data.impact} />
         </div>
       </section>
 
