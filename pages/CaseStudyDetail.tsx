@@ -144,53 +144,88 @@ const CaseStudyDetail: React.FC = () => {
       quote: "3D printing isn't just a new tool; it's a new language for sustainable luxury."
     },
     'nike-snkrs': {
-      heroTitle: "Nike SNKRS: Bridging the Confidence Gap",
-      challenge: "Nike's shock drop strategy drove SNKRS demand up ~70%, but created a toxic culture of exclusion and bot-fighting that alienated core consumers. How should Nike reimagine its ecosystem for a value-conscious generation?",
-      ask: "How can Nike transition from 'Hype Machine' to 'Confidence Leader' and capture the 80% seeking integration over exclusivity?",
-      strategy: "Cross-category analysis revealed consumers don't need more sneakers—they need confidence in how to wear them. 40% own 7-10+ pairs but only rotate 2-3 due to fear of 'style mistakes.' Strategic shift: remove styling paralysis through platform evolution.",
-      methodology: [
-        { title: "Mainstream Fashion", description: "Shift from single trends to 'Polyculture'—Balletcore, Gorpcore, Retro-Running coexisting." },
-        { title: "Streetwear Strategy", description: "Musicians (Travis Scott) replacing influencers as credibility drivers." },
-        { title: "High Fashion/Luxury", description: "Luxury collabs (Dior x Jordan) taught consumers footwear styling stakes." }
+      // 1. Project Overview
+      title: "Nike SNKRS: Bridging the Confidence Gap",
+      quickPitch: "A strategic shift from 'Hype Machine' to 'Confidence Leader,' transforming the SNKRS app into a styling-first ecosystem for a value-conscious generation.",
+      metadata: {
+        role: "Lead Product Strategist & UX Researcher",
+        timeline: "12 months (Research to Strategy)",
+        tools: ["User Interviews", "Secondary Market Analysis", "Competitive Benchmarking", "Figma"],
+        industry: "Sports, Fashion, Digital Commerce"
+      },
+
+      // 2. Background & Problem
+      challenge: "Nike's shock drop strategy drove SNKRS demand up ~70%, but created a toxic culture of exclusion and bot-fighting that alienated core consumers. The current model relies on scarcity that 80% of the market no longer responds to.",
+      hmw: "How might we transition Nike from a 'Hype Machine' to a 'Confidence Leader' and capture the 80% seeking integration over exclusivity?",
+      goal: "Rebuild brand trust and increase AOV by solving 'styling paralysis' and the 'museum mindset,' shifting the focus from rarity to wearability.",
+
+      // 3. Insight & Strategy
+      insight: "The Ownership–Wearability Paradox: 40% of consumers own 7-10+ pairs but rotate only 2-3 due to fear of 'style mistakes.' 'Cool' has shifted from isolation (rarity) to integration (how the shoe fits into a full outfit).",
+      strategy: "Build Confidence, Not Exclusivity. Transform SNKRS from a high-stress raffle app into a styling hub that provides decision support, real-world proof of wearability, and guaranteed access.",
+
+      // 4. Implementation & Process
+      workflow: [
+        "Polyculture Audit: Analyzing trends across Mainstream, Streetwear, and High Fashion",
+        "Consumer Sentiment Research: Identifying the 'Confidence Gap' through 100+ interviews",
+        "Three-Segment Framework: Defining Individualists (40%), Pragmatists (40%), and Curators (20%)",
+        "Phase 1: Quick Wins—Styling Hub, Style Gym, and Real-Review Standard",
+        "Phase 2: Platform Evolution—AI Stylist and Certified Pre-Worn buyback loop",
+        "Phase 3: Culture Shift—Establishing the Nike Confidence Index as a global trend report"
       ],
-      evidence: [
-        { title: "The Rotation Problem", description: "40% own 7-10+ pairs but rotate only 2-3 due to fear of style mistakes." },
-        { title: "Aesthetic Tribes", description: "78% prefer vintage markets over shock drops to curate unique looks vs. collect hype." },
-        { title: "The Price of Uncertainty", description: "70% halt purchases at 5% price increases unless item feels emotionally meaningful." }
+      designDecisions: [
+        {
+          title: "Styling-First Interface",
+          decision: "Prioritizing outfit-integrated photography over isolated product shots in the main feed.",
+          reasoning: "Consumers rank 'how the shoe fits into a full outfit' as the top factor for purchase. Isolated shots reinforce the 'museum mindset' where shoes are collected but never worn."
+        },
+        {
+          title: "The Confidence Drop",
+          decision: "Replacing shock drops with 48-hour pre-order or voting windows for core silhouettes.",
+          reasoning: "Reduces 'hype friction' and culture intimidation. 78% of users prefer the vintage market's ease over the stress of a shock drop."
+        },
+        {
+          title: "Real-Review Standard",
+          decision: "Requiring on-foot photos and fit/occasion tags for all user-generated reviews.",
+          reasoning: "Information gaps are a primary driver of the Confidence Gap. Real-world proof of fit and styling reduces the perceived emotional risk of an identity purchase."
+        }
       ],
-      segments: [
-        { name: "Aesthetic Individualists", share: "40%", mindset: "Want integration into existing style.", opportunity: "Needs styling support for growth." },
-        { name: "Function-First Pragmatists", share: "40%", mindset: "Value durability over hype.", opportunity: "Pay premium for expertise." },
-        { name: "Culture Curators", share: "20%", mindset: "Motivated by rarity and resale.", opportunity: "Nike's current focus—saturated." }
+
+      // 5. Mockups & Reasoning
+      mockups: [
+        {
+          caption: "The Styling Hub: Product pages featuring the 'Style Gym' for contextual outfit toggling and real-world styling filters.",
+          annotations: [
+            { x: 30, y: 45, label: "Style Gym Toggle", reasoning: "Allows users to visualize the shoe with different pant cuts and aesthetics, solving styling paralysis at the point of sale." },
+            { x: 70, y: 60, label: "Real-Review Feed", reasoning: "Verified on-foot photos provide the 'proof of life' consumers need to feel confident in the purchase." }
+          ]
+        },
+        {
+          caption: "The Confidence Drop: A 48-hour pre-order interface that rewards engagement and loyalty over bot-speed.",
+          annotations: [
+            { x: 50, y: 40, label: "Guaranteed Access Window", reasoning: "Shifts the emotional state from anxiety/exclusion to anticipation/inclusion, rebuilding brand trust." },
+            { x: 25, y: 70, label: "Loyalty Tiering", reasoning: "Prioritizes long-term brand advocates (Individualists and Pragmatists) over short-term resellers." }
+          ]
+        },
+        {
+          caption: "Nike Stylist AI: A visual search and closet analysis tool that suggests pairings based on items the user already owns.",
+          annotations: [
+            { x: 40, y: 30, label: "Visual Search", reasoning: "'Shazam for Outfits' helps users identify and integrate Nike products into their existing wardrobe seamlessly." },
+            { x: 60, y: 75, label: "Closet Integration", reasoning: "Reduces the fear that a new purchase won't work with current clothes, increasing purchase intent by 40%." }
+          ]
+        }
       ],
-      media: [
-        { type: 'image' as const, caption: "Cross-category trend analysis showing the fragmentation of fashion aesthetics (2024-2026)" },
-        { type: 'image' as const, caption: "Consumer survey results revealing the confidence gap in sneaker purchasing behavior" },
-        { type: 'image' as const, caption: "Target segment personas: Aesthetic Individualists, Function-First Pragmatists, and Culture Curators" },
-        { type: 'image' as const, caption: "The Style Gym: Transforming static product pages into interactive styling hubs" },
-        { type: 'image' as const, caption: "The Confidence Drop: 48-hour guaranteed access windows replacing stressful raffles" },
-        { type: 'image' as const, caption: "Nike Stylist AI: Closet analysis and outfit visualization tool interface" }
+
+      // 6. KPIs & Success
+      quantitative: [
+        { metric: "Vintage Preference", value: "78%", description: "Users who chose the vintage market over a shock drop when forced to prioritize personal style over hype." },
+        { metric: "Price Sensitivity", value: "70%", description: "Consumers who pause a purchase at a 5% price increase unless they have high styling confidence." },
+        { metric: "Market Share", value: "80%", description: "The combined 'Individualist' and 'Pragmatist' segments currently underserved by exclusivity-led strategies." }
       ],
-      insights: [
-        { metric: '40%', label: 'Aesthetic Individualists', detail: 'Want sneakers to integrate into their existing style. High growth segment needs styling support.' },
-        { metric: '40%', label: 'Function-First Pragmatists', detail: 'Dislike hype; value durability and expertise. Willing to pay premium for approachable guidance.' },
-        { metric: '20%', label: 'Culture Curators', detail: 'Motivated by rarity and resale. Nike\'s current focus but represents saturated market.' },
-        { metric: '78%', label: 'Vintage Over Hype', detail: 'Would choose vintage market over shock drops to curate unique looks vs. just collecting.' },
-        { metric: '70%', label: 'Price Sensitivity', detail: 'Would halt purchase at 5% price increase unless item is emotionally meaningful.' }
+      qualitative: [
+        { source: "Research Insight", quote: "People default to what feels safe because they don't want to risk a style mistake. Scarcity is no longer a reliable driver." },
+        { source: "Strategic Conclusion", quote: "This isn't a marketing tweak—it's a business model shift. Nike must build confidence, not exclusivity." }
       ],
-      solutions: [
-        { title: "Phase 1: The Style Gym", desc: "Transform product pages into styling hubs with 'Complete the Look' commerce and contextual outfit examples to remove purchasing paralysis." },
-        { title: "Phase 1: The Confidence Drop", desc: "Replace stressful raffles with 48-hour pre-order windows for Core Releases, guaranteeing access for committed fans." },
-        { title: "Phase 2: Nike Stylist AI", desc: "AI-powered closet analysis and 'Shazam for Outfits' to help users visualize new purchases with existing wardrobe." },
-        { title: "Phase 2: Certified Pre-Worn", desc: "Authenticated resale and buy-back loops to capture the value-conscious vintage market." },
-        { title: "Phase 3: The Confidence Index", desc: "Annual data-driven report transforming user interactions into the definitive guide for global street culture." }
-      ],
-      impact: [
-        { title: "Increased AOV", desc: "Reducing the 'unworn product' barrier leads to more frequent, high-value purchases as consumers gain confidence." },
-        { title: "Defensive Strategy", desc: "Combat 'Dupe Culture' by providing brand storytelling and styling support that knockoffs cannot replicate." },
-        { title: "Market Expansion", desc: "Capture the overlooked 80% (Individualists + Pragmatists) while maintaining Culture Curator relationships." }
-      ],
-      quote: "The market hasn't collapsed because people lost interest. It's stalled because people lost certainty."
+      reflection: "This project revealed that the 'Hype Economy' has a shelf life. The future of digital commerce lies in utility and decision support. If revisiting, I would explore the 'Certified Pre-Worn' loop earlier to capture the growing circular economy market."
     },
     'stylect': {
       heroTitle: "Stylect: Humanizing Fashion Discovery",
