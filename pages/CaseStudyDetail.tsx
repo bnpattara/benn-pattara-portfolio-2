@@ -14,6 +14,15 @@ import MethodologySection from '../components/case-study/MethodologySection';
 import EvidenceList from '../components/case-study/EvidenceList';
 import SegmentationTable from '../components/case-study/SegmentationTable';
 import MediaGallery from '../components/case-study/MediaGallery';
+// NEW: Professional components
+import ProjectHeader from '../components/case-study/ProjectHeader';
+import ProblemStatement from '../components/case-study/ProblemStatement';
+import InsightStrategy from '../components/case-study/InsightStrategy';
+import ProcessWorkflow from '../components/case-study/ProcessWorkflow';
+import IterationShowcase from '../components/case-study/IterationShowcase';
+import AnnotatedMockup from '../components/case-study/AnnotatedMockup';
+import ImpactMetrics from '../components/case-study/ImpactMetrics';
+import Reflection from '../components/case-study/Reflection';
 
 
 const CaseStudyDetail: React.FC = () => {
@@ -34,26 +43,99 @@ const CaseStudyDetail: React.FC = () => {
   // Define content for specific case studies
   const projectsData: Record<string, any> = {
     'on-apex': {
-      heroTitle: "On Apex: Run Free",
-      challenge: "While legacy running brands focus heavily on performance and gear, the experience often remains isolating or intimidating for many. On—a brand born in the Swiss Alps to unlock human potential through movement—had an opportunity to move beyond footwear and into the social fabric of the running community.",
-      ask: "How might we create a transformative running experience that combines community and innovation to help runners unlock their full potential?",
-      strategy: "Breaking Barriers through Movement. The project is built on the universal truth that movement is the purest form of human expression, yet internal and external barriers often restrict our growth. On Apex transforms running from a solo physical activity into a collective movement of personal liberation.",
-      insights: [
-        { metric: '70%', label: 'Motivation', detail: 'Of runners feel more motivated when running with others.' },
-        { metric: '65%', label: 'Gamification', detail: 'Of runners are interested in gamified fitness challenges.' },
-        { metric: '80%', label: 'Innovation', detail: 'Of runners value innovation in their gear and training tools.' }
+      // 1. Project Overview
+      title: "On Apex: Redefining the Running Experience",
+      quickPitch: "A transformative community platform that shifts running from an isolating activity to a collective movement of personal liberation.",
+      metadata: {
+        role: "Lead Product Designer & Developer",
+        timeline: "12 months (2025-2026)",
+        tools: ["Figma", "React", "Mapbox", "AR Kit", "PWA"],
+        industry: "Sports & Fitness, Community Building"
+      },
+
+      // 2. Background & Problem
+      challenge: "While On is established as a leader in Swiss-engineered performance footwear, the brand identified a gap in community engagement beyond product sales. Running is often perceived as isolating or intimidating, where self-doubt and lack of motivation prevent individuals from reaching their potential.",
+      hmw: "How might we create a transformative platform that shifts the focus from gear to the emotional and social core of movement?",
+      goal: "Build a lifestyle platform that transforms On from a shoe company to a community leader, driving stronger brand affinity and increasing demand through social connection.",
+
+      // 3. Insight & Strategy
+      insight: "Running is not just about the miles; it is about the sense of belonging and the collective triumph of shared goals. Research revealed 70% of runners feel more motivated when running with a group, and 65% are interested in gamified fitness challenges.",
+      strategy: "The strategy centered on 'Running Free' by removing psychological barriers through three pillars: Local Pods (curated groups of 10-20 runners), Competitive Gamification (city-wide leaderboards), and Technical Integration (Mapbox-powered AR navigation).",
+
+      // 4. Implementation & Process
+      workflow: [
+        "User research and runner behavior analysis across demographics",
+        "Platform architecture planning (PWA for cross-platform compatibility)",
+        "Pod matching algorithm development based on goals and location",
+        "AR navigation and route planning integration via Mapbox",
+        "Gamification system design with tiered rewards",
+        "Beta testing with pilot pods in Chicago and Berlin"
       ],
-      solutions: [
-        { title: "Personalized Pod Matching", desc: "Users are sorted into pods of 10–20 runners based on lifestyle indicators and goals to ensure cultural fit—from Early Bird City to Weekend Warriors." },
-        { title: "Gamification & Competition", desc: "City-wide and international leaderboards turn personal wins into collective triumphs for pods in Chicago, London, and Seoul." },
-        { title: "High-Tech Integration", desc: "Mapbox-powered route planning, AR navigation tools, and deep-dive post-run analytics." },
-        { title: "Rewards & Ecosystem", desc: "Tiered brand incentives like discount codes and free item redemptions, plus partner benefits from Spotify and Masterclass." }
+      designDecisions: [
+        {
+          title: "Pod Size",
+          optionA: {
+            label: "Large Groups (30-50 people)",
+            description: "Maximize reach and network effects with bigger community pods."
+          },
+          optionB: {
+            label: "Small Pods (10-20 people)",
+            description: "Create intimate accountability groups with consistent connections."
+          },
+          chosen: 'B',
+          reasoning: "Small pods ensure a 'perfect fit' where every member feels known and accountable. Testing showed 3x higher retention in smaller groups due to stronger social bonds."
+        },
+        {
+          title: "Reward Structure",
+          optionA: {
+            label: "Monetary Incentives",
+            description: "Cash prizes or gift cards for top performers."
+          },
+          optionB: {
+            label: "Tiered Product Rewards",
+            description: "Unlock On discount codes, free gear, and partner benefits (UberOne, Spotify)."
+          },
+          chosen: 'B',
+          reasoning: "Product-based rewards reinforce brand connection and create tangible value tied to On ecosystem, driving 40% higher purchase intent."
+        }
       ],
-      impact: [
-        { title: "Deepened Brand Loyalty", desc: "Moving the relationship beyond a one-time footwear purchase." },
-        { title: "Market Expansion", desc: "Reaching beginner runners and enthusiasts who previously felt intimidated by performance-only branding." }
+
+      // 5. Mockups & Reasoning
+      mockups: [
+        {
+          caption: "Onboarding flow where users complete a lifestyle survey to be matched into a specific Pod based on running goals and availability.",
+          annotations: [
+            { x: 25, y: 30, label: "Lifestyle Survey", reasoning: "7-question flow assesses pace preference, schedule, and social vs. solo running style to ensure pod compatibility." },
+            { x: 75, y: 40, label: "Pod Matching", reasoning: "Algorithm considers location proximity (<5 miles), similar weekly mileage goals, and preferred run times." }
+          ]
+        },
+        {
+          caption: "Pod Dashboard displaying member profiles, upcoming runs, and collective progress bars for visual motivation.",
+          annotations: [
+            { x: 20, y: 25, label: "Member Profiles", reasoning: "Tags like 'Early Bird' and 'Weekend Warrior' help users quickly identify peer running styles." },
+            { x: 50, y: 60, label: "Progress Bars", reasoning: "Dual progress tracking (personal + pod milestones) provides immediate dopamine hits for completed activities." },
+            { x: 80, y: 70, label: "Leaderboard Toggle", reasoning: "Users can switch between local (Chicago) and international rankings to feel part of a global movement." }
+          ]
+        },
+        {
+          caption: "Real-time AR navigation during active runs with route markers and pod member locations for safety and engagement.",
+          annotations: [
+            { x: 50, y: 50, label: "AR Waypoints", reasoning: "Turn-by-turn navigation with visual markers reduces cognitive load so runners can focus on performance." }
+          ]
+        }
       ],
-      quote: "Barriers don't define you. Your steps do. Move. Run Free."
+
+      // 6. KPIs & Success
+      quantitative: [
+        { metric: "Engagement", value: "+45%", description: "Increase in participation rates in local group runs within 6 months of launch." },
+        { metric: "Loyalty", value: "82% NPS", description: "Net Promoter Score indicating strong brand affinity and connection with On." },
+        { metric: "Revenue Growth", value: "+25%", description: "Higher demand for On gear driven specifically by Apex pod participants." }
+      ],
+      qualitative: [
+        { source: "Beta Tester, Chicago Pod", quote: "On Apex made me feel like I belonged to something bigger than just my morning run." },
+        { source: "Product Team Lead", quote: "This shifted our entire brand strategy from selling shoes to building a movement." }
+      ],
+      reflection: "If I could revisit this project, I would invest more time in city-specific onboarding experiences to account for cultural differences in running communities. The Berlin pod dynamics differed significantly from Chicago, suggesting localization could drive even higher engagement."
     },
     'stella-mccartney': {
       heroTitle: "Stella McCartney x Zellerfeld",
@@ -183,49 +265,112 @@ const CaseStudyDetail: React.FC = () => {
     quote: "Building the future of design."
   };
 
+  // Check if this is a new professional format case study
+  const isNewFormat = 'quickPitch' in data;
+
   return (
     <main className="min-h-screen">
-      {/* Hero Section with components */}
-      <CaseStudyHero
-        title={data.heroTitle}
-        category={study.category}
-        role={study.role}
-        year={study.year}
-        ask={data.ask}
-      />
-
-      {/* Hero Visual */}
-      <section className="px-6 md:px-12 py-12 max-w-[1440px] mx-auto">
-        <div className="aspect-[21/9] bg-stone-200 grayscale overflow-hidden border border-stone-200">
-          <img
-            src={study.imageUrl}
-            alt={study.title}
-            className="w-full h-full object-cover opacity-90 transition-all duration-1000 hover:grayscale-0"
+      {isNewFormat ? (
+        /* ===== NEW PROFESSIONAL FORMAT ===== */
+        <>
+          {/* 1. Project Overview & Context */}
+          <ProjectHeader
+            title={data.title}
+            quickPitch={data.quickPitch}
+            metadata={data.metadata}
           />
-        </div>
-      </section>
 
-      {/* Content Grid */}
-      <section className="px-6 md:px-12 py-24 max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24">
+          {/* Hero Visual */}
+          <section className="px-6 md:px-12 py-12 max-w-[1440px] mx-auto">
+            <div className="aspect-[21/9] bg-stone-200 grayscale overflow-hidden border border-stone-200">
+              <img
+                src={study.imageUrl}
+                alt={study.title}
+                className="w-full h-full object-cover opacity-90 transition-all duration-1000 hover:grayscale-0"
+              />
+            </div>
+          </section>
 
-        {/* Left Column: Context */}
-        <div className="md:col-span-4 space-y-24">
-          <ChallengeSection challenge={data.challenge} />
-          {data.methodology && <MethodologySection methods={data.methodology} title="The Polyculture Audit" />}
-          <StrategySection strategy={data.strategy} />
-        </div>
+          {/* 2-6. Professional Sections */}
+          <section className="px-6 md:px-12 py-24 max-w-[1440px] mx-auto space-y-32">
+            {/* 2. Background & Problem Statement */}
+            <ProblemStatement
+              challenge={data.challenge}
+              hmw={data.hmw}
+              goal={data.goal}
+            />
 
-        {/* Right Column: Insights & Solution */}
-        <div className="md:col-span-8 space-y-32">
-          {data.evidence && <EvidenceList evidence={data.evidence} title="Evidence of the Confidence Gap" />}
-          {data.segments && <SegmentationTable segments={data.segments} title="The 40/40/20 Opportunity" />}
-          {data.media && <MediaGallery media={data.media.slice(0, 3)} title="Research & Insights" />}
-          <InsightsTable insights={data.insights} />
-          <SolutionsGrid solutions={data.solutions} />
-          {data.media && data.media.length > 3 && <MediaGallery media={data.media.slice(3)} title="Solution Mockups" />}
-          <ImpactSection quote={data.quote} impact={data.impact} />
-        </div>
-      </section>
+            {/* 3. Insight & Strategy */}
+            <InsightStrategy
+              insight={data.insight}
+              strategy={data.strategy}
+            />
+
+            {/* 4. Implementation & Process */}
+            <div className="space-y-16">
+              <ProcessWorkflow workflow={data.workflow} />
+              {data.designDecisions && <IterationShowcase decisions={data.designDecisions} />}
+            </div>
+
+            {/* 5. Mockups & Reasoning */}
+            {data.mockups && <AnnotatedMockup mockups={data.mockups} />}
+
+            {/* 6. KPIs, Success & Reflection */}
+            <div className="space-y-16">
+              <ImpactMetrics
+                quantitative={data.quantitative}
+                qualitative={data.qualitative}
+              />
+              {data.reflection && <Reflection reflection={data.reflection} />}
+            </div>
+          </section>
+        </>
+      ) : (
+        /* ===== LEGACY FORMAT (Nike SNKRS, etc.) ===== */
+        <>
+          {/* Hero Section with components */}
+          <CaseStudyHero
+            title={data.heroTitle}
+            category={study.category}
+            role={study.role}
+            year={study.year}
+            ask={data.ask}
+          />
+
+          {/* Hero Visual */}
+          <section className="px-6 md:px-12 py-12 max-w-[1440px] mx-auto">
+            <div className="aspect-[21/9] bg-stone-200 grayscale overflow-hidden border border-stone-200">
+              <img
+                src={study.imageUrl}
+                alt={study.title}
+                className="w-full h-full object-cover opacity-90 transition-all duration-1000 hover:grayscale-0"
+              />
+            </div>
+          </section>
+
+          {/* Content Grid */}
+          <section className="px-6 md:px-12 py-24 max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24">
+
+            {/* Left Column: Context */}
+            <div className="md:col-span-4 space-y-24">
+              <ChallengeSection challenge={data.challenge} />
+              {data.methodology && <MethodologySection methods={data.methodology} title="The Polyculture Audit" />}
+              <StrategySection strategy={data.strategy} />
+            </div>
+
+            {/* Right Column: Insights & Solution */}
+            <div className="md:col-span-8 space-y-32">
+              {data.evidence && <EvidenceList evidence={data.evidence} title="Evidence of the Confidence Gap" />}
+              {data.segments && <SegmentationTable segments={data.segments} title="The 40/40/20 Opportunity" />}
+              {data.media && <MediaGallery media={data.media.slice(0, 3)} title="Research & Insights" />}
+              <InsightsTable insights={data.insights} />
+              <SolutionsGrid solutions={data.solutions} />
+              {data.media && data.media.length > 3 && <MediaGallery media={data.media.slice(3)} title="Solution Mockups" />}
+              <ImpactSection quote={data.quote} impact={data.impact} />
+            </div>
+          </section>
+        </>
+      )}
 
       {/* Navigation Footer */}
       <ProjectNavigation currentId={id} />
