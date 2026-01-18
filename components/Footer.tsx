@@ -11,14 +11,13 @@ const Footer: React.FC = () => {
             <a href="mailto:bennpattara@gmail.com" className="text-xl md:text-2xl font-light hover:text-stone-500 transition-colors">
               bennpattara@gmail.com
             </a>
-            <p className="text-stone-500 font-medium">708.713.6718</p>
           </div>
         </div>
 
         <div className="flex flex-col gap-4">
-          <a 
-            href="https://www.linkedin.com/in/bennpattara" 
-            target="_blank" 
+          <a
+            href="https://www.linkedin.com/in/bennpattara"
+            target="_blank"
             rel="noopener noreferrer"
             className="text-[11px] tracking-[0.15em] font-bold uppercase border-b border-stone-900 pb-1 w-fit hover:border-stone-400 hover:text-stone-400 transition-all"
           >
