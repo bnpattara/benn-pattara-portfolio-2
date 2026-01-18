@@ -50,15 +50,7 @@ export interface ProjectMetadata {
 
 export interface DesignDecision {
     title: string;
-    optionA: {
-        label: string;
-        description: string;
-    };
-    optionB: {
-        label: string;
-        description: string;
-    };
-    chosen: 'A' | 'B';
+    decision: string;
     reasoning: string;
 }
 

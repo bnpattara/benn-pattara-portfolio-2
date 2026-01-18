@@ -73,30 +73,14 @@ const CaseStudyDetail: React.FC = () => {
       ],
       designDecisions: [
         {
-          title: "Pod Size",
-          optionA: {
-            label: "Large Groups (30-50 people)",
-            description: "Maximize reach and network effects with bigger community pods."
-          },
-          optionB: {
-            label: "Small Pods (10-20 people)",
-            description: "Create intimate accountability groups with consistent connections."
-          },
-          chosen: 'B',
-          reasoning: "Small pods ensure a 'perfect fit' where every member feels known and accountable. Testing showed 3x higher retention in smaller groups due to stronger social bonds."
+          title: "Pod Size Selection",
+          decision: "Small, curated pods of 10-20 runners rather than large groups of 30-50 people.",
+          reasoning: "Testing showed 3x higher retention in smaller groups due to stronger social bonds and a 'perfect fit' where every member feels known and accountable."
         },
         {
           title: "Reward Structure",
-          optionA: {
-            label: "Monetary Incentives",
-            description: "Cash prizes or gift cards for top performers."
-          },
-          optionB: {
-            label: "Tiered Product Rewards",
-            description: "Unlock On discount codes, free gear, and partner benefits (UberOne, Spotify)."
-          },
-          chosen: 'B',
-          reasoning: "Product-based rewards reinforce brand connection and create tangible value tied to On ecosystem, driving 40% higher purchase intent."
+          decision: "Tiered product rewards (On discount codes, free gear, partner benefits) instead of monetary incentives.",
+          reasoning: "Product-based rewards reinforce brand connection and create tangible value tied to On ecosystem, driving 40% higher purchase intent compared to cash prizes."
         }
       ],
 

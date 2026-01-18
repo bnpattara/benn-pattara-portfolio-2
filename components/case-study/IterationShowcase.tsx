@@ -9,52 +9,18 @@ const IterationShowcase: React.FC<IterationShowcaseProps> = ({ decisions }) => {
         <div className="space-y-12">
             <h2 className="text-[11px] font-bold tracking-[0.4em] text-stone-900 uppercase">Design Decisions</h2>
 
-            <div className="space-y-16">
+            <div className="space-y-12">
                 {decisions.map((decision, i) => (
-                    <div key={i} className="space-y-8">
+                    <div key={i} className="space-y-4">
                         {/* Decision Title */}
-                        <h3 className="text-lg font-light uppercase tracking-tight text-stone-900">
+                        <h3 className="text-base font-medium text-stone-900 uppercase tracking-wide">
                             {decision.title}
                         </h3>
 
-                        {/* A vs B Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {/* Option A */}
-                            <div className={`p-8 border-2 ${decision.chosen === 'A' ? 'border-stone-900 bg-stone-50' : 'border-stone-200'}`}>
-                                <div className="space-y-4">
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-[10px] font-bold tracking-widest text-stone-400 uppercase">Option A</span>
-                                        {decision.chosen === 'A' && (
-                                            <span className="px-3 py-1 bg-stone-900 text-white text-[10px] font-bold tracking-wider uppercase">
-                                                Chosen
-                                            </span>
-                                        )}
-                                    </div>
-                                    <h4 className="text-base font-medium text-stone-900">{decision.optionA.label}</h4>
-                                    <p className="text-sm text-stone-600 font-light leading-relaxed">
-                                        {decision.optionA.description}
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* Option B */}
-                            <div className={`p-8 border-2 ${decision.chosen === 'B' ? 'border-stone-900 bg-stone-50' : 'border-stone-200'}`}>
-                                <div className="space-y-4">
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-[10px] font-bold tracking-widest text-stone-400 uppercase">Option B</span>
-                                        {decision.chosen === 'B' && (
-                                            <span className="px-3 py-1 bg-stone-900 text-white text-[10px] font-bold tracking-wider uppercase">
-                                                Chosen
-                                            </span>
-                                        )}
-                                    </div>
-                                    <h4 className="text-base font-medium text-stone-900">{decision.optionB.label}</h4>
-                                    <p className="text-sm text-stone-600 font-light leading-relaxed">
-                                        {decision.optionB.description}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        {/* What Was Decided */}
+                        <p className="text-stone-900 font-light leading-relaxed">
+                            {decision.decision}
+                        </p>
 
                         {/* Reasoning */}
                         <div className="border-l-2 border-stone-900 pl-6">
