@@ -48,13 +48,13 @@ export const CASE_STUDIES: CaseStudy[] = [
     role: 'Product Strategy & UX Direction'
   },
   {
-    id: '13-taylor-swift',
-    title: '13: Taylor Swift',
-    category: 'Analytical Storytelling',
-    description: 'A deep-dive data visualization study on the cultural and quantitative impact of the discography.',
-    imageUrl: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=1200',
-    year: '2026',
-    role: 'Data Visualizer'
+    id: 'off-white-mentorship',
+    title: 'Off-White Mentorship Program',
+    category: 'Community Building | Brand Strategy',
+    description: 'A digital platform connecting emerging creatives with established mentors to democratize access and build the next wave of cultural leaders.',
+    imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1200',
+    year: '2025',
+    role: 'Lead UX Strategist & Community Designer'
   }
 ];
 

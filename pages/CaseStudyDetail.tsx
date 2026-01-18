@@ -299,6 +299,91 @@ const CaseStudyDetail: React.FC = () => {
         { source: "Brand Positioning", quote: "Diesel is at the peak of its creative resurgence. A Tokyo flagship is the necessary strategic move to capitalize on this momentum." }
       ],
       reflection: "If revisiting this concept, I would develop more detailed financial modeling for each floor's revenue potential and explore partnerships with Japanese artisans earlier in the process to deepen local cultural integration beyond aesthetic references."
+    },
+    'off-white-mentorship': {
+      // 1. Project Overview
+      title: "Off-White Mentorship Program",
+      quickPitch: "A digital platform democratizing creative mentorship by connecting 1000+ emerging talents with 350+ established mentors across fashion, design, and art.",
+      metadata: {
+        role: "Lead UX Strategist & Community Designer",
+        timeline: "6 months (Platform Design)",
+        tools: ["Figma", "User Research", "Community Design", "UX Strategy"],
+        industry: "Fashion Tech, Education, Community"
+      },
+
+      // 2. Background & Problem
+      challenge: "Traditional creative networks are exclusive, outdated, and disconnected from today's energy. Emerging creatives like 'Alex' lack the critiques, access, and guidance they need to grow—not from lack of skill, but lack of opportunity.",
+      hmw: "How might we create a space where feedback feels accessible, personal, and future-facing, extending Off-White's DNA beyond fashion into shaping culture itself?",
+      goal: "Build a living network where young designers connect, learn, and launch future-shaping careers while reinforcing Off-White's cultural leadership and sparking new collaborations.",
+
+      // 3. Insight & Strategy
+      insight: "Creatives aren't rare. Access is. Without real-world mentorship, many young creatives stall—or burn out before they break through. The opportunity isn't just networking; it's building creative community that fuels collaboration, courage, and evolution.",
+      strategy: "Create an exclusive mentorship ecosystem combining 100+ curated connections, 80+ hours of masterclass content, and direct mentor-mentee messaging. Success = clarity through a human voice, not algorithmic feeds.",
+
+      // 4. Implementation & Process
+      workflow: [
+        "User research identifying key pain points (access, feedback, isolation)",
+        "Platform architecture: profiles, messaging, classes, badges, collaboration spaces",
+        "Mentor/mentee matching algorithm design based on goals and creative alignment",
+        "Curriculum design: skill tracks, guest speakers, certification badges",
+        "Launch strategy: OOH campaigns, art school partnerships, pop-up lectures",
+        "6-month user journey mapping from onboarding to mentorship reciprocity"
+      ],
+      designDecisions: [
+        {
+          title: "Membership Model",
+          decision: "Curated exclusive network (100+ handpicked creatives) rather than open platform.",
+          reasoning: "Ensures balance of diverse voices, shared values, and future-focused thinking. Quality over quantity builds trust and meaningful connections rather than overwhelming noise."
+        },
+        {
+          title: "Learning Structure",
+          decision: "Self-paced learning with certification badges instead of rigid course schedules.",
+          reasoning: "Flexibility for students, freelancers, and working creatives to learn at own speed while maintaining credential value through Off-White-backed certifications."
+        },
+        {
+          title: "Growth Model",
+          decision: "Member-to-mentor pipeline where successful mentees return as future mentors.",
+          reasoning: "Creates sustainable community loop, ensures cultural continuity, and transforms platform from transactional to generational legacy."
+        }
+      ],
+
+      // 5. Mockups & Reasoning
+      mockups: [
+        {
+          caption: "Onboarding: Alex creates profile, uploads work, sets mentorship goals—unlocking access to classes, critiques, and collaborations.",
+          annotations: [
+            { x: 30, y: 40, label: "Profile Creation", reasoning: "Portfolio upload and goal-setting ensures personalized mentor matching and relevant class recommendations from day one." },
+            { x: 70, y: 50, label: "Mentorship Goals", reasoning: "Specific goal articulation (brand building, technical skills, industry navigation) powers intelligent matching algorithm." }
+          ]
+        },
+        {
+          caption: "Community Dashboard: 350 mentors + 1000 mentees displayed with creative specialties, enabling direct messaging and collaboration discovery.",
+          annotations: [
+            { x: 25, y: 30, label: "Mentor Directory", reasoning: "Searchable by specialty, location, and availability—transparency builds connection confidence." },
+            { x: 50, y: 60, label: "Direct Messaging", reasoning: "No gatekeeping—Alex can message mentors directly to build meaningful creative relationships." },
+            { x: 75, y: 70, label: "Collaboration Board", reasoning: "Visible project opportunities create spontaneous partnerships beyond formal mentorship." }
+          ]
+        },
+        {
+          caption: "Learning Hub: 80+ hours of exclusive content with skill tracks, guest speakers, and certification badges for portfolio credibility.",
+          annotations: [
+            { x: 30, y: 35, label: "Skill Tracks", reasoning: "Curated paths (branding, digital design, creative direction) guide progression vs. overwhelming course catalog." },
+            { x: 65, y: 55, label: "Certification Badges", reasoning: "Off-White-backed credentials add portfolio weight and industry recognition for mentees." }
+          ]
+        }
+      ],
+
+      // 6. KPIs & Success
+      quantitative: [
+        { metric: "Network", value: "1000+ Creatives", description: "Global community of emerging talents shaping next wave of culture, innovation, and style across 4 continents." },
+        { metric: "Mentorship", value: "350 Leaders", description: "Established designers, artists, and entrepreneurs offering real-world insights, feedback, and collaborative energy." },
+        { metric: "Content", value: "80+ Hours", description: "Exclusive masterclasses, workshops, and talks designed by Off-White creative ecosystem with certification tracks." }
+      ],
+      qualitative: [
+        { source: "Platform Vision", quote: "Fashion is paralyzed by choice. Off-White Mentorship provides the clarity of a human voice." },
+        { source: "User Outcome", quote: "Alex's portfolio featured in community spotlight, leading to collaboration project and eventual transition to mentoring new members." }
+      ],
+      reflection: "Future iterations would benefit from deeper analytics on mentorship outcome correlation (e.g., which mentor-mentee matches lead to successful collaborations) and exploring revenue models beyond brand investment to ensure long-term platform sustainability."
     }
   };
 
