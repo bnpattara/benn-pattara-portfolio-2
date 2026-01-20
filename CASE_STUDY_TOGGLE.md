@@ -1,47 +1,60 @@
-# Case Study Visibility Toggle - Quick Reference
+# How to Hide Case Studies from Homepage
 
-## How It Works
+## Simple Method: Comment Out
 
-You can now control which case studies appear on your home page by setting the `published` field in `constants.tsx`.
+To hide a case study from your homepage, simply comment it out in `/constants.tsx`.
 
-## Usage
-
-### To Hide a Case Study
-In `/constants.tsx`, set `published: false`:
+### Example: Hiding Stella McCartney
 
 ```tsx
-{
-  id: 'stella-mccartney',
-  title: 'Stella McCartney x Zellerfeld',
-  // ... other fields
-  published: false  // This case study will NOT appear on the home page
-}
+export const CASE_STUDIES: CaseStudy[] = [
+  {
+    id: 'on-apex',
+    // ... visible on homepage
+  },
+  // HIDDEN: Uncomment the lines below to show on homepage
+  // {
+  //   id: 'stella-mccartney',
+  //   title: 'Stella McCartney x Zellerfeld',
+  //   // ... rest of the object
+  // },
+  {
+    id: 'nike-snkrs',
+    // ... visible on homepage
+  },
+];
 ```
 
-### To Show a Case Study
-Set `published: true` or omit the field entirely (defaults to true):
+### To Hide a Case Study:
+1. Open `/constants.tsx`
+2. Find the case study object you want to hide
+3. Add `//` at the start of each line of that object
+4. Add a comment above like: `// HIDDEN: Uncomment to show`
 
-```tsx
-{
-  id: 'nike-snkrs',
-  title: 'Nike SNKRS: Bridging the Confidence Gap',
-  // ... other fields
-  published: true  // This case study WILL appear on the home page
-}
+### To Show a Hidden Case Study:
+1. Open `/constants.tsx`
+2. Find the commented-out case study
+3. Remove the `//` from each line
+
+### Deploy Your Changes:
+```bash
+npm run build
+cp -r dist/* docs/
+git add constants.tsx docs/
+git commit -m "Update visible case studies"
+git push origin main
 ```
 
 ## Current Status
+- ✅ On Apex: Visible
+- ❌ Stella McCartney: **HIDDEN** (commented out)
+- ✅ Nike SNKRS: Visible
+- ✅ Diesel: Visible
+- ✅ Stylect: Visible
+- ✅ Off-White Mentorship: Visible
 
-- **On Apex**: Published ✅
-- **Stella McCartney**: Hidden ❌ (example)
-- **Nike SNKRS**: Published ✅
-- **Diesel**: Published ✅
-- **Stylect**: Published ✅
-- **Off-White Mentorship**: Published ✅
-
-## Notes
-
-- Case studies with `published: false` are hidden from the home page grid
-- The project count automatically updates to reflect only published case studies
-- Users can still access hidden case studies directly via URL if they know the link
-- This is perfect for hiding work-in-progress case studies while you edit them
+## Why This Method?
+- **Safe**: No filtering logic that could break
+- **Simple**: Just comment/uncomment lines
+- **Clear**: Easy to see what's hidden
+- **No Dependencies**: Doesn't rely on any special fields or logic

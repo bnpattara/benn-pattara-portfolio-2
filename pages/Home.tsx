@@ -30,12 +30,12 @@ const Home: React.FC = () => {
             Selected Works
           </h2>
           <span className="text-[11px] font-medium tracking-[0.2em] text-stone-400 uppercase">
-            {CASE_STUDIES.filter(study => study.published !== false).length} Projects
+            {CASE_STUDIES.length} Projects
           </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {CASE_STUDIES.filter(study => study.published !== false).map((study) => (
+          {CASE_STUDIES.map((study) => (
             <CaseStudyCard key={study.id} study={study} />
           ))}
         </div>
