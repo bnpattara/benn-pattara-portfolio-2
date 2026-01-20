@@ -4,7 +4,12 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const location = useLocation();
-  const isAbout = location.pathname === '/about';
+  const pathname = location.pathname;
+
+  const isActive = (path: string) => {
+    if (path === '/') return pathname === '/' || pathname.startsWith('/works');
+    return pathname === path;
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[#f5f5f4] border-b border-stone-200">
@@ -18,16 +23,28 @@ const Header: React.FC = () => {
           </p>
         </Link>
 
-        <div className="flex gap-8 items-center text-[11px] font-bold tracking-[0.15em] uppercase">
+        <div className="flex gap-6 md:gap-8 items-center text-[11px] font-bold tracking-[0.15em] uppercase">
           <Link
             to="/"
-            className={`hover:text-stone-400 transition-colors ${!isAbout ? 'text-stone-900 underline underline-offset-8 decoration-1' : 'text-stone-400'}`}
+            className={`hover:text-stone-400 transition-colors ${isActive('/') ? 'text-stone-900 underline underline-offset-8 decoration-1' : 'text-stone-400'}`}
           >
             Works
           </Link>
           <Link
+            to="/tools"
+            className={`hover:text-stone-400 transition-colors ${isActive('/tools') ? 'text-stone-900 underline underline-offset-8 decoration-1' : 'text-stone-400'}`}
+          >
+            Tools
+          </Link>
+          <Link
+            to="/feed"
+            className={`hover:text-stone-400 transition-colors ${isActive('/feed') ? 'text-stone-900 underline underline-offset-8 decoration-1' : 'text-stone-400'}`}
+          >
+            Feed
+          </Link>
+          <Link
             to="/about"
-            className={`hover:text-stone-400 transition-colors ${isAbout ? 'text-stone-900 underline underline-offset-8 decoration-1' : 'text-stone-400'}`}
+            className={`hover:text-stone-400 transition-colors ${isActive('/about') ? 'text-stone-900 underline underline-offset-8 decoration-1' : 'text-stone-400'}`}
           >
             About
           </Link>
