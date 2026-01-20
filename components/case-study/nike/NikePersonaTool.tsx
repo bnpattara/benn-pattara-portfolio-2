@@ -134,14 +134,19 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
     const [messages, setMessages] = useState<Message[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const [internalExpanded, setInternalExpanded] = useState(isExpanded);
-    const messagesEndRef = useRef<HTMLDivElement>(null);
+    const chatContainerRef = useRef<HTMLDivElement>(null);
 
     const expanded = standalone ? true : (onToggle ? isExpanded : internalExpanded);
     const toggleExpanded = onToggle || (() => setInternalExpanded(!internalExpanded));
 
     // Auto-scroll to bottom
     useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTo({
+                top: chatContainerRef.current.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
     }, [messages, isTyping]);
 
     const handleModeSwitch = (newMode: ChatMode) => {
@@ -318,8 +323,8 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
                             <button
                                 onClick={() => handleModeSwitch(ChatMode.INDIVIDUAL)}
                                 className={`flex-1 flex items-center justify-center py-2 text-[9px] font-bold uppercase tracking-widest rounded transition-all ${mode === ChatMode.INDIVIDUAL
-                                        ? 'bg-stone-900 text-white'
-                                        : 'text-stone-400 hover:text-stone-600'
+                                    ? 'bg-stone-900 text-white'
+                                    : 'text-stone-400 hover:text-stone-600'
                                     }`}
                             >
                                 <User className="w-3 h-3 mr-1.5" />
@@ -328,8 +333,8 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
                             <button
                                 onClick={() => handleModeSwitch(ChatMode.FOCUS_GROUP)}
                                 className={`flex-1 flex items-center justify-center py-2 text-[9px] font-bold uppercase tracking-widest rounded transition-all ${mode === ChatMode.FOCUS_GROUP
-                                        ? 'bg-stone-900 text-white'
-                                        : 'text-stone-400 hover:text-stone-600'
+                                    ? 'bg-stone-900 text-white'
+                                    : 'text-stone-400 hover:text-stone-600'
                                     }`}
                             >
                                 <Users className="w-3 h-3 mr-1.5" />
@@ -350,8 +355,8 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
                                     key={persona.id}
                                     onClick={() => handlePersonaToggle(persona.id)}
                                     className={`p-3 rounded-lg cursor-pointer transition-all ${isSelected
-                                            ? 'bg-white border-2 border-stone-900'
-                                            : 'bg-white border border-stone-200 hover:border-stone-400'
+                                        ? 'bg-white border-2 border-stone-900'
+                                        : 'bg-white border border-stone-200 hover:border-stone-400'
                                         }`}
                                 >
                                     <div className="flex items-center gap-3">
@@ -385,7 +390,7 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
                 {/* Chat Area */}
                 <div className="flex-1 flex flex-col bg-white">
                     {/* Messages */}
-                    <div className="flex-1 overflow-y-auto p-6 space-y-4">
+                    <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-6 space-y-4">
                         {messages.length === 0 ? (
                             <div className="h-full flex flex-col items-center justify-center text-center px-8">
                                 <div className="w-12 h-12 border border-stone-200 rounded-full flex items-center justify-center mb-4">
@@ -420,8 +425,8 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
                                             )}
                                             <div
                                                 className={`p-4 rounded-lg text-sm ${msg.role === 'user'
-                                                        ? 'bg-stone-900 text-white rounded-br-none'
-                                                        : 'bg-stone-100 text-stone-800 rounded-bl-none'
+                                                    ? 'bg-stone-900 text-white rounded-br-none'
+                                                    : 'bg-stone-100 text-stone-800 rounded-bl-none'
                                                     }`}
                                             >
                                                 <div className="whitespace-pre-wrap">{msg.content}</div>
@@ -442,7 +447,7 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
                                 </div>
                             </div>
                         )}
-                        <div ref={messagesEndRef} />
+
                     </div>
 
                     {/* Input Area - Replaced with Predefined Questions */}
