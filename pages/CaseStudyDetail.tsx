@@ -283,55 +283,55 @@ const CaseStudyDetail: React.FC = () => {
       // Use new 5-section format
       isNewSectionFormat: true,
       heroTitle: "Diesel Tokyo: The Brand Temple",
-      heroSubtitle: "A five-story flagship where 10% surface meets 90% soul",
+      heroSubtitle: "Where 10% surface meets 90% soul",
 
       // Section 1: The Context
       context: {
-        background: "Since Glenn Martens' appointment as Creative Director in 2020, Diesel has regained its critical and commercial 'cool factor'. However, to capture the next generation and elevate global prestige, the brand requires a major physical statement that moves beyond retail.",
-        ask: "How might we create a definitive global power move in Tokyo—a market that demands depth, tradition, and forward-thinking trends?",
-        problem: "Competitors like Louis Vuitton and Gucci aren't just opening stores—they're creating architectural cultural destinations. Diesel needs a flagship that establishes the brand for the next generation through immersive experience, not just transactions."
+        background: "Founded in 1978 by Renzo Rosso, Diesel built a legacy on rebellion and 'For Successful Living.' Since October 2020, Creative Director Glenn Martens has engineered a 'Modern Renaissance,' blending avant-garde design with Y2K heritage to regain critical and commercial 'cool factor.'",
+        ask: "Leverage the brand's current creative momentum to execute a bold international retail expansion, specifically by launching a defining flagship destination in Tokyo.",
+        problem: "Confronted with a global shift toward e-commerce, the brand needed to capture a Japanese market that resists this trend by demanding 'depth,' 'craftsmanship,' and physical interaction. Merely opening a store was insufficient; Diesel needed to prove it had returned to the top tier of fashion."
       },
 
       // Section 2: The Investigation
       investigation: {
         researchMethods: [
-          { title: "Market Analysis", description: "Studying luxury retail expansion in Tokyo and Japan's resilience to global market fluctuations." },
-          { title: "Competitive Audit", description: "Analyzing flagship strategies of Louis Vuitton, Gucci, and Calvin Klein in the Tokyo luxury landscape." },
-          { title: "Site Selection", description: "Identifying 'The Iceberg'—a landmark Harajuku structure that physically mirrors Diesel's brand philosophy." }
+          { title: "Competitor Landscape Analysis", description: "Tracking flagship openings of Gucci, Calvin Klein, Louis Vuitton." },
+          { title: "Cultural Decoding", description: "Understanding Japanese consumer values of quality, self-reward, and service." },
+          { title: "Architectural Feasibility Study", description: "Evaluating 'The Iceberg' Harajuku structure for brand alignment." }
         ],
         dataPoints: [
-          { label: "Market Resilience", value: "Stable", description: "Japan's luxury market shows remarkable stability despite global fluctuations." },
-          { label: "Experience Priority", value: "High", description: "Japanese consumers prioritize physical retail experiences and demand depth." },
-          { label: "Youth Culture", value: "Harajuku", description: "Cultural capital of youth trends—positioning here signals cultural curation, not luxury following." }
+          { label: "Japan Economy", value: "4th", description: "Japan is the world's 4th largest economy." },
+          { label: "Brand Heritage", value: "1978", description: "Founded in 1978 (Cafe 1978 concept)." },
+          { label: "Competitor Timeline", value: "2021-2025", description: "Competitor expansion timeline for flagship openings." },
+          { label: "Concept Ratio", value: "10/90", description: "10% Surface / 90% Soul—the iceberg principle." }
         ]
       },
 
       // Section 3: The Pivot
       pivot: {
-        insight: "Japanese consumers don't just buy luxury—they demand depth. What you see on the surface is only 10%. Beneath lies 90%: heritage, craftsmanship, and culture.",
-        strategy: "The Iceberg Concept: Transform Diesel's Tokyo flagship into a cultural temple. The building (The Iceberg in Harajuku) physically mirrors our philosophy—surface rebellion concealing deep Italian heritage."
+        insight: "While the world pushes for digital convenience, the Japanese consumer views luxury not just as a status symbol, but as a personal reward rooted in the 'submerged' story of quality and heritage.",
+        strategy: "Transform the retail space from a point of sale into a 'Brand Temple' that physically manifests the hidden 90% of Diesel's DNA—bringing the soul of the brand to the surface."
       },
 
       // Section 4: The Solution
       solution: {
-        conceptName: "The Iceberg: A Five-Floor Cultural Temple",
-        concept: "A multi-floor destination where retail, customization, dining, and community create reasons to linger and deepen emotional brand connection.",
+        conceptName: "The Brand Temple: The Iceberg",
+        concept: "A multi-sensory flagship experience that transforms retail into cultural immersion across three dimensions: Physical, Digital, and Traditional.",
         execution: [
-          { title: "Ground Floor: Gallery Retail", description: "High-velocity retail in a gallery setting with sculptural stone Cash Wrap and Fit Check Zones optimized for social sharing." },
-          { title: "Floor 2: Denim Lab", description: "A glass-walled 'theater of craftsmanship' for co-creation—laser distressing, vintage repair, and premium packaging." },
-          { title: "Floor 3-4: Cafe 1978", description: "Archive library and community space with Italian espresso bar, creating a third place for brand loyalists." },
-          { title: "Floor 5: Ghiaccio Ice Bar", description: "Premier dining for top-tier clients, featuring a monolithic glass bar internally cooled to appear frozen—the 'Iceberg' brought to life." }
+          { title: "Physical: The Iceberg Structure", description: "Secured 'The Iceberg' in Harajuku, a glass-structured landmark. Features include a 'Denim Lab' for laser distressing co-creation, the 'Ghiaccio' ice bar, and 'Cafe 1978' tailored for community lingering." },
+          { title: "Digital: Fit Check Zones", description: "Fitting rooms optimized for the 'Fit Check' with specific lighting and backdrops designed for instant social sharing, directly connecting physical trials to digital conversations." },
+          { title: "Traditional: Mobile Billboards", description: "Sustainable packaging designed as 'mobile billboards' for Tokyo streets, utilitarian staff uniforms that blur lines with clientele, and napkins printing controversial campaign history." }
         ]
       },
 
       // Section 5: The Impact
       impact: {
         benefits: [
-          { title: "Gateway to Asia", description: "Success in Tokyo serves as launchpad for broader expansion across Asia with 'Cool Japan' halo effect." },
-          { title: "Deep Customer Loyalty", description: "Physical flagship creates immersive experiences that foster lasting emotional connections in a market valuing personalized service." },
-          { title: "Cultural Authority", description: "Positioning Diesel as a cultural curator rather than luxury follower—capturing the next generation through experience." }
+          { title: "Global Brand Prestige", description: "Elevates Diesel's position by solidifying its return to the top tier of fashion through architectural cultural statement." },
+          { title: "Gateway to Asia", description: "Serves as a strategic gateway to the broader Asian market via 'Cool Japan' influence and cultural capital." },
+          { title: "Next Generation Capture", description: "Captures the next generation of luxury consumers through immersive cultural experiences rather than transactional retail." }
         ],
-        reflection: "If revisiting this concept, I would develop more detailed financial modeling for each floor's revenue potential and explore partnerships with Japanese artisans earlier to deepen local cultural integration."
+        reflection: "This project reinforced that in markets demanding depth, the store isn't just a point of sale—it's a temple. The iceberg principle taught me that what you show is only 10%; the real value is the 90% beneath."
       }
     },
     'off-white-mentorship': {
