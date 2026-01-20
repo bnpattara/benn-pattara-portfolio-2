@@ -7,6 +7,7 @@ export interface CaseStudy {
   imageUrl: string;
   year: string;
   role: string;
+  published?: boolean; // Controls visibility on home page (defaults to true)
 }
 
 export interface Skill {

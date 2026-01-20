@@ -16,7 +16,7 @@ const Home: React.FC = () => {
             </h2>
             <div className="h-px w-32 bg-stone-900"></div>
             <p className="text-xl md:text-2xl text-stone-600 max-w-2xl leading-relaxed font-light">
-              Multifaceted strategist and designer specialized in high-performance retail ecosystems, 
+              Multifaceted strategist and designer specialized in high-performance retail ecosystems,
               product design, and brand architecture.
             </p>
           </div>
@@ -30,17 +30,17 @@ const Home: React.FC = () => {
             Selected Works
           </h2>
           <span className="text-[11px] font-medium tracking-[0.2em] text-stone-400 uppercase">
-            {CASE_STUDIES.length} Projects
+            {CASE_STUDIES.filter(study => study.published !== false).length} Projects
           </span>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {CASE_STUDIES.map((study) => (
+          {CASE_STUDIES.filter(study => study.published !== false).map((study) => (
             <CaseStudyCard key={study.id} study={study} />
           ))}
         </div>
       </section>
-      
+
       {/* Capabilities CTA */}
       <section className="bg-stone-900 text-white px-6 md:px-12 py-32 text-center">
         <div className="max-w-3xl mx-auto space-y-12">
@@ -50,7 +50,7 @@ const Home: React.FC = () => {
           <p className="text-stone-400 text-lg md:text-xl font-light italic">
             "Expertise in retail strategy, digital fluency, and high-fidelity systems design."
           </p>
-          <a 
+          <a
             href="mailto:bennpattara@gmail.com"
             className="inline-block px-12 py-5 bg-white text-stone-900 text-[11px] font-bold tracking-[0.3em] uppercase hover:bg-stone-100 transition-colors"
           >

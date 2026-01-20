@@ -1,5 +1,6 @@
 {
   "on-apex": {
+    "published": true,
     "isNewSectionFormat": true,
     "heroTitle": "On Apex: Run Free",
     "heroSubtitle": "Redefining community through collective movement",
@@ -85,6 +86,7 @@
     }
   },
   "stella-mccartney": {
+    "published": false,
     "isNewSectionFormat": true,
     "heroTitle": "Stella McCartney x Zellerfeld",
     "heroSubtitle": "3D printing as sustainable luxury language",
@@ -170,6 +172,7 @@
     }
   },
   "nike-snkrs": {
+    "published": true,
     "isNikeFormat": true,
     "context": {
       "background": "Nike has long dominated the sneaker category using a \"winning formula\" of manufactured scarcity, high-profile collaborations, and the digital-first SNKRS app. Between 2015 and 2021, sneakers were the ultimate cultural currency.",
@@ -273,6 +276,7 @@
     }
   },
   "stylect": {
+    "published": true,
     "isNewSectionFormat": true,
     "heroTitle": "Stylect: Humanizing Fashion Discovery",
     "heroSubtitle": "The clarity of a human voice in a sea of algorithms",
@@ -358,6 +362,7 @@
     }
   },
   "diesel": {
+    "published": true,
     "isNewSectionFormat": true,
     "heroTitle": "Diesel Tokyo: The Brand Temple",
     "heroSubtitle": "Where 10% surface meets 90% soul",
@@ -444,6 +449,7 @@
     }
   },
   "off-white-mentorship": {
+    "published": true,
     "isNewSectionFormat": true,
     "heroTitle": "Off-White Mentorship Program",
     "heroSubtitle": "Democratizing access to creative mentorship",

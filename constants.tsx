@@ -9,7 +9,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     description: 'A transformative community-driven PWA bridging innovation and personal liberation through collective movement.',
     imageUrl: 'https://images.unsplash.com/photo-1594882645126-14020914d58d?auto=format&fit=crop&q=80&w=1200',
     year: '2025',
-    role: 'Strategy, Design & Development'
+    role: 'Strategy, Design & Development',
+    published: true
   },
   {
     id: 'stella-mccartney',
@@ -18,7 +19,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     description: 'Pioneering sustainable luxury through 3D-printed, fully recyclable circular fashion systems.',
     imageUrl: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=1200',
     year: '2025',
-    role: 'Brand Strategist & Creative Director'
+    role: 'Brand Strategist & Creative Director',
+    published: false // Example: Hidden from home page
   },
   {
     id: 'nike-snkrs',
@@ -27,7 +29,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     description: 'Reimagining digital product innovation through a business model shift from exclusivity to confidence.',
     imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=1200',
     year: '2026',
-    role: 'Lead Strategist & Consumer Researcher'
+    role: 'Lead Strategist & Consumer Researcher',
+    published: true
   },
   {
     id: 'diesel',
@@ -36,7 +39,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     description: 'A physical statement in Harajuku elevating Diesel’s prestige through a "theater of craftsmanship" and community hub.',
     imageUrl: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=80&w=1200',
     year: '2025',
-    role: 'Strategy & Creative Direction'
+    role: 'Strategy & Creative Direction',
+    published: true
   },
   {
     id: 'stylect',
@@ -45,7 +49,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     description: 'Connecting conscious individuals with trusted human expertise to build a lasting wardrobe with intention.',
     imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=1200',
     year: '2026',
-    role: 'Product Strategy & UX Direction'
+    role: 'Product Strategy & UX Direction',
+    published: true
   },
   {
     id: 'off-white-mentorship',
@@ -54,7 +59,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     description: 'A digital platform connecting emerging creatives with established mentors to democratize access and build the next wave of cultural leaders.',
     imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1200',
     year: '2025',
-    role: 'Lead UX Strategist & Community Designer'
+    role: 'Lead UX Strategist & Community Designer',
+    published: true
   }
 ];
 

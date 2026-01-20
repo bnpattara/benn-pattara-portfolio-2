@@ -58,17 +58,17 @@ const NikeSolution: React.FC<NikeSolutionProps> = ({ concept, conceptName, proto
                     <div className="max-w-4xl mx-auto">
                         <div className="flex flex-col md:flex-row items-center gap-12">
                             {/* Device Frame */}
-                            <div className="relative w-[320px] h-[650px] flex-shrink-0 mx-auto md:mx-0">
+                            <div className="relative w-[320px] mx-auto md:mx-0">
                                 {/* Mockup Image */}
                                 <img
                                     src="/iphone16-mockup.png"
                                     alt="iPhone 16 Mockup"
-                                    className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
+                                    className="relative z-20 w-full h-auto pointer-events-none"
                                 />
                                 {/* Screen Container */}
-                                <div className="absolute top-[2%] left-[5%] right-[5%] bottom-[2%] bg-black rounded-[2.5rem] overflow-hidden z-10">
+                                <div className="absolute top-[1.5%] left-[3.8%] right-[3.8%] bottom-[1.5%] bg-white rounded-[2.5rem] overflow-hidden z-10">
                                     <iframe
-                                        src={`${prototypeUrl}${prototypeUrl.includes('?') ? '&' : '?'}hide-ui=1&footer=false&device-frame=0&hotspot-hints=0&scaling=scale-down-width`}
+                                        src={`${prototypeUrl}${prototypeUrl.includes('?') ? '&' : '?'}hide-ui=1&footer=false&device-frame=0&hotspot-hints=0&scaling=scale-down-width&bg-color=FFFFFF`}
                                         className="w-full h-full border-0"
                                         allowFullScreen
                                         title="Interactive Prototype"
