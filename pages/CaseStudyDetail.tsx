@@ -37,13 +37,21 @@ import InvestigationSection from '../components/case-study/sections/Investigatio
 import PivotSection from '../components/case-study/sections/PivotSection';
 import SolutionSection from '../components/case-study/sections/SolutionSection';
 import ImpactSectionNew from '../components/case-study/sections/ImpactSectionNew';
-// Import case study data from JSON
-import caseStudiesData from '../data/caseStudies.json';
 
 
 const CaseStudyDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const study = CASE_STUDIES.find(s => s.id === id);
+  const [caseStudiesData, setCaseStudiesData] = React.useState<Record<string, any>>({});
+
+  // Load case study data from public folder
+  React.useEffect(() => {
+    fetch('./caseStudies.json')
+      .then(res => res.json())
+      .then(data => setCaseStudiesData(data))
+      .catch(err => console.error('Failed to load case studies:', err));
+  }, []);
+
 
   if (!study) {
     return (
