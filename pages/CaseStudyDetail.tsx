@@ -24,6 +24,12 @@ import AnnotatedMockup from '../components/case-study/AnnotatedMockup';
 import ImpactMetrics from '../components/case-study/ImpactMetrics';
 import Reflection from '../components/case-study/Reflection';
 import SegmentFramework from '../components/case-study/SegmentFramework';
+// Nike Case Study Components
+import NikeContext from '../components/case-study/nike/NikeContext';
+import NikeInvestigation from '../components/case-study/nike/NikeInvestigation';
+import NikePivot from '../components/case-study/nike/NikePivot';
+import NikeSolution from '../components/case-study/nike/NikeSolution';
+import NikeImpact from '../components/case-study/nike/NikeImpact';
 
 
 const CaseStudyDetail: React.FC = () => {
@@ -145,107 +151,62 @@ const CaseStudyDetail: React.FC = () => {
       quote: "3D printing isn't just a new tool; it's a new language for sustainable luxury."
     },
     'nike-snkrs': {
-      // 1. Project Overview
-      title: "Nike SNKRS: From Exclusivity to Confidence",
-      quickPitch: "A strategic overhaul of Nike's digital ecosystem, shifting from manufactured scarcity to a supportive, educational styling platform for today's young consumer.",
-      metadata: {
-        role: "Product Manager & UX Designer",
-        timeline: "12 months (Research to Strategy)",
-        tools: ["Desk Research", "Surveys & Focus Groups", "Segment Analysis", "Figma"],
-        industry: "Sports, Fashion, Digital Commerce"
+      // Nike-specific format flag
+      isNikeFormat: true,
+
+      // Section 1: The Context (The Set-Up)
+      context: {
+        background: "Nike has long dominated the sneaker category using a \"winning formula\" of manufactured scarcity, high-profile collaborations, and the digital-first SNKRS app. Between 2015 and 2021, sneakers were the ultimate cultural currency.",
+        ask: "How should brands reimagine their sneaker reservation applications to better align with the attitudes, behaviors, and beliefs of today's coveted young consumer?",
+        problem: "The \"Hype Era\" is over. Nike has relied on exclusivity for too long, losing ground with consumers who drive long-term value. The traditional playbook of limited drops and artificial scarcity is now actively turning off core customers, leading to \"consumer exhaustion\" and a massive decline in profit."
       },
 
-      // 2. Background & Problem
-      challenge: "Nike has long dominated with a 'winning formula' of scarcity and high-profile collaborations. However, the 'Hype Era' is over. The traditional playbook of limited drops is now actively turning off core customers, leading to 'consumer exhaustion' and a massive decline in profit.",
-      hmw: "How should brands reimagine their sneaker reservation applications to better align with the attitudes, behaviors, and beliefs of today's coveted young consumer?",
-      goal: "Pivot from 'Exclusivity' to 'Confidence' by transforming Nike's digital ecosystem from a transactional 'lottery machine' into a supportive, educational styling platform.",
+      // Section 2: The Investigation (The Methodology)
+      investigation: {
+        researchMethods: [
+          { title: "Desk Research", description: "Analyzing shifts in high fashion, streetwear, and mainstream fashion." },
+          { title: "Surveys & Focus Groups", description: "Quantitative and qualitative data collection from 17-25 year old U.S. consumers." },
+          { title: "Segment Analysis", description: "Mapping the \"Three-Segment Framework\" (Culture Curators, Aesthetic Individualists, and Function-First Pragmatists)." }
+        ],
+        segments: [
+          { name: "Culture Curators", share: "20%", mindset: "Motivated by rarity, social status, and resale value.", opportunity: "Nike's traditional focus; currently saturated and facing exhaustion." },
+          { name: "Aesthetic Individualists", share: "40%", mindset: "High-income group seeking integration into their unique personal style.", opportunity: "The primary growth segment currently ignored by the \"drop\" model." },
+          { name: "Function-First Pragmatists", share: "40%", mindset: "Value durability, comfort, and versatile utility over hype.", opportunity: "Requires clear styling guidance and proof of real-world wearability." }
+        ],
+        dataPoints: [
+          { label: "Ownership Gap", value: "16+", description: "Consumers own an average of 16+ pairs but rotate only 2-5 regularly." },
+          { label: "Sentiment", value: "80%", description: "Of respondents described current sneaker culture as \"Inaccessible\" or \"Over-hyped\"." },
+          { label: "App Usage", value: "77%", description: "Of target users say they \"Rarely\" use brand apps like SNKRS or GOAT." }
+        ]
+      },
 
-      // 3. Insight & Strategy
-      insight: "Consumers don't need more sneakers; they need confidence in how to wear them. The primary barrier to purchase is no longer 'access,' but styling paralysis. Sneakers are no longer about what you own—they are about how confidently you wear what you own.",
-      strategy: "The Nike Confidence Hub: A fundamental redesign of the SNKRS platform centered on utility and style education rather than just commerce.",
+      // Section 3: The Pivot (The Insight & Strategy)
+      pivot: {
+        insight: "Consumers don't need more sneakers; they need confidence in how to wear them. Sneakers are no longer about what you own—they are about how confidently you wear what you own. The primary barrier to purchase is no longer \"access,\" but styling paralysis.",
+        strategy: "Pivot from \"Exclusivity\" to \"Confidence.\" Transform Nike's digital ecosystem from a transactional \"lottery machine\" into a supportive, educational styling platform."
+      },
 
-      // 4. Implementation & Process
-      workflow: [
-        "Desk Research: Analyzing shifts in high fashion, streetwear, and mainstream fashion",
-        "Surveys & Focus Groups: Quantitative and qualitative data collection from 17-25 year old U.S. consumers",
-        "Segment Analysis: Mapping the 'Three-Segment Framework' (Culture Curators, Aesthetic Individualists, and Function-First Pragmatists)",
-        "Concept Development: Designing the 'Style Gym' and 'Nike Stylist AI'",
-        "Execution Strategy: Implementing 'Confidence Drops' and the 'Confidence Index'",
-        "Business Impact Modeling: Analyzing returns reduction and growth opportunities"
-      ],
-      segments: [
-        {
-          name: "Culture Curators",
-          share: "20%",
-          mindset: "Motivated by rarity, social status, and resale value.",
-          opportunity: "Nike's traditional focus; currently saturated and facing exhaustion."
-        },
-        {
-          name: "Aesthetic Individualists",
-          share: "40%",
-          mindset: "High-income group seeking integration into their unique personal style.",
-          opportunity: "The primary growth segment currently ignored by the 'drop' model."
-        },
-        {
-          name: "Function-First Pragmatists",
-          share: "40%",
-          mindset: "Value durability, comfort, and versatile utility over hype.",
-          opportunity: "Requires clear styling guidance and proof of real-world wearability."
-        }
-      ],
-      designDecisions: [
-        {
-          title: "Style Gym Integration",
-          decision: "Product pages that show 3-5 complete outfit examples with filters for 'Work,' 'Casual,' and 'Night Out'.",
-          reasoning: "Directly addresses 'styling paralysis' by providing immediate visual proof of how the sneaker integrates into the user's life."
-        },
-        {
-          title: "Nike Stylist AI",
-          decision: "An AI-powered tool that allows users to upload photos of their own closet for personalized recommendations.",
-          reasoning: "Moves the brand from a transactional seller to a personal advisor, building deep trust and increasing purchase confidence."
-        },
-        {
-          title: "Confidence Drops",
-          decision: "Replacing random raffles with 48-hour pre-order windows and 'Styling Challenges'.",
-          reasoning: "Rewards loyalty and creativity over luck, rebuilding the emotional connection between the brand and the consumer."
-        }
-      ],
+      // Section 4: The Solution (The Creative Reveal)
+      solution: {
+        conceptName: "The Nike Confidence Hub",
+        concept: "A fundamental redesign of the SNKRS platform centered on utility and style education rather than just commerce.",
+        execution: [
+          { title: "The \"Style Gym\"", description: "Product pages that show 3-5 complete outfit examples featuring the sneaker, with filters for \"Work,\" \"Casual,\" and \"Night Out\"." },
+          { title: "Nike Stylist AI", description: "An AI-powered tool that allows users to upload photos of their own closet to receive personalized sneaker recommendations that match their existing wardrobe." },
+          { title: "Confidence Drops", description: "Replacing random raffles with 48-hour pre-order windows and \"Styling Challenges\" where access is rewarded based on loyalty and creativity, not luck." },
+          { title: "The Confidence Index", description: "An annual data-driven report transforming millions of user interactions into the definitive guide to global street culture." }
+        ]
+      },
 
-      // 5. Mockups & Reasoning
-      mockups: [
-        {
-          caption: "The Style Gym: Interactive product pages that transform static commerce into an educational styling experience.",
-          annotations: [
-            { x: 30, y: 40, label: "Outfit Filters", reasoning: "Contextual filters (Work, Casual, Night Out) help users visualize the sneaker across different life scenarios." },
-            { x: 70, y: 60, label: "Complete the Look", reasoning: "Direct commerce links to matching apparel reduce friction and increase AOV." }
-          ]
-        },
-        {
-          caption: "Nike Stylist AI: A personal closet assistant that bridges the gap between 'owned' and 'wanted'.",
-          annotations: [
-            { x: 50, y: 30, label: "Closet Upload", reasoning: "User-generated content (photos of existing clothes) powers personalized, high-confidence recommendations." },
-            { x: 25, y: 70, label: "AI Recommendations", reasoning: "Matches new sneakers to existing wardrobe items, removing the fear of 'style mistakes'." }
-          ]
-        },
-        {
-          caption: "The Confidence Index: A data-driven annual report that establishes Nike as the definitive voice in street culture.",
-          annotations: [
-            { x: 40, y: 50, label: "Trend Mapping", reasoning: "Visualizes global style shifts, providing users with the cultural confidence to experiment with new looks." }
-          ]
-        }
-      ],
-
-      // 6. KPIs & Success
-      quantitative: [
-        { metric: "Ownership Gap", value: "16+ Pairs", description: "Average pairs owned vs. only 2-5 pairs rotated regularly, highlighting the 'Museum Mindset'." },
-        { metric: "Sentiment", value: "80%", description: "Respondents describing current sneaker culture as 'Inaccessible' or 'Over-hyped'." },
-        { metric: "App Usage", value: "77%", description: "Target users who 'Rarely' use brand apps like SNKRS or GOAT." }
-      ],
-      qualitative: [
-        { source: "Business Value", quote: "By removing the 'Museum Mindset,' consumers are empowered to wear their shoes, accelerating the replacement cycle and driving repeat purchases." },
-        { source: "Growth Opportunity", quote: "Capturing the 'Aesthetic Individualist' segment (40% of the market)—a high-income group currently ignored by the 'drop' model." }
-      ],
-      reflection: "This project shifted my understanding of brand status. We moved from a model of exclusion ('I have what you can't get') to a model of inclusion ('I can pull off what you're too scared to wear')."
+      // Section 5: The Impact (The Business Value)
+      impact: {
+        benefits: [
+          { title: "Unlocking the Cycle", description: "By removing the \"Museum Mindset,\" consumers are empowered to wear their shoes, accelerating the replacement cycle and driving repeat purchases." },
+          { title: "Reducing Returns", description: "Accurate sizing guidance and \"Complete the Look\" commerce reduces the uncertainty that leads to product returns." },
+          { title: "Growth Opportunity", description: "Capturing the \"Aesthetic Individualist\" segment (40% of the market)—a high-income group currently ignored by the \"drop\" model." }
+        ],
+        reflection: "This project shifted my understanding of brand status. We moved from a model of exclusion (\"I have what you can't get\") to a model of inclusion (\"I can pull off what you're too scared to wear\")."
+      }
     },
     'stylect': {
       heroTitle: "Stylect: Humanizing Fashion Discovery",
@@ -455,10 +416,78 @@ const CaseStudyDetail: React.FC = () => {
 
   // Check if this is a new professional format case study
   const isNewFormat = 'quickPitch' in data;
+  const isNikeFormat = 'isNikeFormat' in data && data.isNikeFormat;
 
   return (
     <main className="min-h-screen">
-      {isNewFormat ? (
+      {isNikeFormat ? (
+        /* ===== NIKE SNKRS CUSTOM FORMAT ===== */
+        <>
+          {/* Hero Section */}
+          <section className="px-6 md:px-12 py-16 max-w-[1440px] mx-auto">
+            <div className="space-y-6">
+              <span className="text-[10px] font-bold tracking-[0.4em] text-stone-400 uppercase">Case Study</span>
+              <h1 className="text-4xl md:text-6xl font-light text-stone-900 leading-tight">
+                From Exclusivity to Confidence
+              </h1>
+              <div className="flex flex-wrap gap-6 text-[11px] font-medium tracking-widest text-stone-500 uppercase">
+                <span>Nike SNKRS</span>
+                <span>•</span>
+                <span>Product Strategy</span>
+                <span>•</span>
+                <span>2024</span>
+              </div>
+            </div>
+          </section>
+
+          {/* Hero Visual */}
+          <section className="px-6 md:px-12 py-12 max-w-[1440px] mx-auto">
+            <div className="aspect-[21/9] bg-stone-200 grayscale overflow-hidden border border-stone-200">
+              <img
+                src={study.imageUrl}
+                alt={study.title}
+                className="w-full h-full object-cover opacity-90 transition-all duration-1000 hover:grayscale-0"
+              />
+            </div>
+          </section>
+
+          {/* 5 Nike Sections */}
+          <section className="px-6 md:px-12 py-24 max-w-[1440px] mx-auto space-y-32">
+            {/* Section 1: The Context */}
+            <NikeContext
+              background={data.context.background}
+              ask={data.context.ask}
+              problem={data.context.problem}
+            />
+
+            {/* Section 2: The Investigation */}
+            <NikeInvestigation
+              researchMethods={data.investigation.researchMethods}
+              segments={data.investigation.segments}
+              dataPoints={data.investigation.dataPoints}
+            />
+
+            {/* Section 3: The Pivot */}
+            <NikePivot
+              insight={data.pivot.insight}
+              strategy={data.pivot.strategy}
+            />
+
+            {/* Section 4: The Solution */}
+            <NikeSolution
+              conceptName={data.solution.conceptName}
+              concept={data.solution.concept}
+              execution={data.solution.execution}
+            />
+
+            {/* Section 5: The Impact */}
+            <NikeImpact
+              benefits={data.impact.benefits}
+              reflection={data.impact.reflection}
+            />
+          </section>
+        </>
+      ) : isNewFormat ? (
         /* ===== NEW PROFESSIONAL FORMAT ===== */
         <>
           {/* 1. Project Overview & Context */}
