@@ -40,7 +40,7 @@ const InvestigationSection: React.FC<InvestigationSectionProps> = ({
     showSegmentsHover = true
 }) => {
     return (
-        <section className="space-y-16">
+        <section className="space-y-8">
             {/* Section Header */}
             <div className="border-b border-stone-900 pb-4">
                 <span className="text-[10px] font-bold tracking-[0.4em] text-stone-400 uppercase">Section 02</span>
@@ -48,7 +48,7 @@ const InvestigationSection: React.FC<InvestigationSectionProps> = ({
             </div>
 
             {/* Research Methods */}
-            <div className="space-y-8">
+            <div className="space-y-4">
                 <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">Research Methods</h3>
                 <p className="text-base text-stone-600 font-light leading-relaxed">{intro}</p>
 
@@ -64,7 +64,7 @@ const InvestigationSection: React.FC<InvestigationSectionProps> = ({
 
             {/* Segment Framework (optional) */}
             {segments && segments.length > 0 && (
-                <div className="space-y-8">
+                <div className="space-y-4">
                     <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">Segment Analysis</h3>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -109,7 +109,7 @@ const InvestigationSection: React.FC<InvestigationSectionProps> = ({
 
             {/* Key Data Points (optional) */}
             {dataPoints && dataPoints.length > 0 && (
-                <div className="space-y-8">
+                <div className="space-y-4">
                     <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">Key Data Points</h3>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -9,7 +9,7 @@ interface ContextSectionProps {
 
 const ContextSection: React.FC<ContextSectionProps> = ({ background, ask, problem }) => {
     return (
-        <section className="space-y-12">
+        <section className="space-y-8">
             {/* Section Header */}
             <div className="border-b border-stone-900 pb-4">
                 <span className="text-[10px] font-bold tracking-[0.4em] text-stone-400 uppercase">Section 01</span>
@@ -17,7 +17,7 @@ const ContextSection: React.FC<ContextSectionProps> = ({ background, ask, proble
             </div>
 
             {/* Content Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
                 {/* Background */}
                 <div className="md:col-span-12 space-y-4">
                     <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">Background</h3>
@@ -27,7 +27,7 @@ const ContextSection: React.FC<ContextSectionProps> = ({ background, ask, proble
                 {/* The Ask */}
                 <div className="md:col-span-6 space-y-4">
                     <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">The Ask</h3>
-                    <p className="text-base text-stone-600 font-light leading-relaxed italic border-l-2 border-stone-900 pl-6">{ask}</p>
+                    <p className="text-base text-stone-600 font-light leading-relaxed italic">{ask}</p>
                 </div>
 
                 {/* The Problem */}

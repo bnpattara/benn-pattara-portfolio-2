@@ -117,7 +117,7 @@ const CaseStudyDetail: React.FC = () => {
           </section>
 
           {/* 5 Nike Sections - reduced py-24 to py-12 */}
-          <section className="px-6 md:px-12 py-12 max-w-[1440px] mx-auto space-y-32">
+          <section className="px-6 md:px-12 py-12 max-w-[1440px] mx-auto space-y-16">
             {/* Section 1: The Context */}
             <NikeContext
               background={data.context.background}

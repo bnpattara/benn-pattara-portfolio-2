@@ -13,7 +13,7 @@ interface ImpactSectionProps {
 
 const ImpactSection: React.FC<ImpactSectionProps> = ({ benefits, reflection }) => {
     return (
-        <section className="space-y-12">
+        <section className="space-y-8">
             {/* Section Header */}
             <div className="border-b border-stone-900 pb-4">
                 <span className="text-[10px] font-bold tracking-[0.4em] text-stone-400 uppercase">Section 05</span>
@@ -21,7 +21,7 @@ const ImpactSection: React.FC<ImpactSectionProps> = ({ benefits, reflection }) =
             </div>
 
             {/* Business Benefits */}
-            <div className="space-y-8">
+            <div className="space-y-4">
                 <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">Business Benefits</h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
