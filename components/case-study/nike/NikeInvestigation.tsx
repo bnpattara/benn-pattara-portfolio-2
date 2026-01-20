@@ -1,5 +1,6 @@
 
-import React from 'react';
+import React, { useState } from 'react';
+import NikePersonaTool from './NikePersonaTool';
 
 interface ResearchMethod {
     title: string;
@@ -26,6 +27,8 @@ interface NikeInvestigationProps {
 }
 
 const NikeInvestigation: React.FC<NikeInvestigationProps> = ({ researchMethods, segments, dataPoints }) => {
+    const [isPersonaToolExpanded, setIsPersonaToolExpanded] = useState(false);
+
     return (
         <section className="space-y-16">
             {/* Section Header */}
@@ -34,10 +37,28 @@ const NikeInvestigation: React.FC<NikeInvestigationProps> = ({ researchMethods, 
                 <h2 className="text-2xl md:text-3xl font-light text-stone-900 mt-2">The Investigation <span className="text-stone-400">(The Methodology)</span></h2>
             </div>
 
+            {/* Research Methodology Intro */}
+            <div className="space-y-4">
+                <p className="text-lg text-stone-600 font-light leading-relaxed">
+                    Our team executed a multi-dimensional research phase to deep-dive into demographics, psychographics, and background behaviors.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                    <div className="p-6 border-l-4 border-stone-900 bg-stone-50">
+                        <div className="text-3xl font-bold text-stone-900 mb-2">629</div>
+                        <div className="text-sm font-medium text-stone-900 uppercase tracking-wider mb-1">Total Research Touchpoints</div>
+                        <p className="text-sm text-stone-500 font-light">Four surveys (258 respondents), five in-depth interviews, and two focus groups.</p>
+                    </div>
+                    <div className="p-6 border-l-4 border-stone-900 bg-stone-50">
+                        <div className="text-3xl font-bold text-stone-900 mb-2">5</div>
+                        <div className="text-sm font-medium text-stone-900 uppercase tracking-wider mb-1">AI Persona Prototypes</div>
+                        <p className="text-sm text-stone-500 font-light">Fully functional AI personas to stress-test solutions against consumer pain points.</p>
+                    </div>
+                </div>
+            </div>
+
             {/* Research Methods */}
             <div className="space-y-8">
                 <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">Research Methods</h3>
-                <p className="text-base text-stone-600 font-light leading-relaxed">To understand this shift, our team conducted a comprehensive multi-phase research project:</p>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {researchMethods.map((method, i) => (
@@ -52,7 +73,7 @@ const NikeInvestigation: React.FC<NikeInvestigationProps> = ({ researchMethods, 
             {/* Three-Segment Framework */}
             <div className="space-y-8">
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-                    <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">Segment Analysis: The Three-Segment Framework</h3>
+                    <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">Target Audience Segmentation</h3>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -75,21 +96,15 @@ const NikeInvestigation: React.FC<NikeInvestigationProps> = ({ researchMethods, 
                                     </div>
                                 </div>
                             </div>
-
-                            <div className="mt-8 pt-6 border-t border-stone-300">
-                                <a
-                                    href="#"
-                                    className="inline-flex items-center text-[10px] font-bold tracking-widest text-stone-900 uppercase group-hover:translate-x-1 transition-transform"
-                                >
-                                    Talk to Audience
-                                    <svg className="ml-2 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                    </svg>
-                                </a>
-                            </div>
                         </div>
                     ))}
                 </div>
+
+                {/* Persona Tool CTA */}
+                <NikePersonaTool
+                    isExpanded={isPersonaToolExpanded}
+                    onToggle={() => setIsPersonaToolExpanded(!isPersonaToolExpanded)}
+                />
             </div>
 
             {/* Key Data Points */}
