@@ -8,7 +8,7 @@ interface BusinessBenefit {
 
 interface ImpactSectionProps {
     benefits: BusinessBenefit[];
-    reflection: string;
+    reflection?: string;
 }
 
 const ImpactSection: React.FC<ImpactSectionProps> = ({ benefits, reflection }) => {
@@ -39,13 +39,15 @@ const ImpactSection: React.FC<ImpactSectionProps> = ({ benefits, reflection }) =
                 </div>
             </div>
 
-            {/* Personal Reflection */}
-            <div className="space-y-6 pt-8 border-t border-stone-200">
-                <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">Personal Reflection</h3>
-                <blockquote className="text-xl md:text-2xl font-light text-stone-700 italic leading-relaxed">
-                    "{reflection}"
-                </blockquote>
-            </div>
+            {/* Personal Reflection - Optional */}
+            {reflection && (
+                <div className="space-y-6 pt-8 border-t border-stone-200">
+                    <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">Personal Reflection</h3>
+                    <blockquote className="text-xl md:text-2xl font-light text-stone-700 italic leading-relaxed">
+                        "{reflection}"
+                    </blockquote>
+                </div>
+            )}
         </section>
     );
 };

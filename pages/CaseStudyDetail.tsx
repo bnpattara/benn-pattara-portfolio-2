@@ -107,8 +107,7 @@ const CaseStudyDetail: React.FC = () => {
           { title: "Engagement Surge", description: "+45% increase in participation rates in local group runs within 6 months of launch." },
           { title: "Brand Loyalty", description: "82% NPS indicating strong brand affinity—runners now identify with On, not just their shoes." },
           { title: "Revenue Growth", description: "+25% higher demand for On gear driven specifically by Apex pod participants." }
-        ],
-        reflection: "If I could revisit this project, I would invest more time in city-specific onboarding experiences. The Berlin pod dynamics differed significantly from Chicago, suggesting localization could drive even higher engagement."
+        ]
       }
     },
     'stella-mccartney': {
@@ -162,8 +161,7 @@ const CaseStudyDetail: React.FC = () => {
           { title: "Waste Elimination", description: "Significant, measurable reductions in waste and energy consumption through on-demand production and recyclable materials." },
           { title: "Market Leadership", description: "Reinforcement of Stella McCartney's position as the primary innovator in ethical luxury fashion." },
           { title: "Consumer Engagement", description: "In-store 3D printing demos create memorable experiences that connect consumers to the sustainability story." }
-        ],
-        reflection: "3D printing isn't just a new tool; it's a new language for sustainable luxury. This project showed me that constraints breed creativity—sustainability requirements pushed us toward more innovative solutions."
+        ]
       }
     },
     'nike-snkrs': {
@@ -220,8 +218,7 @@ const CaseStudyDetail: React.FC = () => {
           { title: "Unlocking the Cycle", description: "By removing the \"Museum Mindset,\" consumers are empowered to wear their shoes, accelerating the replacement cycle and driving repeat purchases." },
           { title: "Reducing Returns", description: "Accurate sizing guidance and \"Complete the Look\" commerce reduces the uncertainty that leads to product returns." },
           { title: "Growth Opportunity", description: "Capturing the \"Aesthetic Individualist\" segment (40% of the market)—a high-income group currently ignored by the \"drop\" model." }
-        ],
-        reflection: "This project shifted my understanding of brand status. We moved from a model of exclusion (\"I have what you can't get\") to a model of inclusion (\"I can pull off what you're too scared to wear\")."
+        ]
       }
     },
     'stylect': {
@@ -275,8 +272,7 @@ const CaseStudyDetail: React.FC = () => {
           { title: "Humanized Discovery", description: "Shifting the paradigm from generic algorithms to trusted human interaction that builds lasting relationships." },
           { title: "Three-Way Value", description: "A platform connecting customers, stylists, and brand managers with data-driven insights that benefit everyone." },
           { title: "Reduced Returns", description: "Personalized guidance reduces fit and style uncertainty, lowering return rates and increasing customer lifetime value." }
-        ],
-        reflection: "Fashion is paralyzed by choice. Stylect provides the clarity of a human voice. This project reinforced that technology should amplify human expertise, not replace it."
+        ]
       }
     },
     'diesel': {
@@ -330,8 +326,7 @@ const CaseStudyDetail: React.FC = () => {
           { title: "Global Brand Prestige", description: "Elevates Diesel's position by solidifying its return to the top tier of fashion through architectural cultural statement." },
           { title: "Gateway to Asia", description: "Serves as a strategic gateway to the broader Asian market via 'Cool Japan' influence and cultural capital." },
           { title: "Next Generation Capture", description: "Captures the next generation of luxury consumers through immersive cultural experiences rather than transactional retail." }
-        ],
-        reflection: "This project reinforced that in markets demanding depth, the store isn't just a point of sale—it's a temple. The iceberg principle taught me that what you show is only 10%; the real value is the 90% beneath."
+        ]
       }
     },
     'off-white-mentorship': {
@@ -385,8 +380,7 @@ const CaseStudyDetail: React.FC = () => {
           { title: "Democratized Access", description: "Breaking down traditional barriers between emerging creatives and industry leaders—talent rises on merit, not connections." },
           { title: "Cultural Continuity", description: "Member-to-mentor pipeline transforms the platform from transactional to generational, ensuring Off-White's cultural DNA evolves." },
           { title: "Portfolio Credibility", description: "Off-White-backed certification badges add industry recognition and portfolio weight for emerging talents." }
-        ],
-        reflection: "Future iterations would benefit from deeper analytics on mentorship outcomes (which matches lead to successful collaborations) and exploring revenue models beyond brand investment for long-term sustainability."
+        ]
       }
     }
   };
