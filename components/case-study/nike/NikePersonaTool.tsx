@@ -279,8 +279,8 @@ const generatePersonaResponse = async (
             throw new Error("Configuration Error: API key is missing. Please check your .env.local file.");
         }
 
-        // Using gemini-2.0-flash for better stability/availability than the preview models
-        const modelId = 'gemini-2.0-flash';
+        // Using gemini-2.5-flash as it is verified working and stable
+        const modelId = 'gemini-2.5-flash';
 
         const response = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${apiKey}`, {
             method: 'POST',
@@ -351,8 +351,8 @@ const generateFocusGroupResponse = async (
       NAME: [Dialogue]
     `;
 
-        // Using gemini-2.0-flash
-        const modelId = 'gemini-2.0-flash';
+        // Using gemini-2.5-flash
+        const modelId = 'gemini-2.5-flash';
 
         const response = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${apiKey}`, {
             method: 'POST',
