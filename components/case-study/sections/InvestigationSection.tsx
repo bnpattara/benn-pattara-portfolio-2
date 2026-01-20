@@ -25,6 +25,9 @@ interface InvestigationSectionProps {
     segments?: Segment[];
     dataPoints?: DataPoint[];
     showTalkToAudience?: boolean;
+    // Hover effect toggles
+    showMethodsHover?: boolean;
+    showSegmentsHover?: boolean;
 }
 
 const InvestigationSection: React.FC<InvestigationSectionProps> = ({
@@ -32,7 +35,9 @@ const InvestigationSection: React.FC<InvestigationSectionProps> = ({
     researchMethods,
     segments,
     dataPoints,
-    showTalkToAudience = false
+    showTalkToAudience = false,
+    showMethodsHover = true,
+    showSegmentsHover = true
 }) => {
     return (
         <section className="space-y-16">
@@ -49,7 +54,7 @@ const InvestigationSection: React.FC<InvestigationSectionProps> = ({
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {researchMethods.map((method, i) => (
-                        <div key={i} className="p-6 border border-stone-200 hover:border-stone-900 transition-colors">
+                        <div key={i} className={`p-6 border border-stone-200 ${showMethodsHover ? 'hover:border-stone-900 transition-colors' : ''}`}>
                             <h4 className="text-sm font-medium text-stone-900 mb-2">{method.title}</h4>
                             <p className="text-sm text-stone-500 font-light">{method.description}</p>
                         </div>
@@ -64,7 +69,7 @@ const InvestigationSection: React.FC<InvestigationSectionProps> = ({
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {segments.map((segment, i) => (
-                            <div key={i} className="flex flex-col h-full p-8 bg-stone-100 hover:bg-stone-200 transition-colors group">
+                            <div key={i} className={`flex flex-col h-full p-8 bg-stone-100 ${showSegmentsHover ? 'hover:bg-stone-200 transition-colors' : ''} group`}>
                                 <div className="flex-grow space-y-6">
                                     <div className="space-y-2">
                                         <span className="text-3xl font-bold text-stone-900">{segment.share}</span>
@@ -87,7 +92,7 @@ const InvestigationSection: React.FC<InvestigationSectionProps> = ({
                                     <div className="mt-8 pt-6 border-t border-stone-300">
                                         <a
                                             href="#"
-                                            className="inline-flex items-center text-[10px] font-bold tracking-widest text-stone-900 uppercase group-hover:translate-x-1 transition-transform"
+                                            className={`inline-flex items-center text-[10px] font-bold tracking-widest text-stone-900 uppercase ${showSegmentsHover ? 'group-hover:translate-x-1 transition-transform' : ''}`}
                                         >
                                             Talk to Audience
                                             <svg className="ml-2 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

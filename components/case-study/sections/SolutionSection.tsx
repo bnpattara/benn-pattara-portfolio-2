@@ -10,9 +10,11 @@ interface SolutionSectionProps {
     conceptName: string;
     concept: string;
     execution: ExecutionItem[];
+    // Hover effect toggle
+    showExecutionHover?: boolean;
 }
 
-const SolutionSection: React.FC<SolutionSectionProps> = ({ conceptName, concept, execution }) => {
+const SolutionSection: React.FC<SolutionSectionProps> = ({ conceptName, concept, execution, showExecutionHover = true }) => {
     return (
         <section className="space-y-12">
             {/* Section Header */}
@@ -36,9 +38,9 @@ const SolutionSection: React.FC<SolutionSectionProps> = ({ conceptName, concept,
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {execution.map((item, i) => (
-                        <div key={i} className="p-8 border border-stone-200 hover:border-stone-900 transition-colors group">
+                        <div key={i} className={`p-8 border border-stone-200 ${showExecutionHover ? 'hover:border-stone-900 transition-colors' : ''} group`}>
                             <div className="flex items-start gap-4">
-                                <span className="text-4xl font-bold text-stone-200 group-hover:text-stone-400 transition-colors">
+                                <span className={`text-4xl font-bold text-stone-200 ${showExecutionHover ? 'group-hover:text-stone-400 transition-colors' : ''}`}>
                                     {String(i + 1).padStart(2, '0')}
                                 </span>
                                 <div className="space-y-3">

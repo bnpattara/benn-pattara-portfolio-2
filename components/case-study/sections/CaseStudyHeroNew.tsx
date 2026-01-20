@@ -12,9 +12,9 @@ interface CaseStudyHeroNewProps {
 const CaseStudyHeroNew: React.FC<CaseStudyHeroNewProps> = ({ title, subtitle, category, year, imageUrl }) => {
     return (
         <>
-            {/* Hero Section */}
-            <section className="px-6 md:px-12 py-16 max-w-[1440px] mx-auto">
-                <div className="space-y-6">
+            {/* Hero Section - reduced py-16 to py-8 */}
+            <section className="px-6 md:px-12 py-8 max-w-[1440px] mx-auto">
+                <div className="space-y-4">
                     <span className="text-[10px] font-bold tracking-[0.4em] text-stone-400 uppercase">Case Study</span>
                     <h1 className="text-4xl md:text-6xl font-light text-stone-900 leading-tight">
                         {title}
@@ -30,8 +30,8 @@ const CaseStudyHeroNew: React.FC<CaseStudyHeroNewProps> = ({ title, subtitle, ca
                 </div>
             </section>
 
-            {/* Hero Visual */}
-            <section className="px-6 md:px-12 py-12 max-w-[1440px] mx-auto">
+            {/* Hero Visual - reduced py-12 to py-4 */}
+            <section className="px-6 md:px-12 py-4 max-w-[1440px] mx-auto">
                 <div className="aspect-[21/9] bg-stone-200 grayscale overflow-hidden border border-stone-200">
                     <img
                         src={imageUrl}

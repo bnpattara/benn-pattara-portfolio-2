@@ -487,8 +487,8 @@ const CaseStudyDetail: React.FC = () => {
             imageUrl={study.imageUrl}
           />
 
-          {/* 5 Sections */}
-          <section className="px-6 md:px-12 py-24 max-w-[1440px] mx-auto space-y-32">
+          {/* 5 Sections - reduced py-24 to py-12 for tighter spacing after hero */}
+          <section className="px-6 md:px-12 py-12 max-w-[1440px] mx-auto space-y-32">
             {/* Section 1: The Context */}
             <ContextSection
               background={data.context.background}
