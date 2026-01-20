@@ -9,12 +9,13 @@ interface ExecutionItem {
 interface NikeSolutionProps {
     concept: string;
     conceptName: string;
+    prototypeUrl?: string;
     execution: ExecutionItem[];
 }
 
-const NikeSolution: React.FC<NikeSolutionProps> = ({ concept, conceptName, execution }) => {
+const NikeSolution: React.FC<NikeSolutionProps> = ({ concept, conceptName, prototypeUrl, execution }) => {
     return (
-        <section className="space-y-12">
+        <section className="space-y-8">
             {/* Section Header */}
             <div className="border-b border-stone-900 pb-4">
                 <span className="text-[10px] font-bold tracking-[0.4em] text-stone-400 uppercase">Section 04</span>
@@ -22,7 +23,7 @@ const NikeSolution: React.FC<NikeSolutionProps> = ({ concept, conceptName, execu
             </div>
 
             {/* The Concept */}
-            <div className="space-y-6">
+            <div className="space-y-4">
                 <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">The Concept</h3>
                 <div className="p-8 border-l-4 border-stone-900 bg-stone-50">
                     <h4 className="text-2xl md:text-3xl font-bold text-stone-900 mb-4">{conceptName}</h4>
@@ -31,7 +32,7 @@ const NikeSolution: React.FC<NikeSolutionProps> = ({ concept, conceptName, execu
             </div>
 
             {/* The Execution */}
-            <div className="space-y-8">
+            <div className="space-y-4">
                 <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">The Execution</h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -50,6 +51,51 @@ const NikeSolution: React.FC<NikeSolutionProps> = ({ concept, conceptName, execu
                     ))}
                 </div>
             </div>
+
+            {/* Interactive Prototype (optional) */}
+            {prototypeUrl && (
+                <div className="space-y-8 pt-8 border-t border-stone-100">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="flex flex-col md:flex-row items-center gap-12">
+                            {/* Device Frame */}
+                            <div className="relative w-[320px] h-[650px] flex-shrink-0 mx-auto md:mx-0">
+                                {/* Mockup Image */}
+                                <img
+                                    src="/iphone16-mockup.png"
+                                    alt="iPhone 16 Mockup"
+                                    className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
+                                />
+                                {/* Screen Container */}
+                                <div className="absolute top-[2%] left-[5%] right-[5%] bottom-[2%] bg-black rounded-[2.5rem] overflow-hidden z-10">
+                                    <iframe
+                                        src={`${prototypeUrl}${prototypeUrl.includes('?') ? '&' : '?'}hide-ui=1&footer=false&device-frame=0&hotspot-hints=0&scaling=scale-down-width`}
+                                        className="w-full h-full border-0"
+                                        allowFullScreen
+                                        title="Interactive Prototype"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Context Text */}
+                            <div className="flex-grow space-y-6">
+                                <div className="space-y-2">
+                                    <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">Interactive Prototype</h3>
+                                    <p className="text-2xl md:text-3xl font-light text-stone-900 leading-tight">
+                                        Experience the <span className="italic">Nike SNKRS</span> flow first-hand.
+                                    </p>
+                                </div>
+                                <p className="text-base text-stone-500 font-light leading-relaxed">
+                                    This interactive prototype demonstrates the reimagined SNKRS experience—shifting from a transactional lottery to a styling-first platform.
+                                </p>
+                                <div className="flex items-center gap-3 text-stone-400">
+                                    <div className="w-10 h-[1px] bg-stone-200"></div>
+                                    <span className="text-[10px] font-bold tracking-widest uppercase">Click to interact</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };

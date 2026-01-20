@@ -142,6 +142,7 @@ const CaseStudyDetail: React.FC = () => {
             <NikeSolution
               conceptName={data.solution.conceptName}
               concept={data.solution.concept}
+              prototypeUrl={data.solution.prototypeUrl}
               execution={data.solution.execution}
             />
 
