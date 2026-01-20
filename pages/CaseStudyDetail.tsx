@@ -77,8 +77,8 @@ const CaseStudyDetail: React.FC = () => {
           { title: "Pilot Testing", description: "Beta testing with pilot pods in Chicago and Berlin to validate pod matching algorithms and gamification systems." }
         ],
         dataPoints: [
-          { label: "Motivation Boost", value: "70%", description: "Of runners feel more motivated when running with a group rather than solo." },
-          { label: "Gamification Interest", value: "65%", description: "Are interested in gamified fitness challenges with tangible rewards." },
+          { label: "Motivation Boost", value: "70%", description: "70% of runners feel more motivated when running with a group rather than solo." },
+          { label: "Gamification Interest", value: "65%", description: "re interested in gamified fitness challenges with tangible rewards." },
           { label: "Retention Rate", value: "3x", description: "Higher retention in smaller curated pods (10-20) vs. large groups (30-50)." }
         ]
       },
@@ -412,9 +412,9 @@ const CaseStudyDetail: React.FC = () => {
       {isNikeFormat ? (
         /* ===== NIKE SNKRS CUSTOM FORMAT ===== */
         <>
-          {/* Hero Section */}
-          <section className="px-6 md:px-12 py-16 max-w-[1440px] mx-auto">
-            <div className="space-y-6">
+          {/* Hero Section - reduced py-16 to py-8 */}
+          <section className="px-6 md:px-12 py-8 max-w-[1440px] mx-auto">
+            <div className="space-y-4">
               <span className="text-[10px] font-bold tracking-[0.4em] text-stone-400 uppercase">Case Study</span>
               <h1 className="text-4xl md:text-6xl font-light text-stone-900 leading-tight">
                 From Exclusivity to Confidence
@@ -429,8 +429,8 @@ const CaseStudyDetail: React.FC = () => {
             </div>
           </section>
 
-          {/* Hero Visual */}
-          <section className="px-6 md:px-12 py-12 max-w-[1440px] mx-auto">
+          {/* Hero Visual - reduced py-12 to py-4 */}
+          <section className="px-6 md:px-12 py-4 max-w-[1440px] mx-auto">
             <div className="aspect-[21/9] bg-stone-200 grayscale overflow-hidden border border-stone-200">
               <img
                 src={study.imageUrl}
@@ -440,8 +440,8 @@ const CaseStudyDetail: React.FC = () => {
             </div>
           </section>
 
-          {/* 5 Nike Sections */}
-          <section className="px-6 md:px-12 py-24 max-w-[1440px] mx-auto space-y-32">
+          {/* 5 Nike Sections - reduced py-24 to py-12 */}
+          <section className="px-6 md:px-12 py-12 max-w-[1440px] mx-auto space-y-32">
             {/* Section 1: The Context */}
             <NikeContext
               background={data.context.background}
