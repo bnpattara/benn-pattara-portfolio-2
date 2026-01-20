@@ -405,6 +405,107 @@ View your app in AI Studio: https://ai.studio/apps/drive/16jzAyAUujX0UJxPgSqY6Bo
 
 ---
 
+<!-- ⚠️ DO NOT OVERWRITE THIS SECTION ⚠️ -->
+## 🖼️ How to Add Images & Figma Prototypes (BENN'S GUIDE)
+
+> **⚠️ IMPORTANT: This section should NOT be overwritten by AI assistants.**
+
+### Adding Images to Case Studies
+
+**Step 1: Save your image**
+Place your image in the `public/images/` folder (create it if needed):
+```
+/public/images/nike-style-gym-mockup.png
+```
+
+**Step 2: Reference in your component**
+In the Nike section components (or any component), use:
+```tsx
+<img 
+  src="/images/nike-style-gym-mockup.png" 
+  alt="Style Gym mockup"
+  className="w-full h-auto"
+/>
+```
+
+**Step 3: For full-width hero images**
+```tsx
+<div className="aspect-[16/9] overflow-hidden">
+  <img 
+    src="/images/your-image.png" 
+    alt="Description"
+    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+  />
+</div>
+```
+
+### Image Best Practices
+- **Hero images**: 1920×900px or 21:9 aspect ratio
+- **Inline mockups**: 1200×800px or 3:2 aspect ratio
+- **Format**: PNG for mockups, JPEG for photos
+- **Naming**: Use kebab-case: `nike-stylist-ai-mockup.png`
+
+---
+
+### Embedding Figma Prototypes
+
+**Yes! You can embed interactive Figma prototypes.** Users can click through them directly on your page.
+
+**Step 1: Get your Figma embed URL**
+1. Open your Figma file
+2. Click **Share** → **Get embed code**
+3. Copy the `src` URL (looks like: `https://www.figma.com/embed?embed_host=share&url=...`)
+
+**Step 2: Add to your component**
+```tsx
+<div className="aspect-[16/9] w-full">
+  <iframe
+    src="https://www.figma.com/embed?embed_host=share&url=YOUR_FIGMA_URL"
+    className="w-full h-full border border-stone-200"
+    allowFullScreen
+  />
+</div>
+```
+
+**Step 3: For a styled Figma section**
+```tsx
+<div className="space-y-4">
+  <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">
+    Interactive Prototype
+  </h3>
+  <p className="text-sm text-stone-500">Click through the prototype below:</p>
+  <div className="aspect-[16/9] w-full border border-stone-200 overflow-hidden">
+    <iframe
+      src="https://www.figma.com/embed?embed_host=share&url=YOUR_FIGMA_URL"
+      className="w-full h-full"
+      allowFullScreen
+    />
+  </div>
+</div>
+```
+
+### Example: Adding to NikeSolution.tsx
+To add a Figma prototype in the Solution section, add after the execution grid:
+```tsx
+{/* Figma Prototype */}
+<div className="space-y-6 pt-8">
+  <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">
+    Try the Prototype
+  </h3>
+  <div className="aspect-[4/3] w-full">
+    <iframe
+      src="https://www.figma.com/embed?embed_host=share&url=YOUR_URL_HERE"
+      className="w-full h-full border border-stone-200"
+      allowFullScreen
+    />
+  </div>
+</div>
+```
+
+<!-- END OF PROTECTED SECTION -->
+
+---
+
 ## 📜 License
 
 © 2025 Benn Pattara. All rights reserved.
