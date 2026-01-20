@@ -199,16 +199,15 @@ const generatePersonaResponse = async (
         const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY;
 
         // Debug logging
-        console.log("API Key present:", !!apiKey);
-        if (apiKey) console.log("API Key length:", apiKey.length);
-
         if (!apiKey) {
             console.error("API Key is missing");
             return "Configuration Error: API key is missing. Please check your .env.local file.";
         }
 
-        // Using gemini-1.5-flash for stability
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        // Using gemini-3-flash-preview as it is the highest power available model
+        const modelId = 'gemini-3-flash-preview';
+
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -260,17 +259,19 @@ const generateFocusGroupResponse = async (
       The user acts as the Moderator.
 
       DIRECTIVES FOR RESPONSE:
-      1. EVERY participant listed above MUST provide an individual response.
-      2. Write out the exact dialogue for each person separately.
-      3. Participants should speak to the moderator but also react to each other.
-      4. STRICT SCRIPT FORMAT: Output strictly as a screenplay script. Name followed by colon.
+      1. **MANDATORY PARTICIPATION**: EVERY participant listed above MUST provide an individual response to the moderator's question in this turn.
+      2. **NO GROUP SUMMARIES**: Write out the exact dialogue for each person separately.
+      3. **INTERACTION**: Participants should speak to the moderator but also react to each other.
+      4. **STRICT SCRIPT FORMAT**: Output strictly as a screenplay script. Name followed by colon.
          
       Format:
       NAME: [Dialogue]
     `;
 
-        // Using gemini-1.5-flash for stability
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        // Using gemini-3-flash-preview
+        const modelId = 'gemini-3-flash-preview';
+
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
