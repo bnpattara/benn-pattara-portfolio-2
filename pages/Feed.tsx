@@ -108,52 +108,61 @@ const getCategoryColor = (category: string) => {
 
 const Feed: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [scrollY, setScrollY] = useState(0);
+    const mouseY = useRef(0);
+    const targetMouseY = useRef(0);
+    const scrollY = useRef(0);
+    const animationFrame = useRef<number>();
+    const [, forceUpdate] = useState(0);
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
-            setMousePosition({
-                x: (e.clientX / window.innerWidth - 0.5) * 2,
-                y: (e.clientY / window.innerHeight - 0.5) * 2
-            });
+            // Normalize to -1 to 1 range, primarily track Y position
+            targetMouseY.current = (e.clientY / window.innerHeight - 0.5) * 2;
         };
 
         const handleScroll = () => {
-            setScrollY(window.scrollY);
+            scrollY.current = window.scrollY;
+        };
+
+        // Smooth animation loop with lerp (linear interpolation)
+        const animate = () => {
+            // Lerp factor - lower = smoother but slower (0.05 = very smooth)
+            const lerp = 0.08;
+            mouseY.current += (targetMouseY.current - mouseY.current) * lerp;
+
+            // Only trigger re-render occasionally for performance
+            forceUpdate(prev => prev + 1);
+            animationFrame.current = requestAnimationFrame(animate);
         };
 
         window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        animationFrame.current = requestAnimationFrame(animate);
 
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('scroll', handleScroll);
+            if (animationFrame.current) {
+                cancelAnimationFrame(animationFrame.current);
+            }
         };
     }, []);
 
-    // Generate random-ish positions for cards in a masonry-like layout
+    // Smooth parallax style - primarily vertical movement
     const getCardStyle = (index: number) => {
-        const row = Math.floor(index / 3);
-        const col = index % 3;
+        // Alternate parallax directions and speeds based on card position
+        const speed = [15, 25, 20, 30, 18, 28, 22, 35, 16, 24, 32, 19][index % 12];
+        const direction = index % 2 === 0 ? 1 : -1;
 
-        // Base positions
-        const baseX = col * 33.33;
-        const baseY = row * 280;
+        // Scroll-based parallax (subtle)
+        const scrollOffset = (scrollY.current * 0.02) * direction * (index % 3 + 1);
 
-        // Offset for staggered effect
-        const offsetX = (col === 1 ? 0 : (col === 0 ? -5 : 5));
-        const offsetY = index % 2 === 0 ? 20 : 0;
-
-        // Parallax movement based on mouse and scroll
-        const parallaxStrength = (index % 3 + 1) * 8;
-        const scrollParallax = (index % 2 === 0 ? -1 : 1) * (scrollY * 0.05);
-        const mouseParallaxX = mousePosition.x * parallaxStrength;
-        const mouseParallaxY = mousePosition.y * parallaxStrength;
+        // Mouse-based vertical movement (primary effect)
+        const mouseOffset = mouseY.current * speed * direction;
 
         return {
-            transform: `translate3d(${mouseParallaxX}px, ${mouseParallaxY + scrollParallax}px, 0)`,
-            transition: 'transform 0.3s ease-out',
+            transform: `translate3d(0, ${mouseOffset + scrollOffset}px, 0)`,
+            willChange: 'transform',
         };
     };
 
