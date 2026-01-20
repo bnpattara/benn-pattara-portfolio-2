@@ -9,12 +9,13 @@ interface ExecutionItem {
 interface SolutionSectionProps {
     conceptName: string;
     concept: string;
+    prototypeUrl?: string;
     execution: ExecutionItem[];
     // Hover effect toggle
     showExecutionHover?: boolean;
 }
 
-const SolutionSection: React.FC<SolutionSectionProps> = ({ conceptName, concept, execution, showExecutionHover = true }) => {
+const SolutionSection: React.FC<SolutionSectionProps> = ({ conceptName, concept, prototypeUrl, execution, showExecutionHover = true }) => {
     return (
         <section className="space-y-8">
             {/* Section Header */}
@@ -52,6 +53,26 @@ const SolutionSection: React.FC<SolutionSectionProps> = ({ conceptName, concept,
                     ))}
                 </div>
             </div>
+
+            {/* Interactive Prototype (optional) */}
+            {prototypeUrl && (
+                <div className="space-y-4">
+                    <h3 className="text-[11px] font-bold tracking-[0.3em] text-stone-900 uppercase">Interactive Prototype</h3>
+                    <div className="border border-stone-200 bg-stone-50 p-4">
+                        <div className="aspect-[9/16] md:aspect-[16/10] w-full max-w-4xl mx-auto">
+                            <iframe
+                                src={prototypeUrl}
+                                className="w-full h-full border-0"
+                                allowFullScreen
+                                title="Interactive Prototype"
+                            />
+                        </div>
+                        <p className="text-xs text-stone-500 text-center mt-4 font-light">
+                            Click and interact with the prototype above to explore the full experience
+                        </p>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };

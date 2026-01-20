@@ -190,6 +190,7 @@ const CaseStudyDetail: React.FC = () => {
             <SolutionSection
               conceptName={data.solution.conceptName}
               concept={data.solution.concept}
+              prototypeUrl={data.solution.prototypeUrl}
               execution={data.solution.execution}
             />
 
