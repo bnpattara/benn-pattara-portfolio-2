@@ -37,12 +37,6 @@ const Header: React.FC = () => {
             Tools
           </Link>
           <Link
-            to="/feed"
-            className={`hover:text-stone-400 transition-colors ${isActive('/feed') ? 'text-stone-900 underline underline-offset-8 decoration-1' : 'text-stone-400'}`}
-          >
-            Feed
-          </Link>
-          <Link
             to="/about"
             className={`hover:text-stone-400 transition-colors ${isActive('/about') ? 'text-stone-900 underline underline-offset-8 decoration-1' : 'text-stone-400'}`}
           >
