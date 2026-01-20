@@ -119,6 +119,11 @@ export interface ReflectionProps {
     reflection: string;
 }
 
+export interface SegmentFrameworkProps {
+    segments: Segment[];
+    title?: string;
+}
+
 // Legacy component props (keep for backward compatibility)
 export interface ChallengeSectionProps {
     challenge: string;
