@@ -60,22 +60,22 @@ const SolutionSection: React.FC<SolutionSectionProps> = ({ conceptName, concept,
                     <div className="max-w-4xl mx-auto">
                         <div className="flex flex-col md:flex-row items-center gap-12">
                             {/* Device Frame */}
-                            <div className="relative w-[300px] h-[600px] bg-stone-900 rounded-[3rem] p-3 shadow-2xl border-[8px] border-stone-800 flex-shrink-0">
-                                {/* Notch */}
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-stone-800 rounded-b-2xl z-20"></div>
+                            <div className="relative w-[320px] h-[650px] flex-shrink-0 mx-auto md:mx-0">
+                                {/* Mockup Image */}
+                                <img
+                                    src="/iphone16-mockup.png"
+                                    alt="iPhone 16 Mockup"
+                                    className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
+                                />
                                 {/* Screen Container */}
-                                <div className="w-full h-full bg-white rounded-[2.2rem] overflow-hidden relative z-10">
+                                <div className="absolute top-[2%] left-[5%] right-[5%] bottom-[2%] bg-black rounded-[2.5rem] overflow-hidden z-10">
                                     <iframe
-                                        src={`${prototypeUrl}${prototypeUrl.includes('?') ? '&' : '?'}hide-ui=1&footer=false&device-frame=0&hotspot-hints=0`}
+                                        src={`${prototypeUrl}${prototypeUrl.includes('?') ? '&' : '?'}hide-ui=1&footer=false&device-frame=0&hotspot-hints=0&scaling=scale-down-width`}
                                         className="w-full h-full border-0"
                                         allowFullScreen
                                         title="Interactive Prototype"
                                     />
                                 </div>
-                                {/* Side Buttons */}
-                                <div className="absolute -left-2 top-24 w-1 h-12 bg-stone-800 rounded-l-md"></div>
-                                <div className="absolute -left-2 top-40 w-1 h-12 bg-stone-800 rounded-l-md"></div>
-                                <div className="absolute -right-2 top-32 w-1 h-16 bg-stone-800 rounded-r-md"></div>
                             </div>
 
                             {/* Context Text */}
