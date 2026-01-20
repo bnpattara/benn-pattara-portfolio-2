@@ -244,6 +244,26 @@ const PERSONAS: Persona[] = [
     }
 ];
 
+// Helper for retrying requests
+const fetchWithRetry = async (url: string, options: RequestInit, retries = 3, backoff = 1000): Promise<Response> => {
+    try {
+        const response = await fetch(url, options);
+        if (response.status === 503 && retries > 0) {
+            console.log(`Model overloaded (503). Retrying in ${backoff}ms...`);
+            await new Promise(resolve => setTimeout(resolve, backoff));
+            return fetchWithRetry(url, options, retries - 1, backoff * 2);
+        }
+        return response;
+    } catch (error) {
+        if (retries > 0) {
+            console.log(`Network error. Retrying in ${backoff}ms...`);
+            await new Promise(resolve => setTimeout(resolve, backoff));
+            return fetchWithRetry(url, options, retries - 1, backoff * 2);
+        }
+        throw error;
+    }
+};
+
 // Gemini API Service
 const generatePersonaResponse = async (
     persona: Persona,
@@ -256,13 +276,13 @@ const generatePersonaResponse = async (
         // Debug logging
         if (!apiKey) {
             console.error("API Key is missing");
-            return "Configuration Error: API key is missing. Please check your .env.local file.";
+            throw new Error("Configuration Error: API key is missing. Please check your .env.local file.");
         }
 
-        // Using gemini-3-flash-preview as it is the highest power available model
-        const modelId = 'gemini-3-flash-preview';
+        // Using gemini-2.0-flash for better stability/availability than the preview models
+        const modelId = 'gemini-2.0-flash';
 
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${apiKey}`, {
+        const response = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -281,14 +301,22 @@ const generatePersonaResponse = async (
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
             console.error("Gemini API Error Response:", response.status, response.statusText, errorData);
-            return `Error ${response.status}: ${errorData.error?.message || response.statusText}`;
+            throw new Error(`Gemini API Error ${response.status}: ${errorData.error?.message || response.statusText}`);
         }
 
         const data = await response.json();
-        return data.candidates?.[0]?.content?.parts?.[0]?.text || "I have nothing to add at this moment.";
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (!text) {
+            console.error("Empty response from Gemini:", data);
+            throw new Error("Error: The AI returned an empty response. Please try asking again.");
+        }
+
+        return text;
     } catch (error) {
         console.error("Gemini API Network/Processing Error:", error);
-        return "I apologize, but I'm having trouble connecting to the AI service right now. Please check the console for details.";
+        // Re-throw the error to be caught by the caller (e.g., handleSendMessage)
+        throw error;
     }
 };
 
@@ -300,7 +328,7 @@ const generateFocusGroupResponse = async (
     try {
         const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY;
         if (!apiKey) {
-            return "Configuration Error: API key is missing.";
+            throw new Error("Configuration Error: API key is missing.");
         }
 
         const participantsDescription = activePersonas.map(p =>
@@ -323,10 +351,10 @@ const generateFocusGroupResponse = async (
       NAME: [Dialogue]
     `;
 
-        // Using gemini-3-flash-preview
-        const modelId = 'gemini-3-flash-preview';
+        // Using gemini-2.0-flash
+        const modelId = 'gemini-2.0-flash';
 
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${apiKey}`, {
+        const response = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -345,14 +373,22 @@ const generateFocusGroupResponse = async (
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
             console.error("Gemini Group API Error Response:", response.status, response.statusText, errorData);
-            return `Error ${response.status}: ${errorData.error?.message || response.statusText}`;
+            throw new Error(`Gemini Group API Error ${response.status}: ${errorData.error?.message || response.statusText}`);
         }
 
         const data = await response.json();
-        return data.candidates?.[0]?.content?.parts?.[0]?.text || "The group remains silent.";
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (!text) {
+            console.error("Empty response from Gemini Group:", data);
+            throw new Error("Error: The focus group remained silent. Please try again.");
+        }
+
+        return text;
     } catch (error) {
         console.error("Gemini Group API Network/Processing Error:", error);
-        return "The focus group is having technical difficulties. Please check the console.";
+        // Re-throw the error to be caught by the caller (e.g., handleSendMessage)
+        throw error;
     }
 };
 
@@ -494,6 +530,14 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
             }
         } catch (error) {
             console.error("Error generating response", error);
+            const errorMessage: Message = {
+                id: Date.now().toString(),
+                role: 'model',
+                senderName: 'SYSTEM',
+                content: error instanceof Error ? error.message : "An unexpected error occurred. Please try again.",
+                timestamp: new Date(),
+            };
+            setMessages(prev => [...prev, errorMessage]);
         } finally {
             setIsLoading(false);
         }
@@ -565,8 +609,8 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
                             <button
                                 onClick={() => handleModeSwitch(ChatMode.INDIVIDUAL)}
                                 className={`flex-1 flex items-center justify-center py-2 text-[9px] font-bold uppercase tracking-widest rounded transition-all ${mode === ChatMode.INDIVIDUAL
-                                        ? 'bg-stone-900 text-white'
-                                        : 'text-stone-400 hover:text-stone-600'
+                                    ? 'bg-stone-900 text-white'
+                                    : 'text-stone-400 hover:text-stone-600'
                                     }`}
                             >
                                 <User className="w-3 h-3 mr-1.5" />
@@ -575,8 +619,8 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
                             <button
                                 onClick={() => handleModeSwitch(ChatMode.FOCUS_GROUP)}
                                 className={`flex-1 flex items-center justify-center py-2 text-[9px] font-bold uppercase tracking-widest rounded transition-all ${mode === ChatMode.FOCUS_GROUP
-                                        ? 'bg-stone-900 text-white'
-                                        : 'text-stone-400 hover:text-stone-600'
+                                    ? 'bg-stone-900 text-white'
+                                    : 'text-stone-400 hover:text-stone-600'
                                     }`}
                             >
                                 <Users className="w-3 h-3 mr-1.5" />
@@ -597,8 +641,8 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
                                     key={persona.id}
                                     onClick={() => handlePersonaToggle(persona.id)}
                                     className={`p-3 rounded-lg cursor-pointer transition-all ${isSelected
-                                            ? 'bg-white border-2 border-stone-900'
-                                            : 'bg-white border border-stone-200 hover:border-stone-400'
+                                        ? 'bg-white border-2 border-stone-900'
+                                        : 'bg-white border border-stone-200 hover:border-stone-400'
                                         }`}
                                 >
                                     <div className="flex items-center gap-3">
@@ -665,8 +709,8 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
                                             )}
                                             <div
                                                 className={`p-4 rounded-lg text-sm ${msg.role === 'user'
-                                                        ? 'bg-stone-900 text-white rounded-br-none'
-                                                        : 'bg-stone-100 text-stone-800 rounded-bl-none'
+                                                    ? 'bg-stone-900 text-white rounded-br-none'
+                                                    : 'bg-stone-100 text-stone-800 rounded-bl-none'
                                                     }`}
                                             >
                                                 <div className="whitespace-pre-wrap">{msg.content}</div>
