@@ -30,33 +30,33 @@ export const CASE_STUDIES: CaseStudy[] = [
     year: '2026',
     role: 'Lead Strategist & Consumer Researcher'
   },
-  {
-    id: 'diesel',
-    title: 'Diesel Tokyo: The Brand Temple',
-    category: 'Retail Expansion | Experiential | Luxury',
-    description: 'A physical statement in Harajuku elevating Diesel’s prestige through a "theater of craftsmanship" and community hub.',
-    imageUrl: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=80&w=1200',
-    year: '2025',
-    role: 'Strategy & Creative Direction'
-  },
-  {
-    id: 'stylect',
-    title: 'Stylect: Humanizing fashion discovery',
-    category: 'E-commerce | Experience Design | Brand Strategy',
-    description: 'Connecting conscious individuals with trusted human expertise to build a lasting wardrobe with intention.',
-    imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=1200',
-    year: '2026',
-    role: 'Product Strategy & UX Direction'
-  },
-  {
-    id: 'off-white-mentorship',
-    title: 'Off-White Mentorship Program',
-    category: 'Community Building | Brand Strategy',
-    description: 'A digital platform connecting emerging creatives with established mentors to democratize access and build the next wave of cultural leaders.',
-    imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1200',
-    year: '2025',
-    role: 'Lead UX Strategist & Community Designer'
-  }
+  // {
+  //   id: 'diesel',
+  //   title: 'Diesel Tokyo: The Brand Temple',
+  //   category: 'Retail Expansion | Experiential | Luxury',
+  //   description: 'A physical statement in Harajuku elevating Diesel’s prestige through a "theater of craftsmanship" and community hub.',
+  //   imageUrl: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=80&w=1200',
+  //   year: '2025',
+  //   role: 'Strategy & Creative Direction'
+  // },
+  // {
+  //   id: 'stylect',
+  //   title: 'Stylect: Humanizing fashion discovery',
+  //   category: 'E-commerce | Experience Design | Brand Strategy',
+  //   description: 'Connecting conscious individuals with trusted human expertise to build a lasting wardrobe with intention.',
+  //   imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=1200',
+  //   year: '2026',
+  //   role: 'Product Strategy & UX Direction'
+  // },
+  // {
+  //   id: 'off-white-mentorship',
+  //   title: 'Off-White Mentorship Program',
+  //   category: 'Community Building | Brand Strategy',
+  //   description: 'A digital platform connecting emerging creatives with established mentors to democratize access and build the next wave of cultural leaders.',
+  //   imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1200',
+  //   year: '2025',
+  //   role: 'Lead UX Strategist & Community Designer'
+  // }
 ];
 
 export const SKILLS: Skill[] = [
