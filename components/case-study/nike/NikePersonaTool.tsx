@@ -217,6 +217,10 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
     const [internalExpanded, setInternalExpanded] = useState(isExpanded);
     const [currentOptions, setCurrentOptions] = useState<string[]>(ROOT_QUESTIONS);
 
+    const [messageCount, setMessageCount] = useState(0);
+    const [showPopup, setShowPopup] = useState(false);
+    const [hasShownPopup, setHasShownPopup] = useState(false);
+
     const chatContainerRef = useRef<HTMLDivElement>(null);
 
     const expanded = standalone ? true : (onToggle ? isExpanded : internalExpanded);
@@ -268,6 +272,18 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
 
         if (mode === ChatMode.INDIVIDUAL && !selectedPersonaId) return;
         if (mode === ChatMode.FOCUS_GROUP && selectedGroupIds.length === 0) return;
+
+        // Increment message count
+        const newCount = messageCount + 1;
+        setMessageCount(newCount);
+
+        // Check if we should show popup (after 3rd message, only once)
+        if (newCount === 3 && !hasShownPopup) {
+            setTimeout(() => {
+                setShowPopup(true);
+                setHasShownPopup(true);
+            }, 2000); // Show shortly after the interaction starts
+        }
 
         // Add User Message
         const newUserMessage: Message = {
@@ -357,6 +373,7 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
     const resetChat = () => {
         setMessages([]);
         setCurrentOptions(ROOT_QUESTIONS);
+        setMessageCount(0); // Optional: reset count on chat reset? Let's keep it persistent for the session to avoid annoying the user.
         if (mode === ChatMode.INDIVIDUAL) {
             setSelectedPersonaId(null);
         }
@@ -398,7 +415,41 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
 
     // Expanded view
     return (
-        <div className={`border border-stone-200 bg-white ${standalone ? '' : 'mt-4'}`}>
+        <div className={`border border-stone-200 bg-white ${standalone ? '' : 'mt-4'} relative`}>
+            {/* Popup Overlay */}
+            {showPopup && (
+                <div className="absolute inset-0 z-50 bg-stone-900/40 backdrop-blur-sm flex items-center justify-center p-6 animate-in fade-in duration-300">
+                    <div className="bg-white p-8 max-w-md w-full shadow-2xl border border-stone-200 relative">
+                        <div className="space-y-6 text-center">
+                            <div className="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center mx-auto">
+                                <MessageSquare className="w-6 h-6 text-stone-900" />
+                            </div>
+                            <div className="space-y-2">
+                                <h3 className="text-xl font-light text-stone-900">Enjoying the demo?</h3>
+                                <p className="text-sm text-stone-600 leading-relaxed">
+                                    To ask your own questions or explore more about the build of this application, reach out to schedule a walkthrough! I would love to connect.
+                                </p>
+                            </div>
+                            <div className="flex flex-col gap-3">
+                                <a
+                                    href="mailto:bennpattara@gmail.com"
+                                    className="w-full py-3 bg-stone-900 text-white text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-stone-800 transition-colors flex items-center justify-center gap-2"
+                                >
+                                    Schedule Walkthrough
+                                    <Send className="w-3 h-3" />
+                                </a>
+                                <button
+                                    onClick={() => setShowPopup(false)}
+                                    className="w-full py-3 border border-stone-200 text-stone-500 text-[10px] font-bold tracking-[0.1em] uppercase hover:bg-stone-50 transition-colors"
+                                >
+                                    Close & Continue with Preloaded Questions
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Header */}
             {!standalone && (
                 <div className="flex items-center justify-between p-4 border-b border-stone-200 bg-stone-50">
@@ -427,8 +478,8 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
                             <button
                                 onClick={() => handleModeSwitch(ChatMode.INDIVIDUAL)}
                                 className={`flex-1 flex items-center justify-center py-2 text-[9px] font-bold uppercase tracking-widest rounded transition-all ${mode === ChatMode.INDIVIDUAL
-                                        ? 'bg-stone-900 text-white'
-                                        : 'text-stone-400 hover:text-stone-600'
+                                    ? 'bg-stone-900 text-white'
+                                    : 'text-stone-400 hover:text-stone-600'
                                     }`}
                             >
                                 <User className="w-3 h-3 mr-1.5" />
@@ -437,8 +488,8 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
                             <button
                                 onClick={() => handleModeSwitch(ChatMode.FOCUS_GROUP)}
                                 className={`flex-1 flex items-center justify-center py-2 text-[9px] font-bold uppercase tracking-widest rounded transition-all ${mode === ChatMode.FOCUS_GROUP
-                                        ? 'bg-stone-900 text-white'
-                                        : 'text-stone-400 hover:text-stone-600'
+                                    ? 'bg-stone-900 text-white'
+                                    : 'text-stone-400 hover:text-stone-600'
                                     }`}
                             >
                                 <Users className="w-3 h-3 mr-1.5" />
@@ -459,8 +510,8 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
                                     key={persona.id}
                                     onClick={() => handlePersonaToggle(persona.id)}
                                     className={`p-3 rounded-lg cursor-pointer transition-all ${isSelected
-                                            ? 'bg-white border-2 border-stone-900'
-                                            : 'bg-white border border-stone-200 hover:border-stone-400'
+                                        ? 'bg-white border-2 border-stone-900'
+                                        : 'bg-white border border-stone-200 hover:border-stone-400'
                                         }`}
                                 >
                                     <div className="flex items-center gap-3">
@@ -529,8 +580,8 @@ const NikePersonaTool: React.FC<NikePersonaToolProps> = ({ isExpanded = false, o
                                             )}
                                             <div
                                                 className={`p-4 rounded-lg text-sm ${msg.role === 'user'
-                                                        ? 'bg-stone-900 text-white rounded-br-none'
-                                                        : 'bg-stone-100 text-stone-800 rounded-bl-none'
+                                                    ? 'bg-stone-900 text-white rounded-br-none'
+                                                    : 'bg-stone-100 text-stone-800 rounded-bl-none'
                                                     }`}
                                             >
                                                 <div className="whitespace-pre-wrap">{msg.content}</div>
