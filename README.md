@@ -506,6 +506,76 @@ To add a Figma prototype in the Solution section, add after the execution grid:
 
 ---
 
+<!-- ⚠️ DO NOT OVERWRITE THIS SECTION ⚠️ -->
+## 👁️ How to Hide/Show Case Studies on Homepage (BENN'S GUIDE)
+
+> **⚠️ IMPORTANT: This section should NOT be overwritten by AI assistants.**
+
+### Hiding a Case Study
+
+To hide a case study from your homepage, simply comment it out in `/constants.tsx`:
+
+**Step 1: Open the file**
+```bash
+/constants.tsx
+```
+
+**Step 2: Find the case study**
+Look for the case study object in the `CASE_STUDIES` array.
+
+**Step 3: Comment it out**
+Add `//` at the beginning of each line:
+
+```tsx
+export const CASE_STUDIES: CaseStudy[] = [
+  {
+    id: 'on-apex',
+    // ... visible
+  },
+  // HIDDEN: Uncomment to show Stella McCartney
+  // {
+  //   id: 'stella-mccartney',
+  //   title: 'Stella McCartney x Zellerfeld',
+  //   category: 'Sustainability | Innovation | Luxury',
+  //   description: '...',
+  //   imageUrl: '...',
+  //   year: '2025',
+  //   role: 'Brand Strategist & Creative Director'
+  // },
+  {
+    id: 'nike-snkrs',
+    // ... visible
+  },
+];
+```
+
+**Step 4: Deploy**
+```bash
+npm run build
+cp -r dist/* docs/
+git add constants.tsx docs/
+git commit -m "Hide Stella McCartney from homepage"
+git push origin main
+```
+
+### Showing a Hidden Case Study
+
+**Step 1: Find the commented section in `/constants.tsx`**
+
+**Step 2: Remove the `//` from each line**
+
+**Step 3: Deploy using the same commands above**
+
+### Why This Method?
+- ✅ **Safe**: No complex filtering logic
+- ✅ **Simple**: Just comment/uncomment
+- ✅ **Clear**: Easy to see what's hidden
+- ✅ **Reliable**: Won't break your site
+
+<!-- END OF PROTECTED SECTION -->
+
+---
+
 ## 📜 License
 
 © 2025 Benn Pattara. All rights reserved.
