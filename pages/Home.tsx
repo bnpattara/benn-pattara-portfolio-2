@@ -3,6 +3,7 @@ import React from 'react';
 import { CASE_STUDIES } from '../constants';
 import CaseStudyCard from '../components/CaseStudyCard';
 import ImageTrail from '../components/ImageTrail';
+import { Clock } from 'lucide-react';
 
 const Home: React.FC = () => {
   return (
@@ -38,6 +39,37 @@ const Home: React.FC = () => {
           {CASE_STUDIES.map((study) => (
             <CaseStudyCard key={study.id} study={study} />
           ))}
+
+          {CASE_STUDIES.length <= 2 && (
+            <div className="group relative flex flex-col bg-stone-50 border border-stone-200 overflow-hidden h-full opacity-60 hover:opacity-100 transition-opacity duration-500">
+              <div className="aspect-[3/4] bg-stone-100 flex items-center justify-center border-b border-stone-200">
+                <div className="w-20 h-20 rounded-full bg-white border border-stone-200 flex items-center justify-center">
+                  <Clock className="w-8 h-8 text-stone-300" />
+                </div>
+              </div>
+
+              <div className="p-8 space-y-4 flex flex-col flex-grow">
+                <div className="flex justify-between items-start">
+                  <span className="text-[10px] font-bold tracking-[0.2em] text-stone-400 uppercase">
+                    2026 — Coming Soon
+                  </span>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-light tracking-tight text-stone-900 uppercase">
+                    More Projects
+                  </h3>
+                  <p className="text-[11px] font-medium tracking-[0.15em] text-stone-500 uppercase">
+                    In Development
+                  </p>
+                </div>
+
+                <p className="text-sm leading-relaxed text-stone-600 font-light flex-grow">
+                  New case studies exploring retail strategy, digital innovation, and brand systems are currently being documented.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
