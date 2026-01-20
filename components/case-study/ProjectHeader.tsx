@@ -4,7 +4,7 @@ import { ProjectHeaderProps } from './types';
 
 const ProjectHeader: React.FC<ProjectHeaderProps> = ({ title, quickPitch, metadata }) => {
     return (
-        <section className="px-6 md:px-12 py-24 md:py-32 max-w-[1440px] mx-auto border-b border-stone-200">
+        <section className="px-6 md:px-12 pt-12 pb-24 md:pt-20 md:pb-32 max-w-[1440px] mx-auto border-b border-stone-200">
             <div className="space-y-12">
                 {/* Title */}
                 <h1 className="text-5xl md:text-8xl font-light tracking-tighter text-stone-900 leading-[0.95]">

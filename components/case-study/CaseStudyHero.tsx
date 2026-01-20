@@ -9,7 +9,7 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ title, category, role, ye
     const subTitle = titleParts[1] || '';
 
     return (
-        <section className="px-6 md:px-12 py-24 md:py-32 max-w-[1440px] mx-auto border-b border-stone-200">
+        <section className="px-6 md:px-12 pt-12 pb-24 md:pt-20 md:pb-32 max-w-[1440px] mx-auto border-b border-stone-200">
             <div className="space-y-12">
                 <div className="flex flex-col md:flex-row md:justify-between items-baseline gap-4">
                     <h1 className="text-5xl md:text-9xl font-light tracking-tighter text-stone-900 leading-[0.9] uppercase">

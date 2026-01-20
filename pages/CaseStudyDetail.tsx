@@ -89,7 +89,7 @@ const CaseStudyDetail: React.FC = () => {
         /* ===== NIKE SNKRS CUSTOM FORMAT ===== */
         <>
           {/* Hero Section - reduced py-16 to py-8 */}
-          <section className="px-6 md:px-12 py-8 max-w-[1440px] mx-auto">
+          <section className="px-6 md:px-12 pt-4 pb-8 max-w-[1440px] mx-auto">
             <div className="space-y-4">
               <span className="text-[10px] font-bold tracking-[0.4em] text-stone-400 uppercase">Case Study</span>
               <h1 className="text-4xl md:text-6xl font-light text-stone-900 leading-tight">
