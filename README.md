@@ -572,6 +572,82 @@ git push origin main
 - ✅ **Clear**: Easy to see what's hidden
 - ✅ **Reliable**: Won't break your site
 
+---
+
+## 🔐 Admin Panel Guide (BENN'S GUIDE)
+
+> **⚠️ IMPORTANT: This section should NOT be overwritten by AI assistants.**
+
+### Accessing the Admin Panel
+
+1. Go to `www.bennpattara.com/admin`
+2. Enter passcode: **1989**
+3. You're in!
+
+### Editing Case Studies via Admin
+
+1. Select a case study from the dropdown
+2. Edit the fields (Hero, Context, Investigation, Pivot, Solution, Impact)
+3. Click **"Save Changes"** to save your edits locally
+4. Click **"🚀 Publish to GitHub"** to make changes live
+5. Wait ~2 minutes for GitHub Pages to rebuild
+
+### First-Time Setup: GitHub Token
+
+The first time you click "Publish to GitHub", you'll need a GitHub Personal Access Token:
+
+1. Go to [github.com/settings/tokens/new](https://github.com/settings/tokens/new)
+2. Give it a name (e.g., "Portfolio Admin")
+3. Select **"repo"** permissions
+4. Click "Generate token"
+5. Copy the token and paste it into the Admin panel
+6. The token is saved in your browser for future use
+
+---
+
+## 🔄 Sync Workflow: Admin vs. Local Edits (CRITICAL!)
+
+> **⚠️ IMPORTANT: Always sync before working locally!**
+
+### The Problem
+
+If you edit case studies via the Admin panel (website), those changes go directly to GitHub. Your **local files** don't know about them.
+
+If you then push from your local machine, **you will OVERWRITE the Admin changes!**
+
+### The Solution: Always Pull First
+
+Before making ANY local changes (or before AI assistant makes changes), run:
+
+```bash
+git pull origin main
+```
+
+This syncs your local files with whatever is on GitHub.
+
+### Recommended Workflows
+
+**If using the Admin panel only:**
+- Edit → Publish → Done! ✅
+- No need to touch local files
+
+**If working locally (with AI assistant):**
+1. First, run `git pull origin main` (get any Admin changes)
+2. Make local edits
+3. Build and push
+
+**If switching between both:**
+- Always `git pull` before local work
+- Admin edits are immediately live (after rebuild)
+- Local edits require build + push
+
+### Quick Reference
+
+| Where you edit | Changes go to | Need to sync? |
+|----------------|---------------|---------------|
+| Admin panel (website) | GitHub directly | No |
+| Local files | Your computer first | Yes, `git pull` first! |
+
 <!-- END OF PROTECTED SECTION -->
 
 ---
