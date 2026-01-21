@@ -3,6 +3,24 @@ import { CaseStudy, Experience, Skill } from './types';
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
+    id: 'nike-snkrs',
+    title: 'Nike SNKRS: Bridging the Confidence Gap',
+    category: 'Brand Strategy | Consumer Research | Digital Innovation',
+    description: 'Reimagining digital product innovation through a business model shift from exclusivity to confidence.',
+    imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=1200',
+    year: '2026',
+    role: 'Lead Strategist & Consumer Researcher'
+  },
+  {
+    id: 'burberry-rsc',
+    title: 'Burberry x RSC x Fortnite',
+    category: 'Brand Strategy | Digital Innovation | Cultural Partnerships',
+    description: 'Moving the Trench from the archive to the arena—transforming heritage luxury into a living digital experience through Shakespeare and gaming.',
+    imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1200',
+    year: '2026',
+    role: 'Lead Strategist & Experience Designer'
+  },
+  {
     id: 'on-apex',
     title: 'On Apex: Run Free',
     category: 'Community Building | Innovation | Sports',
@@ -21,24 +39,6 @@ export const CASE_STUDIES: CaseStudy[] = [
   //   year: '2025',
   //   role: 'Brand Strategist & Creative Director',
   // },
-  {
-    id: 'nike-snkrs',
-    title: 'Nike SNKRS: Bridging the Confidence Gap',
-    category: 'Brand Strategy | Consumer Research | Digital Innovation',
-    description: 'Reimagining digital product innovation through a business model shift from exclusivity to confidence.',
-    imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=1200',
-    year: '2026',
-    role: 'Lead Strategist & Consumer Researcher'
-  },
-  {
-    id: 'burberry-rsc',
-    title: 'Burberry x RSC x Fortnite',
-    category: 'Brand Strategy | Digital Innovation | Cultural Partnerships',
-    description: 'Moving the Trench from the archive to the arena—transforming heritage luxury into a living digital experience through Shakespeare and gaming.',
-    imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1200',
-    year: '2026',
-    role: 'Lead Strategist & Experience Designer'
-  },
   // {
   //   id: 'diesel',
   //   title: 'Diesel Tokyo: The Brand Temple',
