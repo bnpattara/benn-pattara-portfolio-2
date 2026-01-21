@@ -630,88 +630,80 @@
     "published": true,
     "isNewSectionFormat": true,
     "heroTitle": "GapFit: Glacial Flow",
-    "heroSubtitle": "The transition to technical wellness",
+    "heroSubtitle": "Pivoting from high-intensity performance to restorative technical wellness",
     "context": {
-      "background": "By 2026, the activewear sector reached a critical turning point. The traditional \"Athleisure\" boom of the early 2020s—characterized by high-compression, logo-heavy designs and a sharp divide between gym and street wear—had effectively dissolved.",
-      "ask": "How can GapFit pivot from being a general activewear participant to a market leader in the emerging \"Technical Wellness\" sector?",
-      "problem": "The modern consumer has moved past \"dopamine dressing\" (quick mood spikes via bright colors) and now seeks \"serotonin dressing\"—apparel that stabilizes, restores, and participates in wellness rituals like muscle recovery and emotional regulation."
+      "background": "The activewear sector in 2026 has shifted from high-compression garments to Technical Wellness, prioritizing recovery, sustainability, and a seamless studio-to-street lifestyle.",
+      "ask": "How can GapFit pivot from being a general activewear participant to a market leader in the emerging Technical Wellness sector?",
+      "problem": "Traditional athleisure is declining as consumers reject the high-shine, gym-only aesthetic in favor of versatile garments that regulate temperature and support recovery."
     },
     "investigation": {
       "researchMethods": [
         {
-          "title": "Mindful Consumption Analysis",
-          "description": "Consumers no longer purchase for an \"aspirational self\" but for an \"actual self\" needing stress management and longevity."
+          "title": "Macro-Trend Landscape",
+          "description": "Analysis of the permanent entrenchment of hybrid work models and the dissolution of gym-only apparel categories."
         },
         {
-          "title": "Hybrid Wardrobe Mapping",
-          "description": "The \"Hybrid Wardrobe\" is the new standard—one outfit must transition seamlessly from a 7:00 AM Pilates session to a remote creative review and evening social engagements."
+          "title": "Consumer Psychographics",
+          "description": "Exploration of the \"Serotonin Seeker\" and the mainstream rise of \"Cold Culture\" wellness signifiers like ice baths."
         },
         {
-          "title": "Cold Culture Trend Research",
-          "description": "The rise of cold plunging and ice baths has turned \"recovery\" into a mainstream wellness signifier, influencing a visual language of steely blues and \"frost\" aesthetics."
+          "title": "Chromatic Psychology",
+          "description": "Strategic selection of Hex #D0E1F9 to trigger neurological responses of calm and focus."
         }
       ],
       "dataPoints": [
         {
-          "label": "Market Size",
+          "label": "Global Market Forecast",
+          "value": "$780B",
+          "description": "Total addressable market for the activewear sector by 2026."
+        },
+        {
+          "label": "Cooling Segment Growth",
           "value": "$4.16B",
-          "description": "Projected \"Cooling Fabrics\" market value by 2034."
+          "description": "Projected market size for cooling fabric technologies by 2034."
         },
         {
-          "label": "Price Wedge",
-          "value": "$88-98",
-          "description": "\"Accessible Technical Luxury\" positioning vs. Lululemon/Alo at $118-128+."
-        },
-        {
-          "label": "Strategy",
-          "value": "Column",
-          "description": "Head-to-toe Glacial Blue \"Column of Color\" styling to encourage multi-unit sales."
+          "label": "Optimal Comfort Zone",
+          "value": "28-32°C",
+          "description": "Target temperature range for skin comfort provided by Phase-Change Materials."
         }
       ]
     },
     "pivot": {
-      "insight": "Consumers don't just want to look fit; they want their clothing to physically regulate their nervous systems. Apparel is now viewed as a \"second skin\" that mediates a chaotic environment through thermoregulation and tactile comfort.",
-      "strategy": "GapFit \"Glacial Flow\"—a holistic market intervention leveraging \"Quiet Performance\": matte, tonal designs concealing hyper-technical specifications beneath a veneer of Nordic Minimalism and 90s Americana."
+      "insight": "\"The 2026 consumer no longer seeks dopamine-driven intensity; they demand serotonin-driven stability and restorative recovery.\"",
+      "strategy": "Pivot to a \"Quiet Performance\" aesthetic using circular material innovation and thermal regulation to serve the recovery-focused consumer."
     },
     "solution": {
-      "conceptName": "The Glacial Flow Ecosystem",
-      "concept": "A collection delivering scientifically validated material benefits through strategic partnerships and advanced material science, positioning GapFit as a leader in the \"Technical Wellness\" category.",
+      "conceptName": "Glacial Flow Market Intervention",
+      "concept": "A holistic campaign centered on Nordic Minimalism, circular polyester, and bio-synthetic mycelium fibers to create a \"portable sanctuary\" for the wearer.",
       "execution": [
         {
-          "title": "Syre Partnership (Circularity)",
-          "description": "Textile-to-textile recycled polyester via chemical recycling that breaks old textiles into \"virgin-quality\" monomers, enabling an endless circular loop—unlike traditional rPET from bottles."
+          "title": "Syre Circularity Engine",
+          "description": "Implementation of textile-to-textile recycled polyester via the Syre partnership to ensure true garment circularity."
         },
         {
-          "title": "Aero-Ice Jersey (PCMs)",
-          "description": "Fabrics embedded with Phase-Change Materials—microscopic paraffin wax spheres that absorb heat when the body warms and release it when cooling, maintaining a stable skin microclimate."
+          "title": "Aero-Ice Phase-Change Materials",
+          "description": "Integration of micro-encapsulated waxes in jersey fabrics to absorb and release thermal energy during activity transitions."
         },
         {
           "title": "Bio-Sculpt Mycelium Knits",
-          "description": "Transitioning from petrochemical elastane to mycelium-based fibers grown via precision fermentation for biodegradable, \"natural\" compression."
-        },
-        {
-          "title": "Nano-Dry Self-Cleaning Surfaces",
-          "description": "Matte Nylon treated with Titanium Dioxide (TiO2) nanoparticles that break down sweat and bacteria when exposed to light, extending garment life and reducing washing frequency."
+          "description": "Replacing petrochemical elastane with mycelium-based fibers for natural, breathable, and biodegradable compression."
         }
       ]
     },
     "impact": {
       "benefits": [
         {
+          "title": "Strategic Market Wedge",
+          "description": "Repositioned GapFit as an accessible technical luxury innovator, offering Patagonia-level ethics at a mid-tier price point."
+        },
+        {
           "title": "Supply Chain Resilience",
-          "description": "Shift to domestic (North Carolina) circular supply chains via Syre reduces exposure to trans-Pacific shipping volatility and fluctuating oil prices."
+          "description": "Reduced exposure to petrochemical volatility and trans-Pacific shipping risks through domestic North Carolina recycling hubs."
         },
         {
-          "title": "Market Positioning",
-          "description": "\"Accessible Technical Luxury\" at $88–98 creates a wedge between premium ($118–128+) Lululemon/Alo Yoga and mass-market competitors."
-        },
-        {
-          "title": "Multi-Unit Sales Driver",
-          "description": "The \"Column of Color\" styling strategy (head-to-toe Glacial Blue) encourages multi-unit purchases by creating a polished, intentional \"uniform\" look."
-        },
-        {
-          "title": "Category Leadership",
-          "description": "Successfully repositioned GapFit from \"value alternative\" to \"value innovator\" in the emerging Technical Wellness sector."
+          "title": "Consumer Trust & Traceability",
+          "description": "Enabled radical transparency through Digital IDs, allowing consumers to trace garments from textile waste to finished product."
         }
       ]
     }
