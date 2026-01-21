@@ -4,8 +4,9 @@ import caseStudiesData from '../data/caseStudies.json';
 
 const Admin: React.FC = () => {
     const [caseStudies, setCaseStudies] = useState(caseStudiesData);
-    const [selectedStudy, setSelectedStudy] = useState<string>('on-apex');
-    const [editedData, setEditedData] = useState<any>(caseStudiesData['on-apex']);
+    const firstStudyId = Object.keys(caseStudiesData)[0];
+    const [selectedStudy, setSelectedStudy] = useState<string>(firstStudyId);
+    const [editedData, setEditedData] = useState<any>(caseStudiesData[firstStudyId as keyof typeof caseStudiesData]);
 
     useEffect(() => {
         setEditedData(caseStudies[selectedStudy as keyof typeof caseStudies]);
@@ -88,12 +89,11 @@ const Admin: React.FC = () => {
                         onChange={(e) => setSelectedStudy(e.target.value)}
                         className="px-4 py-2 border border-stone-300 bg-white text-sm font-medium"
                     >
-                        <option value="on-apex">On Apex</option>
-                        <option value="stella-mccartney">Stella McCartney</option>
-                        <option value="nike-snkrs">Nike SNKRS</option>
-                        <option value="stylect">Stylect</option>
-                        <option value="diesel">Diesel</option>
-                        <option value="off-white-mentorship">Off-White Mentorship</option>
+                        {Object.keys(caseStudies).map((studyId) => (
+                            <option key={studyId} value={studyId}>
+                                {(caseStudies[studyId as keyof typeof caseStudies] as any)?.heroTitle || studyId}
+                            </option>
+                        ))}
                     </select>
 
                     <button
