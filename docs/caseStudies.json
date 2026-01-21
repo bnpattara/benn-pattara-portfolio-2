@@ -49,7 +49,6 @@
     "solution": {
       "conceptName": "On Apex: The Movement Platform",
       "concept": "A transformative community PWA that shifts running from an isolating activity to a collective movement of personal liberation through curated pods, gamification, and AR technology.",
-      "prototypeUrl": "https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/t3Vj5HQxlTha40lx1O3uAP/Apex?node-id=0-1&t=NlCdIT5A3gQKl5KO-1",
       "execution": [
         {
           "title": "Local Pods",
@@ -533,6 +532,96 @@
         {
           "title": "Portfolio Credibility",
           "description": "Off-White-backed certification badges add industry recognition and portfolio weight for emerging talents."
+        }
+      ]
+    }
+  },
+  "burberry-rsc": {
+    "published": true,
+    "isNewSectionFormat": true,
+    "heroTitle": "Burberry x RSC x Fortnite",
+    "heroSubtitle": "Moving the Trench from the archive to the arena",
+    "context": {
+      "background": "Burberry is the world's leading British luxury house, famous for the Trench Coat—a garment invented for the utility of the trenches but adopted by the icons of cinema and high society. It is a brand built on \"lore,\" yet it currently sits at a crossroads.",
+      "ask": "How does a 160-year-old heritage brand stop being a \"history lesson\" and start being a \"lifestyle\" for the next generation? Burberry needed a way to prove that its most iconic item—the Trench—is still the most relevant tool for a generation obsessed with self-expression.",
+      "problem": "The \"Generic Luxury Trap.\" For Gen-Z, luxury has become background noise of logos. Brands are struggling to convert \"likes\" into \"lives.\" Burberry's problem wasn't that people didn't know the brand; it was that they didn't feel they could play with it. In an age of digital dualism, if you can't wear the brand where you spend 25% of your free time, the brand doesn't truly exist in your world."
+    },
+    "investigation": {
+      "researchMethods": [
+        {
+          "title": "Cultural Immersion Research",
+          "description": "We looked beyond fashion magazines to the places where Gen-Z actually \"performs\" their identity: Fortnite Creative maps, Discord \"Dark Academia\" servers, and the RSC's technical R&D labs."
+        },
+        {
+          "title": "Icon Series Analysis",
+          "description": "We observed the \"Icon Series\" phenomenon—when Kim Kardashian entered Fortnite in late 2025, it became the most interacted-with skin in the game's history, proving high-fashion \"main character energy\" is the most valuable currency in the digital arena."
+        },
+        {
+          "title": "Attention Economy Mapping",
+          "description": "While traditional ads are skipped in 5 seconds, the average Fortnite player engages with a \"Battle Pass\" for over 70 hours per season—70 hours of deep brand immersion vs. 5 seconds of passive scrolling."
+        }
+      ],
+      "dataPoints": [
+        {
+          "label": "Battle Pass Engagement",
+          "value": "70hrs",
+          "description": "Average player engagement with a Fortnite Battle Pass per season vs. 5 seconds for traditional ads."
+        },
+        {
+          "label": "Digital Identity Time",
+          "value": "25%",
+          "description": "Percentage of Gen-Z's free time spent in digital spaces where physical brands cannot reach them."
+        },
+        {
+          "label": "RSC Tech Edge",
+          "value": "Unreal",
+          "description": "RSC's pioneering work with Unreal Engine enables \"liveness\" and high-culture \"lore\" in digital spaces."
+        }
+      ]
+    },
+    "pivot": {
+      "insight": "\"People say they want heritage, but they actually want a costume.\" Gen-Z is currently \"Prototyping\" who they are. They use the internet like a dressing room. They don't want to just buy a coat because it's famous; they want to buy it because it makes them feel like the protagonist of a story.",
+      "strategy": "Move the Trench from the archive to the arena. Frame the Burberry Trench not as a piece of clothing, but as \"Scholar's Armor\"—a tool for the \"Performance of Self\" in both digital and physical realms."
+    },
+    "solution": {
+      "conceptName": "The Theater of the Coat",
+      "concept": "A season-long takeover of Fortnite that merges the high-stakes drama of Shakespeare with the high-end craftsmanship of Burberry—transforming the Trench into living, evolving digital armor.",
+      "execution": [
+        {
+          "title": "Forest of Arden Integration",
+          "description": "Mapping Shakespeare's As You Like It onto modern life: the \"Court\" is the pressure of social media; the \"Forest\" is the digital underground where identity is fluid and play is possible."
+        },
+        {
+          "title": "Seven Ages Battle Pass",
+          "description": "Inspired by \"All the world's a stage,\" the Burberry Battle Pass allows your Trench to evolve through seven stages—from minimalist \"Scholar\" to \"Sovereign\" living garment reacting to gameplay."
+        },
+        {
+          "title": "Live Digital Theater",
+          "description": "Mid-season event where RSC actors perform a live, mo-cap play inside the game—not a cutscene, but interactive theater where players' choices change the ending."
+        },
+        {
+          "title": "Proscenium Portals",
+          "description": "Burberry flagships globally transform into immersive \"Stage\" environments. AR Mirrors merge customers' physical selves with their Fortnite avatars, creating a perfect loop between digital and physical."
+        }
+      ]
+    },
+    "impact": {
+      "benefits": [
+        {
+          "title": "Massive Narrative Reach",
+          "description": "Following the Kardashian Icon Series model, Burberry taps into the highest-engaging demographic, positioning as \"Leader of the New Guard\" in luxury."
+        },
+        {
+          "title": "High-Value Acquisition",
+          "description": "Targeting the \"Aspirational Scholar\"—a customer who may not buy a £2,000 coat today but will spend £20 on a digital skin and become a lifelong brand advocate."
+        },
+        {
+          "title": "Store Rejuvenation",
+          "description": "The \"Portal\" retail concept gives people a reason to visit physical stores about \"experience\" not \"shopping,\" solving foot-traffic decline."
+        },
+        {
+          "title": "Cultural Ownership",
+          "description": "By partnering with the RSC, Burberry effectively \"owns\" the Dark Academia aesthetic—the only authentic brand for a subculture prizing literature, art, and intellectual depth."
         }
       ]
     }

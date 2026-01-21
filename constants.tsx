@@ -30,6 +30,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     year: '2026',
     role: 'Lead Strategist & Consumer Researcher'
   },
+  {
+    id: 'burberry-rsc',
+    title: 'Burberry x RSC x Fortnite',
+    category: 'Brand Strategy | Digital Innovation | Cultural Partnerships',
+    description: 'Moving the Trench from the archive to the arena—transforming heritage luxury into a living digital experience through Shakespeare and gaming.',
+    imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1200',
+    year: '2026',
+    role: 'Lead Strategist & Experience Designer'
+  },
   // {
   //   id: 'diesel',
   //   title: 'Diesel Tokyo: The Brand Temple',
