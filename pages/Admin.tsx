@@ -2,7 +2,26 @@
 import React, { useState, useEffect } from 'react';
 import caseStudiesData from '../data/caseStudies.json';
 
+const PASSCODE = '1989';
+const GITHUB_REPO = 'bnpattara/benn-pattara-portfolio-2';
+
 const Admin: React.FC = () => {
+    // Authentication
+    const [isAuthenticated, setIsAuthenticated] = useState(() => {
+        return sessionStorage.getItem('admin_auth') === 'true';
+    });
+    const [passcodeInput, setPasscodeInput] = useState('');
+    const [passcodeError, setPasscodeError] = useState('');
+
+    // GitHub
+    const [githubToken, setGithubToken] = useState(() => {
+        return localStorage.getItem('github_pat') || '';
+    });
+    const [showTokenInput, setShowTokenInput] = useState(false);
+    const [isPublishing, setIsPublishing] = useState(false);
+    const [publishStatus, setPublishStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
+
+    // Case Studies
     const [caseStudies, setCaseStudies] = useState(caseStudiesData);
     const firstStudyId = Object.keys(caseStudiesData)[0];
     const [selectedStudy, setSelectedStudy] = useState<string>(firstStudyId);
@@ -11,6 +30,123 @@ const Admin: React.FC = () => {
     useEffect(() => {
         setEditedData(caseStudies[selectedStudy as keyof typeof caseStudies]);
     }, [selectedStudy, caseStudies]);
+
+    // Passcode check
+    const handlePasscodeSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (passcodeInput === PASSCODE) {
+            setIsAuthenticated(true);
+            sessionStorage.setItem('admin_auth', 'true');
+            setPasscodeError('');
+        } else {
+            setPasscodeError('Incorrect passcode');
+        }
+    };
+
+    // GitHub API: Publish changes
+    const handlePublishToGitHub = async () => {
+        if (!githubToken) {
+            setShowTokenInput(true);
+            return;
+        }
+
+        setIsPublishing(true);
+        setPublishStatus({ type: null, message: '' });
+
+        try {
+            const filePath = 'data/caseStudies.json';
+            const content = JSON.stringify(caseStudies, null, 2);
+            const base64Content = btoa(unescape(encodeURIComponent(content)));
+
+            // Get current file SHA
+            const getFileResponse = await fetch(
+                `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`,
+                {
+                    headers: {
+                        'Authorization': `token ${githubToken}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                    },
+                }
+            );
+
+            if (!getFileResponse.ok && getFileResponse.status !== 404) {
+                throw new Error('Failed to fetch current file');
+            }
+
+            const fileData = await getFileResponse.json();
+            const sha = fileData.sha;
+
+            // Update file
+            const updateResponse = await fetch(
+                `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${githubToken}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: `Update case studies via Admin panel`,
+                        content: base64Content,
+                        sha: sha,
+                        branch: 'main',
+                    }),
+                }
+            );
+
+            if (!updateResponse.ok) {
+                const errorData = await updateResponse.json();
+                throw new Error(errorData.message || 'Failed to update file');
+            }
+
+            // Also update public/caseStudies.json
+            const publicFilePath = 'public/caseStudies.json';
+            const getPublicFileResponse = await fetch(
+                `https://api.github.com/repos/${GITHUB_REPO}/contents/${publicFilePath}`,
+                {
+                    headers: {
+                        'Authorization': `token ${githubToken}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                    },
+                }
+            );
+
+            if (getPublicFileResponse.ok) {
+                const publicFileData = await getPublicFileResponse.json();
+                await fetch(
+                    `https://api.github.com/repos/${GITHUB_REPO}/contents/${publicFilePath}`,
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${githubToken}`,
+                            'Accept': 'application/vnd.github.v3+json',
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            message: `Sync public case studies via Admin panel`,
+                            content: base64Content,
+                            sha: publicFileData.sha,
+                            branch: 'main',
+                        }),
+                    }
+                );
+            }
+
+            setPublishStatus({
+                type: 'success',
+                message: 'Published successfully! Changes will be live in ~2 minutes after GitHub Pages rebuilds.'
+            });
+            localStorage.setItem('github_pat', githubToken);
+        } catch (error: any) {
+            setPublishStatus({
+                type: 'error',
+                message: `Failed to publish: ${error.message}`
+            });
+        } finally {
+            setIsPublishing(false);
+        }
+    };
 
     const handleDownload = () => {
         const dataStr = JSON.stringify(caseStudies, null, 2);
@@ -28,8 +164,40 @@ const Admin: React.FC = () => {
             ...caseStudies,
             [selectedStudy]: editedData
         });
-        alert('Changes saved! Click "Download JSON" to get the updated file.');
+        setPublishStatus({ type: null, message: '' });
+        alert('Changes saved locally! Click "Publish to GitHub" to make them live.');
     };
+
+    // Passcode Gate
+    if (!isAuthenticated) {
+        return (
+            <main className="min-h-screen bg-stone-900 flex items-center justify-center">
+                <div className="bg-white p-8 max-w-md w-full mx-4">
+                    <h1 className="text-2xl font-bold tracking-wider text-stone-900 mb-2">ADMIN ACCESS</h1>
+                    <p className="text-stone-500 text-sm mb-6">Enter passcode to continue</p>
+                    <form onSubmit={handlePasscodeSubmit}>
+                        <input
+                            type="password"
+                            value={passcodeInput}
+                            onChange={(e) => setPasscodeInput(e.target.value)}
+                            placeholder="Enter passcode"
+                            className="w-full px-4 py-3 border border-stone-300 text-lg tracking-widest mb-4"
+                            autoFocus
+                        />
+                        {passcodeError && (
+                            <p className="text-red-600 text-sm mb-4">{passcodeError}</p>
+                        )}
+                        <button
+                            type="submit"
+                            className="w-full py-3 bg-stone-900 text-white font-bold tracking-wider uppercase hover:bg-stone-800"
+                        >
+                            Enter
+                        </button>
+                    </form>
+                </div>
+            </main>
+        );
+    }
 
     const updateField = (path: string[], value: string) => {
         const newData = JSON.parse(JSON.stringify(editedData));
@@ -83,7 +251,7 @@ const Admin: React.FC = () => {
 
             <div className="max-w-[1440px] mx-auto px-6 md:px-12 py-12">
                 {/* Controls */}
-                <div className="flex flex-wrap gap-4 mb-8">
+                <div className="flex flex-wrap gap-4 mb-4">
                     <select
                         value={selectedStudy}
                         onChange={(e) => setSelectedStudy(e.target.value)}
@@ -104,12 +272,63 @@ const Admin: React.FC = () => {
                     </button>
 
                     <button
+                        onClick={handlePublishToGitHub}
+                        disabled={isPublishing}
+                        className="px-6 py-2 bg-blue-600 text-white text-sm font-bold tracking-wider uppercase hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        {isPublishing ? 'Publishing...' : '🚀 Publish to GitHub'}
+                    </button>
+
+                    <button
                         onClick={handleDownload}
-                        className="px-6 py-2 bg-green-600 text-white text-sm font-bold tracking-wider uppercase hover:bg-green-700"
+                        className="px-6 py-2 bg-stone-200 text-stone-700 text-sm font-bold tracking-wider uppercase hover:bg-stone-300"
                     >
                         Download JSON
                     </button>
                 </div>
+
+                {/* GitHub Token Input */}
+                {showTokenInput && !githubToken && (
+                    <div className="bg-yellow-50 border border-yellow-200 p-4 mb-4">
+                        <h4 className="font-bold text-yellow-900 text-sm mb-2">🔑 GitHub Token Required</h4>
+                        <p className="text-yellow-800 text-xs mb-3">
+                            To publish directly, you need a GitHub Personal Access Token with 'repo' permissions.
+                            <a href="https://github.com/settings/tokens/new" target="_blank" rel="noopener noreferrer" className="underline ml-1">
+                                Create one here →
+                            </a>
+                        </p>
+                        <div className="flex gap-2">
+                            <input
+                                type="password"
+                                value={githubToken}
+                                onChange={(e) => setGithubToken(e.target.value)}
+                                placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+                                className="flex-1 px-3 py-2 border border-yellow-300 text-sm"
+                            />
+                            <button
+                                onClick={() => {
+                                    if (githubToken) {
+                                        localStorage.setItem('github_pat', githubToken);
+                                        setShowTokenInput(false);
+                                        handlePublishToGitHub();
+                                    }
+                                }}
+                                className="px-4 py-2 bg-yellow-600 text-white text-sm font-bold hover:bg-yellow-700"
+                            >
+                                Save & Publish
+                            </button>
+                        </div>
+                    </div>
+                )}
+
+                {/* Publish Status */}
+                {publishStatus.type && (
+                    <div className={`p-4 mb-4 ${publishStatus.type === 'success' ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
+                        <p className={`text-sm ${publishStatus.type === 'success' ? 'text-green-800' : 'text-red-800'}`}>
+                            {publishStatus.message}
+                        </p>
+                    </div>
+                )}
 
                 {/* Instructions */}
                 <div className="bg-blue-50 border border-blue-200 p-6 mb-8 text-sm">
@@ -117,11 +336,12 @@ const Admin: React.FC = () => {
                     <ol className="list-decimal list-inside space-y-1 text-blue-800">
                         <li>Select a case study from the dropdown</li>
                         <li>Edit the fields below</li>
-                        <li>Click "Save Changes" to update the data</li>
-                        <li>Click "Download JSON" to get the updated file</li>
-                        <li>Replace <code className="bg-blue-100 px-1">data/caseStudies.json</code> with your downloaded file</li>
-                        <li>Commit and push to deploy</li>
+                        <li>Click "Save Changes" to save your edits</li>
+                        <li>Click "🚀 Publish to GitHub" to make changes live (requires GitHub token)</li>
                     </ol>
+                    <p className="mt-3 text-blue-600 text-xs">
+                        After publishing, changes will be live in ~2 minutes once GitHub Pages rebuilds.
+                    </p>
                 </div>
 
                 {/* Editor */}
