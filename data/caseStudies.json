@@ -712,25 +712,25 @@
     "published": true,
     "isNewSectionFormat": true,
     "heroTitle": "CK_RE_MASTERED",
-    "heroSubtitle": "Redefining luxury through circularity",
+    "heroSubtitle": "A circular upcycling studio redefining luxury through material stewardship",
     "context": {
-      "background": "Calvin Klein is an icon of American minimalism—clean lines, provocative energy, and iconic denim. But in 2026, the linear \"take-make-waste\" model that built fashion empires is becoming a liability. Material costs are volatilizing, transparency is the new currency of trust, and the consumer relationship that once ended at the register now demands something more.",
-      "ask": "How can Calvin Klein transcend traditional retail to create a circular ecosystem where the consumer relationship is reinvigorated through continuous loops of reinvestment, co-creation, and renewal?",
-      "problem": "The whitespace: Circular fashion could unlock $700 billion by 2030—23% of the global market. But current approaches are stuck between \"artisanal craft\" (slow, unscalable) and \"mass greenwashing\" (hollow). CK needs a third way: technological minimalism that transforms waste into premium value."
+      "background": "Calvin Klein is an icon of American minimalism—clean lines, provocative energy, and iconic denim. But in 2026, the linear \"take-make-waste\" model that built fashion empires is becoming a liability. Material costs are volatilizing, transparency is the new currency of trust, and PVH Corp's \"Forward Fashion\" strategy demands net-zero emissions by 2040 with 100% circular products by 2030. The consumer relationship that once ended at the register now demands something more.",
+      "ask": "How can Calvin Klein transcend traditional retail to create a circular ecosystem where the consumer relationship is reinvigorated through continuous loops of reinvestment, co-creation, and renewal—aligning with PVH's aggressive sustainability targets while unlocking new revenue streams?",
+      "problem": "The whitespace: Circular fashion could unlock $700 billion by 2030—23% of the global market. But current approaches are stuck between \"artisanal craft\" (Golden Goose's slow, labor-intensive atelier model) and \"mass greenwashing\" (hollow claims without infrastructure). CK needs a third way: technological minimalism that transforms the \"urban mine\" of consumer closets into premium value. The EU's Digital Product Passport mandate arrives in 2030—brands that fail to adapt face market exclusion."
     },
     "investigation": {
       "researchMethods": [
         {
           "title": "Competitive Landscape Mapping",
-          "description": "We analyzed the bifurcation between 'Refined/Craft' (Golden Goose Forward Store, Levi's Tailor Shop) and 'Industrial/Tech' (H&M's transparent Looop machine, Unspun's 3D weaving). The whitespace: a laboratory aesthetic that elevates upcycling through technological precision."
+          "description": "We analyzed the market bifurcation: 'Refined/Craft' players (Golden Goose's Forward Store with manual shoemaking, Levi's Tailor Shop leveraging Americana nostalgia, Diesel's Second Hand resale) vs. 'Industrial/Tech' (H&M's transparent Looop machine that shreds and reknits garments in-store, Unspun's Vega 3D weaving eliminating inventory waste). The whitespace: a \"Laboratory of Style\" aesthetic that elevates upcycling through technological precision—drawing from Dr. Jart+ and Gentle Monster's clinical retail theatre."
         },
         {
-          "title": "Regulatory Foresight",
-          "description": "The EU's Digital Product Passport mandate arrives in 2030. We mapped the infrastructure required for compliance—blockchain verification, material traceability, circularity instructions—and designed CK as a first-mover."
+          "title": "Regulatory & Corporate Foresight",
+          "description": "Mapping against PVH's Forward Fashion strategy (net-zero by 2040, 100% circular by 2030, zero-waste operations) and the EU's Ecodesign for Sustainable Products Regulation (ESPR). Digital Product Passports will be mandatory for textiles by 2030. Extended Producer Responsibility (EPR) laws are emerging globally, making brands financially liable for disposal. CK_RE_MASTERED positions as first-mover infrastructure."
         },
         {
-          "title": "Consumer Value Shift",
-          "description": "71% of consumers say DPPs increase brand trust. 49% expect greater loyalty. The modern consumer is hungry for the 'truth' behind their garments—they want participation in manufacturing, not just consumption of products."
+          "title": "Consumer Psychology Shift",
+          "description": "71% of consumers say DPPs increase brand trust; 49% expect greater loyalty. Between 2000-2015, clothing production doubled while utilization rates plummeted 36%. Today's consumer rejects \"fast fashion\" obsolescence—they're hungry for the 'truth' behind garments. They want participation in manufacturing, not just consumption. Framing upcycling as \"re-mastering\" (not thrift) validates their identity as responsible yet stylish."
         }
       ],
       "dataPoints": [
@@ -742,7 +742,7 @@
         {
           "label": "Trust Premium",
           "value": "71%",
-          "description": "Of consumers believe Digital Product Passports will increase trust in a brand."
+          "description": "Of consumers believe Digital Product Passports will increase brand trust."
         },
         {
           "label": "CLV Multiplier",
@@ -752,48 +752,48 @@
       ]
     },
     "pivot": {
-      "insight": "\"The consumer closet is not a graveyard—it's an urban mine. The relationship doesn't end at purchase; it's reinvigorated through reinvestment.\"",
-      "strategy": "Position CK_RE_MASTERED not as a store, but as a \"Laboratory of Style\"—a hybrid micro-factory, retail experience, and digital content hub anchored in three pillars: Material Storytelling, Gamified Loyalty, and 3D Spatial Systems."
+      "insight": "\"The consumer closet is not a graveyard—it's an urban mine. Circularity is not a sustainability initiative—it's a potent engine for Customer Lifetime Value. The relationship doesn't end at purchase; it's reinvigorated through reinvestment.\"",
+      "strategy": "Position CK_RE_MASTERED not as a store, but as a \"Laboratory of Style\"—a hybrid micro-factory, retail experience, and digital content hub. The concept functions through a continuous Consumer Loop: RE-TURN (In-Take Portal valuation), RE-VALUE (AI Material Purity Scores + Carbon Receipts), RE-MASTER (Tier 1: Refine/Tier 2: Remake/Tier 3: Regenerate), and RE-INVEST (Closet Cash redemption into the capsule collection)."
     },
     "solution": {
       "conceptName": "The Upcycling Studio",
-      "concept": "A physical and digital ecosystem where consumers bring end-of-life CK denim to the \"In-Take Portal,\" receive AI-powered \"Material Purity Scores,\" earn \"Closet Cash\" tokens, and reinvest into the Re-Mastered capsule or co-create custom 1-of-1 pieces.",
+      "concept": "A physical and digital ecosystem where consumers bring end-of-life CK denim to the \"In-Take Portal,\" receive AI-powered \"Material Purity Scores\" (100% cotton scores higher for recyclability), earn \"Closet Cash\" blockchain tokens (following For Days and Thousand Fell models), and reinvest into the Re-Mastered capsule or co-create custom 1-of-1 pieces.",
       "execution": [
         {
-          "title": "Material Storytelling (DPPs)",
-          "description": "Every garment carries a Digital Product Passport—blockchain-verified provenance tracking origin, composition, chemicals, and ownership history. A worn jacket's \"complete service history\" becomes its value-add, like a vintage car."
+          "title": "Material Storytelling & Digital Product Passports",
+          "description": "Every garment carries a DPP on the Aura Blockchain Consortium model—immutable, verified provenance tracking origin (regenerative farms?), composition (% recycled vs. virgin), chemicals, circularity instructions, and ownership history. A worn jacket's \"complete service history\" becomes its value-add, like a vintage car. Carbon Receipts show exact environmental savings vs. virgin equivalent."
         },
         {
-          "title": "Gamified Loyalty (Closet Cash)",
-          "description": "Tokenized rewards using Web3 mechanics: weight-based recycling rewards, value-based resale credits, \"Co-Creator\" status badges. Behavioral economics drives circular actions—return frequency triples when reward is immediate and visible."
+          "title": "Gamified Loyalty: Closet Cash Tokenomics",
+          "description": "Tiered Web3 rewards: Tier 1 (Recycle) = weight-based tokens (50 CK Tokens/kg); Tier 2 (Resale) = 30% of resale value in credit; Tier 3 (Remake) = \"Co-Creator\" status badges. Unlike static points, blockchain-backed tokens can be traded, gifted, or unlock \"Token-Gated\" experiences (early access drops, VIP workshops). Impact Leaderboards and \"Zero Waste Warrior\" badges tap into status signaling."
         },
         {
-          "title": "3D Spatial Theatre",
-          "description": "Laboratory aesthetic: stainless steel counters, bright white lighting, the \"Transparent Shredder\" as centerpiece retail theatre. Spline 3D kiosks for co-design. AR mirrors for virtual try-on before irreversible alterations."
+          "title": "3D Spatial Theatre: The Laboratory Aesthetic",
+          "description": "Drawing from Dr. Jart+ and Gentle Monster's clinical retail theatre: stainless steel counters, bright white lighting, vacuum-sealed textile tubes, digital data screens. Centerpiece: the \"Transparent Shredder\" (glass-walled, H&M Looop-inspired) providing visual proof of on-site recycling. Spline 3D configurator kiosks for drag-and-drop co-design. Browzwear/Snapchat VTO smart mirrors for virtual try-on before irreversible alterations. Real-time Data Walls: \"Total Carbon Saved Today,\" \"Kg Diverted.\""
         },
         {
-          "title": "In-Store Micro-Factory",
-          "description": "Integration of Unspun-style 3D weaving for on-demand, zero-inventory production. A customer recycles old jeans, earns credits, and commissions a custom-fit, 3D-woven pair made on-site—closing the loop in real time."
+          "title": "In-Store Micro-Factory: Unspun 3D Weaving",
+          "description": "Integration of Unspun's Vega 3D weaving technology—yarn woven directly into jeans, skipping flat fabric and cutting stages entirely. Near-zero production waste. Zero-inventory retail: a customer recycles old jeans, earns credits, and commissions a custom-fit, 3D-woven pair made on-site or at a regional hub. This closes the loop in real time and validates sustainability claims through \"visual manufacturing.\""
         }
       ]
     },
     "impact": {
       "benefits": [
         {
-          "title": "Regulatory First-Mover",
-          "description": "Proactive compliance with EU ESPR regulations, hedging against future fines and market exclusion while establishing infrastructure for 2030 DPP mandates."
+          "title": "Regulatory First-Mover Advantage",
+          "description": "Proactive compliance with EU ESPR and EPR laws, hedging against future fines and market exclusion while establishing data infrastructure for 2030 DPP mandates. CK builds the \"operating system\" for circular fashion before competitors."
         },
         {
-          "title": "Supply Chain Resilience",
-          "description": "\"Urban Mining\" diversifies material sourcing, reducing dependency on virgin cotton vulnerable to climate volatility and geopolitical instability."
+          "title": "Supply Chain Resilience via Urban Mining",
+          "description": "Diversifies material sourcing beyond virgin cotton—vulnerable to droughts, floods, and geopolitical instability. Domestic recycling hubs reduce trans-Pacific shipping exposure. Aligns with PVH's 100% sustainable cotton/viscose/wool target by 2025."
         },
         {
-          "title": "Premium Value Creation",
-          "description": "Upcycled \"1-of-1\" pieces command premiums over original products; repair/customization are high-margin service revenues; on-demand production eliminates the 30% markdown typical of overproduction."
+          "title": "Premium Margin & Zero Inventory Risk",
+          "description": "Upcycled \"1-of-1\" pieces command premiums over originals due to exclusivity and \"art piece\" status. Repair/customization are high-margin service revenues with minimal raw material costs. On-demand 3D weaving eliminates overproduction markdowns (typically 30% of fashion revenue)."
         },
         {
-          "title": "Brand Transformation",
-          "description": "Repositions Calvin Klein from seller of products to steward of materials—the ultimate luxury for a generation that views circularity as status."
+          "title": "Brand Transformation: Seller → Steward",
+          "description": "Repositions Calvin Klein from seller of products to steward of materials—the ultimate luxury for a generation that views circularity as status. The studio becomes a \"sticky\" ecosystem: a customer visits to drop off, returns to design, returns to pick up. Each touchpoint drives engagement and acquisition at lower CAC than digital ads."
         }
       ]
     }
