@@ -29,24 +29,26 @@ export const CASE_STUDIES: CaseStudy[] = [
     year: '2025',
     role: 'Strategy, Design & Development'
   },
-  {
-    id: 'gapfit-glacial',
-    title: 'GapFit: Glacial Flow',
-    category: 'Brand Strategy | Material Innovation | Technical Wellness',
-    description: 'Repositioning GapFit from value alternative to value innovator through scientific material benefits and the emerging "serotonin dressing" economy.',
-    imageUrl: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&q=80&w=1200',
-    year: '2026',
-    role: 'Lead Strategist & Product Innovator'
-  },
-  {
-    id: 'ck-remastered',
-    title: 'CK_RE_MASTERED',
-    category: 'Circular Economy | Retail Innovation | Web3',
-    description: 'A circular Upcycling Studio transforming Calvin Klein from seller of products to steward of materials through Material Storytelling, Gamified Loyalty, and 3D Spatial Systems.',
-    imageUrl: 'https://images.unsplash.com/photo-1558171813-4c088753af8f?auto=format&fit=crop&q=80&w=1200',
-    year: '2026',
-    role: 'Lead Strategist & Systems Architect'
-  },
+  // HIDDEN: Uncomment the lines below to show GapFit on homepage
+  // {
+  //   id: 'gapfit-glacial',
+  //   title: 'GapFit: Glacial Flow',
+  //   category: 'Brand Strategy | Material Innovation | Technical Wellness',
+  //   description: 'Repositioning GapFit from value alternative to value innovator through scientific material benefits and the emerging "serotonin dressing" economy.',
+  //   imageUrl: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&q=80&w=1200',
+  //   year: '2026',
+  //   role: 'Lead Strategist & Product Innovator'
+  // },
+  // HIDDEN: Uncomment the lines below to show CK_RE_MASTERED on homepage
+  // {
+  //   id: 'ck-remastered',
+  //   title: 'CK_RE_MASTERED',
+  //   category: 'Circular Economy | Retail Innovation | Web3',
+  //   description: 'A circular Upcycling Studio transforming Calvin Klein from seller of products to steward of materials through Material Storytelling, Gamified Loyalty, and 3D Spatial Systems.',
+  //   imageUrl: 'https://images.unsplash.com/photo-1558171813-4c088753af8f?auto=format&fit=crop&q=80&w=1200',
+  //   year: '2026',
+  //   role: 'Lead Strategist & Systems Architect'
+  // },
   // HIDDEN: Uncomment the lines below to show Stella McCartney on homepage
   // {
   //   id: 'stella-mccartney',

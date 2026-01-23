@@ -627,7 +627,7 @@
     }
   },
   "gapfit-glacial": {
-    "published": true,
+    "published": false,
     "isNewSectionFormat": true,
     "heroTitle": "GapFit: Glacial Flow",
     "heroSubtitle": "Pivoting from high-intensity performance to restorative technical wellness",
@@ -709,7 +709,7 @@
     }
   },
   "ck-remastered": {
-    "published": true,
+    "published": false,
     "isNewSectionFormat": true,
     "heroTitle": "CK_RE_MASTERED",
     "heroSubtitle": "A circular upcycling studio redefining luxury through material stewardship",
