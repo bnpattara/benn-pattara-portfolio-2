@@ -11,13 +11,13 @@ const About: React.FC = () => {
         <div className="flex flex-col md:flex-row gap-16 md:gap-24 items-start">
           <div className="w-full md:w-1/3">
             <div className="aspect-[4/5] bg-stone-200 border border-stone-300 overflow-hidden relative grayscale">
-               <img 
-                src="https://picsum.photos/seed/benn/800/1000" 
-                alt="Benn Pattara" 
-                className="w-full h-full object-cover opacity-80"
+              <img
+                src="./benn-portrait.jpg"
+                alt="Benn Pattara"
+                className="w-full h-full object-cover object-top opacity-80"
               />
               <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/50 to-transparent">
-                 <p className="text-white text-[10px] tracking-widest uppercase font-medium">Benn Pattara — 2025</p>
+                <p className="text-white text-[10px] tracking-widest uppercase font-medium">Benn Pattara — 2025</p>
               </div>
             </div>
           </div>
@@ -28,23 +28,23 @@ const About: React.FC = () => {
                 Product Leader, Retail Strategist, <span className="italic">Systems Designer.</span>
               </h3>
             </div>
-            
+
             <p className="text-xl text-stone-600 leading-relaxed font-light max-w-2xl">
-              Currently pursuing an M.S. in Business/Branding at VCU Brandcenter with a focus on AI-driven design and circular economy. 
+              Currently pursuing an M.S. in Business/Branding at VCU Brandcenter with a focus on AI-driven design and circular economy.
               My work exists at the intersection of aesthetic precision and data-driven execution.
             </p>
 
             <div className="flex gap-8">
-              <a 
-                href="https://www.linkedin.com/in/bennpattara" 
-                target="_blank" 
+              <a
+                href="https://www.linkedin.com/in/bennpattara"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-[11px] font-bold tracking-widest uppercase border-b border-stone-900 pb-1 hover:text-stone-500 hover:border-stone-500 transition-all"
               >
                 LinkedIn <ArrowUpRight size={14} />
               </a>
-              <a 
-                href="mailto:bennpattara@gmail.com" 
+              <a
+                href="mailto:bennpattara@gmail.com"
                 className="flex items-center gap-2 text-[11px] font-bold tracking-widest uppercase border-b border-stone-900 pb-1 hover:text-stone-500 hover:border-stone-500 transition-all"
               >
                 Email <ArrowUpRight size={14} />
@@ -56,7 +56,7 @@ const About: React.FC = () => {
 
       {/* Experience & Skills Content */}
       <section className="px-6 md:px-12 py-24 max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24">
-        
+
         {/* Left Column: Skills & Education */}
         <div className="md:col-span-4 space-y-24">
           <div className="space-y-12">
