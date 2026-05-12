@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import GapWayfindingBanner from '@/components/GapWayfindingBanner';
 // import MaintenanceNotice from '@/components/MaintenanceNotice'; // uncomment to enable maintenance mode
 
 /** Bump when replacing `public/og/home.png` so social crawlers refetch (LinkedIn caches aggressively). */
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Script>
           </>) : null}
         {/* <MaintenanceNotice /> · uncomment to enable maintenance mode */}
+        <GapWayfindingBanner />
         {children}
       </body>
     </html>);

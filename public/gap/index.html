@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Gap Inc. · Benn Pattara</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+  :root {
+    --navy:#1B2A4A;--navy-mid:#2C3E6B;--canvas:#F5F0E8;--sand:#C4A882;
+    --rule:#E2DDD4;--warm:#6B5E4E;--black:#0F0F0F;--white:#FFFFFF;--off:#FAF8F4;
+    --g100:#f5f5f5;--g200:#e8e8e8;--g300:#ccc;--g500:#666;--g700:#333;
+    --ease-fast:150ms ease;--ease-base:250ms ease;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  /* Portfolio-aligned nav (matches #site-nav on bennpattara.com) */
+  #site-nav{position:fixed;top:0;left:0;right:0;z-index:10000;transition:background var(--ease-base),border-color var(--ease-base),box-shadow var(--ease-base);background:transparent;border-bottom:1px solid transparent}
+  #site-nav.scrolled{background:var(--white);border-bottom-color:var(--g200);box-shadow:0 1px 12px rgba(0,0,0,.06)}
+  #site-nav .nav-main{position:relative;height:52px;padding:0 clamp(20px,4vw,48px)}
+  #site-nav .nav-left{position:absolute;left:clamp(20px,4vw,48px);top:50%;transform:translateY(-50%);display:flex;gap:clamp(16px,2.5vw,28px);align-items:center}
+  #site-nav .nav-left a{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85);text-decoration:none;transition:color var(--ease-fast)}
+  #site-nav.scrolled .nav-left a{color:var(--g500)}
+  #site-nav .nav-left a:hover,#site-nav.scrolled .nav-left a:hover{color:var(--black)}
+  #site-nav .nav-wordmark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:14px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.95);white-space:nowrap;text-decoration:none;transition:color var(--ease-base)}
+  #site-nav.scrolled .nav-wordmark{color:var(--black)}
+  #site-nav .nav-right{position:absolute;right:clamp(20px,4vw,48px);top:50%;transform:translateY(-50%)}
+  #site-nav .nav-right a{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:1px;transition:color var(--ease-fast),border-color var(--ease-fast)}
+  #site-nav.scrolled .nav-right a{color:var(--black);border-bottom-color:var(--black)}
+  .hero{padding-top:52px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.22fr);min-height:min(100dvh,1100px);align-items:stretch;border-bottom:1px solid var(--rule)}
+  .hero-left{padding:clamp(48px,7vw,80px) clamp(24px,3vw,48px) clamp(48px,7vw,80px) clamp(20px,4vw,60px);display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--rule);min-width:0}
+  .hero-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--sand);margin-bottom:18px}
+  .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,10vw,6.5rem);letter-spacing:.03em;line-height:.93;color:var(--black);margin-bottom:28px}
+  .hero-title span{color:var(--navy)}
+  .hero-thesis{font-size:clamp(14px,1.8vw,16px);font-weight:300;line-height:1.85;color:var(--warm);margin-bottom:32px;max-width:460px}
+  .hero-thesis strong{color:var(--black);font-weight:500}
+  .hero-cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+  .hero-cta{display:inline-flex;align-items:center;gap:10px;font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:12px 18px;border:1px solid var(--navy);background:transparent;color:var(--navy);text-decoration:none;cursor:pointer;transition:background var(--ease-fast),color var(--ease-fast),border-color var(--ease-fast);white-space:nowrap;line-height:1}
+  .hero-cta.primary{background:var(--navy);color:var(--white)}
+  .hero-cta:hover{background:var(--navy-mid);color:var(--white);border-color:var(--navy-mid)}
+  .hero-cta.primary:hover{background:var(--black);border-color:var(--black);color:var(--white)}
+  .hero-cta .cta-arrow{display:inline-block;font-size:11px;transition:transform var(--ease-fast)}
+  .hero-cta:hover .cta-arrow{transform:translateX(2px)}
+  .hero-cta.copied{background:var(--sand)!important;color:var(--white)!important;border-color:var(--sand)!important}
+  .hero-cta.copied .cta-arrow{transform:scale(0.92)}
+  .hero-meta{display:flex;flex-direction:column;gap:2px;padding-top:24px;border-top:1px solid var(--rule)}
+  .hero-meta span{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--sand);line-height:1.9}
+  .hero-meta .hero-meta-strong{font-size:10.5px;color:var(--navy);font-weight:500;letter-spacing:.1em}
+  .hero-meta a{color:var(--navy);border-bottom:1px solid var(--rule)}
+  .hero-right{background:var(--canvas);display:flex;flex-direction:column;flex:1;align-items:stretch;justify-content:stretch;position:relative;min-width:0;min-height:min(72dvh,760px);padding:clamp(12px,2vw,24px) clamp(8px,1.5vw,18px)}
+  .polaroid-strip-label{display:none}
+  .polaroid-strip-mobile{display:none}
+  .polaroid-wall{display:grid;flex:1;width:100%;min-height:min(42dvh,420px);container-type:inline-size;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:auto;gap:clamp(8px,1.4vw,18px);padding:clamp(8px,1.5vw,20px);align-content:center;justify-items:stretch;box-sizing:border-box}
+  .polaroid{margin:0;display:grid;grid-template-rows:1fr auto;width:100%;aspect-ratio:10/12.2;justify-self:stretch;background:linear-gradient(165deg,#fff 0%,#faf8f4 55%,#f2efe8 100%);padding:clamp(4px,0.5vw,8px) clamp(4px,0.5vw,8px) 0;border:1px solid rgba(0,0,0,.07);box-shadow:0 2px 0 rgba(255,255,255,.9) inset,0 6px 16px rgba(27,42,74,.1),0 1px 4px rgba(0,0,0,.06);transition:transform .22s ease,box-shadow .22s ease;cursor:default;position:relative}
+  .polaroid::after{content:'';position:absolute;inset:0;border-radius:1px;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.35);mix-blend-mode:multiply;opacity:.35}
+  .polaroid-photo{min-height:0;height:100%;align-self:stretch;overflow:hidden;border-radius:1px;background:#e8e4dc;line-height:0;box-shadow:inset 0 0 0 1px rgba(0,0,0,.04)}
+  .polaroid-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:sepia(0.14) saturate(0.9) contrast(1.04) brightness(1.02)}
+  .polaroid-img.ph{background:var(--rule);display:flex;align-items:center;justify-content:center;aspect-ratio:1}
+  .polaroid-img.ph span{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--warm);text-align:center;opacity:.5;padding:8px;line-height:1.6}
+  .polaroid-caption{font-family:'DM Sans',sans-serif;font-size:clamp(5px,min(1.8vw,2.8cqi),9px);font-style:italic;color:var(--warm);text-align:center;line-height:1.25;padding:clamp(4px,0.45vw,8px) 2px clamp(5px,0.55vw,9px);display:flex;align-items:center;justify-content:center;min-height:2.5em}
+  .polaroid:nth-child(odd){transform:rotate(-1.2deg)}
+  .polaroid:nth-child(even){transform:rotate(1deg)}
+  .polaroid:hover{transform:rotate(0deg) scale(1.02)!important;box-shadow:0 2px 0 rgba(255,255,255,.9) inset,0 10px 22px rgba(27,42,74,.14),0 2px 8px rgba(0,0,0,.08);z-index:2}
+  .ticker{background:var(--navy);overflow:hidden;padding:12px 0}
+  .ticker-track{display:flex;width:max-content;animation:scroll 32s linear infinite}
+  .ticker-item{display:flex;align-items:center;gap:10px;padding:0 28px;border-right:1px solid rgba(255,255,255,.1);white-space:nowrap}
+  .ticker-num{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.04em;line-height:1;color:var(--white)}
+  .ticker-desc{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+  @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .cases-section{padding:clamp(56px,8vw,96px) clamp(20px,4vw,60px);background:var(--white)}
+  .cases-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--warm);padding-bottom:14px;border-bottom:1px solid var(--rule)}
+  .case-card{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule);padding:clamp(40px,5vw,64px) 0;gap:48px;align-items:start}
+  .case-card:last-child{border-bottom:1px solid var(--rule)}
+  .case-counter{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:var(--sand);margin-bottom:12px}
+  .case-category{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--warm);margin-bottom:10px}
+  .case-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.75rem,7vw,5rem);letter-spacing:.03em;line-height:.93;color:var(--black);margin-bottom:20px}
+  .case-quote{font-size:clamp(13px,1.8vw,15px);font-weight:300;font-style:italic;line-height:1.75;color:var(--warm);max-width:400px;margin-bottom:28px;padding-left:14px;border-left:2px solid var(--sand)}
+  .case-link{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);border-bottom:1px solid var(--navy);padding-bottom:2px;display:inline-block;transition:opacity .2s}
+  .case-link:hover{opacity:.5}
+  .case-actions{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:4px}
+  button.case-link{cursor:pointer;background:none;border:none;padding:0}
+  .case-link-sub{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--sand);border-bottom:1px solid var(--rule);padding-bottom:1px}
+  .case-link-sub:hover{color:var(--navy)}
+  .case-details{grid-column:1 / -1;border:2px solid var(--navy);background:var(--white);margin-top:8px;overflow:hidden;scroll-margin-top:56px}
+  .case-details summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;padding:18px 22px;background:linear-gradient(100deg,var(--off) 0%,var(--white) 55%);user-select:none;transition:background .2s}
+  .case-details summary::-webkit-details-marker{display:none}
+  .case-details summary:hover{background:var(--off)}
+  .case-details[open] summary{border-bottom:1px solid var(--rule)}
+  .case-summary-textwrap{display:flex;flex-direction:column;gap:6px;flex:1;min-width:min(100%,220px)}
+  .case-summary-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.35rem,3.2vw,1.9rem);letter-spacing:.04em;color:var(--navy);line-height:1.05}
+  .case-summary-sub{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--warm);line-height:1.5}
+  .case-summary-chev{font-family:'DM Mono',monospace;font-size:12px;color:var(--navy);width:32px;height:32px;border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--white);transition:transform .22s ease,background .2s,color .2s,border-color .2s}
+  .case-details[open] .case-summary-chev{transform:rotate(180deg);background:var(--navy);color:var(--white);border-color:var(--navy)}
+  .case-details-body{background:var(--white)}
+  .case-details-hero{background:var(--black);line-height:0}
+  .case-details-hero img{width:100%;height:auto;display:block;vertical-align:middle}
+  .case-details-frame{border-top:1px solid var(--rule);background:var(--white)}
+  .case-details-frame iframe.case-brief-frame{width:100%;border:0;display:block;min-height:520px}
+  .case-details-foot{padding:14px 22px 18px;border-top:1px solid var(--rule);background:var(--off);font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--warm);line-height:1.65}
+  .case-right{display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+  .case-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule)}
+  .case-stat{background:var(--white);padding:14px 16px}
+  .case-stat-num{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.04em;line-height:1;color:var(--navy);margin-bottom:3px}
+  .case-stat-label{font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--warm);line-height:1.4}
+  .case-feature{background:var(--off);padding:18px 20px}
+  .case-feature-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--sand);margin-bottom:5px}
+  .case-feature-title{font-size:12.5px;font-weight:600;color:var(--black);margin-bottom:6px;line-height:1.3}
+  .case-feature-body{font-size:12px;line-height:1.65;color:var(--warm)}
+  .more-section{background:var(--canvas);padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px);border-top:1px solid var(--rule)}
+  .more-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--warm);margin-bottom:16px}
+  .more-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,4rem);letter-spacing:.03em;line-height:.95;color:var(--black);margin-bottom:20px}
+  .more-body{font-size:14px;font-weight:300;line-height:1.8;color:var(--warm);max-width:480px;margin-bottom:28px}
+  .more-brands{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:32px}
+  .brand-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:5px 11px;border:1px solid var(--rule);color:var(--warm);background:var(--white)}
+  .more-cta{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);border-bottom:1px solid var(--navy);padding-bottom:3px;transition:opacity .2s}
+  .more-cta:hover{opacity:.55}
+  .internal-section{border-top:3px solid var(--navy)}
+  .internal-toggle{width:100%;background:var(--navy);border:none;cursor:pointer;padding:clamp(28px,4vw,44px) clamp(20px,4vw,60px);display:flex;justify-content:space-between;align-items:center;gap:24px;transition:background .2s}
+  .internal-toggle:hover{background:var(--navy-mid)}
+  .internal-toggle-left{text-align:left}
+  .internal-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--sand);margin-bottom:8px}
+  .internal-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,4vw,2.5rem);letter-spacing:.04em;color:var(--white);line-height:1;margin-bottom:6px}
+  .internal-sub{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+  .internal-toggle-right{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0}
+  .toggle-pill{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);background:var(--white);padding:8px 16px;display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .toggle-arrow{display:inline-block;transition:transform .3s;font-size:12px}
+  .internal-content{display:none;background:var(--off);border-top:1px solid var(--rule)}
+  .internal-content.visible{display:block}
+  .internal-pad{padding:clamp(40px,6vw,64px) clamp(20px,4vw,60px)}
+  .i-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--warm);padding-bottom:12px;border-bottom:1px solid var(--rule);margin-bottom:24px}
+  .i-divider{border:none;border-top:1px solid var(--rule);margin:40px 0}
+  .i-pov-statement{font-size:clamp(14px,1.9vw,16px);font-weight:300;line-height:1.85;color:var(--black);max-width:680px;padding-left:20px;border-left:3px solid var(--sand);margin-bottom:28px}
+  .i-pov-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--rule);margin-bottom:48px}
+  .i-pov-card{background:var(--white);padding:22px 20px}
+  .i-pov-num{font-family:'Bebas Neue',sans-serif;font-size:2.25rem;color:var(--sand);line-height:1;margin-bottom:8px}
+  .i-pov-title{font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;color:var(--navy)}
+  .i-pov-body{font-size:12px;line-height:1.65;color:var(--warm)}
+  .i-priority-card{border:2px solid var(--navy);overflow:hidden;margin-bottom:16px}
+  .i-priority-banner{background:var(--navy);padding:8px 20px;display:flex;align-items:center;gap:12px}
+  .i-priority-badge{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;background:var(--white);color:var(--navy);padding:2px 7px}
+  .i-banner-sub{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+  .i-card-header{background:var(--navy);color:var(--white);padding:16px 20px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;border-top:1px solid rgba(255,255,255,.07)}
+  .i-card-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.375rem,3.5vw,2rem);letter-spacing:.04em;line-height:1.05}
+  .i-card-meta{text-align:right;flex-shrink:0}
+  .i-req{font-family:'DM Mono',monospace;font-size:8.5px;color:rgba(255,255,255,.35);letter-spacing:.08em;margin-bottom:5px}
+  .i-status{display:inline-block;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:3px 7px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.65)}
+  .i-status.applied{color:#fff;border-color:rgba(255,255,255,.35)}
+  .i-status.new{color:#ffd96a;border-color:rgba(255,220,100,.4)}
+  .i-status.targeting{color:#b8d4f0;border-color:rgba(184,212,240,.5)}
+  .i-card-body{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--rule);gap:1px}
+  .i-cell{background:var(--white);padding:18px 18px;font-size:12.5px;line-height:1.65;color:var(--black)}
+  .i-cell-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--warm);margin-bottom:10px}
+  .i-cell-span{grid-column:1 / -1;background:var(--off);padding:20px 20px 22px;border-top:1px solid var(--rule)}
+  .i-cell-span .i-cell-label{margin-bottom:10px}
+  .i-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;background:var(--navy);color:var(--white);padding:3px 7px;margin:3px 2px 0 0}
+  .i-job-card{border:1px solid var(--rule);overflow:hidden;margin-bottom:12px}
+  .i-job-card:last-child{margin-bottom:0}
+  .i-ask-priority{border:2px solid var(--navy);padding:26px 28px;margin-bottom:1px;background:var(--white)}
+  .i-ask-header{display:flex;align-items:center;gap:16px;margin-bottom:12px}
+  .i-ask-num{font-family:'Bebas Neue',sans-serif;font-size:3.25rem;color:var(--navy);line-height:1;flex-shrink:0}
+  .i-ask-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--navy);line-height:1.3}
+  .i-ask-sub{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--warm);margin-top:3px}
+  .i-ask-body{font-size:13px;line-height:1.75;color:var(--black)}
+  .i-ask-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-top:none;margin-bottom:40px}
+  .i-ask-card{background:var(--white);padding:20px 18px}
+  .i-ask-card-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .i-ask-card-num{font-family:'Bebas Neue',sans-serif;font-size:1.75rem;color:var(--sand);line-height:1}
+  .i-ask-card-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;line-height:1.3;color:var(--navy)}
+  .i-ask-card-body{font-size:12px;line-height:1.65;color:var(--warm)}
+  .i-timeline{display:flex;gap:2px}
+  .i-tl-step{flex:1;background:var(--canvas);padding:16px 14px;border-left:2px solid transparent}
+  .i-tl-step:first-child{border-left-color:var(--navy);background:var(--navy)}
+  .i-tl-date{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--warm);margin-bottom:4px}
+  .i-tl-step:first-child .i-tl-date{color:rgba(255,255,255,.38)}
+  .i-tl-label{font-size:11px;font-weight:600;line-height:1.4;color:var(--black)}
+  .i-tl-step:first-child .i-tl-label{color:var(--white)}
+  footer{padding:clamp(20px,3vw,28px) clamp(20px,4vw,60px);border-top:1px solid var(--rule);background:var(--canvas);display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .footer-left{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--warm);line-height:1.9}
+  .footer-left a{border-bottom:1px solid var(--rule);color:var(--warm)}
+  .footer-right{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--sand)}
+  /* Tablet portrait & landscape: keep hero side-by-side, tighten typography */
+  @media(max-width:1024px){
+    .hero{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);min-height:min(92dvh,940px)}
+    .hero-title{font-size:clamp(2.75rem,8.5vw,5.25rem)}
+    .hero-thesis{font-size:14.5px;line-height:1.75}
+    .hero-left{padding:clamp(40px,5vw,64px) clamp(20px,2.5vw,36px)}
+    .hero-right{min-height:min(64dvh,640px);padding:clamp(10px,1.6vw,18px) clamp(8px,1.2vw,14px)}
+    .polaroid-wall{padding:clamp(6px,1.2vw,14px);gap:clamp(6px,1.1vw,14px)}
+  }
+  /* Phones: hero collapses to one column (text only). Polaroids move to a horizontal-scroll strip after the ticker. */
+  @media(max-width:640px){
+    .hero{grid-template-columns:1fr;min-height:auto;padding-top:52px}
+    .hero-left{padding:44px 22px 36px;border-right:none;border-bottom:1px solid var(--rule);justify-content:flex-start}
+    .hero-eyebrow{font-size:8.5px;letter-spacing:.22em;margin-bottom:14px}
+    .hero-title{font-size:clamp(2.75rem,11vw,3.6rem);line-height:.95;letter-spacing:.02em;margin-bottom:20px}
+    .hero-thesis{font-size:13.5px;line-height:1.75;margin-bottom:24px;max-width:none}
+    .hero-cta-row{flex-direction:column;gap:8px;margin-bottom:24px}
+    .hero-cta{width:100%;justify-content:center;padding:12px 14px;font-size:9.5px;letter-spacing:.12em;gap:8px}
+    .hero-meta{padding-top:20px;gap:2px}
+    .hero-meta span{font-size:9px;line-height:1.85;letter-spacing:.1em}
+    .hero-meta .hero-meta-strong{font-size:10.5px;line-height:1.55;letter-spacing:.08em}
+    .hero-right{display:none}
+    /* Mobile horizontal polaroid strip (after ticker) */
+    .polaroid-strip-mobile{display:block;background:var(--canvas);border-bottom:1px solid var(--rule);padding:18px 0 22px}
+    .polaroid-strip-mobile-label{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--warm);padding:0 22px 10px;opacity:.7}
+    .polaroid-strip-track{display:flex;overflow-x:auto;overflow-y:hidden;gap:10px;padding:8px 22px 14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;mask-image:linear-gradient(90deg,transparent 0,#000 16px,#000 calc(100% - 28px),transparent 100%);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16px,#000 calc(100% - 28px),transparent 100%)}
+    .polaroid-strip-track::-webkit-scrollbar{display:none;width:0;height:0}
+    .polaroid-strip-track .polaroid{flex:0 0 auto;width:38vw;min-width:138px;max-width:180px;aspect-ratio:10/12.2;scroll-snap-align:start;padding:5px 5px 0;box-shadow:0 2px 0 rgba(255,255,255,.9) inset,0 6px 14px rgba(27,42,74,.12),0 1px 3px rgba(0,0,0,.06);transform:rotate(-1deg)}
+    .polaroid-strip-track .polaroid:nth-child(even){transform:rotate(1deg)}
+    .polaroid-strip-track .polaroid:hover{transform:rotate(0deg) scale(1.02)}
+    .polaroid-strip-track .polaroid-caption{font-size:7.5px;letter-spacing:0;padding:5px 3px 6px;min-height:1.6em;line-height:1.2;font-style:italic}
+    .case-card{grid-template-columns:1fr;gap:24px;padding:36px 0}
+    .case-quote{max-width:none}
+    .case-stats{gap:1px}
+    .case-stat{padding:12px 14px}
+    .case-stat-num{font-size:1.45rem}
+    .case-feature{padding:14px 16px}
+    .case-details summary{padding:14px 16px;gap:10px 14px}
+    .case-summary-title{font-size:1.3rem}
+    .case-details-frame iframe.case-brief-frame{min-height:420px}
+    .case-details-foot{padding:12px 16px 16px;font-size:7.5px}
+    .ticker-item{padding:0 18px}
+    .ticker-num{font-size:1.05rem}
+    .ticker-desc{font-size:7.5px}
+    .more-section{padding:48px 22px}
+    .internal-toggle{flex-direction:column;align-items:flex-start;gap:14px;padding:32px 22px}
+    .internal-toggle-right{width:100%}
+    .toggle-pill{width:100%;justify-content:space-between}
+    .internal-pad{padding:36px 22px}
+    .i-pov-statement{padding-left:14px;font-size:14.5px}
+    .i-priority-banner{flex-wrap:wrap}
+    .i-card-header{flex-direction:column;align-items:flex-start}
+    .i-card-meta{text-align:left}
+    .i-card-body{grid-template-columns:1fr}
+    .i-cell{padding:16px 16px}
+    .i-cell-span{padding:18px 16px}
+    .i-pov-grid{grid-template-columns:1fr}
+    .i-ask-grid{grid-template-columns:1fr}
+    .i-ask-priority{padding:22px 20px}
+    .i-ask-num{font-size:2.5rem}
+    .i-timeline{flex-direction:column}
+    footer{flex-direction:column;align-items:flex-start;gap:8px;padding:20px 22px 24px}
+    #site-nav .nav-main{padding:0 18px;display:flex;justify-content:space-between;align-items:center}
+    #site-nav .nav-left,#site-nav .nav-wordmark,#site-nav .nav-right{position:static;transform:none;left:auto;right:auto;top:auto}
+    #site-nav.gap-hub-nav .nav-left a{display:none}
+    #site-nav.gap-hub-nav .nav-left a.gap-hub-nav--show{display:inline}
+    #site-nav .nav-wordmark{font-size:12px;letter-spacing:.16em}
+    #site-nav .nav-right a{font-size:10px}
+  }
+</style>
+</head>
+<body>
+
+<nav id="site-nav" class="scrolled gap-hub-nav" aria-label="Primary">
+  <div class="nav-main">
+    <div class="nav-left">
+      <a href="/gap" target="_parent" class="gap-hub-nav--show">Gap Hub</a>
+      <a href="/#work" target="_parent" class="gap-hub-nav--show">Work</a>
+      <a href="/#about" target="_parent">About</a>
+    </div>
+    <a href="/" class="nav-wordmark" target="_parent">Benn Pattara</a>
+    <div class="nav-right">
+      <a href="/#contact" target="_parent">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Strategic Work · Gap Inc. · 2025–2026</div>
+    <div class="hero-title">Hi,<br>I'm <span>Benn.</span></div>
+    <div class="hero-thesis">I run loyalty at Gap Store #1224 in Short Pump, VA. <strong>Ranked top in Gap East leadership for card volume and acquisition rate, Q1 2026.</strong> I just finished my M.S. at VCU Brandcenter in experiential design, and I'm ready to take my next step with the brand at HQ, bringing my POV about <strong>fashion and experiential brand connection</strong> to each touchpoint of our consumer journey.</div>
+    <div class="hero-cta-row">
+      <a class="hero-cta primary" href="/gap/benn-pattara-resume.pdf" download="Benn-Pattara-Resume.pdf">
+        <span class="cta-label">Download Resume</span>
+        <span class="cta-arrow" aria-hidden="true">↓</span>
+      </a>
+      <button class="hero-cta" type="button" onclick="copyContactEmails(this)" aria-label="Copy contact email addresses to clipboard">
+        <span class="cta-label">Copy Email Addresses</span>
+        <span class="cta-arrow" aria-hidden="true">⧉</span>
+      </button>
+    </div>
+    <div class="hero-meta">
+      <span class="hero-meta-strong">Loyalty Lead · Gap Store #1224 · Short Pump, VA</span>
+      <span>M.S. Experiential Design &amp; Strategy · VCU Brandcenter · Completed May 2026</span>
+      <span><a href="mailto:bennpattara@gmail.com">bennpattara@gmail.com</a></span>
+      <span><a href="mailto:bpattar@gap.com">bpattar@gap.com</a></span>
+      <span><a href="/" target="_parent">bennpattara.com</a></span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="polaroid-strip-label" aria-hidden="true">Polaroids · Store #1224 →</div>
+    <div class="polaroid-wall" aria-label="Polaroid gallery from Short Pump Gap">
+      <figure class="polaroid">
+        <div class="polaroid-photo"><img src="/gap/gap-story-polaroid.png" width="400" height="400" alt="Young child in denim bucket hat" loading="lazy" decoding="async" /></div>
+        <figcaption class="polaroid-caption">My Gap story started with a denim bucket hat.</figcaption>
+      </figure>
+      <figure class="polaroid">
+        <div class="polaroid-photo"><img src="/gap/polaroids/brandon-and-liz.png" width="400" height="400" alt="Brandon and Liz at Gap" loading="lazy" decoding="async" /></div>
+        <figcaption class="polaroid-caption">Brandon &amp; Liz.</figcaption>
+      </figure>
+      <figure class="polaroid">
+        <div class="polaroid-photo"><img src="/gap/polaroids/teamwork.png" width="400" height="400" alt="Team mirror selfie at Gap" loading="lazy" decoding="async" /></div>
+        <figcaption class="polaroid-caption">Teamwork.</figcaption>
+      </figure>
+      <figure class="polaroid">
+        <div class="polaroid-photo"><img src="/gap/polaroids/the-one-where-they-hit-3mil.png" width="400" height="400" alt="Team celebrating sales milestone" loading="lazy" decoding="async" /></div>
+        <figcaption class="polaroid-caption">The one where they hit $3M.</figcaption>
+      </figure>
+      <figure class="polaroid">
+        <div class="polaroid-photo"><img src="/gap/polaroids/holiday-tees.png" width="400" height="400" alt="Holiday Crew 2025 tees" loading="lazy" decoding="async" /></div>
+        <figcaption class="polaroid-caption">Holiday tees.</figcaption>
+      </figure>
+      <figure class="polaroid">
+        <div class="polaroid-photo"><img src="/gap/polaroids/card-crew.png" width="400" height="400" alt="Team with credit card brochures" loading="lazy" decoding="async" /></div>
+        <figcaption class="polaroid-caption">Card crew.</figcaption>
+      </figure>
+      <figure class="polaroid">
+        <div class="polaroid-photo"><img src="/gap/polaroids/beis-day.png" width="400" height="400" alt="Gap store floor with luggage display" loading="lazy" decoding="async" /></div>
+        <figcaption class="polaroid-caption">BEIS day.</figcaption>
+      </figure>
+      <figure class="polaroid">
+        <div class="polaroid-photo"><img src="/gap/polaroids/twinning.png" width="400" height="400" alt="Two associates in matching outfits" loading="lazy" decoding="async" /></div>
+        <figcaption class="polaroid-caption">Twinning.</figcaption>
+      </figure>
+      <figure class="polaroid">
+        <div class="polaroid-photo"><img src="/gap/polaroids/evening-shift.png" width="400" height="400" alt="Colleagues at Gap" loading="lazy" decoding="async" /></div>
+        <figcaption class="polaroid-caption">Evening shift.</figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><div class="ticker-num">#1</div><div class="ticker-desc">Gap East · Card Volume<br>All Managers · Q1 2026</div></div>
+    <div class="ticker-item"><div class="ticker-num">#1</div><div class="ticker-desc">Gap East · Acquisition Rate<br>All Managers · Q1 2026</div></div>
+    <div class="ticker-item"><div class="ticker-num">10×</div><div class="ticker-desc">Personal Conversion<br>Apr to Dec 2025</div></div>
+    <div class="ticker-item"><div class="ticker-num">40%</div><div class="ticker-desc">Team Goal Attainment<br>Increase</div></div>
+    <div class="ticker-item"><div class="ticker-num">Top 3</div><div class="ticker-desc">All Employees Incl.<br>Associates · Q1 2026</div></div>
+    <div class="ticker-item"><div class="ticker-num">+11%</div><div class="ticker-desc">Comp YTD · Store #1224</div></div>
+    <div class="ticker-item"><div class="ticker-num">#1</div><div class="ticker-desc">Gap East · Card Volume<br>All Managers · Q1 2026</div></div>
+    <div class="ticker-item"><div class="ticker-num">#1</div><div class="ticker-desc">Gap East · Acquisition Rate<br>All Managers · Q1 2026</div></div>
+    <div class="ticker-item"><div class="ticker-num">10×</div><div class="ticker-desc">Personal Conversion<br>Apr to Dec 2025</div></div>
+    <div class="ticker-item"><div class="ticker-num">40%</div><div class="ticker-desc">Team Goal Attainment<br>Increase</div></div>
+    <div class="ticker-item"><div class="ticker-num">Top 3</div><div class="ticker-desc">All Employees Incl.<br>Associates · Q1 2026</div></div>
+    <div class="ticker-item"><div class="ticker-num">+11%</div><div class="ticker-desc">Comp YTD · Store #1224</div></div>
+  </div>
+</div>
+
+<div class="polaroid-strip-mobile" aria-label="Polaroid gallery from Short Pump Gap">
+  <div class="polaroid-strip-mobile-label" aria-hidden="true">Polaroids · Store #1224 →</div>
+  <div class="polaroid-strip-track">
+    <figure class="polaroid">
+      <div class="polaroid-photo"><img src="/gap/gap-story-polaroid.png" alt="Young child in denim bucket hat" loading="lazy" decoding="async" /></div>
+      <figcaption class="polaroid-caption">My Gap story started with a denim bucket hat.</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <div class="polaroid-photo"><img src="/gap/polaroids/brandon-and-liz.png" alt="Brandon and Liz at Gap" loading="lazy" decoding="async" /></div>
+      <figcaption class="polaroid-caption">Brandon &amp; Liz.</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <div class="polaroid-photo"><img src="/gap/polaroids/teamwork.png" alt="Team mirror selfie at Gap" loading="lazy" decoding="async" /></div>
+      <figcaption class="polaroid-caption">Teamwork.</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <div class="polaroid-photo"><img src="/gap/polaroids/the-one-where-they-hit-3mil.png" alt="Team celebrating sales milestone" loading="lazy" decoding="async" /></div>
+      <figcaption class="polaroid-caption">The one where they hit $3M.</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <div class="polaroid-photo"><img src="/gap/polaroids/holiday-tees.png" alt="Holiday Crew 2025 tees" loading="lazy" decoding="async" /></div>
+      <figcaption class="polaroid-caption">Holiday tees.</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <div class="polaroid-photo"><img src="/gap/polaroids/card-crew.png" alt="Team with credit card brochures" loading="lazy" decoding="async" /></div>
+      <figcaption class="polaroid-caption">Card crew.</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <div class="polaroid-photo"><img src="/gap/polaroids/beis-day.png" alt="Gap store floor with luggage display" loading="lazy" decoding="async" /></div>
+      <figcaption class="polaroid-caption">BEIS day.</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <div class="polaroid-photo"><img src="/gap/polaroids/twinning.png" alt="Two associates in matching outfits" loading="lazy" decoding="async" /></div>
+      <figcaption class="polaroid-caption">Twinning.</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <div class="polaroid-photo"><img src="/gap/polaroids/evening-shift.png" alt="Colleagues at Gap" loading="lazy" decoding="async" /></div>
+      <figcaption class="polaroid-caption">Evening shift.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="cases-section">
+  <div class="cases-eyebrow">02 Concepts · Speculative Strategic Work</div>
+  <div class="case-card">
+    <div class="case-left">
+      <div class="case-counter">01 / 02</div>
+      <div class="case-category">Loyalty Program Redesign</div>
+      <div class="case-title">Canvas</div>
+      <div class="case-quote">"Encore is a card acquisition strategy with a loyalty wrapper. Canvas is a Gap program that happens to have a financial component."</div>
+      <div class="case-actions">
+        <a class="case-link-sub" href="/gap/briefs/canvas_brief.html" target="_blank" rel="noopener noreferrer">Open standalone brief in new tab</a>
+      </div>
+    </div>
+    <div class="case-right">
+      <div class="case-stats">
+        <div class="case-stat"><div class="case-stat-num">4</div><div class="case-stat-label">Life-stage tiers<br>Campus to Signature</div></div>
+        <div class="case-stat"><div class="case-stat-num">2–10%</div><div class="case-stat-label">Earn rates<br>Non-card to card</div></div>
+        <div class="case-stat"><div class="case-stat-num">6</div><div class="case-stat-label">Product innovations<br>incl. Wardrobe Starter</div></div>
+        <div class="case-stat"><div class="case-stat-num">4×</div><div class="case-stat-label">Annual redemption<br>windows, monthly loop</div></div>
+      </div>
+      <div class="case-feature"><div class="case-feature-label">The Structural Fix</div><div class="case-feature-title">Real non-card earn rates at every tier</div><div class="case-feature-body">Encore asks loyal customers to take on credit risk to access real value. Canvas fixes the problem Encore never solved: meaningful earn rates without a card. The card becomes an accelerant, not a gatekeeper.</div></div>
+      <div class="case-feature"><div class="case-feature-label">Key Innovation</div><div class="case-feature-title">Wardrobe Starter</div><div class="case-feature-body">The first loyalty reward tied to a life narrative rather than a spend threshold. Triggered by a life moment. The gift is the styling, not the merchandise.</div></div>
+    </div>
+    <details class="case-details" id="caseDetailsCanvas">
+      <summary>
+        <div class="case-summary-textwrap">
+          <span class="case-summary-title">Canvas — full case study</span>
+          <span class="case-summary-sub">Expand for the concept mockup and the full brief (all sections). Click again to collapse.</span>
+        </div>
+        <span class="case-summary-chev" aria-hidden="true">↓</span>
+      </summary>
+      <div class="case-details-body">
+        <div class="case-details-hero">
+          <img src="/gap/canvas-hero.png" width="1600" height="900" alt="Canvas loyalty program concept mockup" loading="lazy" decoding="async" />
+        </div>
+        <div class="case-details-frame">
+          <iframe class="case-brief-frame" id="caseBriefCanvas" title="Canvas full brief" src="about:blank" data-src="/gap/briefs/canvas_brief.html?embed=1"></iframe>
+        </div>
+        <div class="case-details-foot">Scroll inside the brief: what Encore gets wrong · strategic argument · tier architecture · earn mechanics · product innovations · brand system.</div>
+      </div>
+    </details>
+  </div>
+  <div class="case-card">
+    <div class="case-left">
+      <div class="case-counter">02 / 02</div>
+      <div class="case-category">Personal Styling Service</div>
+      <div class="case-title">Blue Box</div>
+      <div class="case-quote">"Stitch Fix proved the model. Blue Box fixes the margin problem that killed Trunk Club and drove Amazon out of the category."</div>
+      <div class="case-actions">
+        <a class="case-link-sub" href="/gap/briefs/blue_box_brief.html" target="_blank" rel="noopener noreferrer">Open standalone brief in new tab</a>
+      </div>
+    </div>
+    <div class="case-right">
+      <div class="case-stats">
+        <div class="case-stat"><div class="case-stat-num">3</div><div class="case-stat-label">Service modes<br>In-store, delivery, digital</div></div>
+        <div class="case-stat"><div class="case-stat-num">~0%</div><div class="case-stat-label">Reverse logistics cost<br>vs. 30% DTC average</div></div>
+        <div class="case-stat"><div class="case-stat-num">1,400</div><div class="case-stat-label">Stores as return<br>infrastructure</div></div>
+        <div class="case-stat"><div class="case-stat-num">4</div><div class="case-stat-label">Canvas tier<br>integrations</div></div>
+      </div>
+      <div class="case-feature"><div class="case-feature-label">The Margin Fix</div><div class="case-feature-title">Happy Returns already integrated</div><div class="case-feature-body">By routing returns through 1,400 stores and Happy Returns kiosks, reverse logistics cost drops from 30% to near zero. The structural problem that killed every competitor does not exist here.</div></div>
+      <div class="case-feature"><div class="case-feature-label">The Flywheel</div><div class="case-feature-title">Best Canvas acquisition tool Gap has ever built</div><div class="case-feature-body">Blue Box builds Fit File, Fit File earns Canvas upgrades, Canvas upgrades deepen loyalty. The service and the program are one system, not two products.</div></div>
+    </div>
+    <details class="case-details" id="caseDetailsBlueBox">
+      <summary>
+        <div class="case-summary-textwrap">
+          <span class="case-summary-title">Blue Box — full case study</span>
+          <span class="case-summary-sub">Expand for the concept mockup and the full brief (all sections). Click again to collapse.</span>
+        </div>
+        <span class="case-summary-chev" aria-hidden="true">↓</span>
+      </summary>
+      <div class="case-details-body">
+        <div class="case-details-hero">
+          <img src="/gap/blue-box-hero.png" width="1600" height="900" alt="Blue Box personal styling concept mockup" loading="lazy" decoding="async" />
+        </div>
+        <div class="case-details-frame">
+          <iframe class="case-brief-frame" id="caseBriefBlueBox" title="Blue Box full brief" src="about:blank" data-src="/gap/briefs/blue_box_brief.html?embed=1"></iframe>
+        </div>
+        <div class="case-details-foot">Scroll inside the brief: why the category is broken · strategic argument · three service modes · Canvas integration · flywheel · unit economics · brand system.</div>
+      </div>
+    </details>
+  </div>
+</div>
+
+<div class="more-section">
+  <div class="more-eyebrow">More Work</div>
+  <div class="more-title">Fashion &amp; Retail<br>Case Studies</div>
+  <div class="more-body">Six additional case studies across Nike, Saks Global, On Running, Diesel, and more. Strategy, product design, and experience design for fashion and retail brands at every scale.</div>
+  <div class="more-brands">
+    <span class="brand-tag">Nike SNKRS</span><span class="brand-tag">Vault by Saks</span><span class="brand-tag">On APEX</span><span class="brand-tag">Diesel Iceberg</span><span class="brand-tag">Stylect</span><span class="brand-tag">The Carolyn</span>
+  </div>
+  <a class="more-cta" href="/" target="_parent">View All Work →</a>
+</div>
+
+<div class="internal-section">
+  <button class="internal-toggle" id="internalBtn" onclick="toggleInternal()">
+    <div class="internal-toggle-left">
+      <div class="internal-eyebrow">For Leadership · Internal Context</div>
+      <div class="internal-title">Roles, POV &amp; The Ask</div>
+      <div class="internal-sub">Applications submitted, point of view, and how you can help</div>
+    </div>
+    <div class="internal-toggle-right">
+      <div class="toggle-pill">
+        <span id="toggleLabel">View Section</span>
+        <span class="toggle-arrow" id="toggleArrow">↓</span>
+      </div>
+    </div>
+  </button>
+
+  <div class="internal-content" id="internalContent">
+    <div class="internal-pad">
+
+      <div class="i-label">Point of View</div>
+      <div class="i-pov-statement">Gap Inc. has something no DTC brand or other American fashion group can replicate: 40 million members and 1,400 stores. The question is whether those two assets talk to each other. Right now, most lifecycle programs treat in-store behavior and digital engagement as separate signals. A customer who redeems in-store, returns a week later, and never opens a push notification is invisible to a system that only reads clicks. That is not a data problem. It is an architecture problem. The brands that win the next decade of loyalty will be the ones that treat every touchpoint as part of one continuous conversation with a real person. Gap has the scale to do that. What it needs is the strategic layer to close the loop between what happens on the floor and what gets sent to your inbox.</div>
+      <div class="i-pov-grid">
+        <div class="i-pov-card"><div class="i-pov-num">01</div><div class="i-pov-title">Lifecycle Begins at Enrollment</div><div class="i-pov-body">Most programs treat acquisition and retention as sequential. They are not. The conversation you have at card enrollment sets the entire relationship. If the first touchpoint is transactional, the whole lifecycle will be. The fix is not a better welcome email. It is a different enrollment experience.</div></div>
+        <div class="i-pov-card"><div class="i-pov-num">02</div><div class="i-pov-title">In-Store Is an Underused Signal</div><div class="i-pov-body">A customer who visits twice in one month, tries on three things, and buys one is telling you something. That behavior is currently invisible to most digital lifecycle systems. The physical network is not a cost center to be managed. It is a data source that DTC competitors would pay for. The program that learns to read it first has a durable advantage.</div></div>
+        <div class="i-pov-card"><div class="i-pov-num">03</div><div class="i-pov-title">Loyalty Is Earned After the Sale</div><div class="i-pov-body">Getting someone into the program is half the job. What happens in the 90 days after enrollment determines whether they stay. Most programs go quiet after activation. The ones that win send something that matters: a reward tied to a behavior, a reminder that feels like it knows you, a reason to come back that is not a discount. That is the lifecycle problem worth solving.</div></div>
+      </div>
+
+      <hr class="i-divider">
+
+      <div class="i-label">Priority Application</div>
+      <div class="i-priority-card">
+        <div class="i-priority-banner"><div class="i-priority-badge">Top Priority</div><div class="i-banner-sub">Submitted · Awaiting Interview</div></div>
+        <div class="i-card-header">
+          <div class="i-card-title">Marketing Manager, Customer Lifecycle</div>
+          <div class="i-card-meta"><div class="i-req">R208267 · MKA-Retention Marketing · SF HQ</div><div class="i-status applied">Applied April 2026</div></div>
+        </div>
+        <div class="i-card-body">
+          <div class="i-cell"><div class="i-cell-label">What This Role Does</div>Supports planning, execution, and optimization of programs driving customer engagement, retention, and loyalty across Encore's 40 million member base. Manages day-to-day lifecycle campaign execution across email, SMS, push, and in-app channels. Partners with CRM, product, creative, and customer service teams.</div>
+          <div class="i-cell"><div class="i-cell-label">Why I'm a Strong Fit</div>I have spent the past year inside the exact problem this role is trying to solve from the field side. Most lifecycle programs optimize for the metric and reverse-engineer the human. I do it the other way around. That is how I scaled personal conversion from 1.22% to 12.07% and led Gap East in both card volume and acquisition rate among all managers in Q1 2026.<br><br>My Brandcenter M.S. trained me to sit at the intersection of consumer psychology, systems design, and commercial strategy. I understand why Encore loses people. I have a working theory about what it takes to keep them. I want to build that from the inside.</div>
+          <div class="i-cell"><div class="i-cell-label">Why This Is the Right Moment</div>The field side of this problem is as far as I can take it from Store #1224. The bigger decisions (how lifecycle campaigns read in-store behavior, how Encore bridges physical and digital, what the 40M member base actually represents) get made at HQ. I want to be in the room where that work happens. I think I have earned the right to ask.<br><br><span class="i-tag">Highest Alignment</span></div>
+          <div class="i-cell i-cell-span"><div class="i-cell-label">First 90 Days</div>Most people coming into this role will have managed campaigns. I have managed the moment the campaign is supposed to land, at the register, with a real person deciding in real time whether this program means anything to them. That is a different kind of intelligence, and it is one you cannot get from a dashboard. In the first 90 days I would use it to find where the lifecycle architecture is optimizing for behavior it can measure at the expense of the behavior that actually drives retention, and bring the team a test worth running against it.</div>
+        </div>
+      </div>
+
+      <div class="i-label" style="margin-top:36px;">Also Submitted</div>
+
+      <div class="i-job-card">
+        <div class="i-card-header"><div class="i-card-title">Associate Manager, In-Store Member Engagement</div><div class="i-card-meta"><div class="i-req">R206466 · MKA-Loyalty · SF / NY</div><div class="i-status applied">Applied 03/16/26</div></div></div>
+        <div class="i-card-body">
+          <div class="i-cell"><div class="i-cell-label">What This Role Does</div>Executes in-store loyalty engagement programs across the field. Builds reporting tools, analyzes program data, coordinates communications and training for store teams, and partners with HQ to optimize loyalty acquisition and retention.</div>
+          <div class="i-cell"><div class="i-cell-label">Why I Am a Strong Fit</div>This is the closest HQ analog to exactly what I have been doing at #1224. I scaled loyalty conversion from 1.22% to 12.07% and built a live PowerBI microsite tracking district performance across 11 stores. I have operated at every layer this role touches: field execution, data reporting, and cross-store communication.</div>
+          <div class="i-cell"><div class="i-cell-label">Notes</div>Strong structural fit. Field execution, data reporting, cross-store communication: this role maps directly to the infrastructure I have already built at the store level.<br><br><span class="i-tag">High Alignment</span></div>
+          <div class="i-cell i-cell-span"><div class="i-cell-label">First 90 Days</div>I am the only candidate who has already done this job from the other side of the org chart. I built a live district performance tracker, scaled conversion across a team, and coordinated field communications at the store level, not as context for this role, but as the job I have been doing. In the first 90 days I would find where field teams are receiving reporting that does not change behavior because it does not speak their language, and replace it with something that does.</div>
+        </div>
+      </div>
+
+      <div class="i-job-card">
+        <div class="i-card-header"><div class="i-card-title">Product Manager I, Growth</div><div class="i-card-meta"><div class="i-req">R207793 · ITS-Product Mgmt · SF</div><div class="i-status applied">Applied 03/16/26</div></div></div>
+        <div class="i-card-body">
+          <div class="i-cell"><div class="i-cell-label">What This Role Does</div>Foundational PM role within the Innovation &amp; Growth Value Stream. Owns backlog grooming, acceptance criteria, QA coordination, and launch readiness across digital commerce capabilities.</div>
+          <div class="i-cell"><div class="i-cell-label">Why I Am a Strong Fit</div>At The Branch Museum, I served as client-side product lead on a full rebrand and web ecosystem build, authoring PRDs, decomposing epics into sprint-ready stories, managing QA, and coordinating agency delivery within an agile framework. I have also built production-grade digital tools in React, HTML, and CSS.</div>
+          <div class="i-cell"><div class="i-cell-label">Notes</div>Randy Grey (hiring manager) already knows my background from a prior conversation. Referencing that relationship in any internal introduction would be high-value.<br><br><span class="i-tag">Existing Contact</span></div>
+          <div class="i-cell i-cell-span"><div class="i-cell-label">First 90 Days</div>Most PM candidates at this level bring process fluency. I bring that plus a working understanding of how customers actually move through a retail experience: what makes them adopt a new capability versus ignore it. In the first 90 days I would get inside the Beauty and Accessories roadmap at the business logic level, write acceptance criteria that engineers do not push back on, and start connecting backlog items to adoption metrics before anyone asks me to.</div>
+        </div>
+      </div>
+
+      <div class="i-job-card">
+        <div class="i-card-header"><div class="i-card-title">Associate Manager, Experimentation Pod</div><div class="i-card-meta"><div class="i-req">R209357 · MKA-Site Operations · SF / NY</div><div class="i-status new">Posted 04/09/26</div></div></div>
+        <div class="i-card-body">
+          <div class="i-cell"><div class="i-cell-label">What This Role Does</div>Owns end-to-end coordination of site A/B tests for Gap Online, from ideation and test brief development through UX design, dev timelines, Jira coordination, and post-test analysis. Partners with a Senior Manager and cross-functional digital teams.</div>
+          <div class="i-cell"><div class="i-cell-label">Why I Am a Strong Fit</div>My background in A/B testing methodology, agile project coordination, and cross-functional digital delivery translates directly here. Brandcenter's curriculum is built around hypothesis-driven strategy, and my product work at The Branch Museum involved managing multi-workstream delivery under a senior stakeholder.</div>
+          <div class="i-cell"><div class="i-cell-label">Notes</div>Recently posted. Worth flagging if there is an internal contact in Site Operations or Digital Marketing.<br><br><span class="i-tag">New</span></div>
+          <div class="i-cell i-cell-span"><div class="i-cell-label">First 90 Days</div>I think in hypotheses by training and by practice; every loyalty program decision I made at the store level started with a variable I wanted to isolate. What I bring that most candidates do not is the ability to connect a test result back to human behavior, not just a conversion rate. In the first 90 days I would learn the infrastructure, own a brief end to end, and deliver a post-test analysis that answers not just what moved but why.</div>
+        </div>
+      </div>
+
+      <div class="i-job-card">
+        <div class="i-card-header"><div class="i-card-title">Project Manager, Strategic Projects</div><div class="i-card-meta"><div class="i-req">Corporate Strategy / PMO · SF / NY · Req TBD</div><div class="i-status targeting">Targeting</div></div></div>
+        <div class="i-card-body">
+          <div class="i-cell"><div class="i-cell-label">What This Role Does</div>Owns timelines, stakeholder alignment, and execution for initiatives that tie headquarters strategy to adoption in the field. (Posting TBD)</div>
+          <div class="i-cell"><div class="i-cell-label">Why I Am a Strong Fit</div>I understand how HQ programs land with store teams and what distinguishes work that earns adoption versus compliance.</div>
+          <div class="i-cell"><div class="i-cell-label">Notes</div>Targeting. Swap in listing number, JD, and location when formalized.<br><br><span class="i-tag">ALIGNMENT</span></div>
+          <div class="i-cell i-cell-span"><div class="i-cell-label">First 90 Days</div>The gap between what gets planned at HQ and what actually lands in a store is not a communication problem. It is a translation problem, and most project managers have never been on the receiving end of it. I have. In the first 90 days I would get inside the portfolio, surface the field relationships and cross-functional dependencies that are not on the plan, and make sure the work is structured in a way that earns real adoption, not just compliance.</div>
+        </div>
+      </div>
+
+      <hr class="i-divider">
+
+      <div class="i-label">A Few Things That Would Mean a Lot</div>
+      <div class="i-ask-priority">
+        <div class="i-ask-header"><div class="i-ask-num">01</div><div><div class="i-ask-title">Internal Introduction to the Lifecycle Team</div><div class="i-ask-sub">The ask I would most appreciate</div></div></div>
+        <div class="i-ask-body">If there is someone on the MKA-Retention Marketing team you could connect me to, even informally, that would mean more than anything else I could ask for. I know how much a name attached to an application changes things. I would not take that lightly.</div>
+      </div>
+      <div class="i-ask-grid">
+        <div class="i-ask-card"><div class="i-ask-card-header"><div class="i-ask-card-num">02</div><div class="i-ask-card-title">Endorsement of Field Work</div></div><div class="i-ask-card-body">If my name comes up with a recruiter or hiring manager, anything you have seen firsthand would carry weight I cannot put on a resume. You have watched this work from closer than anyone.</div></div>
+        <div class="i-ask-card"><div class="i-ask-card-header"><div class="i-ask-card-num">03</div><div class="i-ask-card-title">A Note If This Reached You Directly</div></div><div class="i-ask-card-body">If Brandon shared this with you, thank you for the time. I put this together because I wanted anyone reading it to see how I think, not just what I have done. I recently completed my M.S. at VCU Brandcenter, I am relocating in June, and I would welcome a conversation whenever the timing is right.</div></div>
+        <div class="i-ask-card"><div class="i-ask-card-header"><div class="i-ask-card-num">04</div><div class="i-ask-card-title">Honest Assessment</div></div><div class="i-ask-card-body">If you have a read on where I would be the strongest fit, or whether there are paths I have not found yet, I would genuinely value that perspective. I want to end up in the right place, not just the first open door.</div></div>
+      </div>
+
+      <div class="i-label">Availability &amp; Timeline</div>
+      <div class="i-timeline">
+        <div class="i-tl-step"><div class="i-tl-date">Early May 2026</div><div class="i-tl-label">Completed M.S., VCU Brandcenter</div></div>
+        <div class="i-tl-step"><div class="i-tl-date">June 2026</div><div class="i-tl-label">Available · Relocating SF or NYC</div></div>
+        <div class="i-tl-step"><div class="i-tl-date">Early July 2026</div><div class="i-tl-label">Ready to Start · Hard latest</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">
+    <div>Benn Pattara · <a href="mailto:bennpattara@gmail.com">bennpattara@gmail.com</a> · 708.713.6718</div>
+    <div><a href="/" target="_parent">bennpattara.com</a></div>
+    <div>Prepared May 2026</div>
+  </div>
+  <div class="footer-right">© 2026</div>
+</footer>
+
+<script>
+function copyContactEmails(btn){
+  var emails = 'bennpattara@gmail.com, bpattar@gap.com';
+  var label = btn.querySelector('.cta-label');
+  if(!label)return;
+  var original = label.getAttribute('data-original') || label.textContent;
+  label.setAttribute('data-original', original);
+  function showCopied(){
+    btn.classList.add('copied');
+    label.textContent = 'Copied — paste into TO';
+    if(btn._resetTimer)clearTimeout(btn._resetTimer);
+    btn._resetTimer = setTimeout(function(){
+      btn.classList.remove('copied');
+      label.textContent = original;
+    }, 2400);
+  }
+  function fallback(){
+    try{
+      var ta = document.createElement('textarea');
+      ta.value = emails;
+      ta.setAttribute('readonly','');
+      ta.style.position='absolute';ta.style.left='-9999px';ta.style.opacity='0';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    }catch(e){return false}
+  }
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(emails).then(showCopied,function(){
+      if(fallback())showCopied();
+    });
+  } else {
+    if(fallback())showCopied();
+  }
+}
+
+function toggleInternal(){
+  const c=document.getElementById('internalContent');
+  const b=document.getElementById('internalBtn');
+  const l=document.getElementById('toggleLabel');
+  const a=document.getElementById('toggleArrow');
+  const open=c.classList.contains('visible');
+  c.classList.toggle('visible',!open);
+  b.classList.toggle('open',!open);
+  l.textContent=open?'View Section':'Close Section';
+  a.style.transform=open?'rotate(0deg)':'rotate(180deg)';
+  if(!open)setTimeout(()=>b.scrollIntoView({behavior:'smooth',block:'start'}),50);
+}
+
+function sizeBriefIframe(iframe){
+  if(!iframe)return;
+  try{
+    var doc=iframe.contentWindow&&iframe.contentWindow.document;
+    if(!doc)return;
+    var h=Math.max(doc.body?doc.body.scrollHeight:0,doc.documentElement.scrollHeight);
+    iframe.style.height=Math.max(h+32,480)+'px';
+  }catch(e){
+    iframe.style.minHeight='70vh';
+  }
+}
+function loadBriefInDetails(detailsEl){
+  var iframe=detailsEl.querySelector('iframe.case-brief-frame');
+  if(!iframe)return;
+  var url=iframe.getAttribute('data-src');
+  if(url&&(!iframe.getAttribute('src')||iframe.getAttribute('src')==='about:blank')){
+    iframe.setAttribute('src',url);
+  }
+  iframe.onload=function(){sizeBriefIframe(iframe);};
+  setTimeout(function(){sizeBriefIframe(iframe);},400);
+  setTimeout(function(){sizeBriefIframe(iframe);},1000);
+}
+document.querySelectorAll('.case-details').forEach(function(d){
+  d.addEventListener('toggle',function(){
+    if(d.open)loadBriefInDetails(d);
+  });
+});
+</script>
+</body>
+</html>

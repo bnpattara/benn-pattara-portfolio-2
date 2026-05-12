@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<title>Gap Inc. · Benn Pattara</title>
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --off-white: #f7f6f3;
+    --mid: #555555;
+    --light: #e8e6e1;
+    --rule: #d0cdc7;
+    --accent: #1a1a1a;
+    --font: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--white);
+    color: var(--black);
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ── NAV ── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 clamp(16px, 4vw, 48px);
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: var(--font);
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--black);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mid);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--black);
+    color: var(--white);
+    padding: clamp(100px, 18vw, 160px) clamp(16px, 4vw, 80px) clamp(72px, 12vw, 120px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-mesh {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 90% 55% at 15% 35%, rgba(90, 90, 90, 0.45) 0%, transparent 52%),
+      radial-gradient(ellipse 70% 50% at 95% 0%, rgba(60, 60, 60, 0.35) 0%, transparent 45%),
+      radial-gradient(ellipse 50% 40% at 70% 100%, rgba(40, 40, 40, 0.5) 0%, transparent 50%);
+    pointer-events: none;
+    animation: mesh-shift 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes mesh-shift {
+    0% { opacity: 0.75; transform: scale(1) translate(0, 0); }
+    100% { opacity: 1; transform: scale(1.04) translate(-1%, 1%); }
+  }
+
+  .hero-inner { position: relative; z-index: 1; max-width: 900px; }
+
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+
+  .chip {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 8px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 11px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    color: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+  }
+
+  .chip a {
+    color: inherit;
+    border-bottom: none;
+  }
+
+  .chip a:hover { opacity: 0.85; }
+
+  .hero::after {
+    content: 'GAP INC.';
+    position: absolute;
+    right: -20px;
+    bottom: -40px;
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: clamp(80px, 18vw, 200px);
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.04);
+    pointer-events: none;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 20px;
+  }
+
+  .hero-name {
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: clamp(3rem, 12vw, 6.5rem);
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    margin-bottom: 28px;
+  }
+
+  .hero-statement {
+    font-size: clamp(17px, 2.8vw, 22px);
+    font-weight: 300;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.78);
+    max-width: 34em;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.48);
+    max-width: 28em;
+    margin-top: 16px;
+  }
+
+  .hero-statement strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ── STAT TICKER ── */
+  .ticker {
+    background: var(--off-white);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    padding: 14px 0;
+  }
+
+  .ticker-track {
+    display: flex;
+    gap: 0;
+    animation: ticker 28s linear infinite;
+    width: max-content;
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 36px;
+    border-right: 1px solid var(--rule);
+    white-space: nowrap;
+  }
+
+  .ticker-num {
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  .ticker-label {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 8.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section-wrap {
+    padding: clamp(72px, 14vw, 120px) clamp(20px, 5vw, 88px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-wrap:last-child { border-bottom: none; }
+
+  .section-wrap.dark {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .section-wrap.tinted {
+    background: var(--off-white);
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: clamp(36px, 6vw, 56px);
+    gap: 24px;
+  }
+
+  .section-eyebrow {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 10px;
+  }
+
+  .dark .section-eyebrow { color: rgba(255,255,255,0.4); }
+
+  .section-title {
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: clamp(2.35rem, 6.5vw, 4rem);
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+  }
+
+  .dark .section-title { color: var(--white); }
+
+  /* ── INTRO BLOCK ── */
+  .intro-text {
+    font-size: clamp(15px, 2.2vw, 18px);
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--accent);
+    max-width: 680px;
+    border-left: 3px solid var(--black);
+    padding-left: 24px;
+  }
+
+  /* ── PRIORITY ROLE ── */
+  .priority-card {
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    border-radius: 16px;
+  }
+
+  .priority-banner {
+    background: var(--black);
+    color: var(--white);
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .priority-badge {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--white);
+    color: var(--black);
+    padding: 3px 8px;
+  }
+
+  .priority-banner-text {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+  }
+
+  .priority-card-header {
+    background: var(--black);
+    color: var(--white);
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .priority-title {
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+  }
+
+  .priority-meta { text-align: right; flex-shrink: 0; }
+
+  .priority-req {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+
+  .priority-status {
+    display: inline-block;
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .job-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .job-cell {
+    padding: 24px 26px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .job-cell:last-child { border-right: none; }
+
+  .cell-label {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 8.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 12px;
+  }
+
+  .cell-content {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--accent);
+  }
+
+  .cell-content strong { font-weight: 600; }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 8.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--black);
+    color: var(--white);
+    padding: 3px 8px;
+    margin: 3px 3px 0 0;
+  }
+
+  .tag.outline { background: transparent; color: var(--black); border: 1px solid var(--black); }
+
+  /* ── POV ── */
+  .pov-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .pov-card {
+    background: var(--black);
+    padding: 28px 26px;
+  }
+
+  .pov-num {
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: 2.5rem;
+    color: rgba(255,255,255,0.15);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .pov-card-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+
+  .pov-card-body {
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ── CONCEPT CARDS (Canvas + Blue Box) ── */
+  .concept-section { padding: 0; border-bottom: 1px solid var(--rule); }
+
+  .concept-hero {
+    background: var(--black);
+    color: var(--white);
+    padding: clamp(48px, 8vw, 80px) clamp(16px, 4vw, 80px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+
+  .concept-hero.alt { background: var(--accent); }
+
+  .concept-eyebrow {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 14px;
+  }
+
+  .concept-name {
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: clamp(3rem, 9vw, 5.5rem);
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    margin-bottom: 20px;
+  }
+
+  .concept-thesis {
+    font-size: clamp(13px, 2vw, 15px);
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.65);
+    max-width: 440px;
+  }
+
+  .concept-thesis strong { color: var(--white); font-weight: 500; }
+
+  .concept-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-self: center;
+  }
+
+  .concept-stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .concept-stat {
+    background: rgba(255,255,255,0.04);
+    padding: 16px 18px;
+  }
+
+  .concept-stat-num {
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: 1.75rem;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .concept-stat-label {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 7.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.4;
+  }
+
+  .concept-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 10px 18px;
+    align-self: flex-start;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .concept-cta:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.6); }
+
+  .concept-body {
+    padding: clamp(32px, 5vw, 56px) clamp(16px, 4vw, 80px);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border-top: 1px solid var(--rule);
+  }
+
+  .concept-feature {
+    background: var(--white);
+    padding: 24px 22px;
+  }
+
+  .concept-feature-label {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 8px;
+  }
+
+  .concept-feature-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--black);
+  }
+
+  .concept-feature-body {
+    font-size: 12px;
+    line-height: 1.65;
+    color: var(--mid);
+  }
+
+  /* ── COVER LETTER TOGGLE ── */
+  .letter-section { border-bottom: 1px solid var(--rule); }
+
+  .letter-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: clamp(28px, 5vw, 44px) clamp(16px, 4vw, 80px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.2s;
+  }
+
+  .letter-toggle:hover { background: var(--off-white); }
+
+  .letter-toggle-left { text-align: left; }
+
+  .letter-toggle-eyebrow {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 8px;
+  }
+
+  .letter-toggle-title {
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--black);
+  }
+
+  .letter-toggle-sub {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--mid);
+    margin-top: 6px;
+  }
+
+  .letter-toggle-icon {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .toggle-arrow {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: transform 0.3s;
+    color: var(--black);
+  }
+
+  .letter-toggle.open .toggle-arrow { transform: rotate(180deg); }
+
+  .letter-content {
+    display: none;
+    padding: clamp(40px, 7vw, 72px) clamp(16px, 4vw, 80px);
+    background: var(--off-white);
+  }
+
+  .letter-content.visible { display: block; }
+
+  .letter-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .letter-inner p {
+    font-size: 15px;
+    line-height: 1.9;
+    font-weight: 300;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+
+  .letter-inner p.opening {
+    font-size: 17px;
+    line-height: 1.85;
+  }
+
+  .letter-inner strong { font-weight: 600; }
+
+  .letter-signoff {
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .letter-signoff p {
+    font-size: 13px;
+    color: var(--mid);
+    font-weight: 300;
+    margin-bottom: 4px !important;
+  }
+
+  .letter-sig-name {
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+    color: var(--black);
+    margin-top: 14px;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .letter-contact {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 9.5px;
+    color: var(--mid);
+    letter-spacing: 0.08em;
+    line-height: 2;
+  }
+
+  /* ── OTHER ROLES ── */
+  .job-card {
+    border: 1px solid var(--rule);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .job-card:last-child { margin-bottom: 0; }
+
+  .job-card-header {
+    background: var(--black);
+    color: var(--white);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .job-title {
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
+    letter-spacing: 0.06em;
+    line-height: 1.15;
+  }
+
+  .job-meta { text-align: right; flex-shrink: 0; }
+
+  .job-req {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 9px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.08em;
+    margin-bottom: 5px;
+  }
+
+  .job-status {
+    display: inline-block;
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.7);
+  }
+
+  .job-status.applied { color: #fff; border-color: rgba(255,255,255,0.35); }
+  .job-status.new { color: #ffd96a; border-color: rgba(255,220,100,0.4); }
+
+  .job-card-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .job-cell-inner {
+    padding: 20px 22px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--accent);
+  }
+
+  .job-cell-inner:last-child { border-right: none; }
+
+  /* ── HOW YOU CAN HELP ── */
+  .help-priority {
+    border: 2px solid var(--black);
+    padding: 32px 36px;
+    margin-bottom: 1px;
+    background: var(--off-white);
+  }
+
+  .help-priority-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 14px;
+  }
+
+  .help-priority-num {
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: 3.5rem;
+    color: var(--black);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .help-priority-title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--black);
+    line-height: 1.3;
+  }
+
+  .help-priority-sub {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-top: 4px;
+  }
+
+  .help-priority-body {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: var(--accent);
+  }
+
+  .help-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-top: none;
+  }
+
+  .help-card {
+    background: var(--white);
+    padding: 24px 22px;
+  }
+
+  .help-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .help-num {
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: 2rem;
+    color: var(--rule);
+    line-height: 1;
+  }
+
+  .help-title {
+    font-size: 11.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+  }
+
+  .help-body {
+    font-size: 12px;
+    line-height: 1.65;
+    color: var(--mid);
+  }
+
+  /* ── TIMELINE ── */
+  .timeline-row {
+    display: flex;
+    gap: 2px;
+  }
+
+  .timeline-step {
+    flex: 1;
+    background: var(--off-white);
+    padding: 18px 16px;
+    border-left: 2px solid transparent;
+  }
+
+  .timeline-step:first-child {
+    border-left-color: var(--black);
+    background: var(--black);
+  }
+
+  .timeline-date {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 8.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 4px;
+  }
+
+  .timeline-step:first-child .timeline-date { color: rgba(255,255,255,0.4); }
+
+  .timeline-label {
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--black);
+  }
+
+  .timeline-step:first-child .timeline-label { color: var(--white); }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--black);
+    color: var(--white);
+    padding: clamp(32px, 5vw, 48px) clamp(16px, 4vw, 80px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .footer-left {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 9.5px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.08em;
+    line-height: 1.9;
+  }
+
+  .footer-left a { color: rgba(255,255,255,0.55); border-bottom: 1px solid rgba(255,255,255,0.2); }
+
+  .footer-right {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 8.5px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .cell-short {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .more-details {
+    margin-top: 16px;
+    border-top: 1px solid var(--rule);
+    padding-top: 12px;
+  }
+
+  .more-details summary {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 8.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mid);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .more-details summary::-webkit-details-marker { display: none; }
+
+  .more-details[open] summary { margin-bottom: 10px; color: var(--black); }
+
+  .more-details .more-body {
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--mid);
+  }
+
+  .bento-role {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 12px;
+  }
+
+  .bento-span-8 { grid-column: span 8; }
+  .bento-span-4 { grid-column: span 4; }
+  .bento-span-6 { grid-column: span 6; }
+  .bento-span-12 { grid-column: span 12; }
+
+  .bento-tile {
+    background: var(--off-white);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    padding: 22px 22px 20px;
+    min-height: 0;
+  }
+
+  .bento-tile.dark-tile {
+    background: var(--black);
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .bento-tile.dark-tile .cell-label { color: rgba(255, 255, 255, 0.45); }
+
+  .bento-tile.dark-tile .cell-short { color: rgba(255, 255, 255, 0.78); }
+
+  .bento-tile.dark-tile .more-details { border-top-color: rgba(255, 255, 255, 0.12); }
+
+  .bento-tile.dark-tile .more-details summary { color: rgba(255, 255, 255, 0.45); }
+
+  .bento-tile.dark-tile .more-details[open] summary { color: rgba(255, 255, 255, 0.75); }
+
+  .bento-tile.dark-tile .more-body { color: rgba(255, 255, 255, 0.52); }
+
+  .stat-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    margin-top: 14px;
+  }
+
+  .stat-inline div {
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: 1.85rem;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--white);
+  }
+
+  .stat-inline span {
+    display: block;
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 7px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.38);
+    margin-top: 8px;
+  }
+
+  .pov-lead {
+    font-size: clamp(1.2rem, 3.2vw, 1.85rem);
+    font-weight: 300;
+    line-height: 1.38;
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 48rem;
+    margin-bottom: clamp(36px, 7vw, 64px);
+    letter-spacing: -0.015em;
+  }
+
+  .pov-lead strong { font-weight: 600; }
+
+  .pov-card-body.short {
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.52);
+  }
+
+  .pov-more {
+    margin-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 10px;
+  }
+
+  .pov-more summary {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 8px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.38);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .pov-more summary::-webkit-details-marker { display: none; }
+
+  .pov-more[open] summary { margin-bottom: 8px; color: rgba(255, 255, 255, 0.55); }
+
+  .pov-more .pov-long {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .concept-thesis { max-width: 32rem; }
+
+  .concept-feature-body.tight {
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .job-acc {
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    background: var(--white);
+  }
+
+  .job-acc:last-child { margin-bottom: 0; }
+
+  .job-acc > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 22px;
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .job-acc > summary::-webkit-details-marker { display: none; }
+
+  .job-acc-chev {
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+
+  .job-acc[open] .job-acc-chev { transform: rotate(180deg); }
+
+  .job-acc-body { border-top: 1px solid var(--rule); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .help-priority {
+    border-radius: 16px;
+    border: 1px solid var(--black);
+  }
+
+  .help-card {
+    border-radius: 0;
+  }
+
+  .help-grid {
+    border-radius: 0 0 16px 16px;
+    overflow: hidden;
+  }
+
+  .help-priority-body.short {
+    font-size: 15px;
+    line-height: 1.55;
+    max-width: 52rem;
+  }
+
+  .pov-lead-more {
+    max-width: 48rem;
+    margin-bottom: 40px;
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .pov-lead-more summary { margin-bottom: 0; }
+
+  .pov-lead-more[open] .pov-long { margin-top: 12px; }
+
+  .ask-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .ticker.reveal { transition-delay: 0.05s; }
+    .hero-mesh, .ticker-track { animation: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero::after { display: none; }
+    .concept-hero { grid-template-columns: 1fr; gap: 32px; }
+    .concept-body { grid-template-columns: 1fr; }
+    .pov-grid { grid-template-columns: 1fr; gap: 1px; }
+    .job-grid { grid-template-columns: 1fr; }
+    .job-cell { border-right: none; }
+    .job-card-body { grid-template-columns: 1fr; }
+    .job-cell-inner { border-right: none; }
+    .help-grid { grid-template-columns: 1fr; }
+    .priority-card-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .priority-meta { text-align: left; }
+    .timeline-row { flex-direction: column; gap: 2px; }
+    .footer { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .concept-stat-row { grid-template-columns: 1fr 1fr; }
+    .bento-span-8, .bento-span-4, .bento-span-6, .bento-span-12 { grid-column: span 12; }
+    .stat-inline { flex-direction: column; gap: 12px; }
+    .job-acc > summary { flex-wrap: wrap; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">Benn Pattara · Gap Inc.</div>
+  <div class="nav-links">
+    <a href="#role">The Role</a>
+    <a href="#pov">Point of View</a>
+    <a href="#work">Speculative Work</a>
+    <a href="#letter">Cover Letter</a>
+    <a href="#ask">The Ask</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-mesh" aria-hidden="true"></div>
+  <div class="hero-inner reveal">
+    <div class="hero-eyebrow">Career Opportunity Brief · April 2026</div>
+    <div class="hero-name">Benn<br>Pattara</div>
+    <p class="hero-statement">May 2026 grad, Brandcenter M.S., moving store-floor loyalty work toward HQ lifecycle strategy.</p>
+    <p class="hero-sub"><strong style="color:rgba(255,255,255,0.72);font-weight:500;">This page is how I think—not only what I have done.</strong> Skim the modules; expand any block for the full rationale.</p>
+    <div class="chip-row">
+      <span class="chip">Gap #1224 · Loyalty Lead · Short Pump, VA</span>
+      <span class="chip">VCU Brandcenter · M.S. May 2026</span>
+      <span class="chip"><a href="mailto:bennpattara@gmail.com">Email</a> · <a href="https://bennpattara.com" target="_blank" rel="noopener">Portfolio</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker reveal">
+  <div class="ticker-track">
+    <div class="ticker-item"><div class="ticker-num">#1</div><div class="ticker-label">Gap East · Card Volume<br>All Managers · Q1 2026</div></div>
+    <div class="ticker-item"><div class="ticker-num">#1</div><div class="ticker-label">Gap East · Acquisition Rate<br>All Managers · Q1 2026</div></div>
+    <div class="ticker-item"><div class="ticker-num">10×</div><div class="ticker-label">Personal Conversion Rate<br>Apr–Dec 2025</div></div>
+    <div class="ticker-item"><div class="ticker-num">40%</div><div class="ticker-label">Team Acquisition Goal<br>Attainment Increase</div></div>
+    <div class="ticker-item"><div class="ticker-num">Top 3</div><div class="ticker-label">Gap East · All Employees<br>Incl. Associates · Q1 2026</div></div>
+    <div class="ticker-item"><div class="ticker-num">+11%</div><div class="ticker-label">Comp YTD<br>Store #1224</div></div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><div class="ticker-num">#1</div><div class="ticker-label">Gap East · Card Volume<br>All Managers · Q1 2026</div></div>
+    <div class="ticker-item"><div class="ticker-num">#1</div><div class="ticker-label">Gap East · Acquisition Rate<br>All Managers · Q1 2026</div></div>
+    <div class="ticker-item"><div class="ticker-num">10×</div><div class="ticker-label">Personal Conversion Rate<br>Apr–Dec 2025</div></div>
+    <div class="ticker-item"><div class="ticker-num">40%</div><div class="ticker-label">Team Acquisition Goal<br>Attainment Increase</div></div>
+    <div class="ticker-item"><div class="ticker-num">Top 3</div><div class="ticker-label">Gap East · All Employees<br>Incl. Associates · Q1 2026</div></div>
+    <div class="ticker-item"><div class="ticker-num">+11%</div><div class="ticker-label">Comp YTD<br>Store #1224</div></div>
+  </div>
+</div>
+
+<!-- PRIORITY ROLE -->
+<div class="section-wrap reveal" id="role">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Priority Application</div>
+      <div class="section-title">The role</div>
+    </div>
+  </div>
+
+  <div class="priority-card">
+    <div class="priority-banner">
+      <div class="priority-badge">Top Priority</div>
+      <div class="priority-banner-text">Submitted · Awaiting Interview</div>
+    </div>
+    <div class="priority-card-header">
+      <div class="priority-title">Marketing Manager,<br>Customer Lifecycle</div>
+      <div class="priority-meta">
+        <div class="priority-req">R208267 · MKA-Retention Marketing · SF HQ</div>
+        <div class="priority-status">Applied April 2026</div>
+      </div>
+    </div>
+    <div class="bento-role" style="padding:16px;background:var(--white);">
+      <div class="bento-tile bento-span-8">
+        <div class="cell-label">What this role does</div>
+        <p class="cell-short">Own lifecycle execution across email, SMS, push, and in-app for Encore—partnering with CRM, product, creative, and customer service so programs match how people actually behave.</p>
+        <details class="more-details">
+          <summary>Full description</summary>
+          <div class="more-body">Supports the planning, execution, and optimization of programs that drive customer engagement, retention, and loyalty across Encore's 40 million member base. Manages lifecycle campaign execution across email, SMS, push, and in-app channels. Partners with CRM, product, creative, and customer service teams.</div>
+        </details>
+      </div>
+      <div class="bento-tile bento-span-4 dark-tile">
+        <div class="cell-label">Field proof</div>
+        <div class="stat-inline">
+          <div>#1<span>Gap East · card volume · Q1&nbsp;2026</span></div>
+          <div>#1<span>Gap East · acquisition rate</span></div>
+          <div>10×<span>Personal conversion Apr–Dec&nbsp;2025</span></div>
+        </div>
+      </div>
+      <div class="bento-tile bento-span-6">
+        <div class="cell-label">Why this role</div>
+        <p class="cell-short">I have been inside the same problem from the store side: programs that optimize the metric before the human. I work the other way around—which is how the field numbers moved.</p>
+        <details class="more-details">
+          <summary>Full rationale</summary>
+          <div class="more-body">I have spent the past year inside the exact problem this role is trying to solve from the field side. Most lifecycle programs optimize for the metric and reverse-engineer the human. I do it the other way around. That is how I scaled personal conversion from 1.22% to 12.07% and led Gap East in both card volume and acquisition rate among all managers in Q1 2026.<br><br>My Brandcenter M.S. trained me to sit at the intersection of consumer psychology, systems design, and commercial strategy. I understand why Encore loses people. I have a working theory about what it takes to keep them.</div>
+        </details>
+      </div>
+      <div class="bento-tile bento-span-6">
+        <div class="cell-label">Why HQ, why now</div>
+        <p class="cell-short">Store #1224 is as far as I can take lifecycle without the systems that stitch digital, field, and Encore together—those calls happen at HQ.</p>
+        <details class="more-details">
+          <summary>Full rationale</summary>
+          <div class="more-body">The field side of this problem is as far as I can take it from Store #1224. The bigger decisions—how lifecycle campaigns read in-store behavior, how Encore bridges physical and digital, what the 40M member base actually represents—get made at HQ. I want to be in the room where that work happens.</div>
+        </details>
+        <p style="margin-top:14px;">
+          <span class="tag">Highest Alignment</span>
+          <span class="tag outline">$119.4K–$155.2K</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POV -->
+<div class="section-wrap dark reveal" id="pov">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Point of View</div>
+      <div class="section-title">One conversation</div>
+    </div>
+  </div>
+  <p class="pov-lead"><strong>40 million members and 1,400 stores</strong> is a structural advantage—only if lifecycle treats every touchpoint as one continuous conversation, not parallel dashboards.</p>
+  <details class="pov-more pov-lead-more">
+    <summary>Why I believe that</summary>
+    <div class="pov-long">Gap Inc. has something no DTC brand or other American fashion group can replicate: 40 million members and 1,400 stores. The question is whether those two assets talk to each other. Right now, most lifecycle programs treat in-store behavior and digital engagement as separate signals. A customer who redeems in-store, returns a week later, and never opens a push notification is invisible to a system that only reads clicks. That is not a data problem. It is an architecture problem. The brands that win the next decade of loyalty will be the ones that treat every touchpoint as one continuous conversation with a real person.</div>
+  </details>
+  <div class="pov-grid">
+    <div class="pov-card">
+      <div class="pov-num">01</div>
+      <div class="pov-card-title">Lifecycle starts at enrollment</div>
+      <p class="pov-card-body short">Acquisition and retention are not sequential—the first touch sets the whole relationship.</p>
+      <details class="pov-more">
+        <summary>Go deeper</summary>
+        <div class="pov-long">Most programs treat acquisition and retention as sequential. They are not. The conversation you have at card enrollment sets the entire relationship. If the first touchpoint is transactional, the whole lifecycle will be. The fix is not a better welcome email. It is a different enrollment experience.</div>
+      </details>
+    </div>
+    <div class="pov-card">
+      <div class="pov-num">02</div>
+      <div class="pov-card-title">In-store is signal</div>
+      <p class="pov-card-body short">Visit frequency, try-ons, and purchase patterns are lifecycle inputs most digital stacks never see.</p>
+      <details class="pov-more">
+        <summary>Go deeper</summary>
+        <div class="pov-long">A customer who visits twice in one month, tries on three things, and buys one is telling you something. That behavior is invisible to most digital lifecycle systems. The physical network is not a cost center. It is a data source that DTC competitors would pay for. The program that learns to read it first has a durable advantage.</div>
+      </details>
+    </div>
+    <div class="pov-card">
+      <div class="pov-num">03</div>
+      <div class="pov-card-title">After the sale</div>
+      <p class="pov-card-body short">The first 90 days decide whether someone stays—most programs go quiet right when it matters.</p>
+      <details class="pov-more">
+        <summary>Go deeper</summary>
+        <div class="pov-long">Getting someone into the program is half the job. What happens in the 90 days after enrollment determines whether they stay. Most programs go quiet after activation. The ones that win send something that matters: a reward tied to a behavior, a reason to come back that is not a discount. That is the lifecycle problem worth solving.</div>
+      </details>
+    </div>
+  </div>
+</div>
+
+<!-- CANVAS -->
+<div class="concept-section reveal" id="work">
+  <div class="concept-hero">
+    <div>
+      <div class="concept-eyebrow">Speculative Work · Loyalty Program Redesign</div>
+      <div class="concept-name">Canvas</div>
+      <div class="concept-thesis">Encore skews acquisition-first. <strong>Canvas is loyalty-first</strong>—life-stage tiers, meaningful non-card earn, and a monthly reward rhythm annual programs cannot replicate.</div>
+    </div>
+    <div class="concept-right">
+      <div class="concept-stat-row">
+        <div class="concept-stat">
+          <div class="concept-stat-num">4</div>
+          <div class="concept-stat-label">Life-stage tiers<br>Campus to Signature</div>
+        </div>
+        <div class="concept-stat">
+          <div class="concept-stat-num">2–10%</div>
+          <div class="concept-stat-label">Earn rates<br>Non-card to card</div>
+        </div>
+        <div class="concept-stat">
+          <div class="concept-stat-num">6</div>
+          <div class="concept-stat-label">Product innovations<br>incl. Wardrobe Starter</div>
+        </div>
+        <div class="concept-stat">
+          <div class="concept-stat-num">4×</div>
+          <div class="concept-stat-label">Annual redemption<br>windows, monthly loop</div>
+        </div>
+      </div>
+      <a class="concept-cta" href="canvas_brief-2.html" target="_blank">View Full Brief &rarr;</a>
+    </div>
+  </div>
+  <div class="concept-body">
+    <div class="concept-feature">
+      <div class="concept-feature-label">Tier Architecture</div>
+      <div class="concept-feature-title">Campus, Chapter, Stride, Signature</div>
+      <div class="concept-feature-body tight">Tiers follow life chapters—not vanity status. Campus → Chapter → Stride → Signature, with archive access and curation reserved for the deepest relationships.</div>
+    </div>
+    <div class="concept-feature">
+      <div class="concept-feature-label">Key Innovation</div>
+      <div class="concept-feature-title">Wardrobe Starter</div>
+      <div class="concept-feature-body tight">A five-piece box unlocked by a life moment, not a spend cliff—the value is styling intelligence and story, not more SKU in a promo.</div>
+    </div>
+    <div class="concept-feature">
+      <div class="concept-feature-label">Structural Fix</div>
+      <div class="concept-feature-title">The Non-Card Earn Rate</div>
+      <div class="concept-feature-body tight">Meaningful earn before anyone asks for credit—the card accelerates value instead of gating it.</div>
+    </div>
+  </div>
+</div>
+
+<div class="concept-section reveal">
+  <div class="concept-hero alt">
+    <div>
+      <div class="concept-eyebrow">Speculative Work · Personal Styling Service</div>
+      <div class="concept-name">Blue Box</div>
+      <div class="concept-thesis">Stitch Fix proved demand. <strong>Blue Box uses the store network to erase the margin tax on returns</strong>—Happy Returns + 1,400 doors drive reverse logistics toward zero.</div>
+    </div>
+    <div class="concept-right">
+      <div class="concept-stat-row">
+        <div class="concept-stat">
+          <div class="concept-stat-num">3</div>
+          <div class="concept-stat-label">Service modes<br>In-store, delivery, digital</div>
+        </div>
+        <div class="concept-stat">
+          <div class="concept-stat-num">~0%</div>
+          <div class="concept-stat-label">Reverse logistics cost<br>vs. 30% DTC average</div>
+        </div>
+        <div class="concept-stat">
+          <div class="concept-stat-num">1,400</div>
+          <div class="concept-stat-label">Store network<br>as infrastructure</div>
+        </div>
+        <div class="concept-stat">
+          <div class="concept-stat-num">4</div>
+          <div class="concept-stat-label">Canvas tier integrations<br>from Campus to Signature</div>
+        </div>
+      </div>
+      <a class="concept-cta" href="blue_box_brief_copy.html" target="_blank">View Full Brief &rarr;</a>
+    </div>
+  </div>
+  <div class="concept-body">
+    <div class="concept-feature">
+      <div class="concept-feature-label">Mode 01</div>
+      <div class="concept-feature-title">In-Store Session</div>
+      <div class="concept-feature-body tight">Curated rack in a Blue Box Suite—what does not work goes back to the floor. Every session upgrades a Fit File for the next recommendation.</div>
+    </div>
+    <div class="concept-feature">
+      <div class="concept-feature-label">Mode 02</div>
+      <div class="concept-feature-title">Home Delivery</div>
+      <div class="concept-feature-body tight">Five to eight pieces from the nearest store or DC—returns through any Gap door or Happy Returns, no label circus.</div>
+    </div>
+    <div class="concept-feature">
+      <div class="concept-feature-label">Mode 03</div>
+      <div class="concept-feature-title">Digital Rack</div>
+      <div class="concept-feature-body tight">Personalized digital rack from Fit File—weekly refresh, zero appointment fee, and the cleanest on-ramp into Canvas.</div>
+    </div>
+  </div>
+</div>
+
+<!-- COVER LETTER -->
+<div class="letter-section reveal" id="letter">
+  <button class="letter-toggle" onclick="toggleLetter(this)">
+    <div class="letter-toggle-left">
+      <div class="letter-toggle-eyebrow">Aspirational Cover Letter · April 2026</div>
+      <div class="letter-toggle-title">A Note to Leadership</div>
+      <div class="letter-toggle-sub">Personal. Read this one.</div>
+    </div>
+    <div class="letter-toggle-icon">
+      <span>Open</span>
+      <div class="toggle-arrow">↓</div>
+    </div>
+  </button>
+  <div class="letter-content" id="letterContent">
+    <div class="letter-inner">
+      <p class="opening">There is a denim bucket hat that has been in my family for twenty-eight years. My older brother and sister wore it first. Then me. Then my three younger siblings. It lives in a Tupperware keepsake box in my childhood closet. That hat is the reason I care about this brand the way I do. Everyone has a Gap story. The work I want to do is make sure the next chapter of this brand is worthy of the ones that came before it.</p>
+
+      <p>When I joined Store 1224 a year ago, I found exactly one unsolved problem in the building: card acquisition and loyalty conversion. I made it mine. Not because it was assigned. Because it mattered most. A year later, I am ranked <strong>#1 in Gap East among all managers for both card volume and acquisition rate</strong>, and I grew my personal conversion rate by ten times. Not by pushing harder. By slowing down long enough to treat every interaction as the beginning of a relationship, not the end of a transaction.</p>
+
+      <p>Two years at VCU Brandcenter trained me to see customer relationships as systems worth designing intentionally, not just metrics worth optimizing. That training is also what taught me to see Gap Inc. clearly: a company with 40 million loyalty members, 1,400 stores, and four distinct brands that together touch a customer at every stage of their life. No DTC competitor or other American fashion group has that. The opportunity to shape how this company uses those assets to build lasting customer relationships, to close the gap between what happens on the store floor and what the brand communicates after, is the work I want to do next.</p>
+
+      <p>I graduate this May and I am relocating to San Francisco or New York in June. If there is a door you can open, I would be grateful for the introduction.</p>
+
+      <div class="letter-signoff">
+        <p>With gratitude,</p>
+        <span class="letter-sig-name">Benn Pattara</span>
+        <div class="letter-contact">
+          bennpattara@gmail.com · 708.713.6718 · bennpattara.com
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OTHER ROLES -->
+<div class="section-wrap tinted reveal">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Also Submitted</div>
+      <div class="section-title">Other roles</div>
+    </div>
+  </div>
+
+  <details class="job-acc">
+    <summary>
+      <div style="flex:1;min-width:0;">
+        <div class="job-title" style="font-size:clamp(1rem,3.5vw,1.25rem);margin-bottom:4px;">Associate Manager, In-Store Member Engagement</div>
+        <div class="job-req" style="color:rgba(255,255,255,0.45);">R206466 · MKA-Loyalty · SF / NY</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;flex-shrink:0;">
+        <div class="job-status applied">Applied 03/16/26</div>
+        <div class="job-acc-chev" aria-hidden="true">↓</div>
+      </div>
+    </summary>
+    <div class="job-acc-body">
+      <div class="job-card-body">
+        <div class="job-cell-inner">
+          <div class="cell-label">What this role does</div>
+          Field loyalty programs, reporting, training, and HQ partnership for acquisition and retention.
+        </div>
+        <div class="job-cell-inner">
+          <div class="cell-label">Why I fit</div>
+          Closest HQ analog to my #1224 remit—1.22%→12.07% conversion plus a live PowerBI district view across 11 stores.
+        </div>
+        <div class="job-cell-inner">
+          <div class="cell-label">Notes</div>
+          <strong>Strong structural fit.</strong> Field execution, data reporting, cross-store communication map to what I have already built.<br><br>
+          <span class="tag">High Alignment</span>
+          <span class="tag outline">$93.7K–$121.8K</span>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="job-acc">
+    <summary>
+      <div style="flex:1;min-width:0;">
+        <div class="job-title" style="font-size:clamp(1rem,3.5vw,1.25rem);margin-bottom:4px;">Product Manager I, Growth</div>
+        <div class="job-req" style="color:rgba(255,255,255,0.45);">R207793 · ITS-Product Mgmt · SF</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;flex-shrink:0;">
+        <div class="job-status applied">Applied 03/16/26</div>
+        <div class="job-acc-chev" aria-hidden="true">↓</div>
+      </div>
+    </summary>
+    <div class="job-acc-body">
+      <div class="job-card-body">
+        <div class="job-cell-inner">
+          <div class="cell-label">What this role does</div>
+          Innovation &amp; Growth stream PM—backlog, acceptance criteria, QA, launch readiness for digital commerce.
+        </div>
+        <div class="job-cell-inner">
+          <div class="cell-label">Why I fit</div>
+          Client-side product lead on a full museum rebrand + web ecosystem: PRDs, sprint-ready stories, QA, agency agile delivery.
+        </div>
+        <div class="job-cell-inner">
+          <div class="cell-label">Notes</div>
+          Randy Grey already knows my background—worth referencing in any internal intro.<br><br>
+          <span class="tag">Existing Contact</span>
+          <span class="tag outline">$117.7K–$153K</span>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="job-acc">
+    <summary>
+      <div style="flex:1;min-width:0;">
+        <div class="job-title" style="font-size:clamp(1rem,3.5vw,1.25rem);margin-bottom:4px;">Associate Manager, Experimentation Pod</div>
+        <div class="job-req" style="color:rgba(255,255,255,0.45);">R209357 · MKA-Site Operations · SF / NY</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;flex-shrink:0;">
+        <div class="job-status new">Posted 04/09/26</div>
+        <div class="job-acc-chev" aria-hidden="true">↓</div>
+      </div>
+    </summary>
+    <div class="job-acc-body">
+      <div class="job-card-body">
+        <div class="job-cell-inner">
+          <div class="cell-label">What this role does</div>
+          End-to-end site A/B tests for Gap Online—ideation, UX, dev timelines, Jira, readouts with a Senior Manager.
+        </div>
+        <div class="job-cell-inner">
+          <div class="cell-label">Why I fit</div>
+          Hypothesis-led testing + agile coordination matches Brandcenter training and my digital delivery experience.
+        </div>
+        <div class="job-cell-inner">
+          <div class="cell-label">Notes</div>
+          New posting—flag if you know someone in Site Ops or Digital Marketing.<br><br>
+          <span class="tag">New</span>
+          <span class="tag outline">Pay range not posted</span>
+        </div>
+      </div>
+    </div>
+  </details>
+</div>
+
+<!-- THE ASK -->
+<div class="section-wrap reveal" id="ask">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">A few things that would mean a lot</div>
+      <div class="section-title">The ask</div>
+    </div>
+  </div>
+
+  <div class="ask-stack">
+    <div class="help-priority">
+      <div class="help-priority-header">
+        <div class="help-priority-num">01</div>
+        <div>
+          <div class="help-priority-title">Introduction to the lifecycle team</div>
+          <div class="help-priority-sub">Highest leverage ask</div>
+        </div>
+      </div>
+      <p class="help-priority-body short">A warm intro on MKA-Retention Marketing—even informal—changes how an application reads.</p>
+      <details class="more-details light" style="margin-top:16px;border-top:1px solid var(--rule);padding-top:12px;">
+        <summary>Full note</summary>
+        <div class="more-body">If there is someone on the MKA-Retention Marketing team you could connect me to, even informally, that would mean more than anything else I could ask for. I know how much a name attached to an application changes things. I would not take that lightly.</div>
+      </details>
+    </div>
+
+    <div class="help-grid">
+      <div class="help-card">
+        <div class="help-card-header">
+          <div class="help-num">02</div>
+          <div class="help-title">Field endorsement</div>
+        </div>
+        <div class="help-body tight">If my name surfaces with recruiting, anything you have seen firsthand outweighs anything I can typeset.</div>
+      </div>
+      <div class="help-card">
+        <div class="help-card-header">
+          <div class="help-num">03</div>
+          <div class="help-title">If this reached you cold</div>
+        </div>
+        <div class="help-body tight">Thank you for the time—May grad, June relocation, happy to talk whenever the calendar allows.</div>
+      </div>
+      <div class="help-card">
+        <div class="help-card-header">
+          <div class="help-num">04</div>
+          <div class="help-title">Honest read</div>
+        </div>
+        <div class="help-body tight">If you see a stronger lane—or a blind spot—I want the straight version, not the polite one.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="section-wrap tinted reveal">
+  <div class="section-eyebrow" style="margin-bottom:20px;">Availability & Timeline</div>
+  <div class="timeline-row">
+    <div class="timeline-step">
+      <div class="timeline-date">May 2026</div>
+      <div class="timeline-label">M.S. Graduation, VCU Brandcenter</div>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-date">June 2026</div>
+      <div class="timeline-label">Available to Start · Relocating SF or NYC</div>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-date">Early July 2026</div>
+      <div class="timeline-label">Hard Latest Start Date</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-left">
+    <div>Benn Pattara · <a href="mailto:bennpattara@gmail.com">bennpattara@gmail.com</a> · <a href="tel:+17087136718">708.713.6718</a></div>
+    <div>Portfolio: <a href="https://bennpattara.com" target="_blank">bennpattara.com</a> · <a href="https://bennpattara.com/gap" target="_blank">bennpattara.com/gap</a></div>
+  </div>
+  <div class="footer-right">Prepared April 2026</div>
+</div>
+
+<script>
+  function toggleLetter(btn) {
+    const content = document.getElementById('letterContent');
+    const label = btn.querySelector('.letter-toggle-icon span');
+    const isOpen = content.classList.contains('visible');
+
+    content.classList.toggle('visible', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+    label.textContent = isOpen ? 'Open' : 'Close';
+  }
+
+  (function () {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -6% 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
