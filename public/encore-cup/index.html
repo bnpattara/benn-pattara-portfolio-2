@@ -1,0 +1,3293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>encore cup '26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Big+Shoulders+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════════════════
+   ENCORE CUP '26 — CANONICAL BRAND TOKENS
+   ════════════════════════════════════════════════════════════════ */
+:root {
+  --navy:    #002B5C;
+  --navy-2:  #001a3a;
+  --indigo:  #1F3A68;
+  --gold:    #C8A24B;
+  --gold-2:  #B58E36;
+  --cream:   #F2EBDD;
+  --cream-2: #E8DFCB;
+  --white:   #FFFFFF;
+  --green:   #1E8A5B;
+  --red:     #D2342B;
+  --blue:    #2E6BD6;
+  --silver:  #B8B8B8;
+  --bronze:  #9E6B3F;
+
+  --ink:        #002B5C;
+  --ink-mid:    rgba(0,43,92,0.62);
+  --ink-soft:   rgba(0,43,92,0.40);
+  --line:       rgba(0,43,92,0.14);
+  --line-strong:rgba(0,43,92,0.30);
+
+  --on-navy:        rgba(255,255,255,0.92);
+  --on-navy-mid:    rgba(255,255,255,0.55);
+  --on-navy-soft:   rgba(255,255,255,0.35);
+  --on-navy-line:   rgba(255,255,255,0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-feature-settings: "cv11","ss01","ss03";
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   MARQUEE — rolling ticker at the very top of the page
+   ════════════════════════════════════════════════════════════════ */
+.marquee {
+  position: relative;
+  background: var(--navy-2);
+  color: var(--gold);
+  border-bottom: 1px solid rgba(200,162,75,0.35);
+  overflow: hidden;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  z-index: 4;
+  padding-top: env(safe-area-inset-top, 0);
+}
+.marquee::before, .marquee::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 48px;
+  z-index: 2;
+  pointer-events: none;
+}
+.marquee::before { left: 0;  background: linear-gradient(90deg,  var(--navy-2), transparent); }
+.marquee::after  { right: 0; background: linear-gradient(-90deg, var(--navy-2), transparent); }
+.marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  white-space: nowrap;
+  animation: scroll-marquee 36s linear infinite;
+  font-family: 'Big Shoulders Display', 'Archivo', sans-serif;
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+.marquee-track .chip {
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+.marquee-track .chip .dot {
+  display: inline-block;
+  width: 5px; height: 5px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+.marquee-track .chip .red   { color: #ff6056; }
+.marquee-track .chip .white { color: var(--white); }
+@keyframes scroll-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   HEADER — big logo lockup + 6 live stat cards
+   ════════════════════════════════════════════════════════════════ */
+.header {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(200,162,75,0.22) 0%, transparent 55%),
+    radial-gradient(ellipse at 100% 100%, rgba(46,107,214,0.16) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(210,52,43,0.10) 0%, transparent 55%),
+    linear-gradient(170deg, var(--indigo) 0%, var(--navy) 45%, var(--navy-2) 100%);
+  color: var(--on-navy);
+  padding: 22px 20px 0;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(0deg,  rgba(255,255,255,0.018) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 64px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.header-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.45fr);
+  grid-template-areas: "logo stats";
+  align-items: center;
+  gap: 24px;
+  padding-bottom: 20px;
+}
+
+/* LOGO BLOCK */
+.header-logo {
+  grid-area: logo;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+.header-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2.6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 1.3;
+  position: relative;
+  padding-bottom: 5px;
+}
+.header-eyebrow::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--gold);
+  margin-top: 5px;
+}
+.header-mark {
+  display: block;
+  width: clamp(220px, 40vw, 340px);
+  height: auto;
+  filter: drop-shadow(0 8px 22px rgba(0,0,0,0.45));
+}
+
+/* STAT CARD GRID */
+.header-meta {
+  grid-area: stats;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  min-width: 0;
+}
+.hstat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  padding: 11px 12px 10px 14px;
+  border: 1px solid rgba(200,162,75,0.20);
+  background: linear-gradient(160deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.015) 100%);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.hstat::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--gold);
+}
+.hstat.hstat-gold::before  { background: var(--gold); }
+.hstat.hstat-red::before   { background: var(--red);  }
+.hstat.hstat-blue::before  { background: var(--blue); }
+.hstat.hstat-green::before { background: var(--green); }
+.hstat-k {
+  font-family: 'Inter', sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--on-navy-mid);
+}
+.hstat-v {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 22px;
+  letter-spacing: -0.6px;
+  color: var(--white);
+  line-height: 0.95;
+  margin-top: 1px;
+}
+.hstat-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: var(--on-navy-soft);
+  margin-top: 1px;
+}
+.hstat.hstat-gold  .hstat-v { color: var(--gold); }
+.hstat.hstat-red   .hstat-v { color: #ff6056; }
+.hstat.hstat-green .hstat-v { color: #4dd28a; }
+
+/* MOBILE STACK (<640px): logo top, stats below in 3-col grid */
+@media (max-width: 639px) {
+  .header        { padding: 18px 18px 0; }
+  .header-inner  {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "logo"
+      "stats";
+    gap: 16px;
+    padding-bottom: 16px;
+  }
+  .header-logo   { align-items: center; text-align: center; }
+  .header-eyebrow::after { margin-left: auto; margin-right: auto; }
+  .header-mark   { width: clamp(220px, 62vw, 320px); }
+  .header-meta   { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .hstat         { padding: 9px 10px 8px 12px; }
+  .hstat-v       { font-size: 18px; }
+  .hstat-k       { font-size: 7.5px; letter-spacing: 1.6px; }
+  .hstat-sub     { font-size: 7.5px; letter-spacing: 0.3px; }
+}
+@media (max-width: 380px) {
+  .header        { padding: 16px 14px 0; }
+  .header-mark   { width: clamp(200px, 70vw, 280px); }
+  .header-meta   { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hstat-v       { font-size: 17px; }
+}
+
+/* FIFA-inspired chunky multi-color amplify strip */
+.amplify-strip {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  height: 14px;
+  margin: 0 -20px;
+  width: calc(100% + 40px);
+  border-top: 2px solid var(--navy-2);
+  border-bottom: 2px solid var(--navy-2);
+  box-shadow: 0 -2px 0 rgba(255,255,255,0.06) inset;
+}
+.amplify-strip span {
+  height: 100%;
+  position: relative;
+}
+.amplify-strip span:not(:last-child) {
+  border-right: 2px solid var(--navy-2);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   NAV — sticky navy tabs with gold underline
+   ════════════════════════════════════════════════════════════════ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(0,26,58,0.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(200,162,75,0.35);
+}
+.nav-inner {
+  display: flex;
+  padding: 0 4px;
+}
+
+.nav-tab {
+  flex: 1;
+  padding: 12px 4px 11px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--on-navy-mid);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.18s, border-color 0.18s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.nav-tab.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+.nav-tab .tab-icon { width: 18px; height: 18px; }
+.nav-tab .tab-icon svg { width: 100%; height: 100%; display: block; }
+
+/* ════════════════════════════════════════════════════════════════
+   PAGES + SECTIONS (cream content area)
+   ════════════════════════════════════════════════════════════════ */
+.page { display: none; padding-bottom: 20px; }
+.page.active { display: block; }
+
+.section { padding: 18px 16px 8px; }
+
+.sec-label {
+  font-family: 'Big Shoulders Display', 'Archivo', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  line-height: 0.9;
+}
+.sec-label .sec-num {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 36px;
+  color: var(--gold);
+  letter-spacing: -2px;
+  line-height: 0.85;
+  margin-right: 2px;
+}
+.sec-label .sec-slash {
+  display: inline-block;
+  width: 6px; height: 26px;
+  background: var(--red);
+  transform: skewX(-16deg);
+  margin: 0 4px;
+}
+.sec-label::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--navy) 0%, var(--navy) 24px, transparent 24px);
+  margin-left: 4px;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   DISTRICT OVERVIEW — top of Matchups page
+   ════════════════════════════════════════════════════════════════ */
+.dist-overview {
+  margin: 14px 16px 12px;
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(200,162,75,0.20) 0%, transparent 55%),
+    linear-gradient(135deg, var(--navy) 0%, var(--indigo) 100%);
+  color: var(--white);
+  border-radius: 14px;
+  padding: 16px 16px 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,43,92,0.22);
+}
+.dist-overview::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; right: -30px;
+  width: 160px; height: 160px;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,0.020) 0 6px, transparent 6px 12px);
+  pointer-events: none;
+}
+.do-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+.do-title {
+  font-family: 'Big Shoulders Display', 'Archivo', sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--white);
+  display: flex; align-items: center; gap: 8px;
+}
+.do-title .do-bar {
+  display: inline-block;
+  width: 4px; height: 14px;
+  background: var(--gold);
+  transform: skewX(-14deg);
+}
+.do-scope {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.do-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  position: relative;
+  z-index: 2;
+}
+.do-stat {
+  display: flex; flex-direction: column;
+  gap: 3px;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.04);
+  border-left: 2px solid var(--gold);
+}
+.do-stat.gold   { border-left-color: var(--gold); }
+.do-stat.green  { border-left-color: var(--green); }
+.do-stat.red    { border-left-color: var(--red); }
+.do-stat.blue   { border-left-color: var(--blue); }
+.do-stat-k {
+  font-family: 'Inter', sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--on-navy-mid);
+}
+.do-stat-v {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 22px;
+  line-height: 0.9;
+  letter-spacing: -0.8px;
+  color: var(--white);
+}
+.do-stat.gold  .do-stat-v { color: var(--gold); }
+.do-stat.green .do-stat-v { color: #4dd28a; }
+.do-stat.red   .do-stat-v { color: #ff7c75; }
+.do-stat-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: var(--on-navy-mid);
+  margin-top: 1px;
+}
+.do-progress-wrap {
+  margin-top: 14px;
+  position: relative;
+  z-index: 2;
+}
+.do-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5px;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--on-navy-mid);
+}
+.do-progress-meta strong {
+  color: var(--white);
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+.do-progress {
+  position: relative;
+  height: 10px;
+  background: rgba(255,255,255,0.10);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.do-progress .bar {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 999px;
+  transition: width 0.45s ease;
+  position: relative;
+}
+.do-progress .bar.green { background: linear-gradient(90deg, var(--green) 0%, #2bb277 100%); }
+.do-progress .bar.gold  { background: linear-gradient(90deg, var(--gold) 0%, #e6c373 100%); }
+.do-progress .bar.red   { background: linear-gradient(90deg, var(--red) 0%, #f06058 100%); }
+.do-progress::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -2px; bottom: -2px;
+  width: 1.5px;
+  background: rgba(255,255,255,0.40);
+}
+.do-progress-note {
+  margin-top: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--on-navy-mid);
+  letter-spacing: 0.3px;
+}
+.do-progress-note b {
+  color: var(--white);
+  font-weight: 800;
+}
+
+@media (max-width: 380px) {
+  .dist-overview     { margin: 12px 14px 10px; padding: 14px 14px 12px; }
+  .do-grid           { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .do-stat-v         { font-size: 19px; }
+  .do-title          { font-size: 13px; letter-spacing: 2px; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   MATCHDAY — current week banner + match cards
+   ════════════════════════════════════════════════════════════════ */
+.current-week-banner {
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(200,162,75,0.30) 0%, transparent 55%),
+    linear-gradient(135deg, var(--navy) 0%, var(--indigo) 100%);
+  color: var(--white);
+  border-radius: 14px;
+  padding: 18px 18px;
+  margin: 0 16px 10px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 8px 24px rgba(0,43,92,0.25);
+  position: relative;
+  overflow: hidden;
+}
+.current-week-banner::before {
+  content: 'WEEK';
+  position: absolute;
+  top: 10px; right: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--on-navy-mid);
+  z-index: 2;
+}
+.current-week-banner::after {
+  content: '';
+  position: absolute;
+  left: -20px; bottom: -20px;
+  width: 140px; height: 140px;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0 6px, transparent 6px 12px);
+  pointer-events: none;
+}
+
+.cw-eyebrow {
+  font-family: 'Big Shoulders Display', 'Archivo', sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: none;
+  align-items: center;
+  gap: 8px;
+  line-height: 1;
+  position: relative;
+  z-index: 2;
+}
+.cw-eyebrow .cw-bar {
+  display: inline-block;
+  width: 4px;
+  height: 14px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.cw-week {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 64px;
+  color: var(--gold);
+  line-height: 0.82;
+  letter-spacing: -4px;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 2px 12px rgba(200,162,75,0.25);
+}
+.cw-label {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--on-navy);
+  margin-top: 6px;
+}
+.cw-right {
+  text-align: right;
+  position: relative;
+  z-index: 2;
+  padding-left: 18px;
+  border-left: 1px solid rgba(255,255,255,0.12);
+}
+.cw-goal {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 40px;
+  color: var(--white);
+  line-height: 0.85;
+  letter-spacing: -2px;
+}
+.cw-goal-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--on-navy-mid);
+  margin-top: 6px;
+  font-weight: 800;
+}
+
+/* SEASON STRIP — week pills double as a 5-week progression ladder */
+.week-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  align-items: stretch;
+}
+.week-tabs::-webkit-scrollbar { display: none; }
+
+.week-pill {
+  flex-shrink: 0;
+  flex: 1 1 0;
+  min-width: 102px;
+  font-family: 'Inter', sans-serif;
+  padding: 9px 12px 9px;
+  border: 1.5px solid var(--navy);
+  background: var(--white);
+  color: var(--navy);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.15s ease, background 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: left;
+  position: relative;
+}
+.week-pill:hover { box-shadow: 0 4px 10px rgba(0,43,92,0.10); transform: translateY(-1px); }
+
+.week-pill-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.week-pill-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--ink-soft);
+  display: inline-block;
+  flex-shrink: 0;
+}
+.week-pill-dot.green { background: var(--green); }
+.week-pill-dot.gold  { background: var(--gold);  }
+.week-pill-dot.red   { background: var(--red);   }
+
+.week-pill-rate {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 19px;
+  letter-spacing: -0.8px;
+  color: var(--navy);
+  line-height: 1;
+}
+.week-pill-rate.green { color: var(--green);  }
+.week-pill-rate.gold  { color: var(--gold-2); }
+.week-pill-rate.red   { color: var(--red);    }
+.week-pill-rate.tbd {
+  color: var(--ink-soft);
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  font-weight: 900;
+}
+.week-pill-sub {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.week-pill.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 4px 12px rgba(200,162,75,0.28);
+}
+.week-pill.active .week-pill-head,
+.week-pill.active .week-pill-rate,
+.week-pill.active .week-pill-rate.green,
+.week-pill.active .week-pill-rate.gold,
+.week-pill.active .week-pill-rate.red,
+.week-pill.active .week-pill-rate.tbd,
+.week-pill.active .week-pill-sub { color: var(--navy); }
+.week-pill.active .week-pill-dot { outline: 2px solid var(--white); }
+
+/* SEASON MTD HEADLINE — sits above the week strip as the page lead.
+   Matches the WK banner gravity (navy gradient + gold accents) so the
+   month-to-date stats carry the same visual weight as the weekly grid. */
+.season-mtd {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  margin: 12px 16px 12px;
+  padding: 16px 20px;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(200,162,75,0.22) 0%, transparent 60%),
+    linear-gradient(135deg, var(--navy) 0%, var(--indigo) 100%);
+  color: var(--white);
+  border: 1.5px solid var(--navy);
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,43,92,0.22);
+  position: relative;
+  overflow: hidden;
+}
+.season-mtd::after {
+  content: '';
+  position: absolute;
+  left: -24px; bottom: -24px;
+  width: 140px; height: 140px;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0 6px, transparent 6px 12px);
+  pointer-events: none;
+}
+.season-mtd .smtd-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Big Shoulders Display', 'Archivo', sans-serif;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 2.6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+.season-mtd .smtd-eyebrow .smtd-bar {
+  display: inline-block;
+  width: 4px;
+  height: 14px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+.season-mtd .smtd-metrics {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  flex: 1 1 auto;
+  position: relative;
+  z-index: 2;
+}
+.season-mtd .smtd-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.season-mtd .smtd-metric-value {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: -0.8px;
+  color: var(--white);
+}
+.season-mtd .smtd-metric-value.up   { color: var(--green); }
+.season-mtd .smtd-metric-value.down { color: var(--red);   }
+.season-mtd .smtd-metric-value.gold { color: var(--gold);  }
+.season-mtd .smtd-metric-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--on-navy-mid);
+}
+.season-mtd .smtd-empty {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 1.4px;
+  color: var(--on-navy);
+}
+
+/* MATCH CARD — light data-comparison card (replaces dark scoreboard) */
+.match-card {
+  background: var(--white);
+  color: var(--navy);
+  border: 1.5px solid var(--navy);
+  border-radius: 12px;
+  margin: 0 16px 10px;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0,43,92,0.10);
+}
+
+/* Status strip at top of every match card */
+.mc-status {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  padding: 8px 14px;
+  background: var(--navy);
+  color: var(--on-navy);
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.mc-status-week { color: var(--gold); }
+.mc-status-state {
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 8.5px;
+  letter-spacing: 1.5px;
+  font-weight: 900;
+}
+.mc-status-state.final   { background: var(--green); color: var(--white); }
+.mc-status-state.pending { background: rgba(200,162,75,0.20); color: var(--gold); }
+.mc-status-state.draw    { background: var(--gold);  color: var(--navy);  }
+.mc-status-rank {
+  margin-left: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  color: var(--on-navy);
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  cursor: help;
+}
+.mc-status-rank .mc-status-rank-sep {
+  color: var(--on-navy-soft);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-size: 7.5px;
+}
+.mc-status-gap {
+  margin-left: auto;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 11px;
+  letter-spacing: -0.2px;
+  color: var(--on-navy-mid);
+}
+.mc-status-gap.positive { color: #4dd28a; }
+.mc-status-gap.tbd      { color: var(--on-navy-soft); }
+
+/* Pairing basis caption + collapsible explainer (matchups page) */
+.pairing-basis {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 16px 10px;
+  padding: 8px 12px;
+  background: var(--white);
+  border: 1.5px solid var(--navy);
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0,43,92,0.06);
+}
+.pairing-basis .pb-bar {
+  display: inline-block;
+  width: 4px;
+  height: 14px;
+  background: var(--gold);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.pairing-basis .pb-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--navy);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pairing-basis .pb-info {
+  margin-left: auto;
+  appearance: none;
+  background: var(--navy);
+  color: var(--on-navy);
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+.pairing-basis .pb-info:hover  { background: var(--indigo); }
+.pairing-basis .pb-info[aria-expanded="true"] { background: var(--gold); color: var(--navy); }
+
+.pairing-explainer {
+  margin: -2px 16px 12px;
+  padding: 12px 14px;
+  background: var(--cream);
+  border: 1px dashed var(--line-strong);
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--ink-mid);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pairing-explainer[hidden] { display: none; }
+.pairing-explainer .pe-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.pairing-explainer .pe-tag {
+  flex-shrink: 0;
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--navy);
+  color: var(--gold);
+  font-size: 8.5px;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  border-radius: 999px;
+  margin-top: 1px;
+  font-family: 'Inter', sans-serif;
+}
+.pairing-explainer b { color: var(--navy); font-weight: 800; }
+
+/* One per store — winner + loser side */
+.mc-side {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 14px;
+  row-gap: 6px;
+  padding: 14px 16px 13px;
+  position: relative;
+}
+.mc-side + .mc-side {
+  border-top: 1px solid var(--line);
+}
+.mc-side.winner {
+  background: linear-gradient(90deg, rgba(200,162,75,0.12) 0%, rgba(200,162,75,0.02) 70%, transparent 100%);
+}
+.mc-side.winner::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--gold);
+}
+.mc-side.loser .mc-side-name { color: var(--ink-mid); }
+.mc-side.loser .mc-side-rate { color: var(--ink-soft); }
+
+.mc-side-head {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.mc-side-name {
+  font-family: 'Archivo', sans-serif;
+  font-size: 17px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+  line-height: 1.05;
+  word-break: break-word;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.mc-crown {
+  color: var(--gold);
+  font-size: 14px;
+  line-height: 1;
+}
+.mc-side-id {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink-soft);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.mc-side-rate {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 28px;
+  line-height: 0.9;
+  letter-spacing: -1.2px;
+  color: var(--navy);
+  text-align: right;
+}
+.mc-side-rate.above { color: var(--green); }
+.mc-side-rate.below { color: var(--red); }
+.mc-side-rate.tbd   { color: var(--ink-soft); font-family: 'Big Shoulders Display', sans-serif; font-size: 22px; letter-spacing: 1px; }
+
+.mc-side-bar {
+  grid-column: 1;
+  grid-row: 2;
+  position: relative;
+  height: 6px;
+  background: var(--cream-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.mc-side-bar .fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--navy);
+  transition: width 0.45s ease;
+}
+.mc-side-bar .fill.above { background: linear-gradient(90deg, var(--green), #2bb277); }
+.mc-side-bar .fill.gold  { background: linear-gradient(90deg, var(--gold),  #e6c373); }
+.mc-side-bar .fill.below { background: linear-gradient(90deg, var(--red),   #f06058); }
+/* 2.0% goal marker at 66.66% (since the bar maxes at 3.0%) */
+.mc-side-bar::after {
+  content: '';
+  position: absolute;
+  left: 66.66%;
+  top: -2px; bottom: -2px;
+  width: 1.5px;
+  background: rgba(0,43,92,0.35);
+}
+
+.mc-side-meta {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-mid);
+  letter-spacing: 0.3px;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.mc-side-meta b { color: var(--navy); font-weight: 800; }
+.mc-side-meta .sep {
+  width: 3px; height: 3px;
+  background: var(--ink-soft);
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.mc-side-meta.empty {
+  color: var(--ink-soft);
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* BYE card */
+.match-card.bye {
+  flex-direction: row;
+  align-items: center;
+  padding: 16px 18px;
+  background: var(--cream);
+  border-color: var(--line-strong);
+  border-style: dashed;
+  box-shadow: none;
+}
+.bye-label {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bye-label .bye-chip {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  padding: 3px 8px;
+  background: var(--navy);
+  color: var(--gold);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   LEAGUE TABLE — Board 3 styled rows w/ giant rank numerals
+   ════════════════════════════════════════════════════════════════ */
+.zone-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px 6px;
+}
+.zone-line { flex: 1; height: 1px; }
+.zone-txt {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: flex; align-items: center; gap: 6px;
+}
+.zone-final .zone-txt   { color: var(--gold); }
+.zone-final .zone-line  { background: rgba(200,162,75,0.45); }
+.zone-mid   .zone-txt   { color: var(--ink-mid); }
+.zone-mid   .zone-line  { background: rgba(0,43,92,0.18); }
+.zone-out   .zone-txt   { color: var(--red); }
+.zone-out   .zone-line  { background: rgba(210,52,43,0.35); }
+
+.table-row {
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  gap: 12px;
+  padding: 12px 14px;
+  margin: 0 16px 8px;
+  background: var(--white);
+  border: 1.5px solid var(--navy);
+  border-radius: 12px;
+  align-items: center;
+}
+.table-row.top { border-color: var(--gold); background: linear-gradient(90deg, rgba(200,162,75,0.10), var(--white) 60%); }
+
+.tr-rank {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 48px;
+  text-align: center;
+  line-height: 0.85;
+  color: var(--ink-soft);
+  letter-spacing: -3px;
+}
+.tr-rank.p1 { color: var(--gold);   }
+.tr-rank.p2 { color: var(--silver); }
+.tr-rank.p3 { color: var(--bronze); }
+
+.tr-main { min-width: 0; }
+.tr-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tr-name {
+  font-family: 'Archivo', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--navy);
+  line-height: 1.0;
+  letter-spacing: -0.4px;
+  word-break: break-word;
+}
+.tr-id {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: var(--ink-soft);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.tr-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: var(--ink-mid);
+  font-weight: 600;
+}
+.tr-stats .stat { display: inline-flex; align-items: center; gap: 3px; }
+.tr-stats .stat b { color: var(--navy); font-weight: 800; }
+
+.tr-progress {
+  margin-top: 8px;
+  height: 6px;
+  background: var(--cream-2);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+.tr-progress .bar {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--navy);
+  transition: width 0.4s ease;
+}
+.table-row.top .tr-progress .bar { background: var(--gold); }
+.table-row .tr-progress .bar.silver { background: var(--silver); }
+.table-row .tr-progress .bar.bronze { background: var(--bronze); }
+
+.tr-right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.tr-pts {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 28px;
+  color: var(--navy);
+  line-height: 0.85;
+  letter-spacing: -1px;
+}
+.tr-pts-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.tier-chip {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+.tier-chip.premier   { background: var(--gold);   color: var(--navy); }
+.tier-chip.core      { background: var(--navy);   color: var(--white); }
+.tier-chip.allaccess { background: var(--indigo); color: var(--white); }
+
+/* ════════════════════════════════════════════════════════════════
+   STORES PAGE — zone dividers + per-store breakdown cards
+   ════════════════════════════════════════════════════════════════ */
+.zone-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 16px 8px;
+  padding: 4px 0;
+}
+.zone-divider:first-child { margin-top: 6px; }
+.zone-divider .zone-bar {
+  display: inline-block;
+  width: 5px;
+  height: 22px;
+  border-radius: 2px;
+  background: var(--navy);
+  flex-shrink: 0;
+}
+.zone-divider.zone-green  .zone-bar { background: var(--green); }
+.zone-divider.zone-yellow .zone-bar { background: var(--gold); }
+.zone-divider.zone-red    .zone-bar { background: var(--red); }
+.zone-divider.zone-nodata .zone-bar { background: var(--ink-soft); }
+.zone-divider .zone-label {
+  font-family: 'Big Shoulders Display', 'Archivo', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--navy);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.zone-divider.zone-green  .zone-label { color: var(--green); }
+.zone-divider.zone-yellow .zone-label { color: var(--gold-2); }
+.zone-divider.zone-red    .zone-label { color: var(--red); }
+.zone-divider.zone-nodata .zone-label { color: var(--ink-mid); }
+.zone-divider .zone-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.zone-divider::after {
+  content: '';
+  flex: 1;
+  height: 1.5px;
+  background: rgba(0,43,92,0.12);
+  min-width: 8px;
+}
+.zone-divider.zone-green::after  { background: linear-gradient(90deg, rgba(30,138,91,0.40) 0%, transparent 100%); }
+.zone-divider.zone-yellow::after { background: linear-gradient(90deg, rgba(200,162,75,0.40) 0%, transparent 100%); }
+.zone-divider.zone-red::after    { background: linear-gradient(90deg, rgba(210,52,43,0.40) 0%, transparent 100%); }
+
+/* per-store breakdown card */
+.store-card {
+  margin: 0 16px 10px;
+  background: var(--white);
+  border: 1.5px solid var(--navy);
+  border-radius: 12px;
+  padding: 14px 14px 12px;
+  position: relative;
+  overflow: hidden;
+}
+.store-card.top    { border-color: var(--gold);   background: linear-gradient(180deg, rgba(200,162,75,0.08), var(--white) 50%); }
+.store-card.silver { border-color: var(--silver); background: linear-gradient(180deg, rgba(184,184,184,0.10), var(--white) 60%); }
+.store-card.bronze { border-color: var(--bronze); background: linear-gradient(180deg, rgba(158,107,63,0.08), var(--white) 60%); }
+.store-card.below  { border-color: var(--red); }
+
+.sc-card-head {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.sc-card-rank {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 34px;
+  line-height: 0.85;
+  color: var(--ink-soft);
+  letter-spacing: -2px;
+  text-align: center;
+}
+.store-card.top    .sc-card-rank { color: var(--gold); }
+.store-card.silver .sc-card-rank { color: var(--silver); }
+.store-card.bronze .sc-card-rank { color: var(--bronze); }
+.sc-card-id {
+  min-width: 0;
+}
+.sc-card-name {
+  font-family: 'Archivo', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--navy);
+  line-height: 1.0;
+  letter-spacing: -0.4px;
+  word-break: break-word;
+}
+.sc-card-meta {
+  margin-top: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  color: var(--ink-mid);
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+}
+.sc-card-meta .dot {
+  display: inline-block;
+  width: 3px; height: 3px;
+  background: var(--ink-soft);
+  border-radius: 50%;
+}
+.sc-card-right {
+  text-align: right;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
+}
+.sc-card-pts {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 22px;
+  color: var(--navy);
+  line-height: 0.9;
+  letter-spacing: -0.6px;
+}
+.sc-card-pts-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.sc-card-hero {
+  display: grid;
+  grid-template-columns: minmax(110px, auto) 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--cream);
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+.sc-card-rate {
+  display: flex; flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+.sc-card-rate-val {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 36px;
+  line-height: 0.9;
+  letter-spacing: -1.5px;
+  color: var(--navy);
+}
+.sc-card-rate-val.above { color: var(--green); }
+.sc-card-rate-val.below { color: var(--red); }
+.sc-card-rate-val.none  { color: var(--ink-soft); }
+.sc-card-rate-delta {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+}
+.sc-card-rate-delta.above { color: var(--green); }
+.sc-card-rate-delta.below { color: var(--red); }
+
+.sc-progress-wrap { flex: 1; min-width: 0; }
+.sc-progress-meta {
+  display: flex; justify-content: space-between;
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+.sc-progress-meta b { color: var(--navy); font-family: 'Archivo Black', sans-serif; font-size: 10px; letter-spacing: 0; }
+.sc-progress-bar {
+  position: relative;
+  height: 8px;
+  background: var(--cream-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.sc-progress-bar .fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--navy);
+  transition: width 0.4s ease;
+}
+.sc-progress-bar .fill.above { background: linear-gradient(90deg, var(--green), #2bb277); }
+.sc-progress-bar .fill.gold  { background: linear-gradient(90deg, var(--gold), #e6c373); }
+.sc-progress-bar .fill.below { background: linear-gradient(90deg, var(--red), #f06058); }
+.sc-progress-bar::after {
+  content: '';
+  position: absolute;
+  left: 66.66%;
+  top: -1px; bottom: -1px;
+  width: 1.5px;
+  background: rgba(0,43,92,0.30);
+}
+
+.sc-card-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.sc-stat {
+  padding: 8px 10px;
+  border-left: 2px solid var(--navy);
+  background: var(--cream);
+  border-radius: 0 8px 8px 0;
+}
+.sc-stat.gold  { border-left-color: var(--gold); }
+.sc-stat.green { border-left-color: var(--green); }
+.sc-stat.red   { border-left-color: var(--red); }
+.sc-stat-k {
+  font-family: 'Inter', sans-serif;
+  font-size: 7.5px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+}
+.sc-stat-v {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 15px;
+  letter-spacing: -0.4px;
+  color: var(--navy);
+  line-height: 1;
+  margin-top: 3px;
+}
+.sc-stat-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.tier-chip-sm {
+  font-family: 'Inter', sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.tier-chip-sm.premier   { background: var(--gold); color: var(--navy); }
+.tier-chip-sm.core      { background: var(--cream-2); color: var(--navy); }
+.tier-chip-sm.allaccess { background: rgba(31,58,104,0.12); color: var(--navy); }
+
+@media (max-width: 380px) {
+  .sc-card-stats        { grid-template-columns: repeat(2, 1fr); }
+  .sc-card-hero         { grid-template-columns: 1fr; gap: 10px; }
+  .sc-card-name         { font-size: 16px; }
+  .sc-card-rate-val     { font-size: 30px; }
+  .zone-divider         { margin-left: 14px; margin-right: 14px; }
+  .zone-divider .zone-label { font-size: 16px; letter-spacing: 1.2px; }
+  .zone-divider .zone-sub   { font-size: 9px; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SCORERS — Golden Boot hero + scorer rows
+   ════════════════════════════════════════════════════════════════ */
+.golden-boot {
+  margin: 0 16px 14px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--indigo) 100%);
+  color: var(--white);
+  border-radius: 14px;
+  padding: 18px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 6px 16px rgba(0,43,92,0.18);
+  position: relative;
+  overflow: hidden;
+}
+.golden-boot::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(200,162,75,0.30) 0%, transparent 65%);
+}
+.gb-icon { flex-shrink: 0; width: 44px; height: 44px; position: relative; z-index: 2; }
+.gb-body { flex: 1; min-width: 0; position: relative; z-index: 2; }
+.gb-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.gb-name {
+  font-family: 'Big Shoulders Display', 'Archivo', sans-serif;
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 0.95;
+  color: var(--white);
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+.gb-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: var(--on-navy-mid);
+  margin-top: 4px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+.gb-count {
+  margin-left: auto;
+  text-align: right;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+.gb-goals {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 56px;
+  color: var(--gold);
+  line-height: 0.8;
+  letter-spacing: -3px;
+}
+.gb-goals-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--on-navy-mid);
+  margin-top: 4px;
+}
+
+.scorer-row {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: 10px;
+  padding: 11px 14px;
+  margin: 0 16px 6px;
+  background: var(--white);
+  border: 1.5px solid var(--navy);
+  border-radius: 12px;
+  align-items: center;
+}
+.scorer-row.hat {
+  border-color: var(--gold);
+  background: linear-gradient(90deg, rgba(200,162,75,0.10), var(--white) 60%);
+}
+.sc-rank {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 20px;
+  color: var(--ink-soft);
+  text-align: center;
+  line-height: 1;
+}
+.scorer-row.hat .sc-rank { color: var(--gold); }
+.sc-name {
+  font-family: 'Archivo', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  line-height: 1.05;
+  letter-spacing: -0.2px;
+}
+.sc-store {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: var(--ink-soft);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: 3px;
+}
+.sc-right { text-align: right; display: flex; align-items: center; gap: 8px; }
+.sc-balls {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+.sc-balls .ball-mark { width: 14px; height: 14px; }
+.sc-goals {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 22px;
+  color: var(--navy);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.hat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  background: var(--gold);
+  color: var(--navy);
+  border-radius: 999px;
+}
+
+/* weekly callouts — vibrant accent treatment */
+.callout-row {
+  margin: 0 16px 8px;
+  background: var(--white);
+  border: 1.5px solid var(--navy);
+  border-left-width: 6px;
+  border-left-color: var(--gold);
+  border-radius: 12px;
+  padding: 13px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.callout-row.glove { border-left-color: var(--blue); }
+.callout-row.glove::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 40px; height: 40px;
+  background: radial-gradient(circle, rgba(46,107,214,0.18), transparent 65%);
+}
+.callout-icon {
+  width: 38px; height: 38px;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--navy);
+  border-radius: 50%;
+}
+.callout-icon svg { width: 22px; height: 22px; }
+.callout-body { flex: 1; min-width: 0; }
+.callout-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  margin-bottom: 3px;
+}
+.callout-val {
+  font-family: 'Archivo', sans-serif;
+  font-size: 17px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--navy);
+  line-height: 1.05;
+  letter-spacing: -0.2px;
+}
+.callout-val .qty { font-family: 'Archivo Black', sans-serif; font-size: 14px; color: var(--gold-2); margin-left: 4px; letter-spacing: -0.3px; }
+.callout-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  color: var(--ink-mid);
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+.awards-empty {
+  margin: 0 16px;
+  padding: 14px;
+  background: var(--cream-2);
+  border-radius: 12px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════════════════════════════ */
+.footer {
+  text-align: center;
+  padding: 20px 24px env(safe-area-inset-bottom, 24px);
+  margin: 16px 16px 0;
+  border-top: 1px solid var(--line);
+}
+.footer-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  color: var(--ink-mid);
+  line-height: 1.7;
+}
+.footer-text strong { color: var(--navy); font-weight: 800; }
+.footer-tag {
+  font-family: 'Big Shoulders Display', 'Archivo', sans-serif;
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  line-height: 0.95;
+}
+.footer-tag::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+  margin: 6px auto 0;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ════════════════════════════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page.active .match-card,
+.page.active .scorer-row,
+.page.active .callout-row,
+.page.active .store-card {
+  animation: fadeUp 0.32s ease both;
+}
+.page.active .match-card:nth-child(n) { animation-delay: calc(0.04s * var(--i, 1)); }
+.page.active .scorer-row:nth-child(n) { animation-delay: calc(0.04s * var(--i, 1)); }
+.page.active .store-card:nth-child(n) { animation-delay: calc(0.03s * var(--i, 1)); }
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 380px) {
+  .amplify-strip       { margin: 0 -16px; width: calc(100% + 32px); height: 12px; }
+  .mc-side-name        { font-size: 15px; letter-spacing: -0.2px; }
+  .mc-side-rate        { font-size: 24px; }
+  .mc-side-rate.tbd    { font-size: 18px; }
+  .mc-side             { padding: 12px 14px 11px; column-gap: 10px; }
+  .mc-side-meta        { font-size: 10.5px; }
+  .gb-goals            { font-size: 46px; }
+  .gb-name             { font-size: 26px; }
+  .sec-label           { font-size: 20px; }
+  .sec-label .sec-num  { font-size: 28px; }
+  .sec-label .sec-slash{ height: 20px; }
+  .cw-week             { font-size: 52px; }
+  .cw-goal             { font-size: 32px; }
+  .current-week-banner { padding: 16px 14px; gap: 14px; margin: 0 14px 8px; }
+}
+@media (max-width: 320px) {
+  .hstat-v         { font-size: 16px; }
+  .hstat-k         { letter-spacing: 1.4px; }
+  .header-mark     { width: clamp(190px, 76vw, 260px); }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TABLET PORTRAIT / LARGE PHONE (640-959px) — centered single column
+   ════════════════════════════════════════════════════════════════ */
+@media (min-width: 640px) and (max-width: 959px) {
+  .page > .section, .match-card, .scorer-row, .callout-row,
+  .current-week-banner, .golden-boot, .week-tabs, .footer, .awards-empty,
+  .dist-overview, .zone-divider, .store-card,
+  .pairing-basis, .pairing-explainer, .season-mtd,
+  .matchups-top {
+    max-width: 740px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .header-inner, .nav-inner {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* On tablet portrait, give the 6 stat cards a nice 3-col layout */
+  .header-meta { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .header-inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); }
+  .header-logo  { align-items: flex-start; text-align: left; }
+  .header-eyebrow::after { margin-left: 0; margin-right: 0; }
+  .header-mark  { width: clamp(220px, 28vw, 280px); }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   IPAD LANDSCAPE / DESKTOP (≥960px) — two-panel grids
+   ════════════════════════════════════════════════════════════════ */
+@media (min-width: 960px) {
+  /* Three rails (header content, nav content, page content) share the same
+     max-width + horizontal padding so everything lines up on wide screens. */
+  .header-inner, .nav-inner, .page {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  /* Header bg is full-bleed; horizontal spacing handled by .header-inner */
+  .header { padding: 30px 0 0; }
+  .header-inner {
+    padding-top: 0;
+    padding-bottom: 24px;
+    gap: 36px;
+  }
+  .amplify-strip { margin: 0; width: 100%; }
+
+  /* Nav: full-bleed background, content rail centered */
+  .nav-inner { padding-top: 0; padding-bottom: 0; }
+
+  /* Page: keep top/bottom padding, horizontal handled by common rule */
+  .page { padding-top: 4px; padding-bottom: 32px; }
+
+  /* Header logo presentation on desktop */
+  .header-logo  { align-items: flex-start; text-align: left; }
+  .header-eyebrow::after { margin-left: 0; margin-right: 0; }
+  .header-mark  { width: clamp(260px, 26vw, 360px); }
+
+  /* Reset child margins — .page provides the gutters now */
+  .week-tabs, .current-week-banner, .zone-divider, .store-card,
+  .match-card, .scorer-row, .callout-row, .golden-boot,
+  .awards-empty, .footer, .dist-overview,
+  .pairing-basis, .pairing-explainer, .season-mtd {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none;
+  }
+  .section { padding: 22px 0 10px; }
+
+  /* Week tabs — centered (no horizontal scroll needed on wide screens) */
+  .week-tabs {
+    justify-content: center;
+    padding: 8px 0 14px;
+    overflow-x: visible;
+  }
+
+  /* MATCHUPS TOP — District Overview (wider) + WK Banner (tighter) */
+  .matchups-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 320px);
+    grid-template-areas: "overview banner";
+    gap: 16px;
+    align-items: stretch;
+    margin-bottom: 4px;
+  }
+  .matchups-top > #districtOverview     { grid-area: overview; }
+  .matchups-top > .current-week-banner  { grid-area: banner; }
+  /* Grid controls spacing; strip the components' own vertical margins so both
+     cards share the exact same top/bottom edges inside the row. */
+  .matchups-top .dist-overview,
+  .matchups-top .current-week-banner    { margin: 0; height: 100%; }
+
+  /* WK banner in the narrow side column — mirrors District Overview structure:
+     eyebrow header at top → big WK number → divider → goal stat. */
+  .matchups-top .current-week-banner {
+    height: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    gap: 0;
+    padding: 16px 18px 16px;
+    text-align: left;
+    align-items: start;
+    justify-items: stretch;
+  }
+  .matchups-top .current-week-banner .cw-eyebrow {
+    display: flex;
+    grid-row: 1;
+    align-self: start;
+    margin-bottom: 10px;
+  }
+  .matchups-top .current-week-banner > div:nth-child(2) {
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    align-self: start;
+  }
+  .matchups-top .cw-week    { font-size: 48px; letter-spacing: -2.5px; line-height: 0.9; }
+  .matchups-top .cw-label   { font-size: 11px; }
+  .matchups-top .cw-right {
+    grid-row: 3;
+    align-self: end;
+    text-align: left;
+    padding-left: 0;
+    padding-top: 12px;
+    margin-top: 12px;
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .matchups-top .cw-goal       { font-size: 28px; line-height: 1; letter-spacing: -1.4px; }
+  .matchups-top .cw-goal-label { font-size: 8.5px; margin-top: 0; }
+  .matchups-top .current-week-banner::before { display: none; }
+
+  /* 2-column grids for the body content */
+  #matchList,
+  #storeBreakdown {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  #storeBreakdown { gap: 14px 14px; column-gap: 14px; row-gap: 14px; }
+  #matchList > .match-card,
+  #storeBreakdown > .store-card { margin: 0; }
+  /* Zone dividers span the full width of the store breakdown grid */
+  #storeBreakdown > .zone-divider {
+    grid-column: 1 / -1;
+    margin: 6px 0 2px;
+  }
+  #storeBreakdown > .zone-divider:first-child { margin-top: 0; }
+
+  #scorerList {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  #scorerList > .scorer-row { margin: 0; }
+
+  #weeklyAwards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  #weeklyAwards > .callout-row { margin: 0; }
+
+  .footer { margin: 24px 0 0; padding: 22px 0; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   EXTRA-WIDE DESKTOP (≥1400px) — wider rail, 3-col match grid
+   ════════════════════════════════════════════════════════════════ */
+@media (min-width: 1400px) {
+  .header-inner, .nav-inner, .page { max-width: 1360px; }
+  #matchList { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════
+     HEADER
+     ════════════════════════════════════════════════════════════════ -->
+<!-- Rolling ticker at the very top of the page -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <div class="header-eyebrow">Gap Specialty · Mid-Atlantic District · June 2026</div>
+      <img class="header-mark" src="SVG/Asset%205.svg" alt="Encore Cup">
+    </div>
+    <div class="header-meta">
+      <span class="hstat hstat-red">
+        <span class="hstat-k">Week</span>
+        <span class="hstat-v" id="hdrWeekVal">1/5</span>
+        <span class="hstat-sub" id="hdrWeekSub">WK 1 active</span>
+      </span>
+      <span class="hstat hstat-gold">
+        <span class="hstat-k">Goal</span>
+        <span class="hstat-v">2.0%</span>
+        <span class="hstat-sub">cards / txns</span>
+      </span>
+      <span class="hstat">
+        <span class="hstat-k">Stores</span>
+        <span class="hstat-v">12</span>
+        <span class="hstat-sub">district</span>
+      </span>
+      <span class="hstat hstat-green">
+        <span class="hstat-k">Rate</span>
+        <span class="hstat-v" id="hdrRate">—</span>
+        <span class="hstat-sub" id="hdrRateSub">district MTD</span>
+      </span>
+      <span class="hstat">
+        <span class="hstat-k">Pace</span>
+        <span class="hstat-v" id="hdrPace">—</span>
+        <span class="hstat-sub" id="hdrPaceSub">vs 2.0% MTD</span>
+      </span>
+      <span class="hstat hstat-gold">
+        <span class="hstat-k">Cards</span>
+        <span class="hstat-v" id="hdrCards">—</span>
+        <span class="hstat-sub" id="hdrCardsSub">season to date</span>
+      </span>
+    </div>
+  </div>
+  <div class="amplify-strip" aria-hidden="true">
+    <span style="background:var(--red);    flex:1.2;"></span>
+    <span style="background:var(--gold);   flex:1.6;"></span>
+    <span style="background:var(--green);  flex:1.0;"></span>
+    <span style="background:var(--blue);   flex:1.3;"></span>
+    <span style="background:var(--indigo); flex:0.9;"></span>
+    <span style="background:var(--gold);   flex:0.5;"></span>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════════════════════════════
+     NAV
+     ════════════════════════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-tab active" onclick="switchPage('matchday',this)">
+      <span class="tab-icon" id="navIcon1"></span>Matchups
+    </div>
+    <div class="nav-tab" onclick="switchPage('table',this)">
+      <span class="tab-icon" id="navIcon2"></span>Stores
+    </div>
+    <div class="nav-tab" onclick="switchPage('scorers',this)">
+      <span class="tab-icon" id="navIcon3"></span>Scorers
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE: MATCHDAY
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page active" id="page-matchday">
+  <div class="season-mtd" id="seasonMtd"></div>
+  <div class="week-tabs" id="weekTabs"></div>
+  <div class="matchups-top">
+    <div id="districtOverview"></div>
+    <div class="current-week-banner">
+      <div class="cw-eyebrow"><span class="cw-bar"></span>Active Week</div>
+      <div>
+        <div class="cw-week" id="cwWeekLabel">WK 1</div>
+        <div class="cw-label">June Group Stage</div>
+      </div>
+      <div class="cw-right">
+        <div class="cw-goal">2.0%</div>
+        <div class="cw-goal-label">Card Conv. Goal</div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="sec-label">
+      <span class="sec-num">01</span><span class="sec-slash"></span>This Week's Matchups
+    </div>
+  </div>
+  <div class="pairing-basis">
+    <span class="pb-bar"></span>
+    <span class="pb-label" id="pairingBasis">Seeded · txns per cashier</span>
+    <button class="pb-info" id="pairingInfoToggle" type="button" aria-expanded="false" aria-controls="pairingExplainer">How matchups work</button>
+  </div>
+  <div class="pairing-explainer" id="pairingExplainer" hidden>
+    <div class="pe-row"><span class="pe-tag">WK 1</span><span><b>Seeding round.</b> Stores are paired by transactions per cashier — a balance of traffic and staffing so a busy small store goes head-to-head with a slower bigger one.</span></div>
+    <div class="pe-row"><span class="pe-tag">WK 2 – 5</span><span><b>Swiss rounds.</b> Each week stores re-pair against the opponent closest to them in cumulative WTD conversion rate, avoiding rematches whenever possible.</span></div>
+  </div>
+  <div id="matchList"></div>
+  <div class="footer">
+    <div class="footer-tag">ask every customer. every time.</div>
+    <div class="footer-text">
+      Each card = one goal · <strong>W</strong> 3 pts · <strong>D</strong> 1 pt · <strong>L</strong> 0 pts
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE: TABLE
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-table">
+  <div class="section">
+    <div class="sec-label">
+      <span class="sec-num">02</span><span class="sec-slash"></span>Store Breakdown
+    </div>
+  </div>
+  <div id="storeBreakdown"></div>
+  <div class="footer">
+    <div class="footer-text">
+      Stores are grouped by their week-to-date conversion rate against the <strong>2.0%</strong> district goal.<br>
+      <span style="color:var(--green);font-weight:800;">ON GOAL</span> ≥ 2.0% &nbsp;·&nbsp;
+      <span style="color:var(--gold-2);font-weight:800;">TRACKING</span> 1.0% – 1.99% &nbsp;·&nbsp;
+      <span style="color:var(--red);font-weight:800;">BEHIND</span> &lt; 1.0%<br>
+      <span style="opacity:0.7;">AT GOAL = cashiers whose personal conversion rate is ≥ 2.0%</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE: SCORERS
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-scorers">
+  <div class="section">
+    <div class="sec-label">
+      <span class="sec-num">03</span><span class="sec-slash"></span>Golden Boot Leader
+    </div>
+  </div>
+  <div id="goldenBoot"></div>
+  <div class="section" style="padding-top:18px;">
+    <div class="sec-label">
+      <span class="sec-num">04</span><span class="sec-slash"></span>Weekly Awards
+    </div>
+  </div>
+  <div id="weeklyAwards"></div>
+  <div class="section" style="padding-top:18px;">
+    <div class="sec-label">
+      <span class="sec-num">05</span><span class="sec-slash"></span>All Goal Scorers — MTD
+    </div>
+  </div>
+  <div id="scorerList"></div>
+  <div class="footer">
+    <div class="footer-tag">every card. every shift.</div>
+    <div class="footer-text">
+      <strong>Hat Trick</strong> = 3+ cards in one shift<br>
+      <strong>Goal of the Week</strong> = top scorer, any store, any week
+    </div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════════
+   ICON LIBRARY — inline SVGs (brand-spec)
+   ════════════════════════════════════════════════════════════════ */
+
+/** Soccer-ball mark: white ball, navy patches, ONE gold accent pentagon (top).
+ *  Reusable inline SVG that scales with the parent's width/height. */
+function ballGlyph(size, opts) {
+  opts = opts || {};
+  const stroke = opts.onDark ? 'rgba(255,255,255,0.92)' : '#002B5C';
+  const fill   = opts.onDark ? 'transparent' : '#FFFFFF';
+  const navy   = opts.onDark ? 'rgba(255,255,255,0.92)' : '#002B5C';
+  return `
+  <svg class="ball-mark" width="${size}" height="${size}" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="24" cy="24" r="22" fill="${fill}" stroke="${stroke}" stroke-width="2"/>
+    <polygon points="24,16 31,21.1 28.3,29.4 19.7,29.4 17,21.1" fill="${navy}"/>
+    <g stroke="${navy}" stroke-width="2" stroke-linecap="round" fill="none">
+      <line x1="24" y1="16" x2="24" y2="8"/>
+      <line x1="31" y1="21.1" x2="38.5" y2="16.5"/>
+      <line x1="28.3" y1="29.4" x2="33.5" y2="38"/>
+      <line x1="19.7" y1="29.4" x2="14.5" y2="38"/>
+      <line x1="17" y1="21.1" x2="9.5" y2="16.5"/>
+    </g>
+    <polygon points="24,3 30,7.2 27.5,14 20.5,14 18,7.2" fill="#C8A24B"/>
+  </svg>`;
+}
+
+function trophyIcon(color) {
+  color = color || '#C8A24B';
+  return `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M7 4h10v3a5 5 0 01-10 0V4z" stroke="${color}" stroke-width="1.7" stroke-linejoin="round"/>
+    <path d="M17 5h3v2a3 3 0 01-3 3M7 5H4v2a3 3 0 003 3" stroke="${color}" stroke-width="1.7" stroke-linecap="round"/>
+    <path d="M9 14h6l-.5 3h-5L9 14z" stroke="${color}" stroke-width="1.7" stroke-linejoin="round"/>
+    <path d="M7.5 20.5h9" stroke="${color}" stroke-width="1.7" stroke-linecap="round"/>
+    <path d="M9 17h6" stroke="${color}" stroke-width="1.7"/>
+  </svg>`;
+}
+
+function bootIcon(color) {
+  color = color || '#C8A24B';
+  return `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M3.5 14.5V8h3.6c0 1.4.8 2.2 2.2 2.2H12c2.2 0 3.5 1 4.4 2.2l3.5 3.6c.5.5.6 1.3.3 1.9l-.6 1.1c-.3.6-.9 1-1.6 1H5.1c-.9 0-1.6-.7-1.6-1.5z" stroke="${color}" stroke-width="1.7" stroke-linejoin="round"/>
+    <circle cx="6.5" cy="17.5" r=".7" fill="${color}"/>
+    <circle cx="10" cy="17.5" r=".7" fill="${color}"/>
+    <circle cx="13.5" cy="17.5" r=".7" fill="${color}"/>
+    <circle cx="17" cy="17.5" r=".7" fill="${color}"/>
+  </svg>`;
+}
+
+function chartIcon(color) {
+  color = color || '#C8A24B';
+  return `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="4" y="13" width="3.5" height="7" rx="1" stroke="${color}" stroke-width="1.7"/>
+    <rect x="10.25" y="8" width="3.5" height="12" rx="1" stroke="${color}" stroke-width="1.7"/>
+    <rect x="16.5" y="4" width="3.5" height="16" rx="1" stroke="${color}" stroke-width="1.7" fill="${color}" fill-opacity="0.15"/>
+  </svg>`;
+}
+
+function gloveIcon(color) {
+  color = color || '#C8A24B';
+  return `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M6 11V6.5a1.5 1.5 0 013 0V11M9 11V5a1.5 1.5 0 013 0v6M12 11V5.5a1.5 1.5 0 013 0V11M15 11V7.5a1.5 1.5 0 013 0V13c0 4.5-2.5 7.5-6 7.5h-2c-3.5 0-6-3-6-7.5 0-1.1.9-2 2-2h2" stroke="${color}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`;
+}
+
+function boltIcon(color) {
+  color = color || '#C8A24B';
+  return `<svg viewBox="0 0 24 24" fill="${color}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/>
+  </svg>`;
+}
+
+function pinIcon(color) {
+  color = color || '#002B5C';
+  return `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M12 22s7-7.5 7-13a7 7 0 10-14 0c0 5.5 7 13 7 13z" stroke="${color}" stroke-width="1.7"/>
+    <circle cx="12" cy="9" r="2.5" fill="${color}"/>
+  </svg>`;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CONTROLLER — EDIT HERE EACH WEEK
+   ════════════════════════════════════════════════════════════════ */
+
+const GOAL = 2.0;
+
+// Gap Specialty · Mid-Atlantic District — 12 real stores
+// Pulled from June 2026 WTD export.
+const STORES = {
+  "1224": "Short Pump",
+  "1305": "Lenox Square",
+  "1319": "East Cobb",
+  "1321": "Store #1321",          // still unknown — rename when confirmed
+  "1459": "Avalon",
+  "4807": "Hanes",
+  "594":  "Mayfaire",
+  "6004": "Crabtree Valley",
+  "6014": "Streets @ Southpoint",
+  "6108": "Haywood",
+  "6806": "West Town",
+  "6810": "Green Hills",
+};
+
+// Season is 5 weeks. Pairings are NOT hardcoded — they're generated by
+// generatePairings(weekIdx) below:
+//   WK 1     — seeded by transactions-per-cashier (volume + staffing balance)
+//   WK 2..5  — Swiss style: closest in cumulative WTD conversion rate face off,
+//              with greedy rematch avoidance against earlier weeks
+const WEEKS = [
+  { label: "WK 1", period: "Jun 1 – Jun 7"   },
+  { label: "WK 2", period: "Jun 8 – Jun 14"  },
+  { label: "WK 3", period: "Jun 15 – Jun 21" },
+  { label: "WK 4", period: "Jun 22 – Jun 28" },
+  { label: "WK 5", period: "Jun 29 – Jul 5"  },
+];
+
+// ═══════════════════════════════════════════════════════════════
+// STORE_WEEK_STATS — THE source of truth.
+// Edit this each week. Everything (rates, standings, pace, district
+// overview, store breakdown) is derived from these numbers.
+//
+// Schema per store per week:
+//   txns:            total transactions handled by the store
+//   cards:           total cards opened
+//   cashiers:        cashiers who worked that week
+//   cashiersOpened:  cashiers who opened >= 1 card
+//   cashiersAtGoal:  cashiers whose personal rate (their cards / their
+//                    txns) hit the 2% goal
+//
+// rate            = cards / txns × 100
+// participation % = cashiersOpened / cashiers × 100
+// at-goal %       = cashiersAtGoal / cashiers × 100
+// matchup is FINAL when both sides have txns > 0, else PENDING
+// ═══════════════════════════════════════════════════════════════
+const STORE_WEEK_STATS = {
+  "WK 1": {
+    // Backfilled from June 2026 WTD export. District totals: 3,858 txns · 63 cards · 1.63% rate.
+    "1224": { txns: 449, cards: 12, cashiers: 15, cashiersOpened: 6, cashiersAtGoal: 4 }, // Short Pump           2.67%
+    "1305": { txns: 309, cards:  6, cashiers: 10, cashiersOpened: 5, cashiersAtGoal: 4 }, // Lenox Square         1.94%
+    "1319": { txns: 246, cards:  3, cashiers: 11, cashiersOpened: 3, cashiersAtGoal: 3 }, // East Cobb            1.22%
+    "1321": { txns: 289, cards:  3, cashiers: 13, cashiersOpened: 2, cashiersAtGoal: 2 }, // Store #1321          1.04%
+    "1459": { txns: 528, cards:  9, cashiers: 15, cashiersOpened: 5, cashiersAtGoal: 5 }, // Avalon               1.70%
+    "4807": { txns: 214, cards:  6, cashiers: 12, cashiersOpened: 5, cashiersAtGoal: 5 }, // Hanes                2.80%
+    "594":  { txns: 299, cards:  3, cashiers:  8, cashiersOpened: 3, cashiersAtGoal: 2 }, // Mayfaire             1.00%
+    "6004": { txns: 389, cards: 11, cashiers: 15, cashiersOpened: 7, cashiersAtGoal: 7 }, // Crabtree Valley      2.83%
+    "6014": { txns: 436, cards:  2, cashiers: 18, cashiersOpened: 2, cashiersAtGoal: 2 }, // Streets @ Southpoint 0.46%
+    "6108": { txns: 240, cards:  2, cashiers: 11, cashiersOpened: 2, cashiersAtGoal: 2 }, // Haywood              0.83%
+    "6806": { txns: 140, cards:  2, cashiers: 10, cashiersOpened: 2, cashiersAtGoal: 2 }, // West Town            1.43%
+    "6810": { txns: 319, cards:  4, cashiers:  8, cashiersOpened: 3, cashiersAtGoal: 3 }, // Green Hills          1.25%
+  },
+  "WK 2": { /* populate each Monday */ },
+  "WK 3": { /* populate each Monday */ },
+  "WK 4": { /* populate each Monday */ },
+  "WK 5": { /* populate each Monday */ },
+};
+
+// Top WK 1 card openers across the district (real associates)
+const SCORERS = [
+  { name: "Benn Pattara",     store: "1224", goals: 7 }, // Short Pump
+  { name: "Alazee Allen",     store: "6004", goals: 3 }, // Crabtree Valley
+  { name: "Adrienne Minor",   store: "1305", goals: 2 }, // Lenox Square
+  { name: "Andy Bates",       store: "1459", goals: 2 }, // Avalon
+  { name: "Brandon Newman",   store: "1459", goals: 2 }, // Avalon
+  { name: "Sydney Braggs",    store: "1459", goals: 2 }, // Avalon
+  { name: "Toya Gavin",       store: "1459", goals: 2 }, // Avalon
+  { name: "Jacqueline White", store: "4807", goals: 2 }, // Hanes
+  { name: "Lewis Waters",     store: "6004", goals: 2 }, // Crabtree Valley
+  { name: "Valeria Lastra",   store: "6004", goals: 2 }, // Crabtree Valley
+  { name: "Mary Puryear",     store: "6810", goals: 2 }, // Green Hills
+  { name: "Gianna Bien-Aime", store: "1321", goals: 2 }, // Store #1321
+];
+
+const AWARDS = [
+  { week: "WK 1",
+    gotw: "Benn Pattara", gotwStore: "1224", gotwGoals: 7,
+    goldenGlove: "Crabtree Valley",
+    ggNote: "Top district rate — 2.83% (+0.83 over 2.0% goal)" },
+  { week: "WK 2", gotw: null, gotwStore: null, gotwGoals: null, goldenGlove: null, ggNote: null },
+];
+
+/* ════════════════════════════════════════════════════════════════ */
+
+let activeWeek = 0;
+
+/* ── DERIVATION HELPERS ────────────────────────────────────────── */
+function getStats(weekLabel, storeId) {
+  const wk = STORE_WEEK_STATS[weekLabel];
+  if (!wk) return null;
+  const s = wk[storeId];
+  if (!s || !s.txns || s.txns <= 0) return null;
+  return s;
+}
+
+function deriveRate(stats) {
+  if (!stats || !stats.txns) return null;
+  return (stats.cards / stats.txns) * 100;
+}
+
+function hasReported(weekLabel, storeId) {
+  return getStats(weekLabel, storeId) !== null;
+}
+
+/** Returns: 'bye' | 'pending' | 'home' | 'away' | 'draw'
+ *  + rates {homeRate, awayRate} (null when unreported) */
+function getMatchResult(weekLabel, homeId, awayId) {
+  if (awayId === null) return { status: 'bye', homeRate: null, awayRate: null };
+  const hs = getStats(weekLabel, homeId);
+  const as = getStats(weekLabel, awayId);
+  if (!hs || !as) return { status: 'pending', homeRate: deriveRate(hs), awayRate: deriveRate(as) };
+  const hr = deriveRate(hs), ar = deriveRate(as);
+  if (hr > ar) return { status: 'home',  homeRate: hr, awayRate: ar };
+  if (ar > hr) return { status: 'away',  homeRate: hr, awayRate: ar };
+  return                { status: 'draw', homeRate: hr, awayRate: ar };
+}
+
+/* ── PAIRINGS ──────────────────────────────────────────────────────
+ * WK 1     : seeded by transactions-per-cashier desc (balances traffic + staffing)
+ * WK 2..5  : Swiss — closest in cumulative WTD conversion rate face off,
+ *            with greedy rematch avoidance against earlier weeks.
+ * Pairings are derived lazily from STORE_WEEK_STATS and cached per week. */
+
+/** WK 1 baseline metric — txns per cashier. 0 when a store has no WK 1 report
+ *  (those stores sort to the bottom of the seed list). */
+function getBaselineTxnsPerCashier(storeId) {
+  const s = (STORE_WEEK_STATS["WK 1"] || {})[storeId];
+  if (!s || !s.txns || !s.cashiers) return 0;
+  return s.txns / s.cashiers;
+}
+
+/** Cumulative cards/txns rate (×100) through the END of weekIdx, or null if
+ *  the store has not reported any txns yet in that window. */
+function cumulativeRateThrough(storeId, weekIdx) {
+  let txns = 0, cards = 0;
+  for (let i = 0; i <= weekIdx; i++) {
+    const s = getStats(WEEKS[i].label, storeId);
+    if (!s) continue;
+    txns  += s.txns;
+    cards += s.cards || 0;
+  }
+  return txns > 0 ? (cards / txns) * 100 : null;
+}
+
+/** Stores ordered for Swiss pairing as of the END of weekIdx:
+ *    primary  : cumulative rate desc
+ *    tiebreak : txns-per-cashier desc
+ *    no data  : sorted last (then by txns-per-cashier among themselves) */
+function rankStoresThrough(weekIdx) {
+  return Object.keys(STORES).map(id => ({
+    id,
+    rate: cumulativeRateThrough(id, weekIdx),
+    seed: getBaselineTxnsPerCashier(id),
+  })).sort((a, b) => {
+    const an = a.rate === null, bn = b.rate === null;
+    if (an && bn) return b.seed - a.seed;
+    if (an) return  1;
+    if (bn) return -1;
+    if (b.rate !== a.rate) return b.rate - a.rate;
+    return b.seed - a.seed;
+  }).map(x => x.id);
+}
+
+/** Canonical pairing-order for a given week (seed for WK 1, Swiss thereafter). */
+const ORDER_CACHE = {};
+function _orderForWeek(weekIdx) {
+  if (ORDER_CACHE[weekIdx]) return ORDER_CACHE[weekIdx];
+  let order;
+  if (weekIdx === 0) {
+    order = Object.keys(STORES).slice().sort((x, y) =>
+      getBaselineTxnsPerCashier(y) - getBaselineTxnsPerCashier(x));
+  } else {
+    order = rankStoresThrough(weekIdx - 1);
+  }
+  ORDER_CACHE[weekIdx] = order;
+  return order;
+}
+
+function _pairKey(a, b) { return a < b ? a + '|' + b : b + '|' + a; }
+
+/** Walks an ordered store list; for each unmatched store, pairs with the
+ *  nearest unmatched store it has NOT yet faced. Falls back to closest
+ *  available if a fresh opponent is impossible. */
+function _pairOrdered(order, priorMatchups) {
+  const taken = new Set();
+  const pairs = [];
+  for (let i = 0; i < order.length; i++) {
+    const a = order[i];
+    if (taken.has(a)) continue;
+    let chosen = null, fallback = null;
+    for (let j = i + 1; j < order.length; j++) {
+      const b = order[j];
+      if (taken.has(b)) continue;
+      if (fallback === null) fallback = b;
+      if (!priorMatchups.has(_pairKey(a, b))) { chosen = b; break; }
+    }
+    const partner = chosen || fallback;
+    if (!partner) continue;
+    taken.add(a); taken.add(partner);
+    pairs.push([a, partner]);
+  }
+  return pairs;
+}
+
+const PAIRINGS_CACHE = {};
+function generatePairings(weekIdx) {
+  if (PAIRINGS_CACHE[weekIdx]) return PAIRINGS_CACHE[weekIdx];
+  const prior = new Set();
+  for (let i = 0; i < weekIdx; i++) {
+    generatePairings(i).forEach(([a, b]) => prior.add(_pairKey(a, b)));
+  }
+  const pairs = _pairOrdered(_orderForWeek(weekIdx), prior);
+  PAIRINGS_CACHE[weekIdx] = pairs;
+  return pairs;
+}
+
+/** 1-based position of a store in this week's pairing order (seed for WK 1,
+ *  rank for Swiss weeks). Returns null if the store is missing. */
+function getSeedRank(weekIdx, storeId) {
+  const idx = _orderForWeek(weekIdx).indexOf(storeId);
+  return idx >= 0 ? idx + 1 : null;
+}
+
+/** Prefix glyph for the per-card chip — 'S' for the seeded WK 1, '#' for Swiss. */
+function getRankPrefix(weekIdx) { return weekIdx === 0 ? 'S' : '#'; }
+
+/** Human-readable basis label for the active week. */
+function getPairingBasis(weekIdx) {
+  if (weekIdx === 0) return "Seeded · txns per cashier";
+  return "Swiss · WTD rate through " + WEEKS[weekIdx - 1].label;
+}
+
+/** Standings derived from STORE_WEEK_STATS + WEEKS pairings.
+ *  PACE = cumulative pace vs goal across reported weeks:
+ *         sum over reported weeks of (rate - GOAL) × 10  → integer points
+ *         (positive = above goal, negative = below) */
+function computeStandings() {
+  const pts = {}, w = {}, d = {}, l = {}, pace = {};
+  const rateSum = {}, played = {};
+  Object.keys(STORES).forEach(id => {
+    pts[id]=0; w[id]=0; d[id]=0; l[id]=0; pace[id]=0;
+    rateSum[id]=0; played[id]=0;
+  });
+
+  WEEKS.forEach((wk, i) => {
+    generatePairings(i).forEach(([home, away]) => {
+      if (away === null) return;
+      const result = getMatchResult(wk.label, home, away);
+      if (result.status === 'pending') return;
+      if (result.status === 'home') { pts[home]+=3; w[home]++; l[away]++; }
+      else if (result.status === 'away') { pts[away]+=3; w[away]++; l[home]++; }
+      else if (result.status === 'draw') { pts[home]++; pts[away]++; d[home]++; d[away]++; }
+    });
+  });
+
+  // accumulate per-store rates and pace from any reported week
+  WEEKS.forEach(wk => {
+    Object.keys(STORES).forEach(id => {
+      const s = getStats(wk.label, id);
+      if (!s) return;
+      const r = deriveRate(s);
+      rateSum[id] += r;
+      played[id]++;
+      pace[id] += Math.round((r - GOAL) * 10);
+    });
+  });
+
+  return Object.keys(STORES).map(id => ({
+    id,
+    name: STORES[id],
+    pts: pts[id], w: w[id], d: d[id], l: l[id], pace: pace[id],
+    rate: played[id] > 0 ? (rateSum[id] / played[id]) : null,
+    weeksReported: played[id],
+  })).sort((a,b) => b.pts - a.pts || b.pace - a.pace || b.w - a.w);
+}
+
+/** Sum all reporting stores for a single week. */
+function computeDistrictWeekStats(weekLabel) {
+  const wk = STORE_WEEK_STATS[weekLabel] || {};
+  let txns=0, cards=0, cashiers=0, opened=0, atGoal=0, reporting=0;
+  Object.keys(wk).forEach(id => {
+    const s = wk[id];
+    if (!s || !s.txns) return;
+    txns += s.txns;
+    cards += s.cards || 0;
+    cashiers += s.cashiers || 0;
+    opened += s.cashiersOpened || 0;
+    atGoal += s.cashiersAtGoal || 0;
+    reporting++;
+  });
+  const rate = txns > 0 ? (cards / txns) * 100 : null;
+  const cardsNeededToGoal = txns > 0 ? Math.max(0, Math.ceil((GOAL/100) * txns) - cards) : 0;
+  return { txns, cards, cashiers, opened, atGoal, reporting, rate, cardsNeededToGoal };
+}
+
+/** Sum every reported week across every store. */
+function computeDistrictSeasonStats() {
+  let txns=0, cards=0, cashiers=0, opened=0, atGoal=0;
+  Object.keys(STORE_WEEK_STATS).forEach(wkLabel => {
+    const wk = STORE_WEEK_STATS[wkLabel];
+    Object.keys(wk).forEach(id => {
+      const s = wk[id];
+      if (!s || !s.txns) return;
+      txns += s.txns; cards += s.cards || 0;
+      cashiers += s.cashiers || 0;
+      opened += s.cashiersOpened || 0;
+      atGoal += s.cashiersAtGoal || 0;
+    });
+  });
+  return { txns, cards, cashiers, opened, atGoal,
+    rate: txns > 0 ? (cards / txns) * 100 : null };
+}
+
+/** Sum one store across reported weeks. */
+function computeStoreSeasonStats(storeId) {
+  let txns=0, cards=0, cashiers=0, opened=0, atGoal=0, weeksReported=0;
+  Object.keys(STORE_WEEK_STATS).forEach(wkLabel => {
+    const s = STORE_WEEK_STATS[wkLabel][storeId];
+    if (!s || !s.txns) return;
+    txns += s.txns; cards += s.cards || 0;
+    cashiers += s.cashiers || 0;
+    opened += s.cashiersOpened || 0;
+    atGoal += s.cashiersAtGoal || 0;
+    weeksReported++;
+  });
+  return { txns, cards, cashiers, opened, atGoal, weeksReported,
+    rate: txns > 0 ? (cards / txns) * 100 : null };
+}
+
+/* ── RENDER: WEEK TABS — Season strip + MTD summary ────────────── */
+function renderWeekTabs() {
+  document.getElementById('weekTabs').innerHTML = WEEKS.map((wk, i) => {
+    const d = computeDistrictWeekStats(wk.label);
+    const hasData = d.txns > 0;
+    const rate = d.rate;
+    const dotCls   = !hasData ? '' :
+                     rate >= GOAL     ? 'green' :
+                     rate >= GOAL / 2 ? 'gold'  : 'red';
+    const rateCls  = !hasData ? 'tbd' :
+                     rate >= GOAL     ? 'green' :
+                     rate >= GOAL / 2 ? 'gold'  : 'red';
+    const rateLbl  = hasData ? rate.toFixed(2) + '%' : '—';
+    let subLbl;
+    if (!hasData) {
+      subLbl = (i === 0) ? 'awaiting reports' : 'pending';
+    } else {
+      const pace = rate - GOAL;
+      subLbl = (pace >= 0 ? '+' : '') + pace.toFixed(2) + '% pace';
+    }
+    return `<div class="week-pill ${i===activeWeek?'active':''}" onclick="setWeek(${i})" aria-pressed="${i===activeWeek}">
+      <span class="week-pill-head"><span class="week-pill-dot ${dotCls}"></span>${wk.label}</span>
+      <span class="week-pill-rate ${rateCls}">${rateLbl}</span>
+      <span class="week-pill-sub">${subLbl}</span>
+    </div>`;
+  }).join('');
+
+  renderSeasonMtd();
+}
+
+/** Month-to-date headline strip — sits above the weekly pill grid as the
+ * page-lead summary, sharing visual gravity with the WK banner. */
+function renderSeasonMtd() {
+  const el = document.getElementById('seasonMtd');
+  if (!el) return;
+  const season = computeDistrictSeasonStats();
+  const weeksReported = WEEKS.filter(w => {
+    const wkStats = STORE_WEEK_STATS[w.label] || {};
+    return Object.keys(wkStats).some(id => wkStats[id] && wkStats[id].txns > 0);
+  }).length;
+  const eyebrow = `<div class="smtd-eyebrow"><span class="smtd-bar"></span>Month To Date</div>`;
+  if (season.txns === 0) {
+    el.innerHTML = `${eyebrow}<div class="smtd-empty">Awaiting first reports</div>`;
+    return;
+  }
+  const pace = season.rate - GOAL;
+  const paceCls = pace >= 0 ? 'up' : 'down';
+  const paceTxt = (pace >= 0 ? '+' : '') + pace.toFixed(2) + '%';
+  const rateCls = pace >= 0 ? 'up' : (season.rate >= GOAL * 0.5 ? 'gold' : 'down');
+  el.innerHTML = `
+    ${eyebrow}
+    <div class="smtd-metrics">
+      <div class="smtd-metric">
+        <span class="smtd-metric-value ${rateCls}">${season.rate.toFixed(2)}%</span>
+        <span class="smtd-metric-label">District Rate</span>
+      </div>
+      <div class="smtd-metric">
+        <span class="smtd-metric-value ${paceCls}">${paceTxt}</span>
+        <span class="smtd-metric-label">Pace vs 2.0%</span>
+      </div>
+      <div class="smtd-metric">
+        <span class="smtd-metric-value">${fmtNum(season.cards)}</span>
+        <span class="smtd-metric-label">Cards Opened</span>
+      </div>
+      <div class="smtd-metric">
+        <span class="smtd-metric-value">${fmtNum(season.txns)}</span>
+        <span class="smtd-metric-label">Transactions</span>
+      </div>
+      <div class="smtd-metric">
+        <span class="smtd-metric-value">${weeksReported}<span style="font-size:13px;color:var(--on-navy-mid);">/${WEEKS.length}</span></span>
+        <span class="smtd-metric-label">Weeks Reported</span>
+      </div>
+    </div>`;
+}
+
+function setWeek(i) {
+  activeWeek = i;
+  renderWeekTabs();
+  renderHeaderStats();
+  renderDistrictOverview();
+  renderMatchday();
+  document.getElementById('cwWeekLabel').textContent = WEEKS[i].label;
+  const basisEl = document.getElementById('pairingBasis');
+  if (basisEl) basisEl.textContent = getPairingBasis(i);
+}
+
+/* ── RENDER: HEADER LIVE STATS (MTD CUMULATIVE) ────────────────────
+ * The top banner now reports the whole month, not the active week.
+ * Per-week numbers live on the season strip + district overview below. */
+function renderHeaderStats() {
+  const wk = WEEKS[activeWeek];
+  const season = computeDistrictSeasonStats();
+  const hasData = season.txns > 0;
+  const weeksReported = WEEKS.filter(w => {
+    const wkStats = STORE_WEEK_STATS[w.label] || {};
+    return Object.keys(wkStats).some(id => wkStats[id] && wkStats[id].txns > 0);
+  }).length;
+
+  // Week chip — navigation context for the active pill
+  const hdrWeek = document.getElementById('hdrWeekVal');
+  const hdrWeekSub = document.getElementById('hdrWeekSub');
+  if (hdrWeek)    hdrWeek.textContent = (activeWeek + 1) + '/' + WEEKS.length;
+  if (hdrWeekSub) hdrWeekSub.textContent = wk.label + ' active';
+
+  // Rate chip — district MTD conversion (cumulative cards / cumulative txns)
+  const rateEl  = document.getElementById('hdrRate');
+  const rateSub = document.getElementById('hdrRateSub');
+  if (rateEl)  rateEl.textContent  = hasData ? season.rate.toFixed(2) + '%' : '—';
+  if (rateSub) rateSub.textContent = hasData ? 'district MTD' : 'awaiting data';
+
+  // Pace chip — MTD pace vs the 2.0% goal
+  const paceEl    = document.getElementById('hdrPace');
+  const paceSub   = document.getElementById('hdrPaceSub');
+  const paceCard  = paceEl ? paceEl.closest('.hstat') : null;
+  if (paceCard) paceCard.classList.remove('hstat-green', 'hstat-red');
+  if (hasData) {
+    const pace = season.rate - GOAL;
+    if (paceEl) paceEl.textContent = (pace >= 0 ? '+' : '') + pace.toFixed(2) + '%';
+    if (paceSub) paceSub.textContent = (pace >= 0 ? 'above' : 'below') + ' 2.0% MTD';
+    if (paceCard) paceCard.classList.add(pace >= 0 ? 'hstat-green' : 'hstat-red');
+  } else {
+    if (paceEl) paceEl.textContent = '—';
+    if (paceSub) paceSub.textContent = 'awaiting reports';
+  }
+
+  // Cards chip — MTD total cards + txns context
+  const cardsEl  = document.getElementById('hdrCards');
+  const cardsSub = document.getElementById('hdrCardsSub');
+  if (cardsEl)  cardsEl.textContent  = hasData ? fmtNum(season.cards) : '—';
+  if (cardsSub) {
+    if (!hasData) cardsSub.textContent = 'season to date';
+    else cardsSub.textContent = fmtNum(season.txns) + ' txns · ' + weeksReported + '/' + WEEKS.length + ' wks';
+  }
+}
+
+/* ── RENDER: MARQUEE TICKER ────────────────────────────────────── */
+function renderMarquee() {
+  const chips = [
+    '<span class="chip">Encore Cup &rsquo;26<span class="dot"></span></span>',
+    '<span class="chip">For Every <span class="white">Store.</span><span class="dot"></span></span>',
+    '<span class="chip">For Every <span class="white">Shift.</span><span class="dot"></span></span>',
+    '<span class="chip">June 2026 &middot; Group Stage<span class="dot"></span></span>',
+    '<span class="chip">Goal <span class="white">2.0%</span> Card Conversion<span class="dot"></span></span>',
+    '<span class="chip">5 Weeks &middot; <span class="white">Group Stage</span><span class="dot"></span></span>',
+  ];
+  // Duplicate the chip set so the loop is seamless
+  document.getElementById('marqueeTrack').innerHTML = chips.join('') + chips.join('');
+}
+
+/* ── RENDER: MATCHDAY ──────────────────────────────────────────── */
+function renderMatchday() {
+  const wk = WEEKS[activeWeek];
+  let html = '';
+
+  function rateClass(rate) {
+    if (rate === null || rate === undefined) return 'tbd';
+    return rate >= GOAL ? 'above' : 'below';
+  }
+  function rateText(rate) {
+    return rate !== null && rate !== undefined ? rate.toFixed(2) + '%' : 'TBD';
+  }
+  function fillClass(rate) {
+    if (rate === null || rate === undefined) return 'gold';
+    if (rate >= GOAL)     return 'above';
+    if (rate >= GOAL / 2) return 'gold';
+    return 'below';
+  }
+  function fillWidth(rate) {
+    if (rate === null || rate === undefined) return 0;
+    return Math.min((rate / 3) * 100, 100); // 3.0% is full bar; 2.0% goal marker sits at 66.66%
+  }
+  function metaHtml(stats) {
+    if (!stats || stats.txns === 0) {
+      return '<span class="mc-side-meta empty">awaiting reports</span>';
+    }
+    return `<span class="mc-side-meta">
+      <b>${stats.cards}</b> cards <span class="sep"></span>
+      <b>${stats.txns.toLocaleString('en-US')}</b> txns <span class="sep"></span>
+      <b>${stats.cashiersOpened}</b>/${stats.cashiers} cashiers</span>`;
+  }
+
+  const pairings = generatePairings(activeWeek);
+  const prefix   = getRankPrefix(activeWeek);
+
+  pairings.forEach(([home, away], idx) => {
+    if (away === null) {
+      html += `
+      <div class="match-card bye" style="--i:${idx+1}">
+        <div class="bye-label"><span class="bye-chip">Bye</span> ${STORES[home]}
+          <span style="color:var(--ink-soft);font-size:11px;letter-spacing:1.2px;font-family:'Inter',sans-serif;font-weight:700;">#${home}</span>
+        </div>
+      </div>`;
+      return;
+    }
+
+    const result   = getMatchResult(wk.label, home, away);
+    const status   = result.status;          // 'home' | 'away' | 'draw' | 'pending'
+    const isPending = status === 'pending';
+    const homeWin = status === 'home';
+    const awayWin = status === 'away';
+    const isDraw  = status === 'draw';
+
+    const homeSide = homeWin ? 'winner' : awayWin ? 'loser' : '';
+    const awaySide = awayWin ? 'winner' : homeWin ? 'loser' : '';
+
+    let stateLabel, stateCls, gapHtml;
+    if (isPending) {
+      stateLabel = 'Pending'; stateCls = 'pending';
+      gapHtml = '<span class="mc-status-gap tbd">Awaiting Reports</span>';
+    } else if (isDraw) {
+      stateLabel = 'Draw'; stateCls = 'draw';
+      gapHtml = '<span class="mc-status-gap">Tied at ' + result.homeRate.toFixed(2) + '%</span>';
+    } else {
+      stateLabel = 'Final'; stateCls = 'final';
+      const gap = Math.abs(result.homeRate - result.awayRate);
+      gapHtml = '<span class="mc-status-gap positive">+' + gap.toFixed(2) + '% gap</span>';
+    }
+
+    const homeCrown = homeWin ? '<span class="mc-crown" aria-hidden="true">★</span>' : '';
+    const awayCrown = awayWin ? '<span class="mc-crown" aria-hidden="true">★</span>' : '';
+
+    const homeStats = getStats(wk.label, home);
+    const awayStats = getStats(wk.label, away);
+
+    const homeRank = getSeedRank(activeWeek, home);
+    const awayRank = getSeedRank(activeWeek, away);
+    const rankChip = (homeRank && awayRank)
+      ? `<span class="mc-status-rank" title="${activeWeek === 0 ? 'WK 1 seeding by transactions per cashier' : 'Standings rank entering ' + wk.label}">${prefix}${homeRank} <span class="mc-status-rank-sep">vs</span> ${prefix}${awayRank}</span>`
+      : '';
+
+    html += `
+    <div class="match-card" style="--i:${idx+1}">
+      <div class="mc-status">
+        <span class="mc-status-week">${wk.label}</span>
+        <span class="mc-status-state ${stateCls}">${stateLabel}</span>
+        ${rankChip}
+        ${gapHtml}
+      </div>
+      <div class="mc-side ${homeSide}">
+        <div class="mc-side-head">
+          <div class="mc-side-name">${homeCrown}${STORES[home]}</div>
+          <div class="mc-side-id">#${home}</div>
+        </div>
+        <div class="mc-side-rate ${rateClass(result.homeRate)}">${rateText(result.homeRate)}</div>
+        <div class="mc-side-bar"><div class="fill ${fillClass(result.homeRate)}" style="width:${fillWidth(result.homeRate)}%"></div></div>
+        ${metaHtml(homeStats)}
+      </div>
+      <div class="mc-side ${awaySide}">
+        <div class="mc-side-head">
+          <div class="mc-side-name">${awayCrown}${STORES[away]}</div>
+          <div class="mc-side-id">#${away}</div>
+        </div>
+        <div class="mc-side-rate ${rateClass(result.awayRate)}">${rateText(result.awayRate)}</div>
+        <div class="mc-side-bar"><div class="fill ${fillClass(result.awayRate)}" style="width:${fillWidth(result.awayRate)}%"></div></div>
+        ${metaHtml(awayStats)}
+      </div>
+    </div>`;
+  });
+
+  document.getElementById('matchList').innerHTML = html;
+}
+
+/* ── RENDER: DISTRICT OVERVIEW ─────────────────────────────────── */
+function fmtNum(n) { return n.toLocaleString('en-US'); }
+function fmtPct(n, decimals) { return n === null || n === undefined ? '—' : n.toFixed(decimals === undefined ? 2 : decimals) + '%'; }
+
+function progressClass(rate) {
+  if (rate === null) return 'gold';
+  if (rate >= GOAL) return 'green';
+  if (rate >= GOAL * 0.9) return 'gold';
+  return 'red';
+}
+
+function renderDistrictOverview() {
+  const wk = WEEKS[activeWeek];
+  const d = computeDistrictWeekStats(wk.label);
+  const hasData = d.txns > 0;
+  const rate = d.rate;
+  const pace = rate !== null ? (rate - GOAL) : null;
+  const goalPctOfTarget = rate !== null ? (rate / GOAL) * 100 : 0;
+  const barWidth = Math.min(goalPctOfTarget, 150) / 150 * 100;
+  const barCls = progressClass(rate);
+
+  let paceLabel, paceCls;
+  if (pace === null) { paceLabel = '—';                        paceCls = ''; }
+  else if (pace >= 0){ paceLabel = '+' + pace.toFixed(2) + '%'; paceCls = 'green'; }
+  else               { paceLabel = pace.toFixed(2) + '%';       paceCls = 'red'; }
+
+  const noteHtml = !hasData
+    ? `<span>No stores have reported <b>${wk.label}</b> yet.</span>`
+    : rate >= GOAL
+      ? `<b>${(goalPctOfTarget).toFixed(0)}%</b> of goal · district is <b>${pace.toFixed(2)}%</b> above the ${GOAL}% target`
+      : `<b>${(goalPctOfTarget).toFixed(0)}%</b> of goal · need <b>${fmtNum(d.cardsNeededToGoal)}</b> more cards on current txns to reach ${GOAL}%`;
+
+  const reportedNote = hasData
+    ? `${d.reporting}/${Object.keys(STORES).length} stores reporting`
+    : 'awaiting first reports';
+
+  document.getElementById('districtOverview').innerHTML = `
+    <div class="dist-overview">
+      <div class="do-head">
+        <div class="do-title"><span class="do-bar"></span>District Overview · ${wk.label}</div>
+        <div class="do-scope">${reportedNote}</div>
+      </div>
+      <div class="do-grid">
+        <div class="do-stat">
+          <span class="do-stat-k">Txns</span>
+          <span class="do-stat-v">${hasData ? fmtNum(d.txns) : '—'}</span>
+          <span class="do-stat-sub">transactions</span>
+        </div>
+        <div class="do-stat gold">
+          <span class="do-stat-k">Cards</span>
+          <span class="do-stat-v">${hasData ? fmtNum(d.cards) : '—'}</span>
+          <span class="do-stat-sub">opened</span>
+        </div>
+        <div class="do-stat">
+          <span class="do-stat-k">Rate</span>
+          <span class="do-stat-v">${hasData ? fmtPct(rate) : '—'}</span>
+          <span class="do-stat-sub">district avg</span>
+        </div>
+        <div class="do-stat ${paceCls}">
+          <span class="do-stat-k">Pace vs ${GOAL}%</span>
+          <span class="do-stat-v">${paceLabel}</span>
+          <span class="do-stat-sub">${pace === null ? 'pending' : pace >= 0 ? 'above goal' : 'below goal'}</span>
+        </div>
+      </div>
+      <div class="do-progress-wrap">
+        <div class="do-progress-meta">
+          <span>Progress to ${GOAL}% Goal</span>
+          <span><strong>${hasData ? Math.round(goalPctOfTarget) + '%' : '—'}</strong> of goal</span>
+        </div>
+        <div class="do-progress"><div class="bar ${barCls}" style="width:${hasData ? barWidth : 0}%"></div></div>
+        <div class="do-progress-note">${noteHtml}</div>
+      </div>
+    </div>`;
+}
+
+/* ── RENDER: STORES — zoned breakdown ──────────────────────────── */
+/* Zones based on rate vs the 2.0% goal:
+   green  ≥ goal               → "On Goal"
+   yellow ≥ goal/2 and < goal  → "Tracking"
+   red    < goal/2             → "Behind"
+   none   no data yet          → "No Reports" */
+function zoneForRate(rate) {
+  if (rate === null || rate === undefined) return 'nodata';
+  if (rate >= GOAL)     return 'green';
+  if (rate >= GOAL / 2) return 'yellow';
+  return 'red';
+}
+const ZONE_META = {
+  green:  { label: 'On Goal',     sub: 'rate ≥ 2.0%',                    tierLabel: 'On Goal',  tierCls: 'premier'  },
+  yellow: { label: 'Tracking',    sub: '1.0% – 1.99% · 50–99% of goal',  tierLabel: 'Tracking', tierCls: 'core'     },
+  red:    { label: 'Behind',      sub: 'under 1.0% · less than half goal', tierLabel: 'Behind', tierCls: 'allaccess'},
+  nodata: { label: 'No Reports',  sub: 'awaiting first submission',      tierLabel: 'Pending',  tierCls: 'allaccess'},
+};
+
+function renderStoreBreakdown(standings) {
+  // Re-sort by rate desc (rate is the contest, not points) — keep null rate last.
+  const ranked = [...standings].sort((a, b) => {
+    const ra = computeStoreSeasonStats(a.id).rate;
+    const rb = computeStoreSeasonStats(b.id).rate;
+    if (ra === null && rb === null) return 0;
+    if (ra === null) return 1;
+    if (rb === null) return -1;
+    return rb - ra;
+  });
+
+  let html = '';
+  let lastZone = null;
+  const zoneCounts = { green: 0, yellow: 0, red: 0, nodata: 0 };
+  ranked.forEach(s => { zoneCounts[zoneForRate(computeStoreSeasonStats(s.id).rate)]++; });
+
+  ranked.forEach((s, i) => {
+    const season = computeStoreSeasonStats(s.id);
+    const zone = zoneForRate(season.rate);
+    const meta = ZONE_META[zone];
+
+    // Inject a zone divider whenever the zone changes
+    if (zone !== lastZone) {
+      const count = zoneCounts[zone];
+      html += `
+      <div class="zone-divider zone-${zone}">
+        <span class="zone-bar"></span>
+        <span class="zone-label">${meta.label}</span>
+        <span class="zone-sub">${count} ${count === 1 ? 'store' : 'stores'} · ${meta.sub}</span>
+      </div>`;
+      lastZone = zone;
+    }
+
+    // Card border / accent reflects the zone
+    const cardCls = zone === 'green' ? 'top' : zone === 'red' ? 'below' : '';
+    const rankNumeral = (i+1).toString().padStart(2, '0');
+
+    // rate hero
+    let rateCls = 'none', deltaCls = '', deltaLabel = '—';
+    let rateLabel = '—';
+    if (season.rate !== null) {
+      rateLabel = season.rate.toFixed(2) + '%';
+      const delta = season.rate - GOAL;
+      if (delta >= 0) {
+        rateCls = 'above'; deltaCls = 'above';
+        deltaLabel = '+' + delta.toFixed(2) + '% above ' + GOAL.toFixed(1) + '% goal';
+      } else {
+        rateCls = 'below'; deltaCls = 'below';
+        deltaLabel = delta.toFixed(2) + '% below ' + GOAL.toFixed(1) + '% goal';
+      }
+    } else {
+      deltaLabel = 'No reports yet';
+    }
+
+    // progress bar
+    const pctOfGoal = season.rate !== null ? Math.min((season.rate / GOAL) * 100, 150) : 0;
+    const fillWidth = pctOfGoal / 150 * 100;
+    const fillCls = season.rate === null ? 'gold' :
+                    season.rate >= GOAL ? 'above' :
+                    season.rate >= GOAL * 0.9 ? 'gold' : 'below';
+
+    // participation + at-goal
+    const partPct = season.cashiers > 0 ? (season.opened / season.cashiers) * 100 : null;
+    const goalPct = season.cashiers > 0 ? (season.atGoal / season.cashiers) * 100 : null;
+
+    const txnsCell  = season.txns > 0 ? fmtNum(season.txns) : '—';
+    const cardsCell = season.txns > 0 ? fmtNum(season.cards) : '—';
+    const partCell  = season.cashiers > 0 ? `${season.opened}/${season.cashiers}` : '—';
+    const partSub   = partPct !== null ? Math.round(partPct) + '% participation' : 'pending';
+    const goalCell  = season.cashiers > 0 ? `${season.atGoal}/${season.cashiers}` : '—';
+    const goalSub   = goalPct !== null ? Math.round(goalPct) + '% at goal' : 'pending';
+
+    html += `
+    <div class="store-card ${cardCls}" style="--i:${i+1}">
+      <div class="sc-card-head">
+        <div class="sc-card-rank">${rankNumeral}</div>
+        <div class="sc-card-id">
+          <div class="sc-card-name">${s.name}</div>
+          <div class="sc-card-meta">
+            <span>#${s.id}</span><span class="dot"></span>
+            <span>${s.w}W · ${s.d}D · ${s.l}L</span><span class="dot"></span>
+            <span>${season.weeksReported} ${season.weeksReported === 1 ? 'wk' : 'wks'} reported</span>
+            <span class="tier-chip-sm ${meta.tierCls}">${meta.tierLabel}</span>
+          </div>
+        </div>
+        <div class="sc-card-right">
+          <div class="sc-card-pts">${s.pts}</div>
+          <div class="sc-card-pts-label">Pts</div>
+        </div>
+      </div>
+
+      <div class="sc-card-hero">
+        <div class="sc-card-rate">
+          <div class="sc-card-rate-val ${rateCls}">${rateLabel}</div>
+          <div class="sc-card-rate-delta ${deltaCls}">${deltaLabel}</div>
+        </div>
+        <div class="sc-progress-wrap">
+          <div class="sc-progress-meta">
+            <span>Progress to ${GOAL.toFixed(1)}%</span>
+            <span><b>${season.rate !== null ? Math.round(pctOfGoal) + '%' : '—'}</b> of goal</span>
+          </div>
+          <div class="sc-progress-bar"><div class="fill ${fillCls}" style="width:${fillWidth}%"></div></div>
+        </div>
+      </div>
+
+      <div class="sc-card-stats">
+        <div class="sc-stat">
+          <div class="sc-stat-k">Txns</div>
+          <div class="sc-stat-v">${txnsCell}</div>
+          <div class="sc-stat-sub">transactions</div>
+        </div>
+        <div class="sc-stat gold">
+          <div class="sc-stat-k">Cards</div>
+          <div class="sc-stat-v">${cardsCell}</div>
+          <div class="sc-stat-sub">opened</div>
+        </div>
+        <div class="sc-stat">
+          <div class="sc-stat-k">Cashier Part.</div>
+          <div class="sc-stat-v">${partCell}</div>
+          <div class="sc-stat-sub">${partSub}</div>
+        </div>
+        <div class="sc-stat ${goalPct !== null && goalPct > 0 ? 'green' : ''}">
+          <div class="sc-stat-k">At Goal</div>
+          <div class="sc-stat-v">${goalCell}</div>
+          <div class="sc-stat-sub">${goalSub}</div>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  document.getElementById('storeBreakdown').innerHTML = html;
+}
+
+function renderStores() {
+  const standings = computeStandings();
+  renderStoreBreakdown(standings);
+}
+
+/* ── RENDER: SCORERS ───────────────────────────────────────────── */
+function renderScorers() {
+  const sorted = [...SCORERS].sort((a,b) => b.goals - a.goals);
+  const top = sorted[0];
+
+  document.getElementById('goldenBoot').innerHTML = `
+  <div class="golden-boot">
+    <div class="gb-icon">${bootIcon('#C8A24B')}</div>
+    <div class="gb-body">
+      <div class="gb-label">Golden Boot</div>
+      <div class="gb-name">${top.name}</div>
+      <div class="gb-sub">${STORES[top.store]} · #${top.store}</div>
+    </div>
+    <div class="gb-count">
+      <div class="gb-goals">${top.goals}</div>
+      <div class="gb-goals-label">Cards</div>
+    </div>
+  </div>`;
+
+  let awardsHtml = '';
+  AWARDS.forEach(a => {
+    if (a.gotw) {
+      awardsHtml += `
+      <div class="callout-row">
+        <div class="callout-icon">${ballGlyph(20)}</div>
+        <div class="callout-body">
+          <div class="callout-label">${a.week} · Goal of the Week</div>
+          <div class="callout-val">${a.gotw} <span class="qty">${a.gotwGoals} goals</span></div>
+          <div class="callout-sub">${STORES[a.gotwStore]} · #${a.gotwStore}</div>
+        </div>
+      </div>`;
+    }
+    if (a.goldenGlove) {
+      awardsHtml += `
+      <div class="callout-row glove">
+        <div class="callout-icon">${gloveIcon('#C8A24B')}</div>
+        <div class="callout-body">
+          <div class="callout-label" style="color:var(--blue);">${a.week} · Golden Glove</div>
+          <div class="callout-val">${a.goldenGlove}</div>
+          <div class="callout-sub">${a.ggNote}</div>
+        </div>
+      </div>`;
+    }
+  });
+  document.getElementById('weeklyAwards').innerHTML = awardsHtml ||
+    `<div class="awards-empty">Awards posted each Monday</div>`;
+
+  let sHtml = '';
+  sorted.forEach((s, i) => {
+    const isHat = s.goals >= 3;
+    const ballCount = Math.min(s.goals, 5);
+    let balls = '';
+    for (let j = 0; j < ballCount; j++) balls += ballGlyph(14);
+    sHtml += `
+    <div class="scorer-row ${isHat?'hat':''}" style="--i:${i+1}">
+      <div class="sc-rank">${i+1}</div>
+      <div>
+        <div class="sc-name">${s.name}${isHat?'<span class="hat-badge">Hat Trick</span>':''}</div>
+        <div class="sc-store">${STORES[s.store]} · #${s.store}</div>
+      </div>
+      <div class="sc-right">
+        <div class="sc-balls">${balls}</div>
+        <div class="sc-goals">${s.goals}</div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('scorerList').innerHTML = sHtml;
+}
+
+/* ── PAGE SWITCHER ─────────────────────────────────────────────── */
+function switchPage(id, tab) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  tab.classList.add('active');
+  if (id === 'table')   renderStores();
+  if (id === 'scorers') renderScorers();
+}
+
+/* ── INIT ──────────────────────────────────────────────────────── */
+document.getElementById('navIcon1').innerHTML = ballGlyph(18, { onDark: true });
+document.getElementById('navIcon2').innerHTML = chartIcon('rgba(255,255,255,0.55)');
+document.getElementById('navIcon3').innerHTML = bootIcon('rgba(255,255,255,0.55)');
+
+// Color the active nav icon gold on click
+(function colorActive() {
+  const tabs = document.querySelectorAll('.nav-tab');
+  tabs.forEach((tab, idx) => {
+    tab.addEventListener('click', () => {
+      document.getElementById('navIcon1').innerHTML = ballGlyph(18, { onDark: !tabs[0].classList.contains('active') });
+      document.getElementById('navIcon2').innerHTML = chartIcon(tabs[1].classList.contains('active') ? '#C8A24B' : 'rgba(255,255,255,0.55)');
+      document.getElementById('navIcon3').innerHTML = bootIcon(tabs[2].classList.contains('active') ? '#C8A24B' : 'rgba(255,255,255,0.55)');
+      // refresh ball mark color too
+      if (tabs[0].classList.contains('active')) {
+        document.getElementById('navIcon1').innerHTML = `<svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="24" cy="24" r="22" fill="none" stroke="#C8A24B" stroke-width="2.5"/>
+          <polygon points="24,16 31,21.1 28.3,29.4 19.7,29.4 17,21.1" fill="#C8A24B"/>
+          <g stroke="#C8A24B" stroke-width="2.5" stroke-linecap="round" fill="none">
+            <line x1="24" y1="16" x2="24" y2="8"/>
+            <line x1="31" y1="21.1" x2="38.5" y2="16.5"/>
+            <line x1="28.3" y1="29.4" x2="33.5" y2="38"/>
+            <line x1="19.7" y1="29.4" x2="14.5" y2="38"/>
+            <line x1="17" y1="21.1" x2="9.5" y2="16.5"/>
+          </g>
+        </svg>`;
+      }
+    });
+  });
+})();
+
+renderMarquee();
+renderHeaderStats();
+renderWeekTabs();
+renderDistrictOverview();
+renderMatchday();
+
+/* Matchups page — toggle the "How matchups work" explainer */
+(function wirePairingExplainer() {
+  const btn = document.getElementById('pairingInfoToggle');
+  const box = document.getElementById('pairingExplainer');
+  if (!btn || !box) return;
+  btn.addEventListener('click', () => {
+    const open = !box.hasAttribute('hidden');
+    if (open) {
+      box.setAttribute('hidden', '');
+      btn.setAttribute('aria-expanded', 'false');
+    } else {
+      box.removeAttribute('hidden');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+})();
+
+/* Initialise the pairing-basis label for the active week */
+(function initPairingBasis() {
+  const el = document.getElementById('pairingBasis');
+  if (el) el.textContent = getPairingBasis(activeWeek);
+})();
+</script>
+</body>
+</html>

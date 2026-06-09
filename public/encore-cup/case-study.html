@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Encore Cup '26 — Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Big+Shoulders+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Archivo+Black&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════════════════
+   BRAND TOKENS — mirrored from encore-cup-26.html
+   ════════════════════════════════════════════════════════════════ */
+:root {
+  --navy:    #002B5C;
+  --navy-2:  #001a3a;
+  --indigo:  #1F3A68;
+  --gold:    #C8A24B;
+  --gold-2:  #B58E36;
+  --cream:   #F2EBDD;
+  --cream-2: #E8DFCB;
+  --white:   #FFFFFF;
+  --green:   #1E8A5B;
+  --red:     #D2342B;
+  --blue:    #2E6BD6;
+  --silver:  #B8B8B8;
+  --bronze:  #9E6B3F;
+
+  --ink:        #002B5C;
+  --ink-mid:    rgba(0,43,92,0.62);
+  --ink-soft:   rgba(0,43,92,0.40);
+  --line:       rgba(0,43,92,0.14);
+  --line-strong:rgba(0,43,92,0.30);
+
+  --on-navy:        rgba(255,255,255,0.92);
+  --on-navy-mid:    rgba(255,255,255,0.55);
+  --on-navy-soft:   rgba(255,255,255,0.35);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--cream);
+  color: var(--navy);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--navy); text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 3px; }
+a:hover { color: var(--gold-2); }
+
+/* ════════════════════════════════════════════════════════════════
+   MARQUEE — borrowed from the live site for brand consistency
+   ════════════════════════════════════════════════════════════════ */
+.marquee {
+  position: relative;
+  background: var(--navy);
+  color: var(--on-navy);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 38s linear infinite;
+  padding: 7px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+}
+.marquee-track .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 22px;
+}
+.marquee-track .chip .dot {
+  width: 4px; height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+.marquee-track .chip .white { color: var(--white); }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ════════════════════════════════════════════════════════════════
+   HEADER / HERO
+   ════════════════════════════════════════════════════════════════ */
+.hero {
+  background:
+    radial-gradient(ellipse at 75% 10%, rgba(200,162,75,0.25) 0%, transparent 55%),
+    linear-gradient(160deg, var(--navy) 0%, var(--indigo) 100%);
+  color: var(--on-navy);
+  padding: 56px 28px 60px;
+  border-bottom: 4px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; right: -60px;
+  width: 280px; height: 280px;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0 8px, transparent 8px 16px);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.hero-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3.2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(200,162,75,0.50) 0%, transparent 100%);
+  max-width: 360px;
+}
+.hero h1 {
+  font-family: 'Big Shoulders Display', 'Archivo', sans-serif;
+  font-size: clamp(44px, 7vw, 88px);
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  line-height: 0.92;
+  margin: 0 0 22px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+.hero h1 .accent { color: var(--gold); }
+.hero-lede {
+  font-family: 'Archivo', sans-serif;
+  font-size: clamp(16px, 1.8vw, 21px);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--on-navy);
+  max-width: 760px;
+  margin: 0 0 32px;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px 44px;
+  margin-bottom: 36px;
+}
+.hero-meta dt {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--on-navy-mid);
+  margin-bottom: 5px;
+}
+.hero-meta dd {
+  margin: 0;
+  font-family: 'Archivo', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.1px;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 22px 14px 26px;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.hero-cta:hover {
+  background: var(--white);
+  color: var(--navy);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.20);
+}
+.hero-cta .arrow {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   BODY / SECTIONS
+   ════════════════════════════════════════════════════════════════ */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 28px 80px;
+}
+.section {
+  margin-bottom: 56px;
+}
+.sec-label {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 18px;
+  font-family: 'Big Shoulders Display', 'Archivo', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.sec-label .sec-num {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 36px;
+  letter-spacing: -1.5px;
+  color: var(--gold);
+}
+.sec-label .sec-slash {
+  display: inline-block;
+  width: 1.5px;
+  height: 22px;
+  background: var(--line-strong);
+  transform: skewX(-15deg);
+  margin: 0 2px;
+}
+.sec-sub {
+  font-family: 'Archivo', sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--ink-mid);
+  margin: 0 0 20px;
+  max-width: 780px;
+}
+.sec-body p {
+  margin: 0 0 14px;
+  max-width: 780px;
+  color: var(--navy);
+}
+.sec-body strong, .sec-body b { color: var(--navy); font-weight: 800; }
+.sec-body code {
+  font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  font-size: 13px;
+  background: var(--cream-2);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: var(--navy);
+  letter-spacing: -0.2px;
+}
+
+/* Pull-quote / spec / callout */
+.callout {
+  background: var(--white);
+  border-left: 4px solid var(--gold);
+  padding: 18px 22px;
+  margin: 22px 0;
+  border-radius: 4px 10px 10px 4px;
+  box-shadow: 0 3px 12px rgba(0,43,92,0.06);
+}
+.callout .callout-k {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  margin-bottom: 8px;
+}
+.callout .callout-v {
+  font-family: 'Archivo', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+}
+
+/* Stat row */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 22px 0;
+}
+.stat-cell {
+  background: var(--white);
+  border: 1.5px solid var(--navy);
+  border-radius: 12px;
+  padding: 16px 16px 14px;
+}
+.stat-cell .stat-k {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  margin-bottom: 6px;
+}
+.stat-cell .stat-v {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 32px;
+  letter-spacing: -1.4px;
+  color: var(--navy);
+  line-height: 0.95;
+}
+.stat-cell .stat-v.gold  { color: var(--gold-2); }
+.stat-cell .stat-v.green { color: var(--green);  }
+.stat-cell .stat-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--ink-mid);
+  margin-top: 6px;
+  letter-spacing: 0.3px;
+}
+
+/* Two-column body */
+.two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px 36px;
+  align-items: start;
+}
+@media (max-width: 760px) {
+  .two-col { grid-template-columns: 1fr; gap: 18px; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   BRAND SYSTEM SPECIMENS
+   ════════════════════════════════════════════════════════════════ */
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+.swatch {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+.swatch .swatch-color {
+  height: 92px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.swatch .swatch-color::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0 8px, transparent 8px 16px);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+.swatch .swatch-meta {
+  padding: 10px 12px 12px;
+}
+.swatch .swatch-name {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 3px;
+}
+.swatch .swatch-hex {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-mid);
+  letter-spacing: 0.5px;
+}
+
+/* Logo lockup cells — show the actual brand marks */
+.brand-marks {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 0.85fr;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+@media (max-width: 820px) {
+  .brand-marks { grid-template-columns: 1fr 1fr; }
+  .brand-marks .brand-cell.span { grid-column: 1 / -1; }
+}
+@media (max-width: 520px) {
+  .brand-marks { grid-template-columns: 1fr; }
+}
+.brand-cell {
+  background:
+    radial-gradient(ellipse at 80% 10%, rgba(200,162,75,0.20) 0%, transparent 60%),
+    linear-gradient(160deg, var(--navy) 0%, var(--indigo) 100%);
+  border-radius: 14px;
+  padding: 22px 22px 18px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 240px;
+}
+.brand-cell::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0 6px, transparent 6px 12px);
+  pointer-events: none;
+}
+.brand-cell .brand-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 2;
+}
+.brand-cell .brand-name {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--on-navy);
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 2;
+}
+.brand-cell .brand-art {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  min-height: 0;
+}
+.brand-cell .brand-art img {
+  max-width: 100%;
+  max-height: 200px;
+  height: auto;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.22));
+}
+.brand-cell.tag-cell {
+  background: var(--cream);
+}
+.brand-cell.tag-cell::after { display: none; }
+.brand-cell.tag-cell .brand-tag { color: var(--gold-2); }
+.brand-cell.tag-cell .brand-name { color: var(--navy); }
+.brand-cell.tag-cell .brand-art {
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 8px;
+}
+.brand-cell.tag-cell .tag-line {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: clamp(28px, 3.5vw, 44px);
+  line-height: 0.95;
+  letter-spacing: -0.5px;
+  color: var(--navy);
+  text-transform: lowercase;
+}
+.brand-cell.tag-cell .tag-rule {
+  width: 56px;
+  height: 3px;
+  background: var(--gold);
+  margin: 6px 0 2px;
+}
+.brand-cell.tag-cell .tag-mark {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 0.4px;
+  text-transform: lowercase;
+  color: var(--gold-2);
+}
+
+/* Full brand sheet reference at the bottom of section 02 */
+.brand-sheet {
+  margin: 22px 0 0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0,43,92,0.22);
+  border: 1px solid var(--line-strong);
+  background: var(--navy);
+}
+.brand-sheet-cap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--navy);
+  color: var(--on-navy);
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.brand-sheet-cap b { color: var(--gold); }
+.brand-sheet img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.type-spec {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px 24px 20px;
+  margin-bottom: 14px;
+}
+.type-spec .type-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+}
+.type-spec .type-meta b { color: var(--navy); font-weight: 900; }
+.type-spec .type-sample {
+  color: var(--navy);
+  margin: 0;
+  line-height: 1.05;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   MATCHUP CARDS — paired specimens showing how 12 stores become 6 matchups
+   ════════════════════════════════════════════════════════════════ */
+.algo {
+  background: var(--white);
+  border: 1.5px solid var(--navy);
+  border-radius: 12px;
+  padding: 18px 18px 18px;
+  margin: 22px 0;
+}
+.algo h4 {
+  margin: 0 0 6px;
+  font-family: 'Big Shoulders Display', 'Archivo', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.algo h4 .algo-tag {
+  background: var(--navy);
+  color: var(--gold);
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+.algo-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 11.5px;
+  color: var(--ink-mid);
+  letter-spacing: 0.1px;
+  margin: 0 0 14px;
+}
+
+.mu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 12px;
+}
+@media (max-width: 560px) {
+  .mu-grid { grid-template-columns: 1fr; }
+}
+.mu-card {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 11px 14px 11px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  position: relative;
+}
+.mu-card .mu-tag {
+  position: absolute;
+  top: -9px;
+  left: 12px;
+  background: var(--navy);
+  color: var(--gold);
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+.mu-card .mu-side {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.mu-card .mu-side.right { text-align: right; align-items: flex-end; }
+.mu-card .mu-name {
+  font-family: 'Archivo', sans-serif;
+  font-size: 12.5px;
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: -0.15px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.mu-card .mu-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  letter-spacing: 0.4px;
+}
+.mu-card .mu-stat {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 14px;
+  color: var(--gold-2);
+  letter-spacing: -0.4px;
+  margin-top: 1px;
+  line-height: 1;
+}
+.mu-card .mu-mid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.mu-card .mu-vs {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  color: var(--ink-soft);
+}
+.mu-card .mu-unit {
+  font-family: 'Inter', sans-serif;
+  font-size: 7.5px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  letter-spacing: 1.2px;
+}
+
+/* Zone preview strip */
+.zone-preview {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+@media (max-width: 720px) {
+  .zone-preview { grid-template-columns: 1fr; }
+}
+.zone-card {
+  background: var(--white);
+  border-radius: 12px;
+  border: 1.5px solid var(--line-strong);
+  padding: 16px 16px 14px;
+  position: relative;
+  overflow: hidden;
+}
+.zone-card.green  { border-color: var(--green); }
+.zone-card.yellow { border-color: var(--gold); }
+.zone-card.red    { border-color: var(--red); }
+.zone-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 5px;
+}
+.zone-card.green::before  { background: var(--green); }
+.zone-card.yellow::before { background: var(--gold); }
+.zone-card.red::before    { background: var(--red); }
+.zone-card .zone-name {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.zone-card.green  .zone-name { color: var(--green); }
+.zone-card.yellow .zone-name { color: var(--gold-2); }
+.zone-card.red    .zone-name { color: var(--red); }
+.zone-card .zone-rule {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  color: var(--ink-mid);
+  margin-bottom: 10px;
+  letter-spacing: -0.1px;
+}
+.zone-card .zone-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  color: var(--ink-mid);
+  line-height: 1.45;
+}
+.zone-card .zone-count {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 24px;
+  color: var(--navy);
+  letter-spacing: -1px;
+  margin-top: 8px;
+}
+.zone-card .zone-count-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Code block */
+pre.code {
+  background: var(--navy);
+  color: var(--on-navy);
+  font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  font-size: 12.5px;
+  line-height: 1.55;
+  padding: 18px 20px;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 18px 0;
+  border-left: 4px solid var(--gold);
+}
+pre.code .k  { color: #ffb86c; font-weight: 700; }
+pre.code .s  { color: #a3e3ff; }
+pre.code .c  { color: rgba(255,255,255,0.42); font-style: italic; }
+pre.code .n  { color: #ffd66a; }
+pre.code .v  { color: var(--white); font-weight: 700; }
+
+/* Breakpoint table */
+.bp-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  margin: 18px 0;
+}
+.bp-table thead th {
+  background: var(--navy);
+  color: var(--on-navy);
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+.bp-table tbody td {
+  padding: 11px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--navy);
+  vertical-align: top;
+}
+.bp-table tbody tr:first-child td { border-top: none; }
+.bp-table tbody td:first-child {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--gold-2);
+  white-space: nowrap;
+}
+.bp-table tbody td:nth-child(2) {
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* Architecture diagram (simple text/CSS-only) */
+.arch {
+  background: var(--navy);
+  color: var(--on-navy);
+  border-radius: 14px;
+  padding: 22px 22px 20px;
+  margin: 22px 0;
+  position: relative;
+  overflow: hidden;
+}
+.arch::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; right: -30px;
+  width: 200px; height: 200px;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0 6px, transparent 6px 12px);
+  pointer-events: none;
+}
+.arch h4 {
+  margin: 0 0 16px;
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  position: relative;
+  z-index: 2;
+}
+.arch-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 2fr;
+  gap: 16px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 720px) {
+  .arch-flow { grid-template-columns: 1fr; }
+  .arch-flow .arch-arrow { transform: rotate(90deg); justify-self: center; }
+}
+.arch-source {
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid var(--gold);
+  padding: 16px 18px;
+  border-radius: 10px;
+}
+.arch-source .src-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.arch-source .src-name {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 22px;
+  letter-spacing: -0.8px;
+  color: var(--white);
+  margin-top: 4px;
+  line-height: 1.05;
+}
+.arch-source .src-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--on-navy-mid);
+  margin-top: 10px;
+  line-height: 1.45;
+}
+.arch-arrow {
+  color: var(--gold);
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 28px;
+}
+.arch-derived {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.arch-derived .d-cell {
+  background: rgba(255,255,255,0.04);
+  border-left: 3px solid rgba(255,255,255,0.20);
+  padding: 9px 12px 9px 11px;
+  border-radius: 6px;
+}
+.arch-derived .d-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: var(--white);
+}
+.arch-derived .d-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: var(--on-navy-mid);
+  letter-spacing: 0.2px;
+  margin-top: 1px;
+}
+@media (max-width: 460px) {
+  .arch-derived { grid-template-columns: 1fr; }
+}
+
+/* IA cards (3 pages) */
+.ia-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+@media (max-width: 760px) { .ia-grid { grid-template-columns: 1fr; } }
+.ia-card {
+  background: var(--white);
+  border: 1.5px solid var(--navy);
+  border-radius: 12px;
+  padding: 18px 18px 16px;
+  position: relative;
+}
+.ia-card .ia-num {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 36px;
+  color: var(--gold);
+  line-height: 0.9;
+  letter-spacing: -1px;
+}
+.ia-card .ia-name {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin: 8px 0 6px;
+}
+.ia-card .ia-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-mid);
+}
+.ia-card ul {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.ia-card li {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--navy);
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 4px;
+}
+.ia-card li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 7px;
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CLOSING CTA
+   ════════════════════════════════════════════════════════════════ */
+.closer {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(200,162,75,0.22) 0%, transparent 60%),
+    linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+  color: var(--on-navy);
+  padding: 64px 28px 72px;
+  text-align: center;
+  border-top: 4px solid var(--gold);
+}
+.closer h2 {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 900;
+  letter-spacing: -1px;
+  line-height: 0.95;
+  margin: 0 0 18px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+.closer h2 .accent { color: var(--gold); }
+.closer p {
+  max-width: 580px;
+  margin: 0 auto 28px;
+  font-family: 'Archivo', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--on-navy);
+}
+.closer .footer-row {
+  margin-top: 38px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--on-navy-soft);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .hero { padding: 40px 20px 44px; }
+  main  { padding: 40px 20px 56px; }
+  .sec-label { font-size: 18px; }
+  .sec-label .sec-num { font-size: 28px; }
+  .hero-meta { gap: 18px 30px; }
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- Marquee -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="chip">Encore Cup &rsquo;26<span class="dot"></span></span>
+    <span class="chip">Case <span class="white">Study</span><span class="dot"></span></span>
+    <span class="chip">Gap Specialty &middot; <span class="white">Mid-Atlantic District</span><span class="dot"></span></span>
+    <span class="chip">June <span class="white">2026</span><span class="dot"></span></span>
+    <span class="chip">Twelve Stores &middot; <span class="white">Five Weeks</span><span class="dot"></span></span>
+    <span class="chip">Swiss Pairings &middot; <span class="white">Fair Matchups</span><span class="dot"></span></span>
+    <span class="chip">Encore Cup &rsquo;26<span class="dot"></span></span>
+    <span class="chip">Case <span class="white">Study</span><span class="dot"></span></span>
+    <span class="chip">Gap Specialty &middot; <span class="white">Mid-Atlantic District</span><span class="dot"></span></span>
+    <span class="chip">June <span class="white">2026</span><span class="dot"></span></span>
+    <span class="chip">Twelve Stores &middot; <span class="white">Five Weeks</span><span class="dot"></span></span>
+    <span class="chip">Swiss Pairings &middot; <span class="white">Fair Matchups</span><span class="dot"></span></span>
+  </div>
+</div>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Case Study &middot; 2026 &middot; Internal Tools</div>
+    <h1>Encore Cup <span class="accent">'26</span><br>A Conversion<br>Contest, Reimagined</h1>
+    <p class="hero-lede">
+      A single-page contest tracker for Gap Specialty's Mid-Atlantic District &mdash; built around a fair Swiss-style matchup system, a single source of truth for store data, and a broadcast-grade visual identity that holds up on a phone, an iPad, and a leadership boardroom screen.
+    </p>
+    <dl class="hero-meta">
+      <div><dt>Client</dt><dd>Gap Specialty &middot; Mid-Atlantic District</dd></div>
+      <div><dt>Year</dt><dd>June 2026</dd></div>
+      <div><dt>Discipline</dt><dd>Product, Brand, Engineering</dd></div>
+      <div><dt>Stack</dt><dd>One HTML file. No framework.</dd></div>
+    </dl>
+    <a class="hero-cta" href="/encore-cup" target="_top">
+      Launch the live tracker
+      <span class="arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <!-- 01 — The Contest -->
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">01</span><span class="sec-slash"></span>The Contest</div>
+    <p class="sec-sub">
+      Twelve stores. Five weeks. One number that matters &mdash; the percentage of transactions that turn into a credit card. The Encore Cup is the Mid-Atlantic District's June competition, and this tracker is how the district sees itself in real time.
+    </p>
+    <div class="sec-body">
+      <p>
+        Gap Specialty's stated district goal is a <strong>2.0% card conversion rate</strong>: out of every 100 customers checked out, two should leave with a new card. The contest gives that abstract number a personality &mdash; it turns weekly performance into matchups, standings, and bragging rights.
+      </p>
+
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="stat-k">Stores</div>
+          <div class="stat-v">12</div>
+          <div class="stat-sub">across the district</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-k">Season</div>
+          <div class="stat-v">5</div>
+          <div class="stat-sub">weeks of matchups</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-k">Goal</div>
+          <div class="stat-v gold">2.0%</div>
+          <div class="stat-sub">cards per transaction</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-k">Matchups</div>
+          <div class="stat-v green">30</div>
+          <div class="stat-sub">six per week, dynamically paired</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-k">The brief in one line</div>
+        <div class="callout-v">"Make the contest feel like the World Cup, but tell every store manager exactly where they stand and why."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 — Brand System -->
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">02</span><span class="sec-slash"></span>Brand System</div>
+    <p class="sec-sub">
+      The original brief leaned into Gap's archive sports references &mdash; varsity, denim, and a hand-painted contest mark. The tracker had to feel like a tournament broadcast without losing the retail-ops practicality that store leads needed.
+    </p>
+
+    <div class="sec-body">
+      <h3 style="font-family:'Big Shoulders Display',sans-serif;font-size:15px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;color:var(--navy);margin:18px 0 12px;">The Marks</h3>
+
+      <div class="brand-marks">
+        <div class="brand-cell">
+          <div class="brand-tag">01 &middot; Emblem</div>
+          <div class="brand-name">Year mark with trophy lockup</div>
+          <div class="brand-art">
+            <img src="Frame/002_Asset_23x_hUDtJRre.png" alt="Encore Cup '26 emblem — the year '26' with the trophy embedded into the six">
+          </div>
+        </div>
+        <div class="brand-cell">
+          <div class="brand-tag">02 &middot; Wordmark</div>
+          <div class="brand-name">encore cup</div>
+          <div class="brand-art">
+            <img src="SVG/Asset%204.svg" alt="Encore Cup wordmark">
+          </div>
+        </div>
+        <div class="brand-cell">
+          <div class="brand-tag">03 &middot; Trophy</div>
+          <div class="brand-name">Standalone trophy mark</div>
+          <div class="brand-art">
+            <img src="Frame/003_Asset_33x_UbXzEaQS.png" alt="Encore Cup trophy mark">
+          </div>
+        </div>
+        <div class="brand-cell tag-cell span">
+          <div class="brand-tag">04 &middot; Tagline</div>
+          <div class="brand-name">Voice + lockup</div>
+          <div class="brand-art">
+            <div class="tag-line">for every store.<br>for every shift.</div>
+            <div class="tag-rule"></div>
+            <div class="tag-mark">encore cup &rsquo;26</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-family:'Big Shoulders Display',sans-serif;font-size:15px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;color:var(--navy);margin:30px 0 10px;">Palette</h3>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#C8A24B;"></div>
+          <div class="swatch-meta"><div class="swatch-name">Trophy Gold</div><div class="swatch-hex">#C8A24B</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#002B5C;"></div>
+          <div class="swatch-meta"><div class="swatch-name">Gap Navy</div><div class="swatch-hex">#002B5C</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#FFFFFF;border-bottom-color:var(--line-strong);"></div>
+          <div class="swatch-meta"><div class="swatch-name">Optic White</div><div class="swatch-hex">#FFFFFF</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#1E8A5B;"></div>
+          <div class="swatch-meta"><div class="swatch-name">Pitch Green</div><div class="swatch-hex">#1E8A5B</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#D2342B;"></div>
+          <div class="swatch-meta"><div class="swatch-name">Kit Red</div><div class="swatch-hex">#D2342B</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#2E6BD6;"></div>
+          <div class="swatch-meta"><div class="swatch-name">Electric Blue</div><div class="swatch-hex">#2E6BD6</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#1F3A68;"></div>
+          <div class="swatch-meta"><div class="swatch-name">Indigo Denim</div><div class="swatch-hex">#1F3A68</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#F2EBDD;"></div>
+          <div class="swatch-meta"><div class="swatch-name">Cream</div><div class="swatch-hex">#F2EBDD</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#B8B8B8;"></div>
+          <div class="swatch-meta"><div class="swatch-name">Silver</div><div class="swatch-hex">#B8B8B8</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#9E6B3F;"></div>
+          <div class="swatch-meta"><div class="swatch-name">Bronze</div><div class="swatch-hex">#9E6B3F</div></div>
+        </div>
+      </div>
+      <p style="font-size:12.5px;color:var(--ink-mid);margin-top:8px;">
+        Gap Navy is the broadcast surface. Trophy Gold is the rare hero color, reserved for marks, leaders, and the active state. Pitch Green and Kit Red carry result language only &mdash; never decoration. Silver and Bronze sit on second- and third-place stories.
+      </p>
+
+      <h3 style="font-family:'Big Shoulders Display',sans-serif;font-size:15px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;color:var(--navy);margin:30px 0 10px;">Type System</h3>
+
+      <div class="type-spec">
+        <div class="type-meta"><b>Big Shoulders Display 900</b><span>Display + Hero numerals</span></div>
+        <p class="type-sample" style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:54px;letter-spacing:-1px;text-transform:uppercase;">Final Standings</p>
+      </div>
+      <div class="type-spec">
+        <div class="type-meta"><b>Archivo Black</b><span>Stat values + scoreboard</span></div>
+        <p class="type-sample" style="font-family:'Archivo Black',sans-serif;font-size:42px;letter-spacing:-1.6px;">2.83%</p>
+      </div>
+      <div class="type-spec">
+        <div class="type-meta"><b>Archivo 700</b><span>Body + sub-heads</span></div>
+        <p class="type-sample" style="font-family:'Archivo',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.2px;">The week is split into six head-to-head matchups.</p>
+      </div>
+      <div class="type-spec">
+        <div class="type-meta"><b>Inter 800 ALL CAPS</b><span>Labels + chips</span></div>
+        <p class="type-sample" style="font-family:'Inter',sans-serif;font-weight:800;font-size:11px;letter-spacing:2.2px;text-transform:uppercase;">Card Conversion &middot; Group Stage</p>
+      </div>
+
+      <h3 style="font-family:'Big Shoulders Display',sans-serif;font-size:15px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;color:var(--navy);margin:30px 0 10px;">Full Brand Sheet</h3>
+      <p style="font-size:12.5px;color:var(--ink-mid);margin:0 0 14px;">
+        The reference document handed to anyone touching the contest &mdash; marks, palette, typography, tagline, and the supporting pattern in one specimen.
+      </p>
+      <div class="brand-sheet">
+        <div class="brand-sheet-cap">
+          <span><b>Encore Cup &rsquo;26</b> &middot; Visual Identity</span>
+          <span>Mid-Atlantic District &middot; 2026</span>
+        </div>
+        <img src="Frame/001_In_a_graphic_design_style_this_infographic_gCqnXPaW.png" alt="Encore Cup '26 visual identity brand sheet — emblem, trophy mark, wordmark, colour palette, typography, pattern, and tagline">
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — Information Architecture -->
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">03</span><span class="sec-slash"></span>Information Architecture</div>
+    <p class="sec-sub">
+      Three pages, each with one job. The whole tracker is a single HTML document with client-side page switching &mdash; no router, no build step, no network round-trips after first paint.
+    </p>
+
+    <div class="ia-grid">
+      <div class="ia-card">
+        <div class="ia-num">01</div>
+        <div class="ia-name">Matchups</div>
+        <div class="ia-desc">The default landing page. Shows the active week's pairings, the district overview, and the season strip so you can see where the month is heading at a glance.</div>
+        <ul>
+          <li>Season strip</li>
+          <li>District overview</li>
+          <li>Pairing methodology</li>
+          <li>Six head-to-head cards</li>
+        </ul>
+      </div>
+      <div class="ia-card">
+        <div class="ia-num">02</div>
+        <div class="ia-name">Stores</div>
+        <div class="ia-desc">Performance breakdown for every store, sorted by rate and grouped into green / yellow / red zones so store leads know exactly which band they're in.</div>
+        <ul>
+          <li>Zone dividers</li>
+          <li>Per-store rate hero</li>
+          <li>Cashier participation</li>
+          <li>At-goal counts</li>
+        </ul>
+      </div>
+      <div class="ia-card">
+        <div class="ia-num">03</div>
+        <div class="ia-name">Scorers</div>
+        <div class="ia-desc">The human layer. Highlights the district's Golden Boot, weekly Goal of the Week, Golden Glove store, and all individual cashier card-openers month to date.</div>
+        <ul>
+          <li>Golden Boot hero</li>
+          <li>Weekly awards</li>
+          <li>MTD scorer list</li>
+          <li>Hat-trick badges</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — Matchup Methodology -->
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">04</span><span class="sec-slash"></span>Matchup Methodology</div>
+    <p class="sec-sub">
+      The single biggest design decision in the project. A rate-based contest sounds fair on paper, but if you draw a 200-transaction boutique against a 600-transaction flagship, one of them is fighting a different game. The Encore Cup solves that with a two-stage Swiss system.
+    </p>
+
+    <div class="two-col">
+      <div class="sec-body">
+        <h4 style="font-family:'Big Shoulders Display',sans-serif;font-size:15px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold-2);margin:0 0 10px;">Week 1 &mdash; The Seeding Round</h4>
+        <p>
+          With no prior performance to reference, stores are seeded by <strong>transactions per cashier</strong> &mdash; a single metric that normalizes for both traffic and staffing. A small store running hot lands near a bigger store running slow. Adjacent stores in the seed list are paired.
+        </p>
+        <p>
+          This is the only week where rate isn't the driver. Every subsequent week uses live data.
+        </p>
+      </div>
+
+      <div class="sec-body">
+        <h4 style="font-family:'Big Shoulders Display',sans-serif;font-size:15px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold-2);margin:0 0 10px;">Weeks 2 &ndash; 5 &mdash; Swiss Rounds</h4>
+        <p>
+          Stores re-pair every week by closest <strong>cumulative WTD conversion rate</strong>. The leader plays the second-place store, third plays fourth, and so on &mdash; same logic as a chess Swiss tournament.
+        </p>
+        <p>
+          A greedy algorithm walks the ranked list and prefers <strong>no rematches</strong>: if the closest opponent has already been faced, it skips to the next-nearest unpaired peer. Rematches only happen when nothing else is available.
+        </p>
+      </div>
+    </div>
+
+    <div class="algo">
+      <h4><span class="algo-tag">WK 1</span>Seeded pairings &mdash; transactions per cashier</h4>
+      <p class="algo-note">All 12 stores sorted by txns/cashier desc, then adjacent stores paired. The number under each store is its seed metric (transactions divided by cashiers on shift).</p>
+      <div class="mu-grid">
+        <div class="mu-card">
+          <span class="mu-tag">M1</span>
+          <div class="mu-side"><span class="mu-name">Green Hills</span><span class="mu-id">#6810</span><span class="mu-stat">39.88</span></div>
+          <div class="mu-mid"><span class="mu-vs">vs</span><span class="mu-unit">tpc</span></div>
+          <div class="mu-side right"><span class="mu-name">Mayfaire</span><span class="mu-id">#594</span><span class="mu-stat">37.38</span></div>
+        </div>
+        <div class="mu-card">
+          <span class="mu-tag">M2</span>
+          <div class="mu-side"><span class="mu-name">Avalon</span><span class="mu-id">#1459</span><span class="mu-stat">35.20</span></div>
+          <div class="mu-mid"><span class="mu-vs">vs</span><span class="mu-unit">tpc</span></div>
+          <div class="mu-side right"><span class="mu-name">Lenox Square</span><span class="mu-id">#1305</span><span class="mu-stat">30.90</span></div>
+        </div>
+        <div class="mu-card">
+          <span class="mu-tag">M3</span>
+          <div class="mu-side"><span class="mu-name">Short Pump</span><span class="mu-id">#1224</span><span class="mu-stat">29.93</span></div>
+          <div class="mu-mid"><span class="mu-vs">vs</span><span class="mu-unit">tpc</span></div>
+          <div class="mu-side right"><span class="mu-name">Crabtree Valley</span><span class="mu-id">#6004</span><span class="mu-stat">25.93</span></div>
+        </div>
+        <div class="mu-card">
+          <span class="mu-tag">M4</span>
+          <div class="mu-side"><span class="mu-name">Streets @ Southpoint</span><span class="mu-id">#6014</span><span class="mu-stat">24.22</span></div>
+          <div class="mu-mid"><span class="mu-vs">vs</span><span class="mu-unit">tpc</span></div>
+          <div class="mu-side right"><span class="mu-name">East Cobb</span><span class="mu-id">#1319</span><span class="mu-stat">22.36</span></div>
+        </div>
+        <div class="mu-card">
+          <span class="mu-tag">M5</span>
+          <div class="mu-side"><span class="mu-name">Store #1321</span><span class="mu-id">#1321</span><span class="mu-stat">22.23</span></div>
+          <div class="mu-mid"><span class="mu-vs">vs</span><span class="mu-unit">tpc</span></div>
+          <div class="mu-side right"><span class="mu-name">Haywood</span><span class="mu-id">#6108</span><span class="mu-stat">21.82</span></div>
+        </div>
+        <div class="mu-card">
+          <span class="mu-tag">M6</span>
+          <div class="mu-side"><span class="mu-name">Hanes</span><span class="mu-id">#4807</span><span class="mu-stat">17.83</span></div>
+          <div class="mu-mid"><span class="mu-vs">vs</span><span class="mu-unit">tpc</span></div>
+          <div class="mu-side right"><span class="mu-name">West Town</span><span class="mu-id">#6806</span><span class="mu-stat">14.00</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="algo">
+      <h4><span class="algo-tag">WK 2</span>Swiss pairings &mdash; closest WTD rate after WK 1</h4>
+      <p class="algo-note">Same 12 stores, re-paired by cumulative conversion rate descending. Top of the table fights stay sharp because the leader always faces the runner-up. Rematch avoidance is checked against the WK 1 matchups above &mdash; none of these pairings repeat.</p>
+      <div class="mu-grid">
+        <div class="mu-card">
+          <span class="mu-tag">M1</span>
+          <div class="mu-side"><span class="mu-name">Crabtree Valley</span><span class="mu-id">#6004</span><span class="mu-stat">2.83%</span></div>
+          <div class="mu-mid"><span class="mu-vs">vs</span><span class="mu-unit">rate</span></div>
+          <div class="mu-side right"><span class="mu-name">Hanes</span><span class="mu-id">#4807</span><span class="mu-stat">2.80%</span></div>
+        </div>
+        <div class="mu-card">
+          <span class="mu-tag">M2</span>
+          <div class="mu-side"><span class="mu-name">Short Pump</span><span class="mu-id">#1224</span><span class="mu-stat">2.67%</span></div>
+          <div class="mu-mid"><span class="mu-vs">vs</span><span class="mu-unit">rate</span></div>
+          <div class="mu-side right"><span class="mu-name">Lenox Square</span><span class="mu-id">#1305</span><span class="mu-stat">1.94%</span></div>
+        </div>
+        <div class="mu-card">
+          <span class="mu-tag">M3</span>
+          <div class="mu-side"><span class="mu-name">Avalon</span><span class="mu-id">#1459</span><span class="mu-stat">1.70%</span></div>
+          <div class="mu-mid"><span class="mu-vs">vs</span><span class="mu-unit">rate</span></div>
+          <div class="mu-side right"><span class="mu-name">West Town</span><span class="mu-id">#6806</span><span class="mu-stat">1.43%</span></div>
+        </div>
+        <div class="mu-card">
+          <span class="mu-tag">M4</span>
+          <div class="mu-side"><span class="mu-name">Green Hills</span><span class="mu-id">#6810</span><span class="mu-stat">1.25%</span></div>
+          <div class="mu-mid"><span class="mu-vs">vs</span><span class="mu-unit">rate</span></div>
+          <div class="mu-side right"><span class="mu-name">East Cobb</span><span class="mu-id">#1319</span><span class="mu-stat">1.22%</span></div>
+        </div>
+        <div class="mu-card">
+          <span class="mu-tag">M5</span>
+          <div class="mu-side"><span class="mu-name">Store #1321</span><span class="mu-id">#1321</span><span class="mu-stat">1.04%</span></div>
+          <div class="mu-mid"><span class="mu-vs">vs</span><span class="mu-unit">rate</span></div>
+          <div class="mu-side right"><span class="mu-name">Mayfaire</span><span class="mu-id">#594</span><span class="mu-stat">1.00%</span></div>
+        </div>
+        <div class="mu-card">
+          <span class="mu-tag">M6</span>
+          <div class="mu-side"><span class="mu-name">Haywood</span><span class="mu-id">#6108</span><span class="mu-stat">0.83%</span></div>
+          <div class="mu-mid"><span class="mu-vs">vs</span><span class="mu-unit">rate</span></div>
+          <div class="mu-side right"><span class="mu-name">Streets @ Southpoint</span><span class="mu-id">#6014</span><span class="mu-stat">0.46%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="sec-sub" style="font-size:14px;">The pairing function lives inline next to the data model. There's no service, no schedule file &mdash; pairings are derived from the same numbers everything else uses.</p>
+
+    <pre class="code"><span class="c">// Stores ordered by cumulative WTD rate, tiebreak by txns-per-cashier</span>
+<span class="k">function</span> <span class="v">rankStoresThrough</span>(weekIdx) { <span class="c">...</span> }
+
+<span class="c">// Greedy walk: closest unpaired opponent that hasn't been faced before</span>
+<span class="k">function</span> <span class="v">generatePairings</span>(weekIdx) {
+  <span class="k">if</span> (PAIRINGS_CACHE[weekIdx]) <span class="k">return</span> PAIRINGS_CACHE[weekIdx];
+  <span class="k">const</span> prior = <span class="k">new</span> <span class="v">Set</span>();
+  <span class="k">for</span> (<span class="k">let</span> i = <span class="n">0</span>; i &lt; weekIdx; i++) {
+    <span class="v">generatePairings</span>(i).<span class="v">forEach</span>(([a, b]) =&gt; prior.<span class="v">add</span>(<span class="v">_pairKey</span>(a, b)));
+  }
+  <span class="k">const</span> pairs = <span class="v">_pairOrdered</span>(<span class="v">_orderForWeek</span>(weekIdx), prior);
+  PAIRINGS_CACHE[weekIdx] = pairs;
+  <span class="k">return</span> pairs;
+}</pre>
+  </section>
+
+  <!-- 05 — Zones -->
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">05</span><span class="sec-slash"></span>Performance Zones</div>
+    <p class="sec-sub">
+      Standings ranks are useful but emotionally flat. Three explicit zones make performance status legible at a glance &mdash; a store either is or isn't making goal, and the dividers say it out loud.
+    </p>
+
+    <div class="zone-preview">
+      <div class="zone-card green">
+        <div class="zone-name">On Goal</div>
+        <div class="zone-rule">rate &ge; 2.0%</div>
+        <div class="zone-desc">Hitting the district target on cumulative cards-per-transaction. These stores set the tone the rest of the field is chasing.</div>
+        <div class="zone-count">3</div>
+        <div class="zone-count-sub">stores wk 1</div>
+      </div>
+      <div class="zone-card yellow">
+        <div class="zone-name">Tracking</div>
+        <div class="zone-rule">1.0% &ndash; 1.99%</div>
+        <div class="zone-desc">At least halfway to goal. Close enough that one strong week can pull them into the green zone &mdash; this is where the contest gets won and lost.</div>
+        <div class="zone-count">7</div>
+        <div class="zone-count-sub">stores wk 1</div>
+      </div>
+      <div class="zone-card red">
+        <div class="zone-name">Behind</div>
+        <div class="zone-rule">&lt; 1.0%</div>
+        <div class="zone-desc">Under half the district goal. Surfaces the stores that need direct coaching support before the next reporting cycle.</div>
+        <div class="zone-count">2</div>
+        <div class="zone-count-sub">stores wk 1</div>
+      </div>
+    </div>
+
+    <p class="sec-sub" style="font-size:14px;">
+      Sort order is rate descending. Zone dividers slot in wherever the rate threshold is crossed, so the same render function handles a 12-store district or a 6-store district without code changes.
+    </p>
+  </section>
+
+  <!-- 06 — Data Architecture -->
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">06</span><span class="sec-slash"></span>Data Architecture</div>
+    <p class="sec-sub">
+      Every number on the page &mdash; rate, pace, standings, pairings, scorers &mdash; flows out of a single object. Edit one place each Monday, and the entire site recomputes.
+    </p>
+
+    <div class="arch">
+      <h4>Single source of truth &rarr; everything else is derived</h4>
+      <div class="arch-flow">
+        <div class="arch-source">
+          <div class="src-tag">Source</div>
+          <div class="src-name">STORE_WEEK_STATS</div>
+          <div class="src-desc">Per store, per week: <code style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#a3e3ff;background:transparent;padding:0;">txns, cards, cashiers, cashiersOpened, cashiersAtGoal</code>. Nothing else is hand-maintained.</div>
+        </div>
+        <div class="arch-arrow">&rarr;</div>
+        <div class="arch-derived">
+          <div class="d-cell"><div class="d-name">Rate</div><div class="d-desc">cards / txns &times; 100</div></div>
+          <div class="d-cell"><div class="d-name">Standings</div><div class="d-desc">pts &middot; pace &middot; W&middot;D&middot;L</div></div>
+          <div class="d-cell"><div class="d-name">Pairings</div><div class="d-desc">Swiss + rematch avoidance</div></div>
+          <div class="d-cell"><div class="d-name">District MTD</div><div class="d-desc">cumulative across all weeks</div></div>
+          <div class="d-cell"><div class="d-name">Zones</div><div class="d-desc">rate vs goal bands</div></div>
+          <div class="d-cell"><div class="d-name">Match results</div><div class="d-desc">winner of each head-to-head</div></div>
+        </div>
+      </div>
+    </div>
+
+    <p>
+      The principle is simple: the contest's truth is the per-store weekly numbers. Everything else &mdash; the standings table, the pairings for next week, the district overview at the top of the page &mdash; is a pure function of that one object. There's no separate schedule file to keep in sync, no manually-maintained leaderboard, no "did I update both places?" risk.
+    </p>
+    <p>
+      Each Monday the operator edits one block in the script. Refresh. Done.
+    </p>
+  </section>
+
+  <!-- 07 — Responsive -->
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">07</span><span class="sec-slash"></span>Responsive System</div>
+    <p class="sec-sub">
+      The tracker is consumed on a leadership iPad more often than a phone, but it has to feel native on both. Four breakpoints, three layout modes, one set of components.
+    </p>
+
+    <table class="bp-table">
+      <thead>
+        <tr><th>Breakpoint</th><th>Device</th><th>Layout</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>&le; 639px</td>
+          <td>Phone</td>
+          <td>Single-column stack. Header stats wrap to two rows. Match cards full width with vertical winner/loser stacking.</td>
+        </tr>
+        <tr>
+          <td>640&ndash;959px</td>
+          <td>Tablet portrait</td>
+          <td>Content rail centered at 740px max-width. Header stats compress to a 3-column grid. Season strip still scrolls horizontally if needed.</td>
+        </tr>
+        <tr>
+          <td>960&ndash;1399px</td>
+          <td>iPad landscape / desktop</td>
+          <td>Two-panel grid. District overview (wide) + week banner (tight) side-by-side. Match cards in a 2-column grid. Store breakdown 2-up. Pairings strip stretches edge to edge.</td>
+        </tr>
+        <tr>
+          <td>&ge; 1400px</td>
+          <td>Boardroom / wide desktop</td>
+          <td>Rail widens to 1360px. Match cards drop into a 3-column grid so all six pairings fit above the fold on a 16:10 display.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      Layout decisions favor density over decoration &mdash; every breakpoint tries to maximize the information visible without scrolling. The header marquee, season strip, and district overview are deliberately short so the matchups sit close to the top.
+    </p>
+  </section>
+
+  <!-- 08 — Tech -->
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">08</span><span class="sec-slash"></span>The Stack (or lack of one)</div>
+    <p class="sec-sub">
+      One HTML file. About 3,000 lines including embedded CSS and JS. No build step, no framework, no package manager, no deploy script. The whole site can be emailed.
+    </p>
+
+    <div class="two-col">
+      <div class="sec-body">
+        <p>
+          The constraint was deliberate. Internal tooling that needs to ship to a non-technical operator survives longer when it has the smallest possible surface area for things to break. There's no <code>node_modules</code> to update, no SSL cert to renew, no CMS to lock anyone out of.
+        </p>
+        <p>
+          To preview locally, the operator runs <code>python3 -m http.server 8000</code> in the project folder. To deploy, the file gets dropped into any static host &mdash; or just shared as a file attachment.
+        </p>
+      </div>
+      <div class="sec-body">
+        <p>
+          The trade-off: there's no live data. Each Monday, a person opens the file, pastes new numbers into one JavaScript object, and saves. That's the workflow, and it's a feature, not a bug &mdash; it keeps an audit trail and keeps the file portable.
+        </p>
+        <p>
+          The visual identity, the methodology, and the algorithms all live in the same place. If a designer wants to tweak the gold value, it's one find-and-replace. If a district lead wants to extend to 7 stores, the pairings code already handles odd-count rosters with byes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 — What's Next -->
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">09</span><span class="sec-slash"></span>What's Next</div>
+    <p class="sec-sub">
+      The tracker ships for the June 2026 season. Notes from the backlog &mdash; things that could ship if the contest extends beyond the pilot.
+    </p>
+
+    <div class="ia-grid">
+      <div class="ia-card">
+        <div class="ia-num">A</div>
+        <div class="ia-name">Sparkline Trends</div>
+        <div class="ia-desc">A 5-cell sparkline on every store card showing rate trajectory week over week &mdash; momentum at a glance.</div>
+      </div>
+      <div class="ia-card">
+        <div class="ia-num">B</div>
+        <div class="ia-name">Store Profiles</div>
+        <div class="ia-desc">Click any store card to drill into per-cashier breakdowns, matchup history, and weekly notes from the store lead.</div>
+      </div>
+      <div class="ia-card">
+        <div class="ia-num">C</div>
+        <div class="ia-name">Season Finale</div>
+        <div class="ia-desc">An auto-rendered finale page that locks when WK 5 closes &mdash; champion store, MVP cashier, district award reel.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Closer -->
+<section class="closer">
+  <h2>See the <span class="accent">live tracker.</span></h2>
+  <p>
+    Everything in this case study is running &mdash; the season strip, the Swiss pairings, the zones, the district overview. Tap in and click around.
+  </p>
+  <a class="hero-cta" href="/encore-cup" target="_top">
+    Open Encore Cup &rsquo;26
+    <span class="arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <div class="footer-row">
+    Encore Cup &rsquo;26 &middot; Gap Specialty Mid-Atlantic District &middot; Designed and built in-house
+  </div>
+</section>
+
+</body>
+</html>
