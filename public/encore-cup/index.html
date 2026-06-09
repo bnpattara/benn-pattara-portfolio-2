@@ -1877,6 +1877,7 @@ body {
 .sf-link-primary:hover { color: var(--white); border-color: var(--white); }
 .sf-link .sf-arrow { display: inline-block; transition: transform 200ms ease; }
 .sf-link:hover .sf-arrow { transform: translateX(4px); }
+.sf-link:hover .sf-arrow-back { transform: translateX(-4px); }
 .sf-meta {
   display: flex;
   align-items: center;
@@ -2306,21 +2307,19 @@ body {
 <footer class="site-footer">
   <div class="sf-inner">
     <div class="sf-cluster">
+      <a class="sf-link" href="/" target="_top">
+        <span class="sf-arrow sf-arrow-back" aria-hidden="true">&larr;</span>
+        Back to bennpattara.com
+      </a>
       <a class="sf-link sf-link-primary" href="/encore-cup/case-study.html" target="_top">
         View the case study
         <span class="sf-arrow" aria-hidden="true">&rarr;</span>
-      </a>
-      <a class="sf-link" href="/" target="_top">
-        <span class="sf-arrow" aria-hidden="true" style="transform:scaleX(-1)">&rarr;</span>
-        Back to bennpattara.com
       </a>
     </div>
     <div class="sf-meta">
       <span class="sf-meta-name">Encore Cup &rsquo;26</span>
       <span class="sf-dot" aria-hidden="true"></span>
       <span>Gap Specialty &middot; Mid-Atlantic District</span>
-      <span class="sf-dot" aria-hidden="true"></span>
-      <span>&copy; 2026 Benn Pattara</span>
     </div>
   </div>
 </footer>
