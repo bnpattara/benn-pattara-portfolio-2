@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Encore Cup '26 — Case Study</title>
+<title>Encore Cup '26 · Case Study</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Big+Shoulders+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Archivo+Black&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
 /* ════════════════════════════════════════════════════════════════
-   BRAND TOKENS — mirrored from encore-cup-26.html
+   BRAND TOKENS · mirrored from encore-cup-26.html
    ════════════════════════════════════════════════════════════════ */
 :root {
   --navy:    #002B5C;
@@ -38,6 +38,7 @@
 }
 
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 html, body { margin: 0; padding: 0; }
 body {
   background: var(--cream);
@@ -52,7 +53,7 @@ a { color: var(--navy); text-decoration: underline; text-decoration-color: var(-
 a:hover { color: var(--gold-2); }
 
 /* ════════════════════════════════════════════════════════════════
-   MARQUEE — borrowed from the live site for brand consistency
+   MARQUEE · borrowed from the live site for brand consistency
    ════════════════════════════════════════════════════════════════ */
 .marquee {
   position: relative;
@@ -209,6 +210,37 @@ a:hover { color: var(--gold-2); }
   font-size: 13px;
   letter-spacing: 0;
 }
+
+/* Two-button hero CTA row */
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.hero-cta--ghost {
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid rgba(200,162,75,0.55);
+  padding: 12px 20px 12px 22px;
+  box-shadow: none;
+}
+.hero-cta--ghost:hover {
+  background: rgba(200,162,75,0.10);
+  color: var(--gold);
+  border-color: var(--gold);
+  box-shadow: none;
+  transform: translateY(-1px);
+}
+.hero-cta--ghost .arrow {
+  background: transparent;
+  color: var(--gold);
+  border: 1.5px solid var(--gold);
+  font-size: 11px;
+}
+
+/* Scroll-target offset so the section heading isn't flush with the viewport edge */
+#case-study-top { scroll-margin-top: 24px; }
 
 /* ════════════════════════════════════════════════════════════════
    BODY / SECTIONS
@@ -397,7 +429,7 @@ main {
   letter-spacing: 0.5px;
 }
 
-/* Logo lockup cells — show the actual brand marks */
+/* Logo lockup cells · show the actual brand marks */
 .brand-marks {
   display: grid;
   grid-template-columns: 1.4fr 1fr 0.85fr;
@@ -564,7 +596,7 @@ main {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   MATCHUP CARDS — paired specimens showing how 12 stores become 6 matchups
+   MATCHUP CARDS · paired specimens showing how 12 stores become 6 matchups
    ════════════════════════════════════════════════════════════════ */
 .algo {
   background: var(--white);
@@ -1070,7 +1102,7 @@ pre.code .v  { color: var(--white); font-weight: 700; }
     <div class="hero-eyebrow">Case Study &middot; 2026 &middot; Internal Tools</div>
     <h1>Encore Cup <span class="accent">'26</span><br>A Conversion<br>Contest, Reimagined</h1>
     <p class="hero-lede">
-      A single-page contest tracker for Gap Specialty's Mid-Atlantic District &mdash; built around a fair Swiss-style matchup system, a single source of truth for store data, and a broadcast-grade visual identity that holds up on a phone, an iPad, and a leadership boardroom screen.
+      A single-page contest tracker for Gap Specialty's Mid-Atlantic District, built around Swiss-style matchups and a single source of truth, with a broadcast-grade identity that holds up from a phone to a boardroom screen.
     </p>
     <dl class="hero-meta">
       <div><dt>Client</dt><dd>Gap Specialty &middot; Mid-Atlantic District</dd></div>
@@ -1078,24 +1110,30 @@ pre.code .v  { color: var(--white); font-weight: 700; }
       <div><dt>Discipline</dt><dd>Product, Brand, Engineering</dd></div>
       <div><dt>Stack</dt><dd>One HTML file. No framework.</dd></div>
     </dl>
-    <a class="hero-cta" href="/encore-cup" target="_top">
-      Launch the live tracker
-      <span class="arrow" aria-hidden="true">&rarr;</span>
-    </a>
+    <div class="hero-cta-row">
+      <a class="hero-cta hero-cta--ghost" href="#case-study-top">
+        Read the case study
+        <span class="arrow" aria-hidden="true">&darr;</span>
+      </a>
+      <a class="hero-cta" href="/encore-cup" target="_top">
+        Launch the live tracker
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
   </div>
 </header>
 
-<main>
+<main id="case-study-top">
 
-  <!-- 01 — The Contest -->
+  <!-- 01 · The Contest -->
   <section class="section">
-    <div class="sec-label"><span class="sec-num">01</span><span class="sec-slash"></span>The Contest</div>
+    <div class="sec-label"><span class="sec-num">01</span><span class="sec-slash"></span>Brief</div>
     <p class="sec-sub">
-      Twelve stores. Five weeks. One number that matters &mdash; the percentage of transactions that turn into a credit card. The Encore Cup is the Mid-Atlantic District's June competition, and this tracker is how the district sees itself in real time.
+      Twelve stores. Five weeks. One number that matters.
     </p>
     <div class="sec-body">
       <p>
-        Gap Specialty's stated district goal is a <strong>2.0% card conversion rate</strong>: out of every 100 customers checked out, two should leave with a new card. The contest gives that abstract number a personality &mdash; it turns weekly performance into matchups, standings, and bragging rights.
+        Gap Specialty's stated district goal is a <strong>2.0% card conversion rate</strong>. Two of every hundred checkouts should leave with a new card. The contest gives that abstract number a personality and turns weekly performance into matchups, standings, and bragging rights.
       </p>
 
       <div class="stat-row">
@@ -1128,11 +1166,11 @@ pre.code .v  { color: var(--white); font-weight: 700; }
     </div>
   </section>
 
-  <!-- 02 — Brand System -->
+  <!-- 02 · Brand System -->
   <section class="section">
-    <div class="sec-label"><span class="sec-num">02</span><span class="sec-slash"></span>Brand System</div>
+    <div class="sec-label"><span class="sec-num">02</span><span class="sec-slash"></span>Identity</div>
     <p class="sec-sub">
-      The original brief leaned into Gap's archive sports references &mdash; varsity, denim, and a hand-painted contest mark. The tracker had to feel like a tournament broadcast without losing the retail-ops practicality that store leads needed.
+      The tracker had to feel like a tournament broadcast without losing the retail-ops practicality store leads needed. One identity carries both.
     </p>
 
     <div class="sec-body">
@@ -1143,7 +1181,7 @@ pre.code .v  { color: var(--white); font-weight: 700; }
           <div class="brand-tag">01 &middot; Emblem</div>
           <div class="brand-name">Year mark with trophy lockup</div>
           <div class="brand-art">
-            <img src="Frame/002_Asset_23x_hUDtJRre.png" alt="Encore Cup '26 emblem — the year '26' with the trophy embedded into the six">
+            <img src="Frame/002_Asset_23x_hUDtJRre.png" alt="Encore Cup '26 emblem: the year '26' with the trophy embedded into the six">
           </div>
         </div>
         <div class="brand-cell">
@@ -1215,7 +1253,7 @@ pre.code .v  { color: var(--white); font-weight: 700; }
         </div>
       </div>
       <p style="font-size:12.5px;color:var(--ink-mid);margin-top:8px;">
-        Gap Navy is the broadcast surface. Trophy Gold is the rare hero color, reserved for marks, leaders, and the active state. Pitch Green and Kit Red carry result language only &mdash; never decoration. Silver and Bronze sit on second- and third-place stories.
+        Gap Navy is the broadcast surface. Trophy Gold is the rare hero color, reserved for marks, leaders, and the active state. Pitch Green and Kit Red carry result language only, never decoration. Silver and Bronze sit on second- and third-place stories.
       </p>
 
       <h3 style="font-family:'Big Shoulders Display',sans-serif;font-size:15px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;color:var(--navy);margin:30px 0 10px;">Type System</h3>
@@ -1237,32 +1275,21 @@ pre.code .v  { color: var(--white); font-weight: 700; }
         <p class="type-sample" style="font-family:'Inter',sans-serif;font-weight:800;font-size:11px;letter-spacing:2.2px;text-transform:uppercase;">Card Conversion &middot; Group Stage</p>
       </div>
 
-      <h3 style="font-family:'Big Shoulders Display',sans-serif;font-size:15px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;color:var(--navy);margin:30px 0 10px;">Full Brand Sheet</h3>
-      <p style="font-size:12.5px;color:var(--ink-mid);margin:0 0 14px;">
-        The reference document handed to anyone touching the contest &mdash; marks, palette, typography, tagline, and the supporting pattern in one specimen.
-      </p>
-      <div class="brand-sheet">
-        <div class="brand-sheet-cap">
-          <span><b>Encore Cup &rsquo;26</b> &middot; Visual Identity</span>
-          <span>Mid-Atlantic District &middot; 2026</span>
-        </div>
-        <img src="Frame/001_In_a_graphic_design_style_this_infographic_gCqnXPaW.png" alt="Encore Cup '26 visual identity brand sheet — emblem, trophy mark, wordmark, colour palette, typography, pattern, and tagline">
-      </div>
     </div>
   </section>
 
-  <!-- 03 — Information Architecture -->
+  <!-- 03 · Information Architecture -->
   <section class="section">
-    <div class="sec-label"><span class="sec-num">03</span><span class="sec-slash"></span>Information Architecture</div>
+    <div class="sec-label"><span class="sec-num">03</span><span class="sec-slash"></span>Architecture</div>
     <p class="sec-sub">
-      Three pages, each with one job. The whole tracker is a single HTML document with client-side page switching &mdash; no router, no build step, no network round-trips after first paint.
+      Three pages, each with one job, all served from a single self-contained HTML file.
     </p>
 
     <div class="ia-grid">
       <div class="ia-card">
         <div class="ia-num">01</div>
         <div class="ia-name">Matchups</div>
-        <div class="ia-desc">The default landing page. Shows the active week's pairings, the district overview, and the season strip so you can see where the month is heading at a glance.</div>
+        <div class="ia-desc">The default landing page, showing the active week's pairings, the district overview, and the season strip together in one viewport so leadership can see where the month is heading at a glance.</div>
         <ul>
           <li>Season strip</li>
           <li>District overview</li>
@@ -1273,7 +1300,7 @@ pre.code .v  { color: var(--white); font-weight: 700; }
       <div class="ia-card">
         <div class="ia-num">02</div>
         <div class="ia-name">Stores</div>
-        <div class="ia-desc">Performance breakdown for every store, sorted by rate and grouped into green / yellow / red zones so store leads know exactly which band they're in.</div>
+        <div class="ia-desc">Every store, sorted by rate and grouped into green, yellow, and red zones, so store leads know exactly which band they're in.</div>
         <ul>
           <li>Zone dividers</li>
           <li>Per-store rate hero</li>
@@ -1284,7 +1311,7 @@ pre.code .v  { color: var(--white); font-weight: 700; }
       <div class="ia-card">
         <div class="ia-num">03</div>
         <div class="ia-name">Scorers</div>
-        <div class="ia-desc">The human layer. Highlights the district's Golden Boot, weekly Goal of the Week, Golden Glove store, and all individual cashier card-openers month to date.</div>
+        <div class="ia-desc">The human layer of the contest, surfacing the district's Golden Boot, the weekly Goal of the Week, the Golden Glove store, and every individual cashier card-opener month to date.</div>
         <ul>
           <li>Golden Boot hero</li>
           <li>Weekly awards</li>
@@ -1295,38 +1322,38 @@ pre.code .v  { color: var(--white); font-weight: 700; }
     </div>
   </section>
 
-  <!-- 04 — Matchup Methodology -->
+  <!-- 04 · Matchup Methodology -->
   <section class="section">
-    <div class="sec-label"><span class="sec-num">04</span><span class="sec-slash"></span>Matchup Methodology</div>
+    <div class="sec-label"><span class="sec-num">04</span><span class="sec-slash"></span>Methodology</div>
     <p class="sec-sub">
-      The single biggest design decision in the project. A rate-based contest sounds fair on paper, but if you draw a 200-transaction boutique against a 600-transaction flagship, one of them is fighting a different game. The Encore Cup solves that with a two-stage Swiss system.
+      The single hardest design decision in the project was making the contest actually fair. A rate-based contest sounds fair on paper, but pitting a 200-transaction store against a 600-transaction store turns it into two different sports. A two-stage Swiss system solves it.
     </p>
 
     <div class="two-col">
       <div class="sec-body">
-        <h4 style="font-family:'Big Shoulders Display',sans-serif;font-size:15px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold-2);margin:0 0 10px;">Week 1 &mdash; The Seeding Round</h4>
+        <h4 style="font-family:'Big Shoulders Display',sans-serif;font-size:15px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold-2);margin:0 0 10px;">Week 1: The Seeding Round</h4>
         <p>
-          With no prior performance to reference, stores are seeded by <strong>transactions per cashier</strong> &mdash; a single metric that normalizes for both traffic and staffing. A small store running hot lands near a bigger store running slow. Adjacent stores in the seed list are paired.
+          With no prior performance data to reference, stores are seeded by <strong>transactions per cashier</strong>, a single metric that normalizes for both traffic and staffing. A small store running hot lands near a big store running slow, and adjacent stores in the seed list pair off.
         </p>
         <p>
-          This is the only week where rate isn't the driver. Every subsequent week uses live data.
+          This is the only week rate isn't the driver. Every subsequent week uses live data.
         </p>
       </div>
 
       <div class="sec-body">
-        <h4 style="font-family:'Big Shoulders Display',sans-serif;font-size:15px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold-2);margin:0 0 10px;">Weeks 2 &ndash; 5 &mdash; Swiss Rounds</h4>
+        <h4 style="font-family:'Big Shoulders Display',sans-serif;font-size:15px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold-2);margin:0 0 10px;">Weeks 2 &ndash; 5: Swiss Rounds</h4>
         <p>
-          Stores re-pair every week by closest <strong>cumulative WTD conversion rate</strong>. The leader plays the second-place store, third plays fourth, and so on &mdash; same logic as a chess Swiss tournament.
+          Stores re-pair every week by closest <strong>cumulative WTD conversion rate</strong>, the same logic a chess Swiss tournament uses. The leader plays the runner-up, third plays fourth, and the pattern continues down the table.
         </p>
         <p>
-          A greedy algorithm walks the ranked list and prefers <strong>no rematches</strong>: if the closest opponent has already been faced, it skips to the next-nearest unpaired peer. Rematches only happen when nothing else is available.
+          A greedy algorithm walks the ranked list and prefers <strong>no rematches</strong>. If the closest opponent has already been faced, it skips to the next-nearest unpaired peer. Rematches only happen when nothing else is available.
         </p>
       </div>
     </div>
 
     <div class="algo">
-      <h4><span class="algo-tag">WK 1</span>Seeded pairings &mdash; transactions per cashier</h4>
-      <p class="algo-note">All 12 stores sorted by txns/cashier desc, then adjacent stores paired. The number under each store is its seed metric (transactions divided by cashiers on shift).</p>
+      <h4><span class="algo-tag">WK 1</span>Seeded pairings: transactions per cashier</h4>
+      <p class="algo-note">All 12 stores are sorted by txns/cashier descending, then adjacent stores are paired off. The number beneath each store is its seed metric: transactions divided by cashiers on shift.</p>
       <div class="mu-grid">
         <div class="mu-card">
           <span class="mu-tag">M1</span>
@@ -1368,8 +1395,8 @@ pre.code .v  { color: var(--white); font-weight: 700; }
     </div>
 
     <div class="algo">
-      <h4><span class="algo-tag">WK 2</span>Swiss pairings &mdash; closest WTD rate after WK 1</h4>
-      <p class="algo-note">Same 12 stores, re-paired by cumulative conversion rate descending. Top of the table fights stay sharp because the leader always faces the runner-up. Rematch avoidance is checked against the WK 1 matchups above &mdash; none of these pairings repeat.</p>
+      <h4><span class="algo-tag">WK 2</span>Swiss pairings: closest WTD rate after WK 1</h4>
+      <p class="algo-note">The same 12 stores are re-paired by cumulative rate descending, so the leader always faces the runner-up. Rematch avoidance is checked against the WK 1 matchups above, and none of these pairings repeat.</p>
       <div class="mu-grid">
         <div class="mu-card">
           <span class="mu-tag">M1</span>
@@ -1410,7 +1437,7 @@ pre.code .v  { color: var(--white); font-weight: 700; }
       </div>
     </div>
 
-    <p class="sec-sub" style="font-size:14px;">The pairing function lives inline next to the data model. There's no service, no schedule file &mdash; pairings are derived from the same numbers everything else uses.</p>
+    <p class="sec-sub" style="font-size:14px;">The pairing function lives inline next to the data model, with no service or schedule file behind it. Pairings are derived from the same numbers everything else uses.</p>
 
     <pre class="code"><span class="c">// Stores ordered by cumulative WTD rate, tiebreak by txns-per-cashier</span>
 <span class="k">function</span> <span class="v">rankStoresThrough</span>(weekIdx) { <span class="c">...</span> }
@@ -1428,47 +1455,47 @@ pre.code .v  { color: var(--white); font-weight: 700; }
 }</pre>
   </section>
 
-  <!-- 05 — Zones -->
+  <!-- 05 · Zones -->
   <section class="section">
-    <div class="sec-label"><span class="sec-num">05</span><span class="sec-slash"></span>Performance Zones</div>
+    <div class="sec-label"><span class="sec-num">05</span><span class="sec-slash"></span>Status Zones</div>
     <p class="sec-sub">
-      Standings ranks are useful but emotionally flat. Three explicit zones make performance status legible at a glance &mdash; a store either is or isn't making goal, and the dividers say it out loud.
+      Standings ranks are useful but emotionally flat, so three explicit zones make performance status legible at a glance. A store is either making goal or it isn't, and the dividers say it out loud.
     </p>
 
     <div class="zone-preview">
       <div class="zone-card green">
         <div class="zone-name">On Goal</div>
         <div class="zone-rule">rate &ge; 2.0%</div>
-        <div class="zone-desc">Hitting the district target on cumulative cards-per-transaction. These stores set the tone the rest of the field is chasing.</div>
+        <div class="zone-desc">These stores are hitting the district target on cumulative cards-per-transaction, setting the tone the rest of the field is chasing.</div>
         <div class="zone-count">3</div>
         <div class="zone-count-sub">stores wk 1</div>
       </div>
       <div class="zone-card yellow">
         <div class="zone-name">Tracking</div>
         <div class="zone-rule">1.0% &ndash; 1.99%</div>
-        <div class="zone-desc">At least halfway to goal. Close enough that one strong week can pull them into the green zone &mdash; this is where the contest gets won and lost.</div>
+        <div class="zone-desc">These stores are at least halfway to goal, close enough that one strong week can pull them into the green zone. This is where the contest is won and lost.</div>
         <div class="zone-count">7</div>
         <div class="zone-count-sub">stores wk 1</div>
       </div>
       <div class="zone-card red">
         <div class="zone-name">Behind</div>
         <div class="zone-rule">&lt; 1.0%</div>
-        <div class="zone-desc">Under half the district goal. Surfaces the stores that need direct coaching support before the next reporting cycle.</div>
+        <div class="zone-desc">These stores are under half the district goal and need direct coaching support before the next reporting cycle.</div>
         <div class="zone-count">2</div>
         <div class="zone-count-sub">stores wk 1</div>
       </div>
     </div>
 
     <p class="sec-sub" style="font-size:14px;">
-      Sort order is rate descending. Zone dividers slot in wherever the rate threshold is crossed, so the same render function handles a 12-store district or a 6-store district without code changes.
+      Stores sort by rate descending, and the zone dividers slot in wherever the threshold crosses, so the same render function handles a 6-store district just as cleanly as a 12-store one.
     </p>
   </section>
 
-  <!-- 06 — Data Architecture -->
+  <!-- 06 · Data Architecture -->
   <section class="section">
-    <div class="sec-label"><span class="sec-num">06</span><span class="sec-slash"></span>Data Architecture</div>
+    <div class="sec-label"><span class="sec-num">06</span><span class="sec-slash"></span>Data Model</div>
     <p class="sec-sub">
-      Every number on the page &mdash; rate, pace, standings, pairings, scorers &mdash; flows out of a single object. Edit one place each Monday, and the entire site recomputes.
+      Every number on the page flows from a single object. Edit one place each Monday and the entire site recomputes.
     </p>
 
     <div class="arch">
@@ -1492,18 +1519,18 @@ pre.code .v  { color: var(--white); font-weight: 700; }
     </div>
 
     <p>
-      The principle is simple: the contest's truth is the per-store weekly numbers. Everything else &mdash; the standings table, the pairings for next week, the district overview at the top of the page &mdash; is a pure function of that one object. There's no separate schedule file to keep in sync, no manually-maintained leaderboard, no "did I update both places?" risk.
+      The contest's truth lives in the per-store weekly numbers, and everything else on the page is a pure function of that object. There's no separate schedule file to keep in sync, no manually-maintained leaderboard, and no "did I update both places?" risk built into the workflow.
     </p>
     <p>
-      Each Monday the operator edits one block in the script. Refresh. Done.
+      Each Monday, the operator opens the file, pastes new numbers into the data block, and saves. A refresh is all it takes.
     </p>
   </section>
 
-  <!-- 07 — Responsive -->
+  <!-- 07 · Responsive -->
   <section class="section">
-    <div class="sec-label"><span class="sec-num">07</span><span class="sec-slash"></span>Responsive System</div>
+    <div class="sec-label"><span class="sec-num">07</span><span class="sec-slash"></span>Responsive</div>
     <p class="sec-sub">
-      The tracker is consumed on a leadership iPad more often than a phone, but it has to feel native on both. Four breakpoints, three layout modes, one set of components.
+      The tracker is consumed on a leadership iPad more often than on a phone, but it has to feel native on both. Four breakpoints, three layout modes, and one component set carry it from a phone in the back room to a 4K display in the boardroom.
     </p>
 
     <table class="bp-table">
@@ -1535,49 +1562,49 @@ pre.code .v  { color: var(--white); font-weight: 700; }
     </table>
 
     <p>
-      Layout decisions favor density over decoration &mdash; every breakpoint tries to maximize the information visible without scrolling. The header marquee, season strip, and district overview are deliberately short so the matchups sit close to the top.
+      The layout favors density over decoration, so every breakpoint maximizes the information visible above the fold. The header marquee, season strip, and district overview are deliberately short so the matchups always sit close to the top.
     </p>
   </section>
 
-  <!-- 08 — Tech -->
+  <!-- 08 · Tech -->
   <section class="section">
-    <div class="sec-label"><span class="sec-num">08</span><span class="sec-slash"></span>The Stack (or lack of one)</div>
+    <div class="sec-label"><span class="sec-num">08</span><span class="sec-slash"></span>Stack</div>
     <p class="sec-sub">
-      One HTML file. About 3,000 lines including embedded CSS and JS. No build step, no framework, no package manager, no deploy script. The whole site can be emailed.
+      The whole tracker is one HTML file, about 3,000 lines including embedded CSS and JS. There's no build step, no framework, no package manager, and no deploy script. The site can be emailed.
     </p>
 
     <div class="two-col">
       <div class="sec-body">
         <p>
-          The constraint was deliberate. Internal tooling that needs to ship to a non-technical operator survives longer when it has the smallest possible surface area for things to break. There's no <code>node_modules</code> to update, no SSL cert to renew, no CMS to lock anyone out of.
+          The constraint is deliberate. Internal tools that ship to non-technical operators survive longer when there's less surface area for things to break: no <code>node_modules</code> to update, no SSL cert to renew, and no CMS to lock anyone out of.
         </p>
         <p>
-          To preview locally, the operator runs <code>python3 -m http.server 8000</code> in the project folder. To deploy, the file gets dropped into any static host &mdash; or just shared as a file attachment.
+          To preview locally, the operator runs <code>python3 -m http.server 8000</code> in the project folder. To deploy, the file gets dropped into any static host, or just shared as an email attachment.
         </p>
       </div>
       <div class="sec-body">
         <p>
-          The trade-off: there's no live data. Each Monday, a person opens the file, pastes new numbers into one JavaScript object, and saves. That's the workflow, and it's a feature, not a bug &mdash; it keeps an audit trail and keeps the file portable.
+          The trade-off is that there's no live data. Each Monday, a person opens the file, pastes new numbers into the JavaScript object, and saves. That workflow is a feature, not a bug: it keeps an audit trail, and it keeps the file portable.
         </p>
         <p>
-          The visual identity, the methodology, and the algorithms all live in the same place. If a designer wants to tweak the gold value, it's one find-and-replace. If a district lead wants to extend to 7 stores, the pairings code already handles odd-count rosters with byes.
+          The visual identity, the methodology, and the algorithms all live in the same place. If a designer wants to tweak the gold value, it's a single find-and-replace. If a district lead wants to extend the contest to seven stores, the pairings code already handles odd-count rosters with byes.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- 09 — What's Next -->
+  <!-- 09 · What's Next -->
   <section class="section">
-    <div class="sec-label"><span class="sec-num">09</span><span class="sec-slash"></span>What's Next</div>
+    <div class="sec-label"><span class="sec-num">09</span><span class="sec-slash"></span>Roadmap</div>
     <p class="sec-sub">
-      The tracker ships for the June 2026 season. Notes from the backlog &mdash; things that could ship if the contest extends beyond the pilot.
+      The tracker ships for the June 2026 season. These are notes from the backlog: things that could ship if the contest extends beyond the pilot.
     </p>
 
     <div class="ia-grid">
       <div class="ia-card">
         <div class="ia-num">A</div>
         <div class="ia-name">Sparkline Trends</div>
-        <div class="ia-desc">A 5-cell sparkline on every store card showing rate trajectory week over week &mdash; momentum at a glance.</div>
+        <div class="ia-desc">A five-cell sparkline on every store card showing rate trajectory week over week, so leadership can read momentum at a glance.</div>
       </div>
       <div class="ia-card">
         <div class="ia-num">B</div>
@@ -1587,7 +1614,7 @@ pre.code .v  { color: var(--white); font-weight: 700; }
       <div class="ia-card">
         <div class="ia-num">C</div>
         <div class="ia-name">Season Finale</div>
-        <div class="ia-desc">An auto-rendered finale page that locks when WK 5 closes &mdash; champion store, MVP cashier, district award reel.</div>
+        <div class="ia-desc">An auto-rendered finale page that locks when WK 5 closes, with the champion store, the MVP cashier, and the district award reel pulled together in one specimen.</div>
       </div>
     </div>
   </section>
@@ -1598,7 +1625,7 @@ pre.code .v  { color: var(--white); font-weight: 700; }
 <section class="closer">
   <h2>See the <span class="accent">live tracker.</span></h2>
   <p>
-    Everything in this case study is running &mdash; the season strip, the Swiss pairings, the zones, the district overview. Tap in and click around.
+    Everything in this case study is running, from the season strip to the Swiss pairings, the zones, and the district overview. Tap in and click around.
   </p>
   <a class="hero-cta" href="/encore-cup" target="_top">
     Open Encore Cup &rsquo;26
