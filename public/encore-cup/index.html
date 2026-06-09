@@ -1833,6 +1833,77 @@ body {
 }
 
 /* ════════════════════════════════════════════════════════════════
+   SITE FOOTER · navy band that sits below all pages
+   ════════════════════════════════════════════════════════════════ */
+.site-footer {
+  background: var(--navy-2);
+  color: var(--on-navy);
+  border-top: 1px solid rgba(200, 162, 75, 0.35);
+  padding: 36px 24px calc(36px + env(safe-area-inset-bottom, 0));
+  margin-top: 24px;
+}
+.sf-inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px 32px;
+  flex-wrap: wrap;
+}
+.sf-cluster {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.sf-link {
+  font-family: 'Big Shoulders Display', 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--on-navy);
+  text-decoration: none;
+  border-bottom: 1px solid var(--on-navy-line);
+  padding-bottom: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+.sf-link:hover { color: var(--gold); border-color: var(--gold); }
+.sf-link-primary { color: var(--gold); border-color: var(--gold); }
+.sf-link-primary:hover { color: var(--white); border-color: var(--white); }
+.sf-link .sf-arrow { display: inline-block; transition: transform 200ms ease; }
+.sf-link:hover .sf-arrow { transform: translateX(4px); }
+.sf-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--on-navy-mid);
+}
+.sf-meta-name { color: var(--gold); font-weight: 800; letter-spacing: 1.6px; }
+.sf-dot {
+  width: 4px;
+  height: 4px;
+  background: var(--on-navy-soft);
+  transform: rotate(45deg);
+}
+@media (max-width: 760px) {
+  .site-footer { padding: 28px 20px calc(28px + env(safe-area-inset-bottom, 0)); }
+  .sf-inner { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .sf-cluster { gap: 18px; }
+  .sf-link { font-size: 12px; letter-spacing: 1.6px; }
+  .sf-meta { font-size: 10px; gap: 10px; flex-wrap: wrap; }
+}
+
+/* ════════════════════════════════════════════════════════════════
    ANIMATIONS
    ════════════════════════════════════════════════════════════════ */
 @keyframes fadeUp {
@@ -2228,6 +2299,31 @@ body {
     </div>
   </div>
 </div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SITE FOOTER · case study + portfolio links + copyright
+     ════════════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="sf-inner">
+    <div class="sf-cluster">
+      <a class="sf-link sf-link-primary" href="/encore-cup/case-study.html" target="_top">
+        View the case study
+        <span class="sf-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="sf-link" href="/" target="_top">
+        <span class="sf-arrow" aria-hidden="true" style="transform:scaleX(-1)">&rarr;</span>
+        Back to bennpattara.com
+      </a>
+    </div>
+    <div class="sf-meta">
+      <span class="sf-meta-name">Encore Cup &rsquo;26</span>
+      <span class="sf-dot" aria-hidden="true"></span>
+      <span>Gap Specialty &middot; Mid-Atlantic District</span>
+      <span class="sf-dot" aria-hidden="true"></span>
+      <span>&copy; 2026 Benn Pattara</span>
+    </div>
+  </div>
+</footer>
 
 <script>
 /* ════════════════════════════════════════════════════════════════

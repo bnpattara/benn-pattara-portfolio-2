@@ -1061,7 +1061,26 @@ pre.code .v  { color: var(--white); font-weight: 700; }
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--on-navy-soft);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 14px;
 }
+.closer .closer-back {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: 2px;
+  border-bottom: 1px solid rgba(200, 162, 75, 0.45);
+  padding-bottom: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+.closer .closer-back:hover { color: var(--white); border-color: var(--white); }
+.closer .closer-sep { color: var(--on-navy-soft); }
 
 /* ════════════════════════════════════════════════════════════════
    RESPONSIVE
@@ -1632,7 +1651,14 @@ pre.code .v  { color: var(--white); font-weight: 700; }
     <span class="arrow" aria-hidden="true">&rarr;</span>
   </a>
   <div class="footer-row">
-    Encore Cup &rsquo;26 &middot; Gap Specialty Mid-Atlantic District &middot; Designed and built in-house
+    <a class="closer-back" href="/" target="_top">
+      <span aria-hidden="true">&larr;</span>
+      Back to bennpattara.com
+    </a>
+    <span class="closer-sep" aria-hidden="true">&middot;</span>
+    <span>Encore Cup &rsquo;26 &middot; Gap Specialty Mid-Atlantic District</span>
+    <span class="closer-sep" aria-hidden="true">&middot;</span>
+    <span>&copy; 2026 Benn Pattara</span>
   </div>
 </section>
 
