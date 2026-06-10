@@ -2411,7 +2411,7 @@ function pinIcon(color) {
 const GOAL = 2.0;
 
 // Gap Specialty · Mid-Atlantic District — 12 real stores
-// Pulled from June 2026 WTD export.
+// WK 1 from data-8.xlsx · MTD / WK 2 txns+cards from data-7.xlsx (Jun 2026 pull).
 const STORES = {
   "1224": "Short Pump",
   "1305": "Lenox Square",
@@ -2460,7 +2460,7 @@ const WEEKS = [
 // ═══════════════════════════════════════════════════════════════
 const STORE_WEEK_STATS = {
   "WK 1": {
-    // FINAL · sourced from JUN Wk 1 export. District totals: 6,382 txns · 105 cards · 1.65% rate.
+    // FINAL · sourced from data-8.xlsx. District totals: 6,382 txns · 105 cards · 1.65% rate.
     "1224": { txns: 741, cards: 18, cashiers: 17, cashiersOpened:  8, cashiersAtGoal: 5 }, // Short Pump           2.43%
     "1305": { txns: 532, cards:  8, cashiers: 13, cashiersOpened:  6, cashiersAtGoal: 4 }, // Lenox Square         1.50%
     "1319": { txns: 400, cards:  6, cashiers: 12, cashiersOpened:  5, cashiersAtGoal: 5 }, // East Cobb            1.50%
@@ -2475,7 +2475,7 @@ const STORE_WEEK_STATS = {
     "6810": { txns: 509, cards:  6, cashiers: 11, cashiersOpened:  5, cashiersAtGoal: 4 }, // Green Hills          1.18%
   },
   "WK 2": {
-    // IN PROGRESS · MTD minus WK 1, through Jun 9 pull. Totals: 1,708 txns · 30 cards · 1.76% rate.
+    // IN PROGRESS · txns/cards from data-7.xlsx MTD minus data-8 WK1. Totals: 1,708 txns · 30 cards · 1.76% rate.
     "1224": { txns: 172, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal: 3 }, // Short Pump           1.74%
     "1305": { txns: 152, cards:  4, cashiers:  8, cashiersOpened:  2, cashiersAtGoal: 2 }, // Lenox Square         2.63%
     "1319": { txns: 117, cards:  0, cashiers:  6, cashiersOpened:  0, cashiersAtGoal: 0 }, // East Cobb            0.00%
@@ -2494,7 +2494,7 @@ const STORE_WEEK_STATS = {
   "WK 5": { /* populate each Monday */ },
 };
 
-// MTD top card openers (cumulative WK 1 + WK 2 through Jun 9 pull)
+// MTD top card openers (cumulative through data-7.xlsx · 8,090 txns · 135 cards · 1.67%)
 const SCORERS = [
   { name: "Benn Pattara",        store: "1224", goals: 11 }, // Short Pump
   { name: "Alazee Allen",        store: "6004", goals:  6 }, // Crabtree Valley
