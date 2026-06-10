@@ -2460,53 +2460,70 @@ const WEEKS = [
 // ═══════════════════════════════════════════════════════════════
 const STORE_WEEK_STATS = {
   "WK 1": {
-    // Backfilled from June 2026 WTD export. District totals: 3,858 txns · 63 cards · 1.63% rate.
-    "1224": { txns: 449, cards: 12, cashiers: 15, cashiersOpened: 6, cashiersAtGoal: 4 }, // Short Pump           2.67%
-    "1305": { txns: 309, cards:  6, cashiers: 10, cashiersOpened: 5, cashiersAtGoal: 4 }, // Lenox Square         1.94%
-    "1319": { txns: 246, cards:  3, cashiers: 11, cashiersOpened: 3, cashiersAtGoal: 3 }, // East Cobb            1.22%
-    "1321": { txns: 289, cards:  3, cashiers: 13, cashiersOpened: 2, cashiersAtGoal: 2 }, // Store #1321          1.04%
-    "1459": { txns: 528, cards:  9, cashiers: 15, cashiersOpened: 5, cashiersAtGoal: 5 }, // Avalon               1.70%
-    "4807": { txns: 214, cards:  6, cashiers: 12, cashiersOpened: 5, cashiersAtGoal: 5 }, // Hanes                2.80%
-    "594":  { txns: 299, cards:  3, cashiers:  8, cashiersOpened: 3, cashiersAtGoal: 2 }, // Mayfaire             1.00%
-    "6004": { txns: 389, cards: 11, cashiers: 15, cashiersOpened: 7, cashiersAtGoal: 7 }, // Crabtree Valley      2.83%
-    "6014": { txns: 436, cards:  2, cashiers: 18, cashiersOpened: 2, cashiersAtGoal: 2 }, // Streets @ Southpoint 0.46%
-    "6108": { txns: 240, cards:  2, cashiers: 11, cashiersOpened: 2, cashiersAtGoal: 2 }, // Haywood              0.83%
-    "6806": { txns: 140, cards:  2, cashiers: 10, cashiersOpened: 2, cashiersAtGoal: 2 }, // West Town            1.43%
-    "6810": { txns: 319, cards:  4, cashiers:  8, cashiersOpened: 3, cashiersAtGoal: 3 }, // Green Hills          1.25%
+    // FINAL · sourced from JUN Wk 1 export. District totals: 6,382 txns · 105 cards · 1.65% rate.
+    "1224": { txns: 741, cards: 18, cashiers: 17, cashiersOpened:  8, cashiersAtGoal: 5 }, // Short Pump           2.43%
+    "1305": { txns: 532, cards:  8, cashiers: 13, cashiersOpened:  6, cashiersAtGoal: 4 }, // Lenox Square         1.50%
+    "1319": { txns: 400, cards:  6, cashiers: 12, cashiersOpened:  5, cashiersAtGoal: 5 }, // East Cobb            1.50%
+    "1321": { txns: 476, cards:  5, cashiers: 13, cashiersOpened:  4, cashiersAtGoal: 4 }, // Store #1321          1.05%
+    "1459": { txns: 869, cards: 13, cashiers: 16, cashiersOpened:  5, cashiersAtGoal: 5 }, // Avalon               1.50%
+    "4807": { txns: 339, cards:  9, cashiers: 13, cashiersOpened:  5, cashiersAtGoal: 5 }, // Hanes                2.65%
+    "594":  { txns: 461, cards:  6, cashiers: 10, cashiersOpened:  3, cashiersAtGoal: 3 }, // Mayfaire             1.30%
+    "6004": { txns: 637, cards: 22, cashiers: 16, cashiersOpened: 11, cashiersAtGoal: 8 }, // Crabtree Valley      3.45%
+    "6014": { txns: 797, cards:  5, cashiers: 19, cashiersOpened:  5, cashiersAtGoal: 2 }, // Streets @ Southpoint 0.63%
+    "6108": { txns: 393, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal: 2 }, // Haywood              0.76%
+    "6806": { txns: 228, cards:  4, cashiers: 11, cashiersOpened:  4, cashiersAtGoal: 4 }, // West Town            1.75%
+    "6810": { txns: 509, cards:  6, cashiers: 11, cashiersOpened:  5, cashiersAtGoal: 4 }, // Green Hills          1.18%
   },
-  "WK 2": { /* populate each Monday */ },
+  "WK 2": {
+    // IN PROGRESS · MTD minus WK 1, through Jun 9 pull. Totals: 1,708 txns · 30 cards · 1.76% rate.
+    "1224": { txns: 172, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal: 3 }, // Short Pump           1.74%
+    "1305": { txns: 152, cards:  4, cashiers:  8, cashiersOpened:  2, cashiersAtGoal: 2 }, // Lenox Square         2.63%
+    "1319": { txns: 117, cards:  0, cashiers:  6, cashiersOpened:  0, cashiersAtGoal: 0 }, // East Cobb            0.00%
+    "1321": { txns: 150, cards:  3, cashiers:  9, cashiersOpened:  3, cashiersAtGoal: 3 }, // Store #1321          2.00%
+    "1459": { txns: 172, cards:  4, cashiers:  9, cashiersOpened:  1, cashiersAtGoal: 1 }, // Avalon               2.33%
+    "4807": { txns:  75, cards:  0, cashiers:  9, cashiersOpened:  0, cashiersAtGoal: 0 }, // Hanes                0.00%
+    "594":  { txns:  97, cards:  2, cashiers:  7, cashiersOpened:  2, cashiersAtGoal: 2 }, // Mayfaire             2.06%
+    "6004": { txns: 181, cards:  5, cashiers: 11, cashiersOpened:  4, cashiersAtGoal: 4 }, // Crabtree Valley      2.76%
+    "6014": { txns: 263, cards:  6, cashiers: 13, cashiersOpened:  5, cashiersAtGoal: 5 }, // Streets @ Southpoint 2.28%
+    "6108": { txns: 110, cards:  1, cashiers:  7, cashiersOpened:  1, cashiersAtGoal: 1 }, // Haywood              0.91%
+    "6806": { txns:  82, cards:  1, cashiers:  6, cashiersOpened:  1, cashiersAtGoal: 1 }, // West Town            1.22%
+    "6810": { txns: 137, cards:  1, cashiers:  7, cashiersOpened:  1, cashiersAtGoal: 0 }, // Green Hills          0.73%
+  },
   "WK 3": { /* populate each Monday */ },
   "WK 4": { /* populate each Monday */ },
   "WK 5": { /* populate each Monday */ },
 };
 
-// Top WK 1 card openers across the district (real associates)
+// MTD top card openers (cumulative WK 1 + WK 2 through Jun 9 pull)
 const SCORERS = [
-  { name: "Benn Pattara",     store: "1224", goals: 7 }, // Short Pump
-  { name: "Alazee Allen",     store: "6004", goals: 3 }, // Crabtree Valley
-  { name: "Adrienne Minor",   store: "1305", goals: 2 }, // Lenox Square
-  { name: "Andy Bates",       store: "1459", goals: 2 }, // Avalon
-  { name: "Brandon Newman",   store: "1459", goals: 2 }, // Avalon
-  { name: "Sydney Braggs",    store: "1459", goals: 2 }, // Avalon
-  { name: "Toya Gavin",       store: "1459", goals: 2 }, // Avalon
-  { name: "Jacqueline White", store: "4807", goals: 2 }, // Hanes
-  { name: "Lewis Waters",     store: "6004", goals: 2 }, // Crabtree Valley
-  { name: "Valeria Lastra",   store: "6004", goals: 2 }, // Crabtree Valley
-  { name: "Mary Puryear",     store: "6810", goals: 2 }, // Green Hills
-  { name: "Gianna Bien-Aime", store: "1321", goals: 2 }, // Store #1321
+  { name: "Benn Pattara",        store: "1224", goals: 11 }, // Short Pump
+  { name: "Alazee Allen",        store: "6004", goals:  6 }, // Crabtree Valley
+  { name: "Toya Gavin",          store: "1459", goals:  6 }, // Avalon
+  { name: "Osarumwense Onaiwu",  store: "6004", goals:  5 }, // Crabtree Valley
+  { name: "Andy Bates",          store: "1459", goals:  4 }, // Avalon
+  { name: "Amy Carlyle",         store: "6004", goals:  3 }, // Crabtree Valley
+  { name: "Brandon Newman",      store: "1459", goals:  3 }, // Avalon
+  { name: "Lewis Waters",        store: "6004", goals:  3 }, // Crabtree Valley
+  { name: "Lysandra Weber",      store: "6014", goals:  3 }, // Streets @ Southpoint
+  { name: "Madeleine Soderlund", store: "4807", goals:  3 }, // Hanes
+  { name: "Rebeca Hernandez",    store:  "594", goals:  3 }, // Mayfaire
+  { name: "Stacey Rivera",       store: "1305", goals:  3 }, // Lenox Square
 ];
 
 const AWARDS = [
   { week: "WK 1",
-    gotw: "Benn Pattara", gotwStore: "1224", gotwGoals: 7,
+    gotw: "Benn Pattara", gotwStore: "1224", gotwGoals: 10,
     goldenGlove: "Crabtree Valley",
-    ggNote: "Top district rate — 2.83% (+0.83 over 2.0% goal)" },
-  { week: "WK 2", gotw: null, gotwStore: null, gotwGoals: null, goldenGlove: null, ggNote: null },
+    ggNote: "Top district rate — 3.45% (+1.45 over 2.0% goal)" },
+  { week: "WK 2",
+    gotw: "Toya Gavin", gotwStore: "1459", gotwGoals: 4,
+    goldenGlove: "Crabtree Valley",
+    ggNote: "Top district rate — 2.76% (+0.76 over 2.0% goal · WTD)" },
 ];
 
 /* ════════════════════════════════════════════════════════════════ */
 
-let activeWeek = 0;
+let activeWeek = 1;
 
 /* ── DERIVATION HELPERS ────────────────────────────────────────── */
 function getStats(weekLabel, storeId) {
