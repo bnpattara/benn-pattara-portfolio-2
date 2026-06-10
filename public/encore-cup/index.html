@@ -2444,6 +2444,7 @@ const WEEKS = [
 // STORE_WEEK_STATS — THE source of truth.
 // Edit this each week. Everything (rates, standings, pace, district
 // overview, store breakdown) is derived from these numbers.
+// WK 2+ in-progress weeks: subtract prior week(s) from the latest MTD export.
 //
 // Schema per store per week:
 //   txns:            total transactions handled by the store
@@ -2475,19 +2476,19 @@ const STORE_WEEK_STATS = {
     "6810": { txns: 509, cards:  6, cashiers: 11, cashiersOpened:  5, cashiersAtGoal: 4 }, // Green Hills          1.18%
   },
   "WK 2": {
-    // IN PROGRESS · txns/cards from data-7.xlsx MTD minus data-8 WK1. Totals: 1,708 txns · 30 cards · 1.76% rate.
-    "1224": { txns: 172, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal: 3 }, // Short Pump           1.74%
-    "1305": { txns: 152, cards:  4, cashiers:  8, cashiersOpened:  2, cashiersAtGoal: 2 }, // Lenox Square         2.63%
-    "1319": { txns: 117, cards:  0, cashiers:  6, cashiersOpened:  0, cashiersAtGoal: 0 }, // East Cobb            0.00%
-    "1321": { txns: 150, cards:  3, cashiers:  9, cashiersOpened:  3, cashiersAtGoal: 3 }, // Store #1321          2.00%
-    "1459": { txns: 172, cards:  4, cashiers:  9, cashiersOpened:  1, cashiersAtGoal: 1 }, // Avalon               2.33%
-    "4807": { txns:  75, cards:  0, cashiers:  9, cashiersOpened:  0, cashiersAtGoal: 0 }, // Hanes                0.00%
-    "594":  { txns:  97, cards:  2, cashiers:  7, cashiersOpened:  2, cashiersAtGoal: 2 }, // Mayfaire             2.06%
-    "6004": { txns: 181, cards:  5, cashiers: 11, cashiersOpened:  4, cashiersAtGoal: 4 }, // Crabtree Valley      2.76%
-    "6014": { txns: 263, cards:  6, cashiers: 13, cashiersOpened:  5, cashiersAtGoal: 5 }, // Streets @ Southpoint 2.28%
-    "6108": { txns: 110, cards:  1, cashiers:  7, cashiersOpened:  1, cashiersAtGoal: 1 }, // Haywood              0.91%
-    "6806": { txns:  82, cards:  1, cashiers:  6, cashiersOpened:  1, cashiersAtGoal: 1 }, // West Town            1.22%
-    "6810": { txns: 137, cards:  1, cashiers:  7, cashiersOpened:  1, cashiersAtGoal: 0 }, // Green Hills          0.73%
+    // IN PROGRESS · data-7.xlsx MTD minus data-8.xlsx WK1 (all fields). Totals: 1,708 txns · 30 cards · 1.76% rate.
+    "1224": { txns: 172, cards:  3, cashiers:  1, cashiersOpened:  0, cashiersAtGoal: 0 }, // Short Pump           1.74%
+    "1305": { txns: 152, cards:  4, cashiers:  1, cashiersOpened:  1, cashiersAtGoal: 1 }, // Lenox Square         2.63%
+    "1319": { txns: 117, cards:  0, cashiers:  1, cashiersOpened:  0, cashiersAtGoal: 0 }, // East Cobb            0.00%
+    "1321": { txns: 150, cards:  3, cashiers:  0, cashiersOpened:  2, cashiersAtGoal: 0 }, // Store #1321          2.00%
+    "1459": { txns: 172, cards:  4, cashiers:  1, cashiersOpened:  0, cashiersAtGoal: 0 }, // Avalon               2.33%
+    "4807": { txns:  75, cards:  0, cashiers:  2, cashiersOpened:  0, cashiersAtGoal: 0 }, // Hanes                0.00%
+    "594":  { txns:  97, cards:  2, cashiers:  1, cashiersOpened:  0, cashiersAtGoal: 0 }, // Mayfaire             2.06%
+    "6004": { txns: 181, cards:  5, cashiers:  1, cashiersOpened:  1, cashiersAtGoal: 1 }, // Crabtree Valley      2.76%
+    "6014": { txns: 263, cards:  6, cashiers:  0, cashiersOpened:  3, cashiersAtGoal: 2 }, // Streets @ Southpoint 2.28%
+    "6108": { txns: 110, cards:  1, cashiers:  0, cashiersOpened:  1, cashiersAtGoal: 0 }, // Haywood              0.91%
+    "6806": { txns:  82, cards:  1, cashiers:  0, cashiersOpened:  0, cashiersAtGoal: 0 }, // West Town            1.22%
+    "6810": { txns: 137, cards:  1, cashiers:  0, cashiersOpened:  0, cashiersAtGoal: 0 }, // Green Hills          0.73%
   },
   "WK 3": { /* populate each Monday */ },
   "WK 4": { /* populate each Monday */ },
