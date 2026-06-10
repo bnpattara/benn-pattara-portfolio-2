@@ -151,7 +151,7 @@ export default function Home() {
       num: "01 / 06",
       title: "NIKE SNKRS",
       clientWorkLabel: "Live client",
-      insight: "\u201CWhich problem do we solve first? Finding the failure point in a drop system designed for desire but creating abandonment. Rebuilding trust through documented tradeoffs.\u201D",
+      insight: "\u201CA drop system designed for desire that produces abandonment. We diagnosed the failure point and rebuilt trust through documented tradeoffs.\u201D",
       link: "/work/nike",
     },
     {
@@ -192,7 +192,7 @@ export default function Home() {
       badge: "Cultural Destination → Spatial Design",
       num: "05 / 06",
       title: "Diesel Iceberg",
-      insight: "\u201CA building as a brand experience. Optimised for self-knowledge, not just transactions. Harajuku\u2019s gravitational anchor.\u201D",
+      insight: "\u201CA five-floor building where ninety percent of the brand becomes inhabitable. Harajuku. No phones on two floors. Commerce is the outcome, not the offer.\u201D",
       link: "/work/diesel",
       peek: true,
     },
@@ -408,13 +408,13 @@ export default function Home() {
       <section id="about" className="about-hero">
         <div>
           <h2 className="about-hero-title" data-animate="fade-up" data-animate-delay="0">
-            THE FASHION BRANDS THAT LAST DON&rsquo;T JUST SELL CLOTHES, MAKEUP, OR ACCESSORIES. THEY SELL A VERSION OF YOURSELF YOU WANT TO BE.
+            FASHION BRANDS OVER-INDEX ON ACQUISITION. THE DEFENSIBLE POSITION IS EARNED LOYALTY, NOT PURCHASED ATTENTION.
           </h2>
           <p className="about-hero-body" data-animate="fade-up" data-animate-delay="80">
-            The most powerful ones make people feel like themselves. The smile when a pair of jeans fits perfectly. The satisfaction of redeeming rewards with your favorite retail card. The feeling of the perfect outfit making you stand just a little taller. These are the moments where confidence compounds, where the items we connect with stop being transactions and start being part of how we see ourselves.
+            Confidence is not a brand value. It is a measurable outcome. I build the systems that produce it: the product experience that earns trust, the loyalty architecture that converts a transaction into identity, and the data infrastructure that proves the difference.
           </p>
           <p className="about-hero-body" data-animate="fade-up" data-animate-delay="160">
-            I&rsquo;m a multidisciplinary strategic creative who works across every stage of the consumer journey: from the cultural insight that earns attention, to the product experience that builds trust, to the loyalty system that makes you feel like you belong. I use data to understand desire, and design to fulfill it. That&rsquo;s the work. That&rsquo;s what I build toward.
+            I work across brand strategy, product management, and experience design. I use data to find the failure point and design to fix it. That&rsquo;s the work.
           </p>
         </div>
 
@@ -483,7 +483,7 @@ export default function Home() {
           <div className="cap-card" data-animate="fade-up" data-animate-delay="160">
             <div className="cap-num">03 · </div>
             <div className="cap-title">Experience<br />Design</div>
-            <div className="cap-desc">Designing the phygital gap, from user journey mapping and service blueprints to high-fidelity prototypes. Information architecture built for storytelling, not just usability.</div>
+            <div className="cap-desc">Designing across physical and digital retail, from service blueprints to high-fidelity prototypes. Information architecture built for clarity, not just usability.</div>
             <div className="cap-skills">
               <span className="cap-skill">Journey Mapping</span>
               <span className="cap-skill">Service Blueprints</span>
@@ -494,7 +494,7 @@ export default function Home() {
           <div className="cap-card" data-animate="fade-up" data-animate-delay="240">
             <div className="cap-num">04 · </div>
             <div className="cap-title">Systems<br />Design</div>
-            <div className="cap-desc">Designing the invisible scaffolding: gamification mechanics, loyalty architecture, behavioral loops, and circular economy models that make brand engagement feel effortless.</div>
+            <div className="cap-desc">Designing the invisible scaffolding: gamification, loyalty architecture, behavioral loops, and circular models. The best system design is the one the consumer never notices working.</div>
             <div className="cap-skills">
               <span className="cap-skill">Gamification</span>
               <span className="cap-skill">Behavioral Design</span>
@@ -554,24 +554,25 @@ export default function Home() {
           </div>
           <div>
             <div className="exp-intro" data-animate="fade-up" data-animate-delay="0">AN UNUSUAL PATH.<br />AN INTENTIONAL PRACTICE.</div>
-            <p className="exp-intro-body">A background in graphic design, trained on visual systems and narrative craft, combined with frontline retail experience where loyalty isn&rsquo;t a program: it&rsquo;s a feeling you either engineer or lose.</p>
+            <p className="exp-intro-body">Graphic design trained on visual systems. Frontline retail where loyalty is a feeling you either engineer or lose.</p>
 
             {/* Role 01 */}
             <div className="role-row" data-animate="fade-left" data-animate-delay="0">
               <div>
-                <div className="role-date">APR 2025 &ndash; PRESENT</div>
-                <div className="role-company">GAP INC. &middot; #1224</div>
+                <div className="role-date">2024 &ndash; PRESENT</div>
+                <div className="role-company">GAP STORE #1224</div>
               </div>
               <div>
                 <div className="role-title">LOYALTY LEAD</div>
                 <div className="role-desc">
                   <ul>
-                    <li>Spearheaded Encore Madness, a Mid-Atlantic district loyalty acquisition initiative spanning 11 stores, partnering with GM/DM to build program infrastructure.</li>
-                    <li>Scaled personal loyalty conversion from 1.22% to 12.07% over eight months (nearly 10x improvement), earning #1 acquisition rate YTD.</li>
-                    <li>Drove +11% comp YTD and a 40% increase in team acquisition goal attainment through proprietary KPI-based coaching methodology.</li>
+                    <li>Architected Encore Madness, a test-and-learn district competition across 11 stores, delivering 86% card application lift and 141% card transaction lift at Store #1224.</li>
+                    <li>Designed Encore Cup, a FIFA World Cup 2026-themed in-store loyalty program with a live HTML dashboard tracking results, standings, and leaderboards.</li>
+                    <li>Built cross-functional coaching infrastructure (LOD handbooks, S.T.Y.L.E. styling guides, conversion scripting) to operationalize HQ loyalty strategy at the store level.</li>
+                    <li>Scaled personal loyalty conversion from 1.22% to 12.07%; #1 in Gap East for card volume and acquisition rate, Q1 2026. Team acquisition goal attainment +40%; comp YTD +11%.</li>
                   </ul>
                 </div>
-                <div className="role-highlight">~10X LOYALTY CONVERSION IMPROVEMENT &middot; #1 ACQUISITION IN DISTRICT YTD</div>
+                <div className="role-highlight">10&times; CONVERSION GROWTH &middot; #1 GAP EAST CARD VOLUME &amp; ACQ. RATE, Q1 2026</div>
               </div>
             </div>
 
@@ -582,28 +583,46 @@ export default function Home() {
                 <div className="role-company">BRANCH MUSEUM OF DESIGN</div>
               </div>
               <div>
+                <div className="role-title">UI/UX STRATEGIST &amp; CONTENT DESIGNER &middot; W/ MULLENLOWE U.S.</div>
                 <div className="role-desc">
                   <ul>
-                    <li>Client-side digital consumer journey lead on full web ecosystem build, translating new brand identity into a cohesive digital experience.</li>
-                    <li>Authored PRDs with user stories and acceptance criteria; built interactive prototypes in React/HTML/CSS to validate direction.</li>
-                    <li>Coordinated agile sprints across rebrand visual identity, CMS integration, and accessibility compliance.</li>
-                    <li>Work recognized in AdAge, AdForum, Communication Arts, Print Mag, and Stash.</li>
+                    <li>Led strategic translation of new institutional identity into a digital-first experience system: user journeys, content hierarchy, and interaction logic in collaboration with MullenLowe U.S.</li>
+                    <li>Mapped end-to-end visitor journeys across digital discovery and physical attendance; designed content touchpoints to close the gap between digital engagement and in-space conversion.</li>
+                    <li>Operated as connective layer between institutional stakeholders, creative partners, and technical execution, aligning vision, brand standards, and delivery timelines.</li>
+                  </ul>
+                </div>
+                <div className="role-highlight">ADAGE REBRAND OF THE YEAR 2026 &middot; ADAGE &middot; ADFORUM &middot; COMMUNICATION ARTS</div>
+              </div>
+            </div>
+
+            {/* Role 03 */}
+            <div className="role-row" data-animate="fade-left" data-animate-delay="150">
+              <div>
+                <div className="role-date">APR &ndash; OCT 2025</div>
+                <div className="role-company">INSTITUTE FOR CONTEMPORARY ART AT VCU</div>
+              </div>
+              <div>
+                <div className="role-title">BRAND STRATEGIST &amp; EXPERIENTIAL CREATIVE</div>
+                <div className="role-desc">
+                  <ul>
+                    <li>Developed strategic and experiential framework for high-profile institutional programming, defining how ICA&rsquo;s identity translates across physical space, digital presence, and community activation.</li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            {/* Role 03 */}
+            {/* Role 04 */}
             <div className="role-row" data-animate="fade-left" data-animate-delay="200" style={{ borderBottom: "1px solid var(--g200)", paddingBottom: 32 }}>
               <div>
-                <div className="role-date">JAN 2025 &ndash; PRESENT</div>
-                <div className="role-company">THE REV. FACTORY</div>
+                <div className="role-date">JAN 2025 &ndash; FEB 2026</div>
+                <div className="role-company">REVOLUTION FACTORY</div>
               </div>
               <div>
+                <div className="role-title">BRAND STRATEGIST &amp; CREATIVE CONSULTANT</div>
                 <div className="role-desc">
                   <ul>
-                    <li>Serving as Creative Director for the upcoming publication <em>Designing the Future</em>.</li>
-                    <li>Designed "Digital Fluency" model visualizations for C-suite executives, translating complex ML concepts into actionable strategic frameworks.</li>
+                    <li>Lead strategist for <em>Designing the Future</em>, a forthcoming publication on AI and organizational leadership, responsible for narrative architecture and translating research into accessible brand voice.</li>
+                    <li>Developed frameworks for embedding generative AI tools into core business workflows, treating AI integration as a test-and-learn capability problem.</li>
                   </ul>
                 </div>
               </div>
