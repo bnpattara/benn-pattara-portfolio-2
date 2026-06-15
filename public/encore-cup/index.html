@@ -1084,11 +1084,11 @@ body {
 .mc-side-bar .fill.above { background: linear-gradient(90deg, var(--green), #2bb277); }
 .mc-side-bar .fill.gold  { background: linear-gradient(90deg, var(--gold),  #e6c373); }
 .mc-side-bar .fill.below { background: linear-gradient(90deg, var(--red),   #f06058); }
-/* 2.0% goal marker at 66.66% (since the bar maxes at 3.0%) */
+/* 1.8% district goal marker — position set per bar via --goal-marker (goal / 3.0% max) */
 .mc-side-bar::after {
   content: '';
   position: absolute;
-  left: 66.66%;
+  left: var(--goal-marker, 60%);
   top: -2px; bottom: -2px;
   width: 1.5px;
   background: rgba(0,43,92,0.35);
@@ -2154,8 +2154,8 @@ body {
       </span>
       <span class="hstat hstat-gold">
         <span class="hstat-k">Goal</span>
-        <span class="hstat-v">2.0%</span>
-        <span class="hstat-sub">cards / txns</span>
+        <span class="hstat-v" id="hdrGoalVal">1.8%</span>
+        <span class="hstat-sub">district target</span>
       </span>
       <span class="hstat">
         <span class="hstat-k">Stores</span>
@@ -2170,7 +2170,7 @@ body {
       <span class="hstat">
         <span class="hstat-k">Pace</span>
         <span class="hstat-v" id="hdrPace">—</span>
-        <span class="hstat-sub" id="hdrPaceSub">vs 2.0% MTD</span>
+        <span class="hstat-sub" id="hdrPaceSub">vs 1.8% MTD</span>
       </span>
       <span class="hstat hstat-gold">
         <span class="hstat-k">Cards</span>
@@ -2221,8 +2221,8 @@ body {
         <div class="cw-label">June Group Stage</div>
       </div>
       <div class="cw-right">
-        <div class="cw-goal">2.0%</div>
-        <div class="cw-goal-label">Card Conv. Goal</div>
+        <div class="cw-goal" id="cwGoalVal">1.8%</div>
+        <div class="cw-goal-label">District Goal</div>
       </div>
     </div>
   </div>
@@ -2261,11 +2261,11 @@ body {
   <div id="storeBreakdown"></div>
   <div class="footer">
     <div class="footer-text">
-      Stores are grouped by their week-to-date conversion rate against the <strong>2.0%</strong> district goal.<br>
-      <span style="color:var(--green);font-weight:800;">ON GOAL</span> ≥ 2.0% &nbsp;·&nbsp;
-      <span style="color:var(--gold-2);font-weight:800;">TRACKING</span> 1.0% – 1.99% &nbsp;·&nbsp;
-      <span style="color:var(--red);font-weight:800;">BEHIND</span> &lt; 1.0%<br>
-      <span style="opacity:0.7;">AT GOAL = cashiers whose personal conversion rate is ≥ 2.0%</span>
+      Stores are grouped by week-to-date conversion rate against each store's <strong>June goal</strong> (district wins at <strong>1.8%</strong>).<br>
+      <span style="color:var(--green);font-weight:800;">ON GOAL</span> ≥ store goal &nbsp;·&nbsp;
+      <span style="color:var(--gold-2);font-weight:800;">TRACKING</span> 50–99% of goal &nbsp;·&nbsp;
+      <span style="color:var(--red);font-weight:800;">BEHIND</span> under half of goal<br>
+      <span style="opacity:0.7;">AT GOAL = cashiers whose personal rate meets their store's June target</span>
     </div>
   </div>
 </div>
@@ -2408,15 +2408,43 @@ function pinIcon(color) {
    CONTROLLER — EDIT HERE EACH WEEK
    ════════════════════════════════════════════════════════════════ */
 
-const GOAL = 2.0;
+const DISTRICT_GOAL = 1.8;
+
+// June 2026 card-conversion targets per store (district wins the month at 1.8%).
+const STORE_GOALS = {
+  "594":  1.8, // Mayfaire
+  "1224": 1.7, // Short Pump
+  "1305": 1.8, // Lenox Square
+  "1319": 1.8, // East Cobb
+  "1321": 1.8, // Mall of Georgia
+  "1459": 1.7, // Avalon
+  "4807": 1.7, // Hanes
+  "6004": 1.8, // Crabtree Valley
+  "6014": 1.8, // Streets @ Southpoint
+  "6108": 1.8, // Haywood
+  "6806": 1.8, // West Town
+  "6810": 1.8, // Green Hills
+};
+
+function getStoreGoal(storeId) {
+  return STORE_GOALS[storeId] ?? DISTRICT_GOAL;
+}
+
+function fmtGoalPct(goal) {
+  return goal.toFixed(1) + '%';
+}
+
+function goalMarkerPct(storeId) {
+  return (getStoreGoal(storeId) / 3) * 100;
+}
 
 // Gap Specialty · Mid-Atlantic District — 12 real stores
-// WK 1 from data-8.xlsx · MTD / WK 2 txns+cards from data-7.xlsx (Jun 2026 pull).
+// WK 1–3 from week 1.xlsx · week 2.xlsx · week 3.xlsx (Jun 2026 pull).
 const STORES = {
   "1224": "Short Pump",
   "1305": "Lenox Square",
   "1319": "East Cobb",
-  "1321": "Store #1321",          // still unknown — rename when confirmed
+  "1321": "Mall of Georgia",
   "1459": "Avalon",
   "4807": "Hanes",
   "594":  "Mayfaire",
@@ -2442,17 +2470,16 @@ const WEEKS = [
 
 // ═══════════════════════════════════════════════════════════════
 // STORE_WEEK_STATS — THE source of truth.
-// Edit this each week. Everything (rates, standings, pace, district
-// overview, store breakdown) is derived from these numbers.
-// WK 2+ in-progress weeks: subtract prior week(s) from the latest MTD export.
+// Each weekly export is that week's totals (not cumulative MTD).
+// Everything (rates, standings, pace, district overview, store breakdown)
+// is derived from these numbers.
 //
 // Schema per store per week:
 //   txns:            total transactions handled by the store
 //   cards:           total cards opened
 //   cashiers:        cashiers who worked that week
 //   cashiersOpened:  cashiers who opened >= 1 card
-//   cashiersAtGoal:  cashiers whose personal rate (their cards / their
-//                    txns) hit the 2% goal
+//   cashiersAtGoal:  cashiers whose personal rate hits their store's June goal
 //
 // rate            = cards / txns × 100
 // participation % = cashiersOpened / cashiers × 100
@@ -2461,70 +2488,85 @@ const WEEKS = [
 // ═══════════════════════════════════════════════════════════════
 const STORE_WEEK_STATS = {
   "WK 1": {
-    // FINAL · sourced from data-8.xlsx. District totals: 6,382 txns · 105 cards · 1.65% rate.
+    // FINAL · week 1 export. District totals: 6,382 txns · 105 cards · 1.65% rate.
     "1224": { txns: 741, cards: 18, cashiers: 17, cashiersOpened:  8, cashiersAtGoal: 5 }, // Short Pump           2.43%
     "1305": { txns: 532, cards:  8, cashiers: 13, cashiersOpened:  6, cashiersAtGoal: 4 }, // Lenox Square         1.50%
     "1319": { txns: 400, cards:  6, cashiers: 12, cashiersOpened:  5, cashiersAtGoal: 5 }, // East Cobb            1.50%
-    "1321": { txns: 476, cards:  5, cashiers: 13, cashiersOpened:  4, cashiersAtGoal: 4 }, // Store #1321          1.05%
+    "1321": { txns: 476, cards:  5, cashiers: 13, cashiersOpened:  4, cashiersAtGoal: 4 }, // Mall of Georgia        1.05%
     "1459": { txns: 869, cards: 13, cashiers: 16, cashiersOpened:  5, cashiersAtGoal: 5 }, // Avalon               1.50%
     "4807": { txns: 339, cards:  9, cashiers: 13, cashiersOpened:  5, cashiersAtGoal: 5 }, // Hanes                2.65%
     "594":  { txns: 461, cards:  6, cashiers: 10, cashiersOpened:  3, cashiersAtGoal: 3 }, // Mayfaire             1.30%
-    "6004": { txns: 637, cards: 22, cashiers: 16, cashiersOpened: 11, cashiersAtGoal: 8 }, // Crabtree Valley      3.45%
-    "6014": { txns: 797, cards:  5, cashiers: 19, cashiersOpened:  5, cashiersAtGoal: 2 }, // Streets @ Southpoint 0.63%
+    "6004": { txns: 637, cards: 22, cashiers: 16, cashiersOpened: 11, cashiersAtGoal: 10 }, // Crabtree Valley      3.45%
+    "6014": { txns: 797, cards:  5, cashiers: 19, cashiersOpened:  5, cashiersAtGoal:  3 }, // Streets @ Southpoint 0.63%
     "6108": { txns: 393, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal: 2 }, // Haywood              0.76%
     "6806": { txns: 228, cards:  4, cashiers: 11, cashiersOpened:  4, cashiersAtGoal: 4 }, // West Town            1.75%
-    "6810": { txns: 509, cards:  6, cashiers: 11, cashiersOpened:  5, cashiersAtGoal: 4 }, // Green Hills          1.18%
+    "6810": { txns: 509, cards:  6, cashiers: 11, cashiersOpened:  5, cashiersAtGoal:  5 }, // Green Hills          1.18%
   },
   "WK 2": {
-    // IN PROGRESS · data-7.xlsx MTD minus data-8.xlsx WK1 (all fields). Totals: 1,708 txns · 30 cards · 1.76% rate.
-    "1224": { txns: 172, cards:  3, cashiers:  1, cashiersOpened:  0, cashiersAtGoal: 0 }, // Short Pump           1.74%
-    "1305": { txns: 152, cards:  4, cashiers:  1, cashiersOpened:  1, cashiersAtGoal: 1 }, // Lenox Square         2.63%
-    "1319": { txns: 117, cards:  0, cashiers:  1, cashiersOpened:  0, cashiersAtGoal: 0 }, // East Cobb            0.00%
-    "1321": { txns: 150, cards:  3, cashiers:  0, cashiersOpened:  2, cashiersAtGoal: 0 }, // Store #1321          2.00%
-    "1459": { txns: 172, cards:  4, cashiers:  1, cashiersOpened:  0, cashiersAtGoal: 0 }, // Avalon               2.33%
-    "4807": { txns:  75, cards:  0, cashiers:  2, cashiersOpened:  0, cashiersAtGoal: 0 }, // Hanes                0.00%
-    "594":  { txns:  97, cards:  2, cashiers:  1, cashiersOpened:  0, cashiersAtGoal: 0 }, // Mayfaire             2.06%
-    "6004": { txns: 181, cards:  5, cashiers:  1, cashiersOpened:  1, cashiersAtGoal: 1 }, // Crabtree Valley      2.76%
-    "6014": { txns: 263, cards:  6, cashiers:  0, cashiersOpened:  3, cashiersAtGoal: 2 }, // Streets @ Southpoint 2.28%
-    "6108": { txns: 110, cards:  1, cashiers:  0, cashiersOpened:  1, cashiersAtGoal: 0 }, // Haywood              0.91%
-    "6806": { txns:  82, cards:  1, cashiers:  0, cashiersOpened:  0, cashiersAtGoal: 0 }, // West Town            1.22%
-    "6810": { txns: 137, cards:  1, cashiers:  0, cashiersOpened:  0, cashiersAtGoal: 0 }, // Green Hills          0.73%
+    // FINAL · week 2 export. District totals: 6,278 txns · 96 cards · 1.53% rate.
+    "1224": { txns: 663, cards: 17, cashiers: 16, cashiersOpened:  4, cashiersAtGoal: 3 }, // Short Pump           2.56%
+    "1305": { txns: 527, cards: 15, cashiers: 14, cashiersOpened:  7, cashiersAtGoal: 6 }, // Lenox Square         2.85%
+    "1319": { txns: 367, cards:  3, cashiers: 12, cashiersOpened:  1, cashiersAtGoal: 1 }, // East Cobb            0.82%
+    "1321": { txns: 535, cards: 10, cashiers: 13, cashiersOpened:  6, cashiersAtGoal: 5 }, // Mall of Georgia        1.87%
+    "1459": { txns: 729, cards:  6, cashiers: 15, cashiersOpened:  3, cashiersAtGoal: 1 }, // Avalon               0.82%
+    "4807": { txns: 316, cards:  7, cashiers: 15, cashiersOpened:  3, cashiersAtGoal: 3 }, // Hanes                2.22%
+    "594":  { txns: 392, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal: 2 }, // Mayfaire             0.77%
+    "6004": { txns: 651, cards: 12, cashiers: 16, cashiersOpened:  6, cashiersAtGoal: 6 }, // Crabtree Valley      1.84%
+    "6014": { txns: 881, cards: 11, cashiers: 18, cashiersOpened:  6, cashiersAtGoal: 5 }, // Streets @ Southpoint 1.25%
+    "6108": { txns: 379, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal: 1 }, // Haywood              0.79%
+    "6806": { txns: 280, cards:  5, cashiers:  8, cashiersOpened:  4, cashiersAtGoal: 2 }, // West Town            1.79%
+    "6810": { txns: 558, cards:  4, cashiers: 13, cashiersOpened:  4, cashiersAtGoal:  3 }, // Green Hills          0.72%
   },
-  "WK 3": { /* populate each Monday */ },
+  "WK 3": {
+    // IN PROGRESS · week 3 export. District totals: 1,073 txns · 7 cards · 0.65% rate.
+    "1224": { txns: 123, cards:  2, cashiers:  5, cashiersOpened:  1, cashiersAtGoal: 1 }, // Short Pump           1.63%
+    "1305": { txns: 112, cards:  0, cashiers:  4, cashiersOpened:  0, cashiersAtGoal: 0 }, // Lenox Square         0.00%
+    "1319": { txns:  79, cards:  1, cashiers:  3, cashiersOpened:  1, cashiersAtGoal: 1 }, // East Cobb            1.27%
+    "1321": { txns:  79, cards:  0, cashiers:  5, cashiersOpened:  0, cashiersAtGoal: 0 }, // Mall of Georgia        0.00%
+    "1459": { txns: 128, cards:  1, cashiers:  6, cashiersOpened:  1, cashiersAtGoal: 1 }, // Avalon               0.78%
+    "4807": { txns:  47, cards:  0, cashiers:  4, cashiersOpened:  0, cashiersAtGoal: 0 }, // Hanes                0.00%
+    "594":  { txns:  70, cards:  0, cashiers:  4, cashiersOpened:  0, cashiersAtGoal: 0 }, // Mayfaire             0.00%
+    "6004": { txns: 122, cards:  1, cashiers:  9, cashiersOpened:  1, cashiersAtGoal: 1 }, // Crabtree Valley      0.82%
+    "6014": { txns: 141, cards:  0, cashiers:  7, cashiersOpened:  0, cashiersAtGoal: 0 }, // Streets @ Southpoint 0.00%
+    "6108": { txns:  44, cards:  1, cashiers:  4, cashiersOpened:  1, cashiersAtGoal: 1 }, // Haywood              2.27%
+    "6806": { txns:  31, cards:  0, cashiers:  5, cashiersOpened:  0, cashiersAtGoal: 0 }, // West Town            0.00%
+    "6810": { txns:  97, cards:  1, cashiers:  5, cashiersOpened:  1, cashiersAtGoal: 1 }, // Green Hills          1.03%
+  },
   "WK 4": { /* populate each Monday */ },
   "WK 5": { /* populate each Monday */ },
 };
 
-// MTD top card openers (cumulative through data-7.xlsx · 8,090 txns · 135 cards · 1.67%)
+// MTD top card openers (cumulative through week 3 export · 13,733 txns · 208 cards · 1.51%)
 const SCORERS = [
-  { name: "Benn Pattara",        store: "1224", goals: 11 }, // Short Pump
+  { name: "Benn Pattara",        store: "1224", goals: 22 }, // Short Pump
+  { name: "Madeleine Soderlund", store: "4807", goals:  7 }, // Hanes
+  { name: "Osarumwense Onaiwu",  store: "6004", goals:  7 }, // Crabtree Valley
   { name: "Alazee Allen",        store: "6004", goals:  6 }, // Crabtree Valley
+  { name: "Vernon Green",        store: "1305", goals:  6 }, // Lenox Square
   { name: "Toya Gavin",          store: "1459", goals:  6 }, // Avalon
-  { name: "Osarumwense Onaiwu",  store: "6004", goals:  5 }, // Crabtree Valley
-  { name: "Andy Bates",          store: "1459", goals:  4 }, // Avalon
-  { name: "Amy Carlyle",         store: "6004", goals:  3 }, // Crabtree Valley
-  { name: "Brandon Newman",      store: "1459", goals:  3 }, // Avalon
-  { name: "Lewis Waters",        store: "6004", goals:  3 }, // Crabtree Valley
-  { name: "Lysandra Weber",      store: "6014", goals:  3 }, // Streets @ Southpoint
-  { name: "Madeleine Soderlund", store: "4807", goals:  3 }, // Hanes
-  { name: "Rebeca Hernandez",    store:  "594", goals:  3 }, // Mayfaire
-  { name: "Stacey Rivera",       store: "1305", goals:  3 }, // Lenox Square
+  { name: "Lewis Waters",        store: "6004", goals:  5 }, // Crabtree Valley
+  { name: "Kareema Hardi",       store: "1224", goals:  5 }, // Short Pump
+  { name: "STACEY RIVERA",       store: "1305", goals:  5 }, // Lenox Square
+  { name: "Brandon Newman",      store: "1459", goals:  4 }, // Avalon
+  { name: "Christopher Valencia",store: "1321", goals:  4 }, // Mall of Georgia
+  { name: "Fung Han Henderson",  store: "1319", goals:  4 }, // East Cobb
 ];
 
 const AWARDS = [
   { week: "WK 1",
     gotw: "Benn Pattara", gotwStore: "1224", gotwGoals: 10,
     goldenGlove: "Crabtree Valley",
-    ggNote: "Top district rate — 3.45% (+1.45 over 2.0% goal)" },
+    ggNote: "Top district rate — 3.45% (+1.65 over 1.8% goal)" },
   { week: "WK 2",
-    gotw: "Toya Gavin", gotwStore: "1459", gotwGoals: 4,
-    goldenGlove: "Crabtree Valley",
-    ggNote: "Top district rate — 2.76% (+0.76 over 2.0% goal · WTD)" },
+    gotw: "Benn Pattara", gotwStore: "1224", gotwGoals: 10,
+    goldenGlove: "Lenox Square",
+    ggNote: "Top district rate — 2.85% (+1.05 over 1.8% goal)" },
+  { week: "WK 3", gotw: null, gotwStore: null, gotwGoals: null, goldenGlove: null, ggNote: null },
 ];
 
 /* ════════════════════════════════════════════════════════════════ */
 
-let activeWeek = 1;
+let activeWeek = 2;
 
 /* ── DERIVATION HELPERS ────────────────────────────────────────── */
 function getStats(weekLabel, storeId) {
@@ -2674,7 +2716,7 @@ function getPairingBasis(weekIdx) {
 
 /** Standings derived from STORE_WEEK_STATS + WEEKS pairings.
  *  PACE = cumulative pace vs goal across reported weeks:
- *         sum over reported weeks of (rate - GOAL) × 10  → integer points
+ *         sum over reported weeks of (rate - store goal) × 10  → integer points
  *         (positive = above goal, negative = below) */
 function computeStandings() {
   const pts = {}, w = {}, d = {}, l = {}, pace = {};
@@ -2703,7 +2745,7 @@ function computeStandings() {
       const r = deriveRate(s);
       rateSum[id] += r;
       played[id]++;
-      pace[id] += Math.round((r - GOAL) * 10);
+      pace[id] += Math.round((r - getStoreGoal(id)) * 10);
     });
   });
 
@@ -2731,7 +2773,7 @@ function computeDistrictWeekStats(weekLabel) {
     reporting++;
   });
   const rate = txns > 0 ? (cards / txns) * 100 : null;
-  const cardsNeededToGoal = txns > 0 ? Math.max(0, Math.ceil((GOAL/100) * txns) - cards) : 0;
+  const cardsNeededToGoal = txns > 0 ? Math.max(0, Math.ceil((DISTRICT_GOAL/100) * txns) - cards) : 0;
   return { txns, cards, cashiers, opened, atGoal, reporting, rate, cardsNeededToGoal };
 }
 
@@ -2776,17 +2818,17 @@ function renderWeekTabs() {
     const hasData = d.txns > 0;
     const rate = d.rate;
     const dotCls   = !hasData ? '' :
-                     rate >= GOAL     ? 'green' :
-                     rate >= GOAL / 2 ? 'gold'  : 'red';
+                     rate >= DISTRICT_GOAL     ? 'green' :
+                     rate >= DISTRICT_GOAL / 2 ? 'gold'  : 'red';
     const rateCls  = !hasData ? 'tbd' :
-                     rate >= GOAL     ? 'green' :
-                     rate >= GOAL / 2 ? 'gold'  : 'red';
+                     rate >= DISTRICT_GOAL     ? 'green' :
+                     rate >= DISTRICT_GOAL / 2 ? 'gold'  : 'red';
     const rateLbl  = hasData ? rate.toFixed(2) + '%' : '—';
     let subLbl;
     if (!hasData) {
       subLbl = (i === 0) ? 'awaiting reports' : 'pending';
     } else {
-      const pace = rate - GOAL;
+      const pace = rate - DISTRICT_GOAL;
       subLbl = (pace >= 0 ? '+' : '') + pace.toFixed(2) + '% pace';
     }
     return `<div class="week-pill ${i===activeWeek?'active':''}" onclick="setWeek(${i})" aria-pressed="${i===activeWeek}">
@@ -2814,10 +2856,10 @@ function renderSeasonMtd() {
     el.innerHTML = `${eyebrow}<div class="smtd-empty">Awaiting first reports</div>`;
     return;
   }
-  const pace = season.rate - GOAL;
+  const pace = season.rate - DISTRICT_GOAL;
   const paceCls = pace >= 0 ? 'up' : 'down';
   const paceTxt = (pace >= 0 ? '+' : '') + pace.toFixed(2) + '%';
-  const rateCls = pace >= 0 ? 'up' : (season.rate >= GOAL * 0.5 ? 'gold' : 'down');
+  const rateCls = pace >= 0 ? 'up' : (season.rate >= DISTRICT_GOAL * 0.5 ? 'gold' : 'down');
   el.innerHTML = `
     ${eyebrow}
     <div class="smtd-metrics">
@@ -2827,7 +2869,7 @@ function renderSeasonMtd() {
       </div>
       <div class="smtd-metric">
         <span class="smtd-metric-value ${paceCls}">${paceTxt}</span>
-        <span class="smtd-metric-label">Pace vs 2.0%</span>
+        <span class="smtd-metric-label">Pace vs ${fmtGoalPct(DISTRICT_GOAL)}</span>
       </div>
       <div class="smtd-metric">
         <span class="smtd-metric-value">${fmtNum(season.cards)}</span>
@@ -2879,15 +2921,15 @@ function renderHeaderStats() {
   if (rateEl)  rateEl.textContent  = hasData ? season.rate.toFixed(2) + '%' : '—';
   if (rateSub) rateSub.textContent = hasData ? 'district MTD' : 'awaiting data';
 
-  // Pace chip — MTD pace vs the 2.0% goal
+  // Pace chip — MTD pace vs the 1.8% district goal
   const paceEl    = document.getElementById('hdrPace');
   const paceSub   = document.getElementById('hdrPaceSub');
   const paceCard  = paceEl ? paceEl.closest('.hstat') : null;
   if (paceCard) paceCard.classList.remove('hstat-green', 'hstat-red');
   if (hasData) {
-    const pace = season.rate - GOAL;
+    const pace = season.rate - DISTRICT_GOAL;
     if (paceEl) paceEl.textContent = (pace >= 0 ? '+' : '') + pace.toFixed(2) + '%';
-    if (paceSub) paceSub.textContent = (pace >= 0 ? 'above' : 'below') + ' 2.0% MTD';
+    if (paceSub) paceSub.textContent = (pace >= 0 ? 'above' : 'below') + ' ' + fmtGoalPct(DISTRICT_GOAL) + ' MTD';
     if (paceCard) paceCard.classList.add(pace >= 0 ? 'hstat-green' : 'hstat-red');
   } else {
     if (paceEl) paceEl.textContent = '—';
@@ -2911,7 +2953,7 @@ function renderMarquee() {
     '<span class="chip">For Every <span class="white">Store.</span><span class="dot"></span></span>',
     '<span class="chip">For Every <span class="white">Shift.</span><span class="dot"></span></span>',
     '<span class="chip">June 2026 &middot; Group Stage<span class="dot"></span></span>',
-    '<span class="chip">Goal <span class="white">2.0%</span> Card Conversion<span class="dot"></span></span>',
+    '<span class="chip">Goal <span class="white">1.8%</span> District Conversion<span class="dot"></span></span>',
     '<span class="chip">5 Weeks &middot; <span class="white">Group Stage</span><span class="dot"></span></span>',
   ];
   // Duplicate the chip set so the loop is seamless
@@ -2923,22 +2965,23 @@ function renderMatchday() {
   const wk = WEEKS[activeWeek];
   let html = '';
 
-  function rateClass(rate) {
+  function rateClass(rate, storeId) {
     if (rate === null || rate === undefined) return 'tbd';
-    return rate >= GOAL ? 'above' : 'below';
+    return rate >= getStoreGoal(storeId) ? 'above' : 'below';
   }
   function rateText(rate) {
     return rate !== null && rate !== undefined ? rate.toFixed(2) + '%' : 'TBD';
   }
-  function fillClass(rate) {
+  function fillClass(rate, storeId) {
+    const goal = getStoreGoal(storeId);
     if (rate === null || rate === undefined) return 'gold';
-    if (rate >= GOAL)     return 'above';
-    if (rate >= GOAL / 2) return 'gold';
+    if (rate >= goal)     return 'above';
+    if (rate >= goal / 2) return 'gold';
     return 'below';
   }
   function fillWidth(rate) {
     if (rate === null || rate === undefined) return 0;
-    return Math.min((rate / 3) * 100, 100); // 3.0% is full bar; 2.0% goal marker sits at 66.66%
+    return Math.min((rate / 3) * 100, 100);
   }
   function metaHtml(stats) {
     if (!stats || stats.txns === 0) {
@@ -3012,8 +3055,8 @@ function renderMatchday() {
           <div class="mc-side-name">${homeCrown}${STORES[home]}</div>
           <div class="mc-side-id">#${home}</div>
         </div>
-        <div class="mc-side-rate ${rateClass(result.homeRate)}">${rateText(result.homeRate)}</div>
-        <div class="mc-side-bar"><div class="fill ${fillClass(result.homeRate)}" style="width:${fillWidth(result.homeRate)}%"></div></div>
+        <div class="mc-side-rate ${rateClass(result.homeRate, home)}">${rateText(result.homeRate)}</div>
+        <div class="mc-side-bar" style="--goal-marker:${goalMarkerPct(home)}%"><div class="fill ${fillClass(result.homeRate, home)}" style="width:${fillWidth(result.homeRate)}%"></div></div>
         ${metaHtml(homeStats)}
       </div>
       <div class="mc-side ${awaySide}">
@@ -3021,8 +3064,8 @@ function renderMatchday() {
           <div class="mc-side-name">${awayCrown}${STORES[away]}</div>
           <div class="mc-side-id">#${away}</div>
         </div>
-        <div class="mc-side-rate ${rateClass(result.awayRate)}">${rateText(result.awayRate)}</div>
-        <div class="mc-side-bar"><div class="fill ${fillClass(result.awayRate)}" style="width:${fillWidth(result.awayRate)}%"></div></div>
+        <div class="mc-side-rate ${rateClass(result.awayRate, away)}">${rateText(result.awayRate)}</div>
+        <div class="mc-side-bar" style="--goal-marker:${goalMarkerPct(away)}%"><div class="fill ${fillClass(result.awayRate, away)}" style="width:${fillWidth(result.awayRate)}%"></div></div>
         ${metaHtml(awayStats)}
       </div>
     </div>`;
@@ -3035,10 +3078,10 @@ function renderMatchday() {
 function fmtNum(n) { return n.toLocaleString('en-US'); }
 function fmtPct(n, decimals) { return n === null || n === undefined ? '—' : n.toFixed(decimals === undefined ? 2 : decimals) + '%'; }
 
-function progressClass(rate) {
+function progressClass(rate, goal) {
   if (rate === null) return 'gold';
-  if (rate >= GOAL) return 'green';
-  if (rate >= GOAL * 0.9) return 'gold';
+  if (rate >= goal) return 'green';
+  if (rate >= goal * 0.9) return 'gold';
   return 'red';
 }
 
@@ -3047,10 +3090,10 @@ function renderDistrictOverview() {
   const d = computeDistrictWeekStats(wk.label);
   const hasData = d.txns > 0;
   const rate = d.rate;
-  const pace = rate !== null ? (rate - GOAL) : null;
-  const goalPctOfTarget = rate !== null ? (rate / GOAL) * 100 : 0;
+  const pace = rate !== null ? (rate - DISTRICT_GOAL) : null;
+  const goalPctOfTarget = rate !== null ? (rate / DISTRICT_GOAL) * 100 : 0;
   const barWidth = Math.min(goalPctOfTarget, 150) / 150 * 100;
-  const barCls = progressClass(rate);
+  const barCls = progressClass(rate, DISTRICT_GOAL);
 
   let paceLabel, paceCls;
   if (pace === null) { paceLabel = '—';                        paceCls = ''; }
@@ -3059,9 +3102,9 @@ function renderDistrictOverview() {
 
   const noteHtml = !hasData
     ? `<span>No stores have reported <b>${wk.label}</b> yet.</span>`
-    : rate >= GOAL
-      ? `<b>${(goalPctOfTarget).toFixed(0)}%</b> of goal · district is <b>${pace.toFixed(2)}%</b> above the ${GOAL}% target`
-      : `<b>${(goalPctOfTarget).toFixed(0)}%</b> of goal · need <b>${fmtNum(d.cardsNeededToGoal)}</b> more cards on current txns to reach ${GOAL}%`;
+    : rate >= DISTRICT_GOAL
+      ? `<b>${(goalPctOfTarget).toFixed(0)}%</b> of goal · district is <b>${pace.toFixed(2)}%</b> above the ${fmtGoalPct(DISTRICT_GOAL)} target`
+      : `<b>${(goalPctOfTarget).toFixed(0)}%</b> of goal · need <b>${fmtNum(d.cardsNeededToGoal)}</b> more cards on current txns to reach ${fmtGoalPct(DISTRICT_GOAL)}`;
 
   const reportedNote = hasData
     ? `${d.reporting}/${Object.keys(STORES).length} stores reporting`
@@ -3090,14 +3133,14 @@ function renderDistrictOverview() {
           <span class="do-stat-sub">district avg</span>
         </div>
         <div class="do-stat ${paceCls}">
-          <span class="do-stat-k">Pace vs ${GOAL}%</span>
+          <span class="do-stat-k">Pace vs ${fmtGoalPct(DISTRICT_GOAL)}</span>
           <span class="do-stat-v">${paceLabel}</span>
           <span class="do-stat-sub">${pace === null ? 'pending' : pace >= 0 ? 'above goal' : 'below goal'}</span>
         </div>
       </div>
       <div class="do-progress-wrap">
         <div class="do-progress-meta">
-          <span>Progress to ${GOAL}% Goal</span>
+          <span>Progress to ${fmtGoalPct(DISTRICT_GOAL)} Goal</span>
           <span><strong>${hasData ? Math.round(goalPctOfTarget) + '%' : '—'}</strong> of goal</span>
         </div>
         <div class="do-progress"><div class="bar ${barCls}" style="width:${hasData ? barWidth : 0}%"></div></div>
@@ -3107,22 +3150,22 @@ function renderDistrictOverview() {
 }
 
 /* ── RENDER: STORES — zoned breakdown ──────────────────────────── */
-/* Zones based on rate vs the 2.0% goal:
-   green  ≥ goal               → "On Goal"
-   yellow ≥ goal/2 and < goal  → "Tracking"
-   red    < goal/2             → "Behind"
-   none   no data yet          → "No Reports" */
-function zoneForRate(rate) {
+/* Zones based on each store's June goal:
+   green  ≥ store goal            → "On Goal"
+   yellow ≥ half goal and < goal  → "Tracking"
+   red    < half of store goal    → "Behind"
+   none   no data yet             → "No Reports" */
+function zoneForRate(rate, goal) {
   if (rate === null || rate === undefined) return 'nodata';
-  if (rate >= GOAL)     return 'green';
-  if (rate >= GOAL / 2) return 'yellow';
+  if (rate >= goal)     return 'green';
+  if (rate >= goal / 2) return 'yellow';
   return 'red';
 }
 const ZONE_META = {
-  green:  { label: 'On Goal',     sub: 'rate ≥ 2.0%',                    tierLabel: 'On Goal',  tierCls: 'premier'  },
-  yellow: { label: 'Tracking',    sub: '1.0% – 1.99% · 50–99% of goal',  tierLabel: 'Tracking', tierCls: 'core'     },
-  red:    { label: 'Behind',      sub: 'under 1.0% · less than half goal', tierLabel: 'Behind', tierCls: 'allaccess'},
-  nodata: { label: 'No Reports',  sub: 'awaiting first submission',      tierLabel: 'Pending',  tierCls: 'allaccess'},
+  green:  { label: 'On Goal',     sub: 'at or above store goal',           tierLabel: 'On Goal',  tierCls: 'premier'  },
+  yellow: { label: 'Tracking',    sub: '50–99% of store goal',             tierLabel: 'Tracking', tierCls: 'core'     },
+  red:    { label: 'Behind',      sub: 'under half of store goal',         tierLabel: 'Behind', tierCls: 'allaccess'},
+  nodata: { label: 'No Reports',  sub: 'awaiting first submission',        tierLabel: 'Pending',  tierCls: 'allaccess'},
 };
 
 function renderStoreBreakdown(standings) {
@@ -3139,11 +3182,12 @@ function renderStoreBreakdown(standings) {
   let html = '';
   let lastZone = null;
   const zoneCounts = { green: 0, yellow: 0, red: 0, nodata: 0 };
-  ranked.forEach(s => { zoneCounts[zoneForRate(computeStoreSeasonStats(s.id).rate)]++; });
+  ranked.forEach(s => { zoneCounts[zoneForRate(computeStoreSeasonStats(s.id).rate, getStoreGoal(s.id))]++; });
 
   ranked.forEach((s, i) => {
     const season = computeStoreSeasonStats(s.id);
-    const zone = zoneForRate(season.rate);
+    const storeGoal = getStoreGoal(s.id);
+    const zone = zoneForRate(season.rate, storeGoal);
     const meta = ZONE_META[zone];
 
     // Inject a zone divider whenever the zone changes
@@ -3167,24 +3211,24 @@ function renderStoreBreakdown(standings) {
     let rateLabel = '—';
     if (season.rate !== null) {
       rateLabel = season.rate.toFixed(2) + '%';
-      const delta = season.rate - GOAL;
+      const delta = season.rate - storeGoal;
       if (delta >= 0) {
         rateCls = 'above'; deltaCls = 'above';
-        deltaLabel = '+' + delta.toFixed(2) + '% above ' + GOAL.toFixed(1) + '% goal';
+        deltaLabel = '+' + delta.toFixed(2) + '% above ' + fmtGoalPct(storeGoal) + ' goal';
       } else {
         rateCls = 'below'; deltaCls = 'below';
-        deltaLabel = delta.toFixed(2) + '% below ' + GOAL.toFixed(1) + '% goal';
+        deltaLabel = delta.toFixed(2) + '% below ' + fmtGoalPct(storeGoal) + ' goal';
       }
     } else {
       deltaLabel = 'No reports yet';
     }
 
     // progress bar
-    const pctOfGoal = season.rate !== null ? Math.min((season.rate / GOAL) * 100, 150) : 0;
+    const pctOfGoal = season.rate !== null ? Math.min((season.rate / storeGoal) * 100, 150) : 0;
     const fillWidth = pctOfGoal / 150 * 100;
     const fillCls = season.rate === null ? 'gold' :
-                    season.rate >= GOAL ? 'above' :
-                    season.rate >= GOAL * 0.9 ? 'gold' : 'below';
+                    season.rate >= storeGoal ? 'above' :
+                    season.rate >= storeGoal * 0.9 ? 'gold' : 'below';
 
     // participation + at-goal
     const partPct = season.cashiers > 0 ? (season.opened / season.cashiers) * 100 : null;
@@ -3205,6 +3249,7 @@ function renderStoreBreakdown(standings) {
           <div class="sc-card-name">${s.name}</div>
           <div class="sc-card-meta">
             <span>#${s.id}</span><span class="dot"></span>
+            <span>${fmtGoalPct(storeGoal)} goal</span><span class="dot"></span>
             <span>${s.w}W · ${s.d}D · ${s.l}L</span><span class="dot"></span>
             <span>${season.weeksReported} ${season.weeksReported === 1 ? 'wk' : 'wks'} reported</span>
             <span class="tier-chip-sm ${meta.tierCls}">${meta.tierLabel}</span>
@@ -3223,7 +3268,7 @@ function renderStoreBreakdown(standings) {
         </div>
         <div class="sc-progress-wrap">
           <div class="sc-progress-meta">
-            <span>Progress to ${GOAL.toFixed(1)}%</span>
+            <span>Progress to ${fmtGoalPct(storeGoal)}</span>
             <span><b>${season.rate !== null ? Math.round(pctOfGoal) + '%' : '—'}</b> of goal</span>
           </div>
           <div class="sc-progress-bar"><div class="fill ${fillCls}" style="width:${fillWidth}%"></div></div>
