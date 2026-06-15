@@ -2514,7 +2514,7 @@ const STORE_WEEK_STATS = {
     "4807": { txns: 316, cards:  7, cashiers: 15, cashiersOpened:  3, cashiersAtGoal: 3 }, // Hanes                2.22%
     "594":  { txns: 392, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal: 2 }, // Mayfaire             0.77%
     "6004": { txns: 651, cards: 12, cashiers: 16, cashiersOpened:  6, cashiersAtGoal: 6 }, // Crabtree Valley      1.84%
-    "6014": { txns: 881, cards: 11, cashiers: 18, cashiersOpened:  6, cashiersAtGoal: 5 }, // Streets @ Southpoint 1.25%
+    "6014": { txns: 881, cards: 11, cashiers: 18, cashiersOpened:  6, cashiersAtGoal: 6 }, // Streets @ Southpoint 1.25%
     "6108": { txns: 379, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal: 1 }, // Haywood              0.79%
     "6806": { txns: 280, cards:  5, cashiers:  8, cashiersOpened:  4, cashiersAtGoal: 2 }, // West Town            1.79%
     "6810": { txns: 558, cards:  4, cashiers: 13, cashiersOpened:  4, cashiersAtGoal:  3 }, // Green Hills          0.72%
@@ -2584,6 +2584,10 @@ function applyActiveWeek() {
   const wk = WEEKS[activeWeek];
   const cw = document.getElementById('cwWeekLabel');
   if (cw) cw.textContent = wk.label;
+  const cwGoal = document.getElementById('cwGoalVal');
+  if (cwGoal) cwGoal.textContent = fmtGoalPct(DISTRICT_GOAL);
+  const hdrGoal = document.getElementById('hdrGoalVal');
+  if (hdrGoal) hdrGoal.textContent = fmtGoalPct(DISTRICT_GOAL);
   const basisEl = document.getElementById('pairingBasis');
   if (basisEl) basisEl.textContent = getPairingBasis(activeWeek);
   renderWeekTabs();
@@ -2934,8 +2938,10 @@ function renderHeaderStats() {
   // Week chip — navigation context for the active pill
   const hdrWeek = document.getElementById('hdrWeekVal');
   const hdrWeekSub = document.getElementById('hdrWeekSub');
+  const hdrPaceSub = document.getElementById('hdrPaceSub');
   if (hdrWeek)    hdrWeek.textContent = (activeWeek + 1) + '/' + WEEKS.length;
   if (hdrWeekSub) hdrWeekSub.textContent = wk.label + ' active';
+  if (hdrPaceSub && !hasData) hdrPaceSub.textContent = 'vs ' + fmtGoalPct(DISTRICT_GOAL) + ' MTD';
 
   // Rate chip — district MTD conversion (cumulative cards / cumulative txns)
   const rateEl  = document.getElementById('hdrRate');
@@ -2975,7 +2981,7 @@ function renderMarquee() {
     '<span class="chip">For Every <span class="white">Store.</span><span class="dot"></span></span>',
     '<span class="chip">For Every <span class="white">Shift.</span><span class="dot"></span></span>',
     '<span class="chip">June 2026 &middot; Group Stage<span class="dot"></span></span>',
-    '<span class="chip">Goal <span class="white">1.8%</span> District Conversion<span class="dot"></span></span>',
+    '<span class="chip">Goal <span class="white">' + fmtGoalPct(DISTRICT_GOAL) + '</span> District Conversion<span class="dot"></span></span>',
     '<span class="chip">5 Weeks &middot; <span class="white">Group Stage</span><span class="dot"></span></span>',
   ];
   // Duplicate the chip set so the loop is seamless
