@@ -370,6 +370,16 @@ body {
   background: linear-gradient(90deg, var(--navy) 0%, var(--navy) 24px, transparent 24px);
   margin-left: 4px;
 }
+.sec-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  letter-spacing: 0.3px;
+  padding: 6px 16px 0;
+}
+
+.scorer-row.unnamed .sc-name { color: var(--ink-soft); }
 
 /* ════════════════════════════════════════════════════════════════
    DISTRICT OVERVIEW — top of Matchups page
@@ -869,6 +879,7 @@ body {
   font-weight: 900;
 }
 .mc-status-state.final   { background: var(--green); color: var(--white); }
+.mc-status-state.live    { background: rgba(200,162,75,0.20); color: var(--gold); }
 .mc-status-state.pending { background: rgba(200,162,75,0.20); color: var(--gold); }
 .mc-status-state.draw    { background: var(--gold);  color: var(--navy);  }
 .mc-status-rank {
@@ -1723,6 +1734,72 @@ body {
   color: var(--navy);
   border-radius: 999px;
 }
+.scorer-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 999px;
+}
+.scorer-badge.gotw   { background: rgba(200,162,75,0.22); color: var(--navy); border: 1px solid var(--gold); }
+.scorer-badge.form   { background: rgba(46,107,214,0.14); color: var(--blue); border: 1px solid rgba(46,107,214,0.35); }
+.scorer-row.spotlight {
+  border-color: var(--blue);
+  background: linear-gradient(90deg, rgba(46,107,214,0.08), var(--white) 65%);
+}
+
+.spotlight-grid {
+  display: grid;
+  gap: 8px;
+  margin: 0 16px 14px;
+}
+.spotlight-card {
+  background: var(--white);
+  border: 1.5px solid var(--navy);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: center;
+}
+.spotlight-card .sp-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 3px;
+}
+.spotlight-card .sp-name {
+  font-family: 'Archivo', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--navy);
+  line-height: 1.05;
+}
+.spotlight-card .sp-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: var(--ink-soft);
+  font-weight: 600;
+  margin-top: 4px;
+  line-height: 1.35;
+}
+.spotlight-card .sp-store {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
 
 /* weekly callouts — vibrant accent treatment */
 .callout-row {
@@ -1740,6 +1817,7 @@ body {
   overflow: hidden;
 }
 .callout-row.glove { border-left-color: var(--blue); }
+.callout-row.momentum { border-left-color: var(--green); }
 .callout-row.glove::after {
   content: '';
   position: absolute;
@@ -2284,21 +2362,30 @@ body {
   <div id="goldenBoot"></div>
   <div class="section" style="padding-top:18px;">
     <div class="sec-label">
-      <span class="sec-num">04</span><span class="sec-slash"></span>Weekly Awards
+      <span class="sec-num">04</span><span class="sec-slash"></span>In Form — Momentum
+    </div>
+  </div>
+  <div id="scorerSpotlights"></div>
+  <div class="section" style="padding-top:18px;">
+    <div class="sec-label">
+      <span class="sec-num">05</span><span class="sec-slash"></span>Weekly Awards
     </div>
   </div>
   <div id="weeklyAwards"></div>
   <div class="section" style="padding-top:18px;">
     <div class="sec-label">
-      <span class="sec-num">05</span><span class="sec-slash"></span>All Goal Scorers — MTD
+      <span class="sec-num">06</span><span class="sec-slash"></span>Every Card Opener — MTD
     </div>
+    <div class="sec-sub" id="scorerListMeta"></div>
   </div>
   <div id="scorerList"></div>
   <div class="footer">
     <div class="footer-tag">every card. every shift.</div>
     <div class="footer-text">
       <strong>Hat Trick</strong> = 3+ cards in one shift<br>
-      <strong>Goal of the Week</strong> = top scorer, any store, any week
+      <strong>Golden Boot</strong> = most cards opened MTD &middot;
+      <strong>Goal of the Week</strong> = top weekly scorer (rotates across stores)<br>
+      Names from weekly Excel exports · WK1–WK3 MTD totals
     </div>
   </div>
 </div>
@@ -2486,7 +2573,7 @@ const WEEKS = [
 // rate            = cards / txns × 100
 // participation % = cashiersOpened / cashiers × 100
 // at-goal %       = cashiersAtGoal / cashiers × 100
-// matchup is FINAL when both sides have txns > 0, else PENDING
+// matchup is PENDING when either side has no txns; LIVE on the current week; FINAL once the week closes
 // ═══════════════════════════════════════════════════════════════
 const STORE_WEEK_STATS = {
   "WK 1": {
@@ -2520,50 +2607,512 @@ const STORE_WEEK_STATS = {
     "6810": { txns: 558, cards:  4, cashiers: 13, cashiersOpened:  4, cashiersAtGoal:  3 }, // Green Hills          0.72%
   },
   "WK 3": {
-    // IN PROGRESS · week 3 export. District totals: 1,073 txns · 7 cards · 0.65% rate.
-    "1224": { txns: 123, cards:  2, cashiers:  5, cashiersOpened:  1, cashiersAtGoal: 1 }, // Short Pump           1.63%
-    "1305": { txns: 112, cards:  0, cashiers:  4, cashiersOpened:  0, cashiersAtGoal: 0 }, // Lenox Square         0.00%
-    "1319": { txns:  79, cards:  1, cashiers:  3, cashiersOpened:  1, cashiersAtGoal: 1 }, // East Cobb            1.27%
-    "1321": { txns:  79, cards:  0, cashiers:  5, cashiersOpened:  0, cashiersAtGoal: 0 }, // Mall of Georgia        0.00%
-    "1459": { txns: 128, cards:  1, cashiers:  6, cashiersOpened:  1, cashiersAtGoal: 1 }, // Avalon               0.78%
-    "4807": { txns:  47, cards:  0, cashiers:  4, cashiersOpened:  0, cashiersAtGoal: 0 }, // Hanes                0.00%
-    "594":  { txns:  70, cards:  0, cashiers:  4, cashiersOpened:  0, cashiersAtGoal: 0 }, // Mayfaire             0.00%
-    "6004": { txns: 122, cards:  1, cashiers:  9, cashiersOpened:  1, cashiersAtGoal: 1 }, // Crabtree Valley      0.82%
-    "6014": { txns: 141, cards:  0, cashiers:  7, cashiersOpened:  0, cashiersAtGoal: 0 }, // Streets @ Southpoint 0.00%
-    "6108": { txns:  44, cards:  1, cashiers:  4, cashiersOpened:  1, cashiersAtGoal: 1 }, // Haywood              2.27%
-    "6806": { txns:  31, cards:  0, cashiers:  5, cashiersOpened:  0, cashiersAtGoal: 0 }, // West Town            0.00%
-    "6810": { txns:  97, cards:  1, cashiers:  5, cashiersOpened:  1, cashiersAtGoal: 1 }, // Green Hills          1.03%
+    // IN PROGRESS · data-11.xlsx export. District totals: 1,859 txns · 13 cards · 0.70% rate.
+    "1224": { txns: 222, cards:  5, cashiers:  9, cashiersOpened:  3, cashiersAtGoal: 3 }, // Short Pump           2.25%
+    "1305": { txns: 178, cards:  0, cashiers: 10, cashiersOpened:  0, cashiersAtGoal: 0 }, // Lenox Square         0.00%
+    "1319": { txns: 121, cards:  1, cashiers:  9, cashiersOpened:  1, cashiersAtGoal: 1 }, // East Cobb            0.83%
+    "1321": { txns: 145, cards:  1, cashiers:  8, cashiersOpened:  1, cashiersAtGoal: 1 }, // Mall of Georgia        0.69%
+    "1459": { txns: 217, cards:  1, cashiers:  8, cashiersOpened:  1, cashiersAtGoal: 1 }, // Avalon               0.46%
+    "4807": { txns:  91, cards:  2, cashiers:  7, cashiersOpened:  2, cashiersAtGoal: 2 }, // Hanes                2.20%
+    "594":  { txns: 142, cards:  0, cashiers:  6, cashiersOpened:  0, cashiersAtGoal: 0 }, // Mayfaire             0.00%
+    "6004": { txns: 208, cards:  1, cashiers: 13, cashiersOpened:  1, cashiersAtGoal: 1 }, // Crabtree Valley      0.48%
+    "6014": { txns: 227, cards:  0, cashiers: 13, cashiersOpened:  0, cashiersAtGoal: 0 }, // Streets @ Southpoint 0.00%
+    "6108": { txns:  93, cards:  1, cashiers: 10, cashiersOpened:  1, cashiersAtGoal: 1 }, // Haywood              1.08%
+    "6806": { txns:  58, cards:  0, cashiers:  6, cashiersOpened:  0, cashiersAtGoal: 0 }, // West Town            0.00%
+    "6810": { txns: 157, cards:  1, cashiers:  7, cashiersOpened:  1, cashiersAtGoal: 1 }, // Green Hills          0.64%
   },
   "WK 4": { /* populate each Monday */ },
   "WK 5": { /* populate each Monday */ },
 };
 
-// MTD top card openers (cumulative through week 3 export · 13,733 txns · 208 cards · 1.51%)
-const SCORERS = [
-  { name: "Benn Pattara",        store: "1224", goals: 22 }, // Short Pump
-  { name: "Madeleine Soderlund", store: "4807", goals:  7 }, // Hanes
-  { name: "Osarumwense Onaiwu",  store: "6004", goals:  7 }, // Crabtree Valley
-  { name: "Alazee Allen",        store: "6004", goals:  6 }, // Crabtree Valley
-  { name: "Vernon Green",        store: "1305", goals:  6 }, // Lenox Square
-  { name: "Toya Gavin",          store: "1459", goals:  6 }, // Avalon
-  { name: "Lewis Waters",        store: "6004", goals:  5 }, // Crabtree Valley
-  { name: "Kareema Hardi",       store: "1224", goals:  5 }, // Short Pump
-  { name: "STACEY RIVERA",       store: "1305", goals:  5 }, // Lenox Square
-  { name: "Brandon Newman",      store: "1459", goals:  4 }, // Avalon
-  { name: "Christopher Valencia",store: "1321", goals:  4 }, // Mall of Georgia
-  { name: "Fung Han Henderson",  store: "1319", goals:  4 }, // East Cobb
+// MTD card openers — derived from weekly exports (see CASHIER_SCORERS below).
+// Golden Boot = top MTD card count. CASHIER_SCORERS from node scripts/build-encore-scorers.mjs
+
+// BEGIN CASHIER_SCORERS — generated · node scripts/build-encore-scorers.mjs
+const CASHIER_SCORERS = [
+  {
+    "name": "Benn Pattara",
+    "store": "1224",
+    "goals": 23
+  },
+  {
+    "name": "Madeleine Soderlund",
+    "store": "4807",
+    "goals": 8
+  },
+  {
+    "name": "Osarumwense Onaiwu",
+    "store": "6004",
+    "goals": 7
+  },
+  {
+    "name": "Vernon Green",
+    "store": "1305",
+    "goals": 6
+  },
+  {
+    "name": "Toya Gavin",
+    "store": "1459",
+    "goals": 6
+  },
+  {
+    "name": "Alazee Allen",
+    "store": "6004",
+    "goals": 6
+  },
+  {
+    "name": "Kareema Hardi",
+    "store": "1224",
+    "goals": 5
+  },
+  {
+    "name": "STACEY RIVERA",
+    "store": "1305",
+    "goals": 5
+  },
+  {
+    "name": "Lewis Waters",
+    "store": "6004",
+    "goals": 5
+  },
+  {
+    "name": "Shanna Reid",
+    "store": "1224",
+    "goals": 4
+  },
+  {
+    "name": "Fung Han Henderson",
+    "store": "1319",
+    "goals": 4
+  },
+  {
+    "name": "Christopher Valencia",
+    "store": "1321",
+    "goals": 4
+  },
+  {
+    "name": "Andy Bates",
+    "store": "1459",
+    "goals": 4
+  },
+  {
+    "name": "Brandon Newman",
+    "store": "1459",
+    "goals": 4
+  },
+  {
+    "name": "Eden Snowden",
+    "store": "1224",
+    "goals": 3
+  },
+  {
+    "name": "Madison Gould",
+    "store": "1319",
+    "goals": 3
+  },
+  {
+    "name": "Nicole Marshall",
+    "store": "1321",
+    "goals": 3
+  },
+  {
+    "name": "Rebeca Hernandez",
+    "store": "594",
+    "goals": 3
+  },
+  {
+    "name": "Trina Mart",
+    "store": "594",
+    "goals": 3
+  },
+  {
+    "name": "Amy Carlyle",
+    "store": "6004",
+    "goals": 3
+  },
+  {
+    "name": "Tiffany Franke",
+    "store": "6004",
+    "goals": 3
+  },
+  {
+    "name": "Valeria Lastra",
+    "store": "6004",
+    "goals": 3
+  },
+  {
+    "name": "Joshua Lambeth",
+    "store": "6014",
+    "goals": 3
+  },
+  {
+    "name": "Lysandra Weber",
+    "store": "6014",
+    "goals": 3
+  },
+  {
+    "name": "Leah Crist",
+    "store": "6108",
+    "goals": 3
+  },
+  {
+    "name": "Saqqara Scott",
+    "store": "6806",
+    "goals": 3
+  },
+  {
+    "name": "Mary Puryear",
+    "store": "6810",
+    "goals": 3
+  },
+  {
+    "name": "Casey Yates",
+    "store": "1224",
+    "goals": 2
+  },
+  {
+    "name": "Adrienne Minor",
+    "store": "1305",
+    "goals": 2
+  },
+  {
+    "name": "Barbara Smith",
+    "store": "1305",
+    "goals": 2
+  },
+  {
+    "name": "Blue Edmonds",
+    "store": "1305",
+    "goals": 2
+  },
+  {
+    "name": "Min Shun Means",
+    "store": "1305",
+    "goals": 2
+  },
+  {
+    "name": "Bella Keovongkoth",
+    "store": "1321",
+    "goals": 2
+  },
+  {
+    "name": "Gianna Bien-Aime",
+    "store": "1321",
+    "goals": 2
+  },
+  {
+    "name": "Kevin Leonides",
+    "store": "1459",
+    "goals": 2
+  },
+  {
+    "name": "Sydney Braggs",
+    "store": "1459",
+    "goals": 2
+  },
+  {
+    "name": "America Reyes-Gomez",
+    "store": "4807",
+    "goals": 2
+  },
+  {
+    "name": "Jacqueline White",
+    "store": "4807",
+    "goals": 2
+  },
+  {
+    "name": "Yire Cazorla",
+    "store": "4807",
+    "goals": 2
+  },
+  {
+    "name": "Brandy Miller",
+    "store": "594",
+    "goals": 2
+  },
+  {
+    "name": "Annie Barnes Dais",
+    "store": "6004",
+    "goals": 2
+  },
+  {
+    "name": "Fiona To",
+    "store": "6004",
+    "goals": 2
+  },
+  {
+    "name": "Kennedy Yon",
+    "store": "6014",
+    "goals": 2
+  },
+  {
+    "name": "Monzar Thet-oo",
+    "store": "6014",
+    "goals": 2
+  },
+  {
+    "name": "Yessenia Cruz",
+    "store": "6014",
+    "goals": 2
+  },
+  {
+    "name": "Robert Izquierdo",
+    "store": "6108",
+    "goals": 2
+  },
+  {
+    "name": "Cora Strope",
+    "store": "6806",
+    "goals": 2
+  },
+  {
+    "name": "Gabby Dapkus",
+    "store": "6806",
+    "goals": 2
+  },
+  {
+    "name": "Maya Malik",
+    "store": "6810",
+    "goals": 2
+  },
+  {
+    "name": "Breck Welsh",
+    "store": "1224",
+    "goals": 1
+  },
+  {
+    "name": "Elizabeth McWilliams",
+    "store": "1224",
+    "goals": 1
+  },
+  {
+    "name": "TANISHA TYLER",
+    "store": "1224",
+    "goals": 1
+  },
+  {
+    "name": "Daniel Muench",
+    "store": "1305",
+    "goals": 1
+  },
+  {
+    "name": "Kyle Howard",
+    "store": "1305",
+    "goals": 1
+  },
+  {
+    "name": "Ryan Savage",
+    "store": "1305",
+    "goals": 1
+  },
+  {
+    "name": "Sharina Richardson",
+    "store": "1305",
+    "goals": 1
+  },
+  {
+    "name": "Ericka Francois",
+    "store": "1319",
+    "goals": 1
+  },
+  {
+    "name": "Mimi Russell",
+    "store": "1319",
+    "goals": 1
+  },
+  {
+    "name": "Taj Mack",
+    "store": "1319",
+    "goals": 1
+  },
+  {
+    "name": "Baheejah Jabri",
+    "store": "1321",
+    "goals": 1
+  },
+  {
+    "name": "Genesis Pena",
+    "store": "1321",
+    "goals": 1
+  },
+  {
+    "name": "Genevieve Descher",
+    "store": "1321",
+    "goals": 1
+  },
+  {
+    "name": "Mariana Fajardo",
+    "store": "1321",
+    "goals": 1
+  },
+  {
+    "name": "Paige Engel",
+    "store": "1321",
+    "goals": 1
+  },
+  {
+    "name": "Anastasia Johnston",
+    "store": "1459",
+    "goals": 1
+  },
+  {
+    "name": "Sue Wilcox",
+    "store": "1459",
+    "goals": 1
+  },
+  {
+    "name": "Cierra Palmer",
+    "store": "4807",
+    "goals": 1
+  },
+  {
+    "name": "Jason Glasscock",
+    "store": "4807",
+    "goals": 1
+  },
+  {
+    "name": "Laila Goldberg",
+    "store": "4807",
+    "goals": 1
+  },
+  {
+    "name": "Sheri Spoloric",
+    "store": "4807",
+    "goals": 1
+  },
+  {
+    "name": "Calvin Petit",
+    "store": "594",
+    "goals": 1
+  },
+  {
+    "name": "Beth Raymond",
+    "store": "6004",
+    "goals": 1
+  },
+  {
+    "name": "Gleny Fernandez",
+    "store": "6004",
+    "goals": 1
+  },
+  {
+    "name": "Grace Mattias",
+    "store": "6004",
+    "goals": 1
+  },
+  {
+    "name": "Lois Pawlowski",
+    "store": "6004",
+    "goals": 1
+  },
+  {
+    "name": "Erika Varini",
+    "store": "6014",
+    "goals": 1
+  },
+  {
+    "name": "Leslie Cinto Vazquez",
+    "store": "6014",
+    "goals": 1
+  },
+  {
+    "name": "Samuel Reillo",
+    "store": "6014",
+    "goals": 1
+  },
+  {
+    "name": "Santiago Hernandez",
+    "store": "6014",
+    "goals": 1
+  },
+  {
+    "name": "Kimberly Martinez",
+    "store": "6108",
+    "goals": 1
+  },
+  {
+    "name": "Val Golob",
+    "store": "6108",
+    "goals": 1
+  },
+  {
+    "name": "Lyric Woods",
+    "store": "6806",
+    "goals": 1
+  },
+  {
+    "name": "Sadie Wall",
+    "store": "6806",
+    "goals": 1
+  },
+  {
+    "name": "Claire Sojka",
+    "store": "6810",
+    "goals": 1
+  },
+  {
+    "name": "Day'Sheona Ashley",
+    "store": "6810",
+    "goals": 1
+  },
+  {
+    "name": "Elizabeth Edwards",
+    "store": "6810",
+    "goals": 1
+  },
+  {
+    "name": "Harrison Kaye",
+    "store": "6810",
+    "goals": 1
+  },
+  {
+    "name": "Logan Avila-Burns",
+    "store": "6810",
+    "goals": 1
+  },
+  {
+    "name": "Meredith Dooley",
+    "store": "6810",
+    "goals": 1
+  }
+];
+// END CASHIER_SCORERS
+
+/** Award / momentum badges keyed by store:name from exports. */
+const CASHIER_TAG_MAP = {
+  "6004:Osarumwense Onaiwu": ["WK1 GOTW"],
+  "1305:Vernon Green": ["WK2 GOTW"],
+  "1305:STACEY RIVERA": ["In Form"],
+  "1224:Kareema Hardi": ["In Form"],
+  "4807:Madeleine Soderlund": ["In Form"],
+};
+
+/** Featured momentum picks — surfaced above weekly awards. */
+const SCORER_SPOTLIGHTS = [
+  { name: "Madeleine Soderlund", store: "4807", tag: "On a Run",
+    note: "Hanes at 2.41% MTD — at goal every week through WK3" },
+  { name: "Vernon Green", store: "1305", tag: "Breakout",
+    note: "WK2 GOTW — helped Lenox post the district's best week (2.85%)" },
+  { name: "Osarumwense Onaiwu", store: "6004", tag: "WK1 Hero",
+    note: "WK1 GOTW — Crabtree's 3.45% opener set the early pace" },
+  { name: "Kareema Hardi", store: "1224", tag: "Depth",
+    note: "5 cards MTD at Short Pump — proving it isn't a one-person store" },
 ];
 
 const AWARDS = [
   { week: "WK 1",
-    gotw: "Benn Pattara", gotwStore: "1224", gotwGoals: 10,
+    gotw: "Osarumwense Onaiwu", gotwStore: "6004", gotwGoals: 7,
     goldenGlove: "Crabtree Valley",
     ggNote: "Top district rate — 3.45% (+1.65 over 1.8% goal)" },
   { week: "WK 2",
-    gotw: "Benn Pattara", gotwStore: "1224", gotwGoals: 10,
+    gotw: "Vernon Green", gotwStore: "1305", gotwGoals: 6,
     goldenGlove: "Lenox Square",
     ggNote: "Top district rate — 2.85% (+1.05 over 1.8% goal)" },
-  { week: "WK 3", gotw: null, gotwStore: null, gotwGoals: null, goldenGlove: null, ggNote: null },
+  { week: "WK 3",
+    gotw: null, gotwStore: null, gotwGoals: null,
+    momentum: { name: "Madeleine Soderlund", store: "4807",
+      note: "Live — Hanes at 2.20% WK3 with 2 openers; only store holding goal this week" },
+    goldenGlove: null, ggNote: null },
 ];
 
 /* ════════════════════════════════════════════════════════════════ */
@@ -2575,6 +3124,11 @@ function getDefaultActiveWeek() {
     if (wk && Object.keys(wk).some(id => wk[id] && wk[id].txns > 0)) return i;
   }
   return 0;
+}
+
+/** Closed weeks show Final on matchups; the latest reported week stays Live. */
+function isWeekComplete(weekIdx) {
+  return weekIdx < getDefaultActiveWeek();
 }
 
 let activeWeek = getDefaultActiveWeek();
@@ -3023,6 +3577,7 @@ function renderMatchday() {
 
   const pairings = generatePairings(activeWeek);
   const prefix   = getRankPrefix(activeWeek);
+  const weekComplete = isWeekComplete(activeWeek);
 
   pairings.forEach(([home, away], idx) => {
     if (away === null) {
@@ -3049,6 +3604,14 @@ function renderMatchday() {
     if (isPending) {
       stateLabel = 'Pending'; stateCls = 'pending';
       gapHtml = '<span class="mc-status-gap tbd">Awaiting Reports</span>';
+    } else if (!weekComplete) {
+      stateLabel = 'Live'; stateCls = 'live';
+      if (isDraw) {
+        gapHtml = '<span class="mc-status-gap">Tied at ' + result.homeRate.toFixed(2) + '%</span>';
+      } else {
+        const gap = Math.abs(result.homeRate - result.awayRate);
+        gapHtml = '<span class="mc-status-gap positive">+' + gap.toFixed(2) + '% gap</span>';
+      }
     } else if (isDraw) {
       stateLabel = 'Draw'; stateCls = 'draw';
       gapHtml = '<span class="mc-status-gap">Tied at ' + result.homeRate.toFixed(2) + '%</span>';
@@ -3337,22 +3900,71 @@ function renderStores() {
 }
 
 /* ── RENDER: SCORERS ───────────────────────────────────────────── */
-function renderScorers() {
-  const sorted = [...SCORERS].sort((a,b) => b.goals - a.goals);
-  const top = sorted[0];
+function cashierKey(store, name) {
+  return store + ':' + name;
+}
 
-  document.getElementById('goldenBoot').innerHTML = `
+/** Everyone with ≥1 card MTD, sorted by cards desc. */
+function buildScorerLeaderboard() {
+  return CASHIER_SCORERS.map(c => ({
+    name: c.name,
+    store: c.store,
+    goals: c.goals,
+    tags: CASHIER_TAG_MAP[cashierKey(c.store, c.name)] || null,
+  })).sort((a, b) =>
+    b.goals - a.goals ||
+    a.store.localeCompare(b.store) ||
+    a.name.localeCompare(b.name)
+  );
+}
+
+function renderScorerBadges(tags) {
+  if (!tags || !tags.length) return '';
+  return tags.map(t => {
+    const cls = t.includes('GOTW') ? 'gotw' : 'form';
+    return `<span class="scorer-badge ${cls}">${t}</span>`;
+  }).join('');
+}
+
+function renderScorers() {
+  const sorted = buildScorerLeaderboard();
+  const totalCards = sorted.reduce((s, c) => s + c.goals, 0);
+  const meta = document.getElementById('scorerListMeta');
+  if (meta) {
+    meta.textContent = sorted.length + ' cashiers · ' + totalCards.toLocaleString('en-US') + ' cards · sorted by MTD total';
+  }
+
+  const top = sorted[0];
+  const tiedTop = top ? sorted.filter(s => s.goals === top.goals) : [];
+  const bootSub = top
+    ? STORES[top.store] + ' · #' + top.store + (tiedTop.length > 1 ? ' · tied with ' + (tiedTop.length - 1) + ' other' + (tiedTop.length > 2 ? 's' : '') : '')
+    : '';
+
+  document.getElementById('goldenBoot').innerHTML = top ? `
   <div class="golden-boot">
     <div class="gb-icon">${bootIcon('#C8A24B')}</div>
     <div class="gb-body">
-      <div class="gb-label">Golden Boot</div>
+      <div class="gb-label">Golden Boot · MTD Leader</div>
       <div class="gb-name">${top.name}</div>
-      <div class="gb-sub">${STORES[top.store]} · #${top.store}</div>
+      <div class="gb-sub">${bootSub}</div>
     </div>
     <div class="gb-count">
       <div class="gb-goals">${top.goals}</div>
       <div class="gb-goals-label">Cards</div>
     </div>
+  </div>` : `<div class="awards-empty">No card openers yet</div>`;
+
+  document.getElementById('scorerSpotlights').innerHTML = `
+  <div class="spotlight-grid">${SCORER_SPOTLIGHTS.map(sp => `
+    <div class="spotlight-card">
+      <div class="callout-icon">${ballGlyph(20)}</div>
+      <div>
+        <div class="sp-tag">${sp.tag}</div>
+        <div class="sp-name">${sp.name}</div>
+        <div class="sp-store">${STORES[sp.store]} · #${sp.store}</div>
+        <div class="sp-note">${sp.note}</div>
+      </div>
+    </div>`).join('')}
   </div>`;
 
   let awardsHtml = '';
@@ -3365,6 +3977,18 @@ function renderScorers() {
           <div class="callout-label">${a.week} · Goal of the Week</div>
           <div class="callout-val">${a.gotw} <span class="qty">${a.gotwGoals} goals</span></div>
           <div class="callout-sub">${STORES[a.gotwStore]} · #${a.gotwStore}</div>
+        </div>
+      </div>`;
+    }
+    if (a.momentum) {
+      awardsHtml += `
+      <div class="callout-row momentum">
+        <div class="callout-icon">${ballGlyph(20)}</div>
+        <div class="callout-body">
+          <div class="callout-label">${a.week} · Live Momentum</div>
+          <div class="callout-val">${a.momentum.name}</div>
+          <div class="callout-sub">${STORES[a.momentum.store]} · #${a.momentum.store}</div>
+          <div class="callout-sub" style="margin-top:4px;">${a.momentum.note}</div>
         </div>
       </div>`;
     }
@@ -3386,14 +4010,15 @@ function renderScorers() {
   let sHtml = '';
   sorted.forEach((s, i) => {
     const isHat = s.goals >= 3;
+    const isSpotlight = s.tags && s.tags.length > 0;
     const ballCount = Math.min(s.goals, 5);
     let balls = '';
     for (let j = 0; j < ballCount; j++) balls += ballGlyph(14);
     sHtml += `
-    <div class="scorer-row ${isHat?'hat':''}" style="--i:${i+1}">
+    <div class="scorer-row ${isHat?'hat':''} ${isSpotlight?'spotlight':''}" style="--i:${i+1}">
       <div class="sc-rank">${i+1}</div>
       <div>
-        <div class="sc-name">${s.name}${isHat?'<span class="hat-badge">Hat Trick</span>':''}</div>
+        <div class="sc-name">${s.name}${isHat?'<span class="hat-badge">Hat Trick</span>':''}${renderScorerBadges(s.tags)}</div>
         <div class="sc-store">${STORES[s.store]} · #${s.store}</div>
       </div>
       <div class="sc-right">
