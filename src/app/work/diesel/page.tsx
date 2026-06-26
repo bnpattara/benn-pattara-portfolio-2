@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 
 /** Bump when `public/case-studies/diesel/index.html` changes so cached iframe HTML refreshes in production. */
-const DIESEL_CASE_HTML_REV = "1";
+const DIESEL_CASE_HTML_REV = "3";
 
 export const metadata: Metadata = {
   title: "Diesel Iceberg · Benn Pattara",
