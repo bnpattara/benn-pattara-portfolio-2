@@ -414,7 +414,7 @@ export default function Home() {
             Confidence is not a brand value. It is a measurable outcome. I build the systems that produce it: the product experience that earns trust, the loyalty architecture that converts a transaction into identity, and the data infrastructure that proves the difference.
           </p>
           <p className="about-hero-body" data-animate="fade-up" data-animate-delay="160">
-            I work across brand strategy, product management, and experience design. I use data to find the failure point and design to fix it. That&rsquo;s the work.
+            I work across brand strategy, product management, and experience design. I use data to find the failure point and design to fix it.
           </p>
         </div>
 
