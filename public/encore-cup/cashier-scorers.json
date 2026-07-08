@@ -2,60 +2,170 @@
   {
     "name": "Benn Pattara",
     "store": "1224",
-    "goals": 23
-  },
-  {
-    "name": "Madeleine Soderlund",
-    "store": "4807",
-    "goals": 8
-  },
-  {
-    "name": "Osarumwense Onaiwu",
-    "store": "6004",
-    "goals": 7
-  },
-  {
-    "name": "Vernon Green",
-    "store": "1305",
-    "goals": 6
-  },
-  {
-    "name": "Toya Gavin",
-    "store": "1459",
-    "goals": 6
+    "goals": 48
   },
   {
     "name": "Alazee Allen",
     "store": "6004",
-    "goals": 6
+    "goals": 16
   },
   {
-    "name": "Kareema Hardi",
-    "store": "1224",
-    "goals": 5
-  },
-  {
-    "name": "STACEY RIVERA",
+    "name": "Vernon Green",
     "store": "1305",
-    "goals": 5
+    "goals": 15
+  },
+  {
+    "name": "Madeleine Soderlund",
+    "store": "4807",
+    "goals": 12
   },
   {
     "name": "Lewis Waters",
     "store": "6004",
-    "goals": 5
+    "goals": 9
+  },
+  {
+    "name": "Osarumwense Onaiwu",
+    "store": "6004",
+    "goals": 9
+  },
+  {
+    "name": "Kareema Hardi",
+    "store": "1224",
+    "goals": 8
+  },
+  {
+    "name": "Bella Keovongkoth",
+    "store": "1321",
+    "goals": 8
+  },
+  {
+    "name": "Christopher Valencia",
+    "store": "1321",
+    "goals": 8
+  },
+  {
+    "name": "Anastasia Johnston",
+    "store": "1459",
+    "goals": 8
+  },
+  {
+    "name": "Trina Mart",
+    "store": "594",
+    "goals": 8
   },
   {
     "name": "Shanna Reid",
     "store": "1224",
-    "goals": 4
+    "goals": 7
+  },
+  {
+    "name": "Toya Gavin",
+    "store": "1459",
+    "goals": 7
+  },
+  {
+    "name": "Amy Carlyle",
+    "store": "6004",
+    "goals": 7
+  },
+  {
+    "name": "Beth Raymond",
+    "store": "6004",
+    "goals": 7
+  },
+  {
+    "name": "Fiona To",
+    "store": "6004",
+    "goals": 7
+  },
+  {
+    "name": "STACEY RIVERA",
+    "store": "1305",
+    "goals": 6
   },
   {
     "name": "Fung Han Henderson",
     "store": "1319",
+    "goals": 6
+  },
+  {
+    "name": "Madison Gould",
+    "store": "1319",
+    "goals": 6
+  },
+  {
+    "name": "Brandon Newman",
+    "store": "1459",
+    "goals": 6
+  },
+  {
+    "name": "Leah Crist",
+    "store": "6108",
+    "goals": 6
+  },
+  {
+    "name": "Val Golob",
+    "store": "6108",
+    "goals": 6
+  },
+  {
+    "name": "Saqqara Scott",
+    "store": "6806",
+    "goals": 6
+  },
+  {
+    "name": "Eden Snowden",
+    "store": "1224",
+    "goals": 5
+  },
+  {
+    "name": "Kevin Leonides",
+    "store": "1459",
+    "goals": 5
+  },
+  {
+    "name": "Sue Wilcox",
+    "store": "1459",
+    "goals": 5
+  },
+  {
+    "name": "Jason Glasscock",
+    "store": "4807",
+    "goals": 5
+  },
+  {
+    "name": "Celeste Barrera",
+    "store": "594",
+    "goals": 5
+  },
+  {
+    "name": "Tiffany Franke",
+    "store": "6004",
+    "goals": 5
+  },
+  {
+    "name": "Joshua Lambeth",
+    "store": "6014",
+    "goals": 5
+  },
+  {
+    "name": "Mary Puryear",
+    "store": "6810",
+    "goals": 5
+  },
+  {
+    "name": "Mindy Parsons",
+    "store": "1224",
     "goals": 4
   },
   {
-    "name": "Christopher Valencia",
+    "name": "Sharina Richardson",
+    "store": "1305",
+    "goals": 4
+  },
+  {
+    "name": "Nicole Marshall",
     "store": "1321",
     "goals": 4
   },
@@ -65,23 +175,58 @@
     "goals": 4
   },
   {
-    "name": "Brandon Newman",
-    "store": "1459",
+    "name": "Sheri Spoloric",
+    "store": "4807",
     "goals": 4
   },
   {
-    "name": "Eden Snowden",
-    "store": "1224",
+    "name": "Brittany Casailinova",
+    "store": "594",
+    "goals": 4
+  },
+  {
+    "name": "Valeria Lastra",
+    "store": "6004",
+    "goals": 4
+  },
+  {
+    "name": "Leslie Cinto Vazquez",
+    "store": "6014",
+    "goals": 4
+  },
+  {
+    "name": "Kimberly Martinez",
+    "store": "6108",
+    "goals": 4
+  },
+  {
+    "name": "Gabby Dapkus",
+    "store": "6806",
+    "goals": 4
+  },
+  {
+    "name": "Logan Avila-Burns",
+    "store": "6810",
+    "goals": 4
+  },
+  {
+    "name": "Barbara Smith",
+    "store": "1305",
     "goals": 3
   },
   {
-    "name": "Madison Gould",
-    "store": "1319",
+    "name": "Blue Edmonds",
+    "store": "1305",
     "goals": 3
   },
   {
-    "name": "Nicole Marshall",
-    "store": "1321",
+    "name": "Daniel Muench",
+    "store": "1305",
+    "goals": 3
+  },
+  {
+    "name": "Corteney James",
+    "store": "4807",
     "goals": 3
   },
   {
@@ -90,27 +235,17 @@
     "goals": 3
   },
   {
-    "name": "Trina Mart",
-    "store": "594",
-    "goals": 3
-  },
-  {
-    "name": "Amy Carlyle",
+    "name": "Annie Barnes Dais",
     "store": "6004",
     "goals": 3
   },
   {
-    "name": "Tiffany Franke",
-    "store": "6004",
+    "name": "Kennedy Yon",
+    "store": "6014",
     "goals": 3
   },
   {
-    "name": "Valeria Lastra",
-    "store": "6004",
-    "goals": 3
-  },
-  {
-    "name": "Joshua Lambeth",
+    "name": "Laci Cardona",
     "store": "6014",
     "goals": 3
   },
@@ -120,17 +255,37 @@
     "goals": 3
   },
   {
-    "name": "Leah Crist",
+    "name": "Monzar Thet-oo",
+    "store": "6014",
+    "goals": 3
+  },
+  {
+    "name": "Robert Izquierdo",
     "store": "6108",
     "goals": 3
   },
   {
-    "name": "Saqqara Scott",
+    "name": "Cora Strope",
     "store": "6806",
     "goals": 3
   },
   {
-    "name": "Mary Puryear",
+    "name": "Nicholas Angelos",
+    "store": "6806",
+    "goals": 3
+  },
+  {
+    "name": "Eion Sutter",
+    "store": "6810",
+    "goals": 3
+  },
+  {
+    "name": "LaMarquez Pride",
+    "store": "6810",
+    "goals": 3
+  },
+  {
+    "name": "Maya Malik",
     "store": "6810",
     "goals": 3
   },
@@ -140,17 +295,12 @@
     "goals": 2
   },
   {
+    "name": "Elizabeth McWilliams",
+    "store": "1224",
+    "goals": 2
+  },
+  {
     "name": "Adrienne Minor",
-    "store": "1305",
-    "goals": 2
-  },
-  {
-    "name": "Barbara Smith",
-    "store": "1305",
-    "goals": 2
-  },
-  {
-    "name": "Blue Edmonds",
     "store": "1305",
     "goals": 2
   },
@@ -160,18 +310,18 @@
     "goals": 2
   },
   {
-    "name": "Bella Keovongkoth",
+    "name": "Katelyn Jones",
+    "store": "1319",
+    "goals": 2
+  },
+  {
+    "name": "Baheejah Jabri",
     "store": "1321",
     "goals": 2
   },
   {
     "name": "Gianna Bien-Aime",
     "store": "1321",
-    "goals": 2
-  },
-  {
-    "name": "Kevin Leonides",
-    "store": "1459",
     "goals": 2
   },
   {
@@ -190,6 +340,11 @@
     "goals": 2
   },
   {
+    "name": "Sharon Mock",
+    "store": "4807",
+    "goals": 2
+  },
+  {
     "name": "Yire Cazorla",
     "store": "4807",
     "goals": 2
@@ -200,22 +355,27 @@
     "goals": 2
   },
   {
-    "name": "Annie Barnes Dais",
+    "name": "Laila Chmielewski",
+    "store": "594",
+    "goals": 2
+  },
+  {
+    "name": "Grace Mattias",
     "store": "6004",
     "goals": 2
   },
   {
-    "name": "Fiona To",
-    "store": "6004",
-    "goals": 2
-  },
-  {
-    "name": "Kennedy Yon",
+    "name": "Lester Ferrufino",
     "store": "6014",
     "goals": 2
   },
   {
-    "name": "Monzar Thet-oo",
+    "name": "Mady Christmas",
+    "store": "6014",
+    "goals": 2
+  },
+  {
+    "name": "Samuel Reillo",
     "store": "6014",
     "goals": 2
   },
@@ -225,22 +385,22 @@
     "goals": 2
   },
   {
-    "name": "Robert Izquierdo",
+    "name": "Andres Juan",
     "store": "6108",
     "goals": 2
   },
   {
-    "name": "Cora Strope",
-    "store": "6806",
+    "name": "Day'Sheona Ashley",
+    "store": "6810",
     "goals": 2
   },
   {
-    "name": "Gabby Dapkus",
-    "store": "6806",
+    "name": "Elizabeth Edwards",
+    "store": "6810",
     "goals": 2
   },
   {
-    "name": "Maya Malik",
+    "name": "Harrison Kaye",
     "store": "6810",
     "goals": 2
   },
@@ -250,18 +410,28 @@
     "goals": 1
   },
   {
-    "name": "Elizabeth McWilliams",
+    "name": "Erica Davidson",
+    "store": "1224",
+    "goals": 1
+  },
+  {
+    "name": "India Jones",
+    "store": "1224",
+    "goals": 1
+  },
+  {
+    "name": "Isabel Sarmiento",
+    "store": "1224",
+    "goals": 1
+  },
+  {
+    "name": "Samantha Saunders",
     "store": "1224",
     "goals": 1
   },
   {
     "name": "TANISHA TYLER",
     "store": "1224",
-    "goals": 1
-  },
-  {
-    "name": "Daniel Muench",
-    "store": "1305",
     "goals": 1
   },
   {
@@ -275,12 +445,12 @@
     "goals": 1
   },
   {
-    "name": "Sharina Richardson",
-    "store": "1305",
+    "name": "Ericka Francois",
+    "store": "1319",
     "goals": 1
   },
   {
-    "name": "Ericka Francois",
+    "name": "JACQULINE PALACIOS",
     "store": "1319",
     "goals": 1
   },
@@ -290,13 +460,13 @@
     "goals": 1
   },
   {
-    "name": "Taj Mack",
+    "name": "Sofia Nase",
     "store": "1319",
     "goals": 1
   },
   {
-    "name": "Baheejah Jabri",
-    "store": "1321",
+    "name": "Taj Mack",
+    "store": "1319",
     "goals": 1
   },
   {
@@ -306,6 +476,11 @@
   },
   {
     "name": "Genevieve Descher",
+    "store": "1321",
+    "goals": 1
+  },
+  {
+    "name": "Isabelle Descher",
     "store": "1321",
     "goals": 1
   },
@@ -320,12 +495,22 @@
     "goals": 1
   },
   {
-    "name": "Anastasia Johnston",
+    "name": "Ryan Savage",
+    "store": "1321",
+    "goals": 1
+  },
+  {
+    "name": "Carla Sapere",
     "store": "1459",
     "goals": 1
   },
   {
-    "name": "Sue Wilcox",
+    "name": "Gail Gardner",
+    "store": "1459",
+    "goals": 1
+  },
+  {
+    "name": "Kamt Ayorinde",
     "store": "1459",
     "goals": 1
   },
@@ -335,7 +520,7 @@
     "goals": 1
   },
   {
-    "name": "Jason Glasscock",
+    "name": "Kikaxy VAUGHAN",
     "store": "4807",
     "goals": 1
   },
@@ -345,17 +530,22 @@
     "goals": 1
   },
   {
-    "name": "Sheri Spoloric",
-    "store": "4807",
-    "goals": 1
-  },
-  {
     "name": "Calvin Petit",
     "store": "594",
     "goals": 1
   },
   {
-    "name": "Beth Raymond",
+    "name": "Emma Harkness",
+    "store": "594",
+    "goals": 1
+  },
+  {
+    "name": "Giselle Lopez",
+    "store": "594",
+    "goals": 1
+  },
+  {
+    "name": "Fatou Camara",
     "store": "6004",
     "goals": 1
   },
@@ -365,13 +555,18 @@
     "goals": 1
   },
   {
-    "name": "Grace Mattias",
+    "name": "Lois Pawlowski",
     "store": "6004",
     "goals": 1
   },
   {
-    "name": "Lois Pawlowski",
+    "name": "Nyah Johnson",
     "store": "6004",
+    "goals": 1
+  },
+  {
+    "name": "Cristina Suarez Amayo",
+    "store": "6014",
     "goals": 1
   },
   {
@@ -380,12 +575,17 @@
     "goals": 1
   },
   {
-    "name": "Leslie Cinto Vazquez",
+    "name": "Hannah Santiago",
     "store": "6014",
     "goals": 1
   },
   {
-    "name": "Samuel Reillo",
+    "name": "Karson Yon",
+    "store": "6014",
+    "goals": 1
+  },
+  {
+    "name": "Parvathy Nambiar Odayammadath Thazhathu",
     "store": "6014",
     "goals": 1
   },
@@ -395,13 +595,28 @@
     "goals": 1
   },
   {
-    "name": "Kimberly Martinez",
+    "name": "Giselle Lopez",
     "store": "6108",
     "goals": 1
   },
   {
-    "name": "Val Golob",
+    "name": "Katherine Mocerino",
     "store": "6108",
+    "goals": 1
+  },
+  {
+    "name": "Sean Garrett",
+    "store": "6108",
+    "goals": 1
+  },
+  {
+    "name": "Sulamita Molchanovich",
+    "store": "6108",
+    "goals": 1
+  },
+  {
+    "name": "Camila Papenbrock Romero",
+    "store": "6806",
     "goals": 1
   },
   {
@@ -420,22 +635,7 @@
     "goals": 1
   },
   {
-    "name": "Day'Sheona Ashley",
-    "store": "6810",
-    "goals": 1
-  },
-  {
-    "name": "Elizabeth Edwards",
-    "store": "6810",
-    "goals": 1
-  },
-  {
-    "name": "Harrison Kaye",
-    "store": "6810",
-    "goals": 1
-  },
-  {
-    "name": "Logan Avila-Burns",
+    "name": "Kaylin Davidson",
     "store": "6810",
     "goals": 1
   },

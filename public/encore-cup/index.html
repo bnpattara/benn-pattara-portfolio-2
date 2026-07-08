@@ -2528,7 +2528,7 @@ function goalMarkerPct(storeId) {
 }
 
 // Gap Specialty · Mid-Atlantic District — 12 real stores
-// WK 1–3 from week 1.xlsx · week 2.xlsx · week 3.xlsx (Jun 2026 pull).
+// WK 1–5 from encorecupweekone.xlsx · encorecupweektwo.xlsx · encorecupweek3.xlsx · encorecuptweekfour.xlsx · encorecupweekfive.xlsx (Jul 2026 final pull).
 const STORES = {
   "1224": "Short Pump",
   "1305": "Lenox Square",
@@ -2577,52 +2577,80 @@ const WEEKS = [
 // ═══════════════════════════════════════════════════════════════
 const STORE_WEEK_STATS = {
   "WK 1": {
-    // FINAL · week 1 export. District totals: 6,382 txns · 105 cards · 1.65% rate.
-    "1224": { txns: 741, cards: 18, cashiers: 17, cashiersOpened:  8, cashiersAtGoal: 5 }, // Short Pump           2.43%
-    "1305": { txns: 532, cards:  8, cashiers: 13, cashiersOpened:  6, cashiersAtGoal: 4 }, // Lenox Square         1.50%
-    "1319": { txns: 400, cards:  6, cashiers: 12, cashiersOpened:  5, cashiersAtGoal: 5 }, // East Cobb            1.50%
-    "1321": { txns: 476, cards:  5, cashiers: 13, cashiersOpened:  4, cashiersAtGoal: 4 }, // Mall of Georgia        1.05%
-    "1459": { txns: 869, cards: 13, cashiers: 16, cashiersOpened:  5, cashiersAtGoal: 5 }, // Avalon               1.50%
-    "4807": { txns: 339, cards:  9, cashiers: 13, cashiersOpened:  5, cashiersAtGoal: 5 }, // Hanes                2.65%
-    "594":  { txns: 461, cards:  6, cashiers: 10, cashiersOpened:  3, cashiersAtGoal: 3 }, // Mayfaire             1.30%
+    // FINAL · encorecupweekone.xlsx. District totals: 6,382 txns · 105 cards · 1.65% rate.
+    "1224": { txns: 741, cards: 18, cashiers: 17, cashiersOpened:  8, cashiersAtGoal:  5 }, // Short Pump           2.43%
+    "1305": { txns: 532, cards:  8, cashiers: 13, cashiersOpened:  6, cashiersAtGoal:  4 }, // Lenox Square         1.50%
+    "1319": { txns: 400, cards:  6, cashiers: 12, cashiersOpened:  5, cashiersAtGoal:  5 }, // East Cobb            1.50%
+    "1321": { txns: 476, cards:  5, cashiers: 13, cashiersOpened:  4, cashiersAtGoal:  4 }, // Mall of Georgia      1.05%
+    "1459": { txns: 869, cards: 13, cashiers: 16, cashiersOpened:  5, cashiersAtGoal:  5 }, // Avalon               1.50%
+    "4807": { txns: 339, cards:  9, cashiers: 13, cashiersOpened:  5, cashiersAtGoal:  5 }, // Hanes                2.65%
+    "594" : { txns: 461, cards:  6, cashiers: 10, cashiersOpened:  3, cashiersAtGoal:  3 }, // Mayfaire             1.30%
     "6004": { txns: 637, cards: 22, cashiers: 16, cashiersOpened: 11, cashiersAtGoal: 10 }, // Crabtree Valley      3.45%
     "6014": { txns: 797, cards:  5, cashiers: 19, cashiersOpened:  5, cashiersAtGoal:  3 }, // Streets @ Southpoint 0.63%
-    "6108": { txns: 393, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal: 2 }, // Haywood              0.76%
-    "6806": { txns: 228, cards:  4, cashiers: 11, cashiersOpened:  4, cashiersAtGoal: 4 }, // West Town            1.75%
+    "6108": { txns: 393, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal:  2 }, // Haywood              0.76%
+    "6806": { txns: 228, cards:  4, cashiers: 11, cashiersOpened:  4, cashiersAtGoal:  4 }, // West Town            1.75%
     "6810": { txns: 509, cards:  6, cashiers: 11, cashiersOpened:  5, cashiersAtGoal:  5 }, // Green Hills          1.18%
   },
   "WK 2": {
-    // FINAL · week 2 export. District totals: 6,278 txns · 96 cards · 1.53% rate.
-    "1224": { txns: 663, cards: 17, cashiers: 16, cashiersOpened:  4, cashiersAtGoal: 3 }, // Short Pump           2.56%
-    "1305": { txns: 527, cards: 15, cashiers: 14, cashiersOpened:  7, cashiersAtGoal: 6 }, // Lenox Square         2.85%
-    "1319": { txns: 367, cards:  3, cashiers: 12, cashiersOpened:  1, cashiersAtGoal: 1 }, // East Cobb            0.82%
-    "1321": { txns: 535, cards: 10, cashiers: 13, cashiersOpened:  6, cashiersAtGoal: 5 }, // Mall of Georgia        1.87%
-    "1459": { txns: 729, cards:  6, cashiers: 15, cashiersOpened:  3, cashiersAtGoal: 1 }, // Avalon               0.82%
-    "4807": { txns: 316, cards:  7, cashiers: 15, cashiersOpened:  3, cashiersAtGoal: 3 }, // Hanes                2.22%
-    "594":  { txns: 392, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal: 2 }, // Mayfaire             0.77%
-    "6004": { txns: 651, cards: 12, cashiers: 16, cashiersOpened:  6, cashiersAtGoal: 6 }, // Crabtree Valley      1.84%
-    "6014": { txns: 881, cards: 11, cashiers: 18, cashiersOpened:  6, cashiersAtGoal: 6 }, // Streets @ Southpoint 1.25%
-    "6108": { txns: 379, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal: 1 }, // Haywood              0.79%
-    "6806": { txns: 280, cards:  5, cashiers:  8, cashiersOpened:  4, cashiersAtGoal: 2 }, // West Town            1.79%
+    // FINAL · encorecupweektwo.xlsx. District totals: 6,302 txns · 96 cards · 1.52% rate.
+    "1224": { txns: 663, cards: 17, cashiers: 16, cashiersOpened:  4, cashiersAtGoal:  3 }, // Short Pump           2.56%
+    "1305": { txns: 527, cards: 15, cashiers: 14, cashiersOpened:  7, cashiersAtGoal:  6 }, // Lenox Square         2.85%
+    "1319": { txns: 367, cards:  3, cashiers: 12, cashiersOpened:  1, cashiersAtGoal:  1 }, // East Cobb            0.82%
+    "1321": { txns: 535, cards: 10, cashiers: 13, cashiersOpened:  6, cashiersAtGoal:  5 }, // Mall of Georgia      1.87%
+    "1459": { txns: 730, cards:  6, cashiers: 15, cashiersOpened:  3, cashiersAtGoal:  1 }, // Avalon               0.82%
+    "4807": { txns: 316, cards:  7, cashiers: 15, cashiersOpened:  3, cashiersAtGoal:  3 }, // Hanes                2.22%
+    "594" : { txns: 392, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal:  2 }, // Mayfaire             0.77%
+    "6004": { txns: 674, cards: 12, cashiers: 17, cashiersOpened:  6, cashiersAtGoal:  6 }, // Crabtree Valley      1.78%
+    "6014": { txns: 881, cards: 11, cashiers: 18, cashiersOpened:  6, cashiersAtGoal:  6 }, // Streets @ Southpoint 1.25%
+    "6108": { txns: 379, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal:  1 }, // Haywood              0.79%
+    "6806": { txns: 280, cards:  5, cashiers:  8, cashiersOpened:  4, cashiersAtGoal:  2 }, // West Town            1.79%
     "6810": { txns: 558, cards:  4, cashiers: 13, cashiersOpened:  4, cashiersAtGoal:  3 }, // Green Hills          0.72%
   },
   "WK 3": {
-    // IN PROGRESS · data-11.xlsx export. District totals: 1,859 txns · 13 cards · 0.70% rate.
-    "1224": { txns: 222, cards:  5, cashiers:  9, cashiersOpened:  3, cashiersAtGoal: 3 }, // Short Pump           2.25%
-    "1305": { txns: 178, cards:  0, cashiers: 10, cashiersOpened:  0, cashiersAtGoal: 0 }, // Lenox Square         0.00%
-    "1319": { txns: 121, cards:  1, cashiers:  9, cashiersOpened:  1, cashiersAtGoal: 1 }, // East Cobb            0.83%
-    "1321": { txns: 145, cards:  1, cashiers:  8, cashiersOpened:  1, cashiersAtGoal: 1 }, // Mall of Georgia        0.69%
-    "1459": { txns: 217, cards:  1, cashiers:  8, cashiersOpened:  1, cashiersAtGoal: 1 }, // Avalon               0.46%
-    "4807": { txns:  91, cards:  2, cashiers:  7, cashiersOpened:  2, cashiersAtGoal: 2 }, // Hanes                2.20%
-    "594":  { txns: 142, cards:  0, cashiers:  6, cashiersOpened:  0, cashiersAtGoal: 0 }, // Mayfaire             0.00%
-    "6004": { txns: 208, cards:  1, cashiers: 13, cashiersOpened:  1, cashiersAtGoal: 1 }, // Crabtree Valley      0.48%
-    "6014": { txns: 227, cards:  0, cashiers: 13, cashiersOpened:  0, cashiersAtGoal: 0 }, // Streets @ Southpoint 0.00%
-    "6108": { txns:  93, cards:  1, cashiers: 10, cashiersOpened:  1, cashiersAtGoal: 1 }, // Haywood              1.08%
-    "6806": { txns:  58, cards:  0, cashiers:  6, cashiersOpened:  0, cashiersAtGoal: 0 }, // West Town            0.00%
-    "6810": { txns: 157, cards:  1, cashiers:  7, cashiersOpened:  1, cashiersAtGoal: 1 }, // Green Hills          0.64%
+    // FINAL · encorecupweek3.xlsx. District totals: 6,918 txns · 73 cards · 1.06% rate.
+    "1224": { txns: 767, cards:  9, cashiers: 18, cashiersOpened:  4, cashiersAtGoal:  2 }, // Short Pump           1.17%
+    "1305": { txns: 633, cards:  6, cashiers: 14, cashiersOpened:  2, cashiersAtGoal:  2 }, // Lenox Square         0.95%
+    "1319": { txns: 429, cards:  3, cashiers: 12, cashiersOpened:  1, cashiersAtGoal:  1 }, // East Cobb            0.70%
+    "1321": { txns: 563, cards:  3, cashiers: 14, cashiersOpened:  3, cashiersAtGoal:  1 }, // Mall of Georgia      0.53%
+    "1459": { txns: 764, cards:  9, cashiers: 14, cashiersOpened:  6, cashiersAtGoal:  5 }, // Avalon               1.18%
+    "4807": { txns: 391, cards:  8, cashiers: 12, cashiersOpened:  5, cashiersAtGoal:  5 }, // Hanes                2.05%
+    "594" : { txns: 485, cards:  3, cashiers: 11, cashiersOpened:  3, cashiersAtGoal:  0 }, // Mayfaire             0.62%
+    "6004": { txns: 760, cards: 15, cashiers: 18, cashiersOpened:  8, cashiersAtGoal:  7 }, // Crabtree Valley      1.97%
+    "6014": { txns: 846, cards:  5, cashiers: 19, cashiersOpened:  5, cashiersAtGoal:  5 }, // Streets @ Southpoint 0.59%
+    "6108": { txns: 378, cards:  5, cashiers: 12, cashiersOpened:  3, cashiersAtGoal:  2 }, // Haywood              1.32%
+    "6806": { txns: 283, cards:  3, cashiers: 10, cashiersOpened:  3, cashiersAtGoal:  3 }, // West Town            1.06%
+    "6810": { txns: 619, cards:  4, cashiers: 12, cashiersOpened:  4, cashiersAtGoal:  2 }, // Green Hills          0.65%
   },
-  "WK 4": { /* populate each Monday */ },
-  "WK 5": { /* populate each Monday */ },
+  "WK 4": {
+    // FINAL · encorecuptweekfour.xlsx. District totals: 6,340 txns · 99 cards · 1.56% rate.
+    "1224": { txns: 724, cards: 20, cashiers: 17, cashiersOpened:  7, cashiersAtGoal:  7 }, // Short Pump           2.76%
+    "1305": { txns: 595, cards:  5, cashiers: 14, cashiersOpened:  3, cashiersAtGoal:  2 }, // Lenox Square         0.84%
+    "1319": { txns: 430, cards:  4, cashiers: 13, cashiersOpened:  4, cashiersAtGoal:  3 }, // East Cobb            0.93%
+    "1321": { txns: 480, cards:  9, cashiers: 13, cashiersOpened:  4, cashiersAtGoal:  3 }, // Mall of Georgia      1.88%
+    "1459": { txns: 777, cards:  5, cashiers: 14, cashiersOpened:  3, cashiersAtGoal:  1 }, // Avalon               0.64%
+    "4807": { txns: 340, cards:  6, cashiers: 17, cashiersOpened:  4, cashiersAtGoal:  4 }, // Hanes                1.76%
+    "594" : { txns: 415, cards:  8, cashiers: 11, cashiersOpened:  4, cashiersAtGoal:  4 }, // Mayfaire             1.93%
+    "6004": { txns: 601, cards: 12, cashiers: 18, cashiersOpened:  5, cashiersAtGoal:  4 }, // Crabtree Valley      2.00%
+    "6014": { txns: 783, cards: 10, cashiers: 20, cashiersOpened:  7, cashiersAtGoal:  5 }, // Streets @ Southpoint 1.28%
+    "6108": { txns: 380, cards: 13, cashiers: 12, cashiersOpened:  7, cashiersAtGoal:  6 }, // Haywood              3.42%
+    "6806": { txns: 280, cards:  2, cashiers:  8, cashiersOpened:  2, cashiersAtGoal:  1 }, // West Town            0.71%
+    "6810": { txns: 535, cards:  5, cashiers: 12, cashiersOpened:  5, cashiersAtGoal:  2 }, // Green Hills          0.93%
+  },
+  "WK 5": {
+    // FINAL · encorecupweekfive.xlsx. District totals: 6,268 txns · 79 cards · 1.26% rate.
+    "1224": { txns: 653, cards: 18, cashiers: 16, cashiersOpened:  6, cashiersAtGoal:  4 }, // Short Pump           2.76%
+    "1305": { txns: 557, cards:  6, cashiers: 14, cashiersOpened:  3, cashiersAtGoal:  2 }, // Lenox Square         1.08%
+    "1319": { txns: 385, cards:  3, cashiers: 14, cashiersOpened:  3, cashiersAtGoal:  2 }, // East Cobb            0.78%
+    "1321": { txns: 572, cards:  3, cashiers: 13, cashiersOpened:  1, cashiersAtGoal:  1 }, // Mall of Georgia      0.52%
+    "1459": { txns: 695, cards:  7, cashiers: 14, cashiersOpened:  5, cashiersAtGoal:  3 }, // Avalon               1.01%
+    "4807": { txns: 348, cards:  5, cashiers: 16, cashiersOpened:  3, cashiersAtGoal:  3 }, // Hanes                1.44%
+    "594" : { txns: 457, cards:  7, cashiers: 11, cashiersOpened:  5, cashiersAtGoal:  2 }, // Mayfaire             1.53%
+    "6004": { txns: 661, cards: 12, cashiers: 17, cashiersOpened:  8, cashiersAtGoal:  7 }, // Crabtree Valley      1.82%
+    "6014": { txns: 776, cards:  4, cashiers: 21, cashiersOpened:  3, cashiersAtGoal:  1 }, // Streets @ Southpoint 0.52%
+    "6108": { txns: 382, cards:  1, cashiers: 11, cashiersOpened:  1, cashiersAtGoal:  1 }, // Haywood              0.26%
+    "6806": { txns: 261, cards:  5, cashiers: 11, cashiersOpened:  4, cashiersAtGoal:  4 }, // West Town            1.92%
+    "6810": { txns: 521, cards:  8, cashiers: 11, cashiersOpened:  6, cashiersAtGoal:  4 }, // Green Hills          1.54%
+  },
 };
 
 // MTD card openers — derived from weekly exports (see CASHIER_SCORERS below).
@@ -2633,60 +2661,170 @@ const CASHIER_SCORERS = [
   {
     "name": "Benn Pattara",
     "store": "1224",
-    "goals": 23
-  },
-  {
-    "name": "Madeleine Soderlund",
-    "store": "4807",
-    "goals": 8
-  },
-  {
-    "name": "Osarumwense Onaiwu",
-    "store": "6004",
-    "goals": 7
-  },
-  {
-    "name": "Vernon Green",
-    "store": "1305",
-    "goals": 6
-  },
-  {
-    "name": "Toya Gavin",
-    "store": "1459",
-    "goals": 6
+    "goals": 48
   },
   {
     "name": "Alazee Allen",
     "store": "6004",
-    "goals": 6
+    "goals": 16
   },
   {
-    "name": "Kareema Hardi",
-    "store": "1224",
-    "goals": 5
-  },
-  {
-    "name": "STACEY RIVERA",
+    "name": "Vernon Green",
     "store": "1305",
-    "goals": 5
+    "goals": 15
+  },
+  {
+    "name": "Madeleine Soderlund",
+    "store": "4807",
+    "goals": 12
   },
   {
     "name": "Lewis Waters",
     "store": "6004",
-    "goals": 5
+    "goals": 9
+  },
+  {
+    "name": "Osarumwense Onaiwu",
+    "store": "6004",
+    "goals": 9
+  },
+  {
+    "name": "Kareema Hardi",
+    "store": "1224",
+    "goals": 8
+  },
+  {
+    "name": "Bella Keovongkoth",
+    "store": "1321",
+    "goals": 8
+  },
+  {
+    "name": "Christopher Valencia",
+    "store": "1321",
+    "goals": 8
+  },
+  {
+    "name": "Anastasia Johnston",
+    "store": "1459",
+    "goals": 8
+  },
+  {
+    "name": "Trina Mart",
+    "store": "594",
+    "goals": 8
   },
   {
     "name": "Shanna Reid",
     "store": "1224",
-    "goals": 4
+    "goals": 7
+  },
+  {
+    "name": "Toya Gavin",
+    "store": "1459",
+    "goals": 7
+  },
+  {
+    "name": "Amy Carlyle",
+    "store": "6004",
+    "goals": 7
+  },
+  {
+    "name": "Beth Raymond",
+    "store": "6004",
+    "goals": 7
+  },
+  {
+    "name": "Fiona To",
+    "store": "6004",
+    "goals": 7
+  },
+  {
+    "name": "STACEY RIVERA",
+    "store": "1305",
+    "goals": 6
   },
   {
     "name": "Fung Han Henderson",
     "store": "1319",
+    "goals": 6
+  },
+  {
+    "name": "Madison Gould",
+    "store": "1319",
+    "goals": 6
+  },
+  {
+    "name": "Brandon Newman",
+    "store": "1459",
+    "goals": 6
+  },
+  {
+    "name": "Leah Crist",
+    "store": "6108",
+    "goals": 6
+  },
+  {
+    "name": "Val Golob",
+    "store": "6108",
+    "goals": 6
+  },
+  {
+    "name": "Saqqara Scott",
+    "store": "6806",
+    "goals": 6
+  },
+  {
+    "name": "Eden Snowden",
+    "store": "1224",
+    "goals": 5
+  },
+  {
+    "name": "Kevin Leonides",
+    "store": "1459",
+    "goals": 5
+  },
+  {
+    "name": "Sue Wilcox",
+    "store": "1459",
+    "goals": 5
+  },
+  {
+    "name": "Jason Glasscock",
+    "store": "4807",
+    "goals": 5
+  },
+  {
+    "name": "Celeste Barrera",
+    "store": "594",
+    "goals": 5
+  },
+  {
+    "name": "Tiffany Franke",
+    "store": "6004",
+    "goals": 5
+  },
+  {
+    "name": "Joshua Lambeth",
+    "store": "6014",
+    "goals": 5
+  },
+  {
+    "name": "Mary Puryear",
+    "store": "6810",
+    "goals": 5
+  },
+  {
+    "name": "Mindy Parsons",
+    "store": "1224",
     "goals": 4
   },
   {
-    "name": "Christopher Valencia",
+    "name": "Sharina Richardson",
+    "store": "1305",
+    "goals": 4
+  },
+  {
+    "name": "Nicole Marshall",
     "store": "1321",
     "goals": 4
   },
@@ -2696,23 +2834,58 @@ const CASHIER_SCORERS = [
     "goals": 4
   },
   {
-    "name": "Brandon Newman",
-    "store": "1459",
+    "name": "Sheri Spoloric",
+    "store": "4807",
     "goals": 4
   },
   {
-    "name": "Eden Snowden",
-    "store": "1224",
+    "name": "Brittany Casailinova",
+    "store": "594",
+    "goals": 4
+  },
+  {
+    "name": "Valeria Lastra",
+    "store": "6004",
+    "goals": 4
+  },
+  {
+    "name": "Leslie Cinto Vazquez",
+    "store": "6014",
+    "goals": 4
+  },
+  {
+    "name": "Kimberly Martinez",
+    "store": "6108",
+    "goals": 4
+  },
+  {
+    "name": "Gabby Dapkus",
+    "store": "6806",
+    "goals": 4
+  },
+  {
+    "name": "Logan Avila-Burns",
+    "store": "6810",
+    "goals": 4
+  },
+  {
+    "name": "Barbara Smith",
+    "store": "1305",
     "goals": 3
   },
   {
-    "name": "Madison Gould",
-    "store": "1319",
+    "name": "Blue Edmonds",
+    "store": "1305",
     "goals": 3
   },
   {
-    "name": "Nicole Marshall",
-    "store": "1321",
+    "name": "Daniel Muench",
+    "store": "1305",
+    "goals": 3
+  },
+  {
+    "name": "Corteney James",
+    "store": "4807",
     "goals": 3
   },
   {
@@ -2721,27 +2894,17 @@ const CASHIER_SCORERS = [
     "goals": 3
   },
   {
-    "name": "Trina Mart",
-    "store": "594",
-    "goals": 3
-  },
-  {
-    "name": "Amy Carlyle",
+    "name": "Annie Barnes Dais",
     "store": "6004",
     "goals": 3
   },
   {
-    "name": "Tiffany Franke",
-    "store": "6004",
+    "name": "Kennedy Yon",
+    "store": "6014",
     "goals": 3
   },
   {
-    "name": "Valeria Lastra",
-    "store": "6004",
-    "goals": 3
-  },
-  {
-    "name": "Joshua Lambeth",
+    "name": "Laci Cardona",
     "store": "6014",
     "goals": 3
   },
@@ -2751,17 +2914,37 @@ const CASHIER_SCORERS = [
     "goals": 3
   },
   {
-    "name": "Leah Crist",
+    "name": "Monzar Thet-oo",
+    "store": "6014",
+    "goals": 3
+  },
+  {
+    "name": "Robert Izquierdo",
     "store": "6108",
     "goals": 3
   },
   {
-    "name": "Saqqara Scott",
+    "name": "Cora Strope",
     "store": "6806",
     "goals": 3
   },
   {
-    "name": "Mary Puryear",
+    "name": "Nicholas Angelos",
+    "store": "6806",
+    "goals": 3
+  },
+  {
+    "name": "Eion Sutter",
+    "store": "6810",
+    "goals": 3
+  },
+  {
+    "name": "LaMarquez Pride",
+    "store": "6810",
+    "goals": 3
+  },
+  {
+    "name": "Maya Malik",
     "store": "6810",
     "goals": 3
   },
@@ -2771,17 +2954,12 @@ const CASHIER_SCORERS = [
     "goals": 2
   },
   {
+    "name": "Elizabeth McWilliams",
+    "store": "1224",
+    "goals": 2
+  },
+  {
     "name": "Adrienne Minor",
-    "store": "1305",
-    "goals": 2
-  },
-  {
-    "name": "Barbara Smith",
-    "store": "1305",
-    "goals": 2
-  },
-  {
-    "name": "Blue Edmonds",
     "store": "1305",
     "goals": 2
   },
@@ -2791,18 +2969,18 @@ const CASHIER_SCORERS = [
     "goals": 2
   },
   {
-    "name": "Bella Keovongkoth",
+    "name": "Katelyn Jones",
+    "store": "1319",
+    "goals": 2
+  },
+  {
+    "name": "Baheejah Jabri",
     "store": "1321",
     "goals": 2
   },
   {
     "name": "Gianna Bien-Aime",
     "store": "1321",
-    "goals": 2
-  },
-  {
-    "name": "Kevin Leonides",
-    "store": "1459",
     "goals": 2
   },
   {
@@ -2821,6 +2999,11 @@ const CASHIER_SCORERS = [
     "goals": 2
   },
   {
+    "name": "Sharon Mock",
+    "store": "4807",
+    "goals": 2
+  },
+  {
     "name": "Yire Cazorla",
     "store": "4807",
     "goals": 2
@@ -2831,22 +3014,27 @@ const CASHIER_SCORERS = [
     "goals": 2
   },
   {
-    "name": "Annie Barnes Dais",
+    "name": "Laila Chmielewski",
+    "store": "594",
+    "goals": 2
+  },
+  {
+    "name": "Grace Mattias",
     "store": "6004",
     "goals": 2
   },
   {
-    "name": "Fiona To",
-    "store": "6004",
-    "goals": 2
-  },
-  {
-    "name": "Kennedy Yon",
+    "name": "Lester Ferrufino",
     "store": "6014",
     "goals": 2
   },
   {
-    "name": "Monzar Thet-oo",
+    "name": "Mady Christmas",
+    "store": "6014",
+    "goals": 2
+  },
+  {
+    "name": "Samuel Reillo",
     "store": "6014",
     "goals": 2
   },
@@ -2856,22 +3044,22 @@ const CASHIER_SCORERS = [
     "goals": 2
   },
   {
-    "name": "Robert Izquierdo",
+    "name": "Andres Juan",
     "store": "6108",
     "goals": 2
   },
   {
-    "name": "Cora Strope",
-    "store": "6806",
+    "name": "Day'Sheona Ashley",
+    "store": "6810",
     "goals": 2
   },
   {
-    "name": "Gabby Dapkus",
-    "store": "6806",
+    "name": "Elizabeth Edwards",
+    "store": "6810",
     "goals": 2
   },
   {
-    "name": "Maya Malik",
+    "name": "Harrison Kaye",
     "store": "6810",
     "goals": 2
   },
@@ -2881,18 +3069,28 @@ const CASHIER_SCORERS = [
     "goals": 1
   },
   {
-    "name": "Elizabeth McWilliams",
+    "name": "Erica Davidson",
+    "store": "1224",
+    "goals": 1
+  },
+  {
+    "name": "India Jones",
+    "store": "1224",
+    "goals": 1
+  },
+  {
+    "name": "Isabel Sarmiento",
+    "store": "1224",
+    "goals": 1
+  },
+  {
+    "name": "Samantha Saunders",
     "store": "1224",
     "goals": 1
   },
   {
     "name": "TANISHA TYLER",
     "store": "1224",
-    "goals": 1
-  },
-  {
-    "name": "Daniel Muench",
-    "store": "1305",
     "goals": 1
   },
   {
@@ -2906,12 +3104,12 @@ const CASHIER_SCORERS = [
     "goals": 1
   },
   {
-    "name": "Sharina Richardson",
-    "store": "1305",
+    "name": "Ericka Francois",
+    "store": "1319",
     "goals": 1
   },
   {
-    "name": "Ericka Francois",
+    "name": "JACQULINE PALACIOS",
     "store": "1319",
     "goals": 1
   },
@@ -2921,13 +3119,13 @@ const CASHIER_SCORERS = [
     "goals": 1
   },
   {
-    "name": "Taj Mack",
+    "name": "Sofia Nase",
     "store": "1319",
     "goals": 1
   },
   {
-    "name": "Baheejah Jabri",
-    "store": "1321",
+    "name": "Taj Mack",
+    "store": "1319",
     "goals": 1
   },
   {
@@ -2937,6 +3135,11 @@ const CASHIER_SCORERS = [
   },
   {
     "name": "Genevieve Descher",
+    "store": "1321",
+    "goals": 1
+  },
+  {
+    "name": "Isabelle Descher",
     "store": "1321",
     "goals": 1
   },
@@ -2951,12 +3154,22 @@ const CASHIER_SCORERS = [
     "goals": 1
   },
   {
-    "name": "Anastasia Johnston",
+    "name": "Ryan Savage",
+    "store": "1321",
+    "goals": 1
+  },
+  {
+    "name": "Carla Sapere",
     "store": "1459",
     "goals": 1
   },
   {
-    "name": "Sue Wilcox",
+    "name": "Gail Gardner",
+    "store": "1459",
+    "goals": 1
+  },
+  {
+    "name": "Kamt Ayorinde",
     "store": "1459",
     "goals": 1
   },
@@ -2966,7 +3179,7 @@ const CASHIER_SCORERS = [
     "goals": 1
   },
   {
-    "name": "Jason Glasscock",
+    "name": "Kikaxy VAUGHAN",
     "store": "4807",
     "goals": 1
   },
@@ -2976,17 +3189,22 @@ const CASHIER_SCORERS = [
     "goals": 1
   },
   {
-    "name": "Sheri Spoloric",
-    "store": "4807",
-    "goals": 1
-  },
-  {
     "name": "Calvin Petit",
     "store": "594",
     "goals": 1
   },
   {
-    "name": "Beth Raymond",
+    "name": "Emma Harkness",
+    "store": "594",
+    "goals": 1
+  },
+  {
+    "name": "Giselle Lopez",
+    "store": "594",
+    "goals": 1
+  },
+  {
+    "name": "Fatou Camara",
     "store": "6004",
     "goals": 1
   },
@@ -2996,13 +3214,18 @@ const CASHIER_SCORERS = [
     "goals": 1
   },
   {
-    "name": "Grace Mattias",
+    "name": "Lois Pawlowski",
     "store": "6004",
     "goals": 1
   },
   {
-    "name": "Lois Pawlowski",
+    "name": "Nyah Johnson",
     "store": "6004",
+    "goals": 1
+  },
+  {
+    "name": "Cristina Suarez Amayo",
+    "store": "6014",
     "goals": 1
   },
   {
@@ -3011,12 +3234,17 @@ const CASHIER_SCORERS = [
     "goals": 1
   },
   {
-    "name": "Leslie Cinto Vazquez",
+    "name": "Hannah Santiago",
     "store": "6014",
     "goals": 1
   },
   {
-    "name": "Samuel Reillo",
+    "name": "Karson Yon",
+    "store": "6014",
+    "goals": 1
+  },
+  {
+    "name": "Parvathy Nambiar Odayammadath Thazhathu",
     "store": "6014",
     "goals": 1
   },
@@ -3026,13 +3254,28 @@ const CASHIER_SCORERS = [
     "goals": 1
   },
   {
-    "name": "Kimberly Martinez",
+    "name": "Giselle Lopez",
     "store": "6108",
     "goals": 1
   },
   {
-    "name": "Val Golob",
+    "name": "Katherine Mocerino",
     "store": "6108",
+    "goals": 1
+  },
+  {
+    "name": "Sean Garrett",
+    "store": "6108",
+    "goals": 1
+  },
+  {
+    "name": "Sulamita Molchanovich",
+    "store": "6108",
+    "goals": 1
+  },
+  {
+    "name": "Camila Papenbrock Romero",
+    "store": "6806",
     "goals": 1
   },
   {
@@ -3051,22 +3294,7 @@ const CASHIER_SCORERS = [
     "goals": 1
   },
   {
-    "name": "Day'Sheona Ashley",
-    "store": "6810",
-    "goals": 1
-  },
-  {
-    "name": "Elizabeth Edwards",
-    "store": "6810",
-    "goals": 1
-  },
-  {
-    "name": "Harrison Kaye",
-    "store": "6810",
-    "goals": 1
-  },
-  {
-    "name": "Logan Avila-Burns",
+    "name": "Kaylin Davidson",
     "store": "6810",
     "goals": 1
   },
@@ -3077,6 +3305,22 @@ const CASHIER_SCORERS = [
   }
 ];
 // END CASHIER_SCORERS
+
+/** Unique cashier participation across the full five-week tournament. */
+const STORE_SEASON_PEOPLE = {
+  "594":  { cashiers: 13, opened:  9, atGoal:  7 },
+  "1224": { cashiers: 25, opened: 13, atGoal: 11 },
+  "1305": { cashiers: 19, opened: 10, atGoal:  8 },
+  "1319": { cashiers: 17, opened:  8, atGoal:  8 },
+  "1321": { cashiers: 16, opened: 11, atGoal: 11 },
+  "1459": { cashiers: 19, opened: 10, atGoal:  9 },
+  "4807": { cashiers: 20, opened: 11, atGoal: 11 },
+  "6004": { cashiers: 20, opened: 14, atGoal: 14 },
+  "6014": { cashiers: 25, opened: 16, atGoal: 12 },
+  "6108": { cashiers: 14, opened:  9, atGoal:  8 },
+  "6806": { cashiers: 13, opened:  7, atGoal:  6 },
+  "6810": { cashiers: 16, opened: 11, atGoal: 11 },
+};
 
 /** Award / momentum badges keyed by store:name from exports. */
 const CASHIER_TAG_MAP = {
@@ -3090,7 +3334,7 @@ const CASHIER_TAG_MAP = {
 /** Featured momentum picks — surfaced above weekly awards. */
 const SCORER_SPOTLIGHTS = [
   { name: "Madeleine Soderlund", store: "4807", tag: "On a Run",
-    note: "Hanes at 2.41% MTD — at goal every week through WK3" },
+    note: "Hanes at 2.40% MTD — at goal every week through WK3" },
   { name: "Vernon Green", store: "1305", tag: "Breakout",
     note: "WK2 GOTW — helped Lenox post the district's best week (2.85%)" },
   { name: "Osarumwense Onaiwu", store: "6004", tag: "WK1 Hero",
@@ -3101,17 +3345,27 @@ const SCORER_SPOTLIGHTS = [
 
 const AWARDS = [
   { week: "WK 1",
-    gotw: "Osarumwense Onaiwu", gotwStore: "6004", gotwGoals: 7,
+    gotw: "Osarumwense Onaiwu", gotwStore: "6004", gotwGoals: 5,
     goldenGlove: "Crabtree Valley",
     ggNote: "Top district rate — 3.45% (+1.65 over 1.8% goal)" },
   { week: "WK 2",
-    gotw: "Vernon Green", gotwStore: "1305", gotwGoals: 6,
+    gotw: "Vernon Green", gotwStore: "1305", gotwGoals: 4,
     goldenGlove: "Lenox Square",
     ggNote: "Top district rate — 2.85% (+1.05 over 1.8% goal)" },
   { week: "WK 3",
     gotw: null, gotwStore: null, gotwGoals: null,
-    momentum: { name: "Madeleine Soderlund", store: "4807",
-      note: "Live — Hanes at 2.20% WK3 with 2 openers; only store holding goal this week" },
+    momentum: { name: "Leah Crist", store: "6108",
+      note: "Haywood climbed from 0.79% to 1.32% in WK3, the district's best week-over-week lift" },
+    goldenGlove: null, ggNote: null },
+  { week: "WK 4",
+    gotw: null, gotwStore: null, gotwGoals: null,
+    momentum: { name: "Haywood", store: "6108",
+      note: "Haywood exploded from 1.32% to 3.42% in WK4, the biggest jump of the tournament" },
+    goldenGlove: null, ggNote: null },
+  { week: "WK 5",
+    gotw: null, gotwStore: null, gotwGoals: null,
+    momentum: { name: "West Town", store: "6806",
+      note: "West Town rebounded from 0.71% to 1.92% in WK5, the strongest final-week surge" },
     goldenGlove: null, ggNote: null },
 ];
 
@@ -3383,17 +3637,18 @@ function computeDistrictSeasonStats() {
 
 /** Sum one store across reported weeks. */
 function computeStoreSeasonStats(storeId) {
-  let txns=0, cards=0, cashiers=0, opened=0, atGoal=0, weeksReported=0;
+  let txns=0, cards=0, weeksReported=0;
   Object.keys(STORE_WEEK_STATS).forEach(wkLabel => {
     const s = STORE_WEEK_STATS[wkLabel][storeId];
     if (!s || !s.txns) return;
     txns += s.txns; cards += s.cards || 0;
-    cashiers += s.cashiers || 0;
-    opened += s.cashiersOpened || 0;
-    atGoal += s.cashiersAtGoal || 0;
     weeksReported++;
   });
-  return { txns, cards, cashiers, opened, atGoal, weeksReported,
+  const people = STORE_SEASON_PEOPLE[storeId] || { cashiers: 0, opened: 0, atGoal: 0 };
+  return { txns, cards, weeksReported,
+    cashiers: people.cashiers,
+    opened: people.opened,
+    atGoal: people.atGoal,
     rate: txns > 0 ? (cards / txns) * 100 : null };
 }
 
