@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Encore Cup '26 · Strategic Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Big+Shoulders+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Archivo+Black&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:    #002B5C;
+  --navy-2:  #001a3a;
+  --indigo:  #1F3A68;
+  --gold:    #C8A24B;
+  --gold-2:  #B58E36;
+  --cream:   #F2EBDD;
+  --cream-2: #E8DFCB;
+  --white:   #FFFFFF;
+  --green:   #1E8A5B;
+  --red:     #D2342B;
+  --blue:    #2E6BD6;
+  --ink:        #002B5C;
+  --ink-mid:    rgba(0,43,92,0.62);
+  --ink-soft:   rgba(0,43,92,0.40);
+  --line:       rgba(0,43,92,0.14);
+  --line-strong:rgba(0,43,92,0.30);
+  --on-navy:        rgba(255,255,255,0.92);
+  --on-navy-mid:    rgba(255,255,255,0.55);
+  --on-navy-soft:   rgba(255,255,255,0.35);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--cream);
+  color: var(--navy);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--navy); text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 3px; }
+a:hover { color: var(--gold-2); }
+
+.marquee {
+  background: var(--navy);
+  color: var(--on-navy);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 38s linear infinite;
+  padding: 7px 0;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+}
+.marquee-track .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 22px;
+}
+.marquee-track .chip .dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
+.marquee-track .chip .white { color: var(--white); }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.hero {
+  background:
+    radial-gradient(ellipse at 75% 10%, rgba(200,162,75,0.25) 0%, transparent 55%),
+    linear-gradient(160deg, var(--navy) 0%, var(--indigo) 100%);
+  color: var(--on-navy);
+  padding: 56px 28px 60px;
+  border-bottom: 4px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; right: -60px;
+  width: 280px; height: 280px;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0 8px, transparent 8px 16px);
+  pointer-events: none;
+}
+.hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3.2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(200,162,75,0.50) 0%, transparent 100%);
+  max-width: 360px;
+}
+.hero h1 {
+  font-family: 'Big Shoulders Display', 'Archivo', sans-serif;
+  font-size: clamp(40px, 6.5vw, 78px);
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  line-height: 0.92;
+  margin: 0 0 22px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+.hero h1 .accent { color: var(--gold); }
+.hero-lede {
+  font-family: 'Archivo', sans-serif;
+  font-size: clamp(16px, 1.8vw, 21px);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--on-navy);
+  max-width: 760px;
+  margin: 0 0 32px;
+}
+.hero-meta { display: flex; flex-wrap: wrap; gap: 28px 44px; margin-bottom: 36px; }
+.hero-meta dt {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--on-navy-mid);
+  margin-bottom: 5px;
+}
+.hero-meta dd {
+  margin: 0;
+  font-family: 'Archivo', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+}
+.hero-cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 22px 14px 26px;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.hero-cta:hover {
+  background: var(--white);
+  color: var(--navy);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.20);
+}
+.hero-cta .arrow {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 13px;
+}
+.hero-cta--ghost {
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid rgba(200,162,75,0.55);
+  box-shadow: none;
+}
+.hero-cta--ghost:hover {
+  background: rgba(200,162,75,0.10);
+  color: var(--gold);
+  border-color: var(--gold);
+}
+.hero-cta--ghost .arrow {
+  background: transparent;
+  color: var(--gold);
+  border: 1.5px solid var(--gold);
+  font-size: 11px;
+}
+
+#audit-top { scroll-margin-top: 24px; }
+main { max-width: 1100px; margin: 0 auto; padding: 56px 28px 80px; }
+.section { margin-bottom: 56px; }
+.sec-label {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 18px;
+  font-family: 'Big Shoulders Display', 'Archivo', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.sec-label .sec-num {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 36px;
+  letter-spacing: -1.5px;
+  color: var(--gold);
+}
+.sec-label .sec-slash {
+  display: inline-block;
+  width: 1.5px;
+  height: 22px;
+  background: var(--line-strong);
+  transform: skewX(-15deg);
+}
+.sec-sub {
+  font-family: 'Archivo', sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--ink-mid);
+  margin: 0 0 20px;
+  max-width: 780px;
+}
+.sec-body p { margin: 0 0 14px; max-width: 780px; }
+.sec-body strong { font-weight: 800; }
+
+.callout {
+  background: var(--white);
+  border-left: 4px solid var(--gold);
+  padding: 18px 22px;
+  margin: 22px 0;
+  border-radius: 4px 10px 10px 4px;
+  box-shadow: 0 3px 12px rgba(0,43,92,0.06);
+}
+.callout .callout-k {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  margin-bottom: 8px;
+}
+.callout .callout-v {
+  font-family: 'Archivo', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.4;
+}
+.callout.red { border-left-color: var(--red); }
+.callout.green { border-left-color: var(--green); }
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 22px 0;
+}
+.stat-cell {
+  background: var(--white);
+  border: 1.5px solid var(--navy);
+  border-radius: 12px;
+  padding: 16px 16px 14px;
+}
+.stat-cell .stat-k {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  margin-bottom: 6px;
+}
+.stat-cell .stat-v {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 32px;
+  letter-spacing: -1.4px;
+  color: var(--navy);
+  line-height: 0.95;
+}
+.stat-cell .stat-v.gold { color: var(--gold-2); }
+.stat-cell .stat-v.green { color: var(--green); }
+.stat-cell .stat-v.red { color: var(--red); }
+.stat-cell .stat-sub {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--ink-mid);
+  margin-top: 6px;
+}
+
+.bp-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  font-size: 13px;
+  margin: 18px 0;
+}
+.bp-table thead th {
+  background: var(--navy);
+  color: var(--on-navy);
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+.bp-table tbody td {
+  padding: 11px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--navy);
+  vertical-align: top;
+}
+.bp-table tbody tr:first-child td { border-top: none; }
+.bp-table .store { font-weight: 800; white-space: nowrap; }
+.bp-table .mono { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; }
+.bp-table .good { color: var(--green); font-weight: 800; }
+.bp-table .bad { color: var(--red); font-weight: 800; }
+.bp-table .warn { color: var(--gold-2); font-weight: 800; }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 18px 0; border-radius: 12px; }
+
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  margin: 22px 0;
+}
+.insight-card {
+  background: var(--white);
+  border: 1.5px solid var(--navy);
+  border-radius: 14px;
+  padding: 20px 20px 18px;
+  position: relative;
+}
+.insight-card .insight-num {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 28px;
+  letter-spacing: -1px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.insight-card h3 {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+.insight-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-mid);
+}
+
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+.tier-card {
+  background: var(--navy);
+  color: var(--on-navy);
+  border-radius: 12px;
+  padding: 18px 18px 16px;
+}
+.tier-card .tier-tag {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.tier-card h4 {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  color: var(--white);
+}
+.tier-card p { margin: 0; font-size: 13px; line-height: 1.5; color: var(--on-navy-mid); }
+
+.def-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+.def-cell {
+  background: var(--cream-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.def-cell .def-k {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  margin-bottom: 6px;
+}
+.def-cell .def-v {
+  font-family: 'Archivo', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.def-cell .def-d { font-size: 12.5px; color: var(--ink-mid); line-height: 1.45; margin: 0; }
+
+.closer {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(200,162,75,0.22) 0%, transparent 60%),
+    linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+  color: var(--on-navy);
+  padding: 64px 28px 72px;
+  text-align: center;
+  border-top: 4px solid var(--gold);
+}
+.closer h2 {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 900;
+  letter-spacing: -1px;
+  line-height: 0.95;
+  margin: 0 0 18px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+.closer h2 .accent { color: var(--gold); }
+.closer p {
+  max-width: 580px;
+  margin: 0 auto 28px;
+  font-family: 'Archivo', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--on-navy);
+}
+.closer .footer-row {
+  margin-top: 38px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--on-navy-soft);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 14px;
+}
+.closer .closer-back {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.closer .closer-sep { opacity: 0.4; }
+
+@media (max-width: 640px) {
+  .hero { padding: 44px 20px 48px; }
+  main { padding: 40px 20px 64px; }
+  .bp-table { font-size: 12px; }
+  .bp-table thead th, .bp-table tbody td { padding: 9px 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="chip">Encore Cup &rsquo;26<span class="dot"></span></span>
+    <span class="chip">Strategic <span class="white">Audit</span><span class="dot"></span></span>
+    <span class="chip">Gap Specialty &middot; <span class="white">Mid-Atlantic</span><span class="dot"></span></span>
+    <span class="chip">Five Weeks &middot; <span class="white">Final Data</span><span class="dot"></span></span>
+    <span class="chip">Coaching &middot; <span class="white">Conversion Floor</span><span class="dot"></span></span>
+    <span class="chip">Encore Cup &rsquo;26<span class="dot"></span></span>
+    <span class="chip">Strategic <span class="white">Audit</span><span class="dot"></span></span>
+    <span class="chip">Gap Specialty &middot; <span class="white">Mid-Atlantic</span><span class="dot"></span></span>
+    <span class="chip">Five Weeks &middot; <span class="white">Final Data</span><span class="dot"></span></span>
+    <span class="chip">Coaching &middot; <span class="white">Conversion Floor</span><span class="dot"></span></span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Post-Tournament Analysis &middot; June 2026</div>
+    <h1>Strategic<br><span class="accent">Audit</span></h1>
+    <p class="hero-lede">
+      Five weeks of final cashier export data, recalibrated for what the numbers actually prove: who landed applications, who sustained goal-level conversion, and where coaching — not traffic — is the district&rsquo;s lever.
+    </p>
+    <dl class="hero-meta">
+      <div><dt>District Close</dt><dd>1.40% vs 1.80% goal</dd></div>
+      <div><dt>Volume</dt><dd>32,210 txns &middot; 452 cards</dd></div>
+      <div><dt>Cashier Base</dt><dd>217 unique &middot; 5 weeks</dd></div>
+      <div><dt>Prepared By</dt><dd>Benn Pattara</dd></div>
+    </dl>
+    <div class="hero-cta-row">
+      <a class="hero-cta hero-cta--ghost" href="#audit-top">
+        Read the audit
+        <span class="arrow" aria-hidden="true">&darr;</span>
+      </a>
+      <a class="hero-cta" href="/encore-cup" target="_top">
+        Live tracker
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="audit-top">
+
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">01</span><span class="sec-slash"></span>Executive Summary</div>
+    <p class="sec-sub">Encore Cup worked as a field pilot. The district missed on goal because the conversion floor never held.</p>
+    <div class="sec-body">
+      <p>Encore Cup drove engagement and surfaced real performance signal — but the district <strong>missed its 1.80% conversion goal</strong>, closing at <strong>1.40%</strong> across 32,210 transactions and 452 cards landed.</p>
+      <p>The diagnosis is not traffic. It is <strong>coaching and conversion floor</strong>. High-volume stores processed thousands of transactions while large segments of their cashier base landed zero applications across five full weeks. Among those who did land at least one, many could not sustain goal-level conversion.</p>
+
+      <div class="callout">
+        <div class="callout-k">Bottom line</div>
+        <div class="callout-v">Encore Cup worked as a diagnostic. What converts engagement into goal is a tiered coaching structure — not another blanket participation push.</div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="stat-k">District Rate</div>
+          <div class="stat-v red">1.40%</div>
+          <div class="stat-sub">vs 1.80% goal</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-k">Gap</div>
+          <div class="stat-v">−0.40</div>
+          <div class="stat-sub">points missed</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-k">Zero Landed</div>
+          <div class="stat-v gold">41%</div>
+          <div class="stat-sub">88 of 217 cashiers</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-k">At Goal</div>
+          <div class="stat-v green">24%</div>
+          <div class="stat-sub">52 cashiers season rate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">02</span><span class="sec-slash"></span>Methodology</div>
+    <p class="sec-sub">Participation means landed at least one application — an outcome, not an activity we can confirm from exports.</p>
+    <div class="sec-body">
+      <div class="def-grid">
+        <div class="def-cell">
+          <div class="def-k">Landed &ge;1</div>
+          <div class="def-v">Participation</div>
+          <p class="def-d">Cashier processed at least one application during the 5-week tournament.</p>
+        </div>
+        <div class="def-cell">
+          <div class="def-k">At Goal</div>
+          <div class="def-v">Competency</div>
+          <p class="def-d">Season rate (total cards &divide; total transactions) meets or exceeds store June goal.</p>
+        </div>
+        <div class="def-cell">
+          <div class="def-k">Zero Landed</div>
+          <div class="def-v">Non-conversion</div>
+          <p class="def-d">Zero applications across all 5 weeks. Cause requires segmentation — not assumed non-engagement.</p>
+        </div>
+        <div class="def-cell">
+          <div class="def-k">Exposure Proxy</div>
+          <div class="def-v">Transactions handled</div>
+          <p class="def-d">Separates low-opportunity zeros from high-opportunity zeros until shift-count data exists.</p>
+        </div>
+      </div>
+      <div class="callout red">
+        <div class="callout-k">Data limitation</div>
+        <div class="callout-v">We do not have shift-count or hours-worked. We cannot confirm whether zero-landed cashiers &ldquo;never asked&rdquo; — only that they never landed an application.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">03</span><span class="sec-slash"></span>District Arc</div>
+    <p class="sec-sub">WK 3 was the collapse week — highest volume, lowest conversion. The district never re-established WK 1 momentum.</p>
+    <div class="sec-body">
+      <table class="bp-table">
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Txns</th>
+            <th>Cards</th>
+            <th>Week Rate</th>
+            <th>MTD Rate</th>
+            <th>Landed &ge;1</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="store">WK 1</td><td class="mono">6,382</td><td class="mono">105</td><td>1.65%</td><td>1.65%</td><td>64 / 162 (39.5%)</td></tr>
+          <tr><td class="store">WK 2</td><td class="mono">6,302</td><td class="mono">96</td><td>1.52%</td><td>1.58%</td><td>50 / 163 (30.7%)</td></tr>
+          <tr><td class="store">WK 3</td><td class="mono">6,918</td><td class="mono">73</td><td class="bad">1.06%</td><td>1.40%</td><td>47 / 166 (28.3%)</td></tr>
+          <tr><td class="store">WK 4</td><td class="mono">6,340</td><td class="mono">99</td><td>1.56%</td><td>1.44%</td><td>55 / 169 (32.5%)</td></tr>
+          <tr><td class="store">WK 5</td><td class="mono">6,268</td><td class="mono">79</td><td>1.26%</td><td>1.40%</td><td>48 / 169 (28.4%)</td></tr>
+        </tbody>
+      </table>
+      <p><strong>WK 3</strong> is the primary coachable moment district-wide: volume up, cards down. <strong>WK 4</strong> rebounded (+26 cards vs WK 3). <strong>WK 5</strong> faded to 1.26% — closing exactly at the WK 3 MTD floor.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">04</span><span class="sec-slash"></span>Store Performance</div>
+    <p class="sec-sub">Three stores beat goal. High-volume underperformers had traffic — not a conversion floor.</p>
+    <div class="sec-body">
+      <div class="table-scroll">
+        <table class="bp-table">
+          <thead>
+            <tr>
+              <th>Store</th>
+              <th>WK 1</th>
+              <th>WK 2</th>
+              <th>WK 3</th>
+              <th>WK 4</th>
+              <th>WK 5</th>
+              <th>Season</th>
+              <th>Goal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="store">Short Pump</td><td>2.43%</td><td>2.56%</td><td>1.17%</td><td>2.76%</td><td>2.76%</td><td class="good">2.31%</td><td>1.7%</td></tr>
+            <tr><td class="store">Crabtree Valley</td><td>3.45%</td><td>1.78%</td><td>1.97%</td><td>2.00%</td><td>1.82%</td><td class="good">2.19%</td><td>1.8%</td></tr>
+            <tr><td class="store">Hanes</td><td>2.65%</td><td>2.22%</td><td>2.05%</td><td>1.76%</td><td>1.44%</td><td class="good">2.02%</td><td>1.7%</td></tr>
+            <tr><td class="store">Streets @ Southpoint</td><td>0.63%</td><td>1.25%</td><td>0.59%</td><td>1.28%</td><td>0.52%</td><td class="bad">0.86%</td><td>1.8%</td></tr>
+            <tr><td class="store">Avalon</td><td>1.50%</td><td>0.82%</td><td>1.18%</td><td>0.64%</td><td>1.01%</td><td class="bad">1.04%</td><td>1.7%</td></tr>
+            <tr><td class="store">Lenox Square</td><td>1.50%</td><td>2.85%</td><td>0.95%</td><td>0.84%</td><td>1.08%</td><td class="bad">1.41%</td><td>1.8%</td></tr>
+            <tr><td class="store">Green Hills</td><td>1.18%</td><td>0.72%</td><td>0.65%</td><td>0.93%</td><td>1.54%</td><td class="bad">0.98%</td><td>1.8%</td></tr>
+            <tr><td class="store">Haywood</td><td>0.76%</td><td>0.79%</td><td>1.32%</td><td class="good">3.42%</td><td class="bad">0.26%</td><td class="bad">1.31%</td><td>1.8%</td></tr>
+            <tr><td class="store">Mall of Georgia</td><td>1.05%</td><td>1.87%</td><td>0.53%</td><td>1.88%</td><td>0.52%</td><td class="bad">1.14%</td><td>1.8%</td></tr>
+            <tr><td class="store">Mayfaire</td><td>1.30%</td><td>0.77%</td><td>0.62%</td><td>1.93%</td><td>1.53%</td><td class="bad">1.22%</td><td>1.8%</td></tr>
+            <tr><td class="store">West Town</td><td>1.75%</td><td>1.79%</td><td>1.06%</td><td>0.71%</td><td>1.92%</td><td class="bad">1.43%</td><td>1.8%</td></tr>
+            <tr><td class="store">East Cobb</td><td>1.50%</td><td>0.82%</td><td>0.70%</td><td>0.93%</td><td>0.78%</td><td class="bad">0.94%</td><td>1.8%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="sec-sub" style="margin-top:28px;">High-volume underperformers</p>
+      <table class="bp-table">
+        <thead>
+          <tr>
+            <th>Store</th>
+            <th>Season Txns</th>
+            <th>Rate</th>
+            <th>Landed &ge;1</th>
+            <th>At Goal</th>
+            <th>Zero Landed</th>
+            <th>30+ Txn Zeros</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="store">Streets @ Southpoint</td><td class="mono">4,083</td><td class="bad">0.86%</td><td>16/25 (64%)</td><td>3/25 (12%)</td><td>9</td><td>3</td></tr>
+          <tr><td class="store">Avalon</td><td class="mono">3,835</td><td class="bad">1.04%</td><td>10/19 (53%)</td><td>4/19 (21%)</td><td>9</td><td class="warn">8</td></tr>
+          <tr><td class="store">Lenox Square</td><td class="mono">2,844</td><td class="bad">1.41%</td><td>10/19 (53%)</td><td>3/19 (16%)</td><td>9</td><td class="warn">7</td></tr>
+          <tr><td class="store">Green Hills</td><td class="mono">2,742</td><td class="bad">0.98%</td><td>11/16 (69%)</td><td>5/16 (31%)</td><td>5</td><td>3</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">05</span><span class="sec-slash"></span>Cashier Cohorts</div>
+    <p class="sec-sub">217 unique cashiers over five weeks. The largest block is zero-landed — and many had real transaction exposure.</p>
+    <div class="sec-body">
+      <table class="bp-table">
+        <thead>
+          <tr><th>Cohort</th><th>Count</th><th>%</th><th>Coaching Read</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="store">Zero applications landed</td><td class="mono">88</td><td class="warn">40.6%</td><td>Largest opportunity — tiered response required</td></tr>
+          <tr><td class="store">Zero landed, 20+ txns</td><td class="mono">62</td><td>28.6%</td><td>Strong accountability / coaching signal</td></tr>
+          <tr><td class="store">Zero landed, 50+ txns</td><td class="mono">43</td><td>19.8%</td><td>Highest-priority 1:1 list</td></tr>
+          <tr><td class="store">Landed &ge;1 application</td><td class="mono">129</td><td>59.4%</td><td>Conversion is possible</td></tr>
+          <tr><td class="store">Landed but below goal</td><td class="mono">77</td><td>35.5%</td><td>Skill and consistency gap</td></tr>
+          <tr><td class="store">At goal (season rate)</td><td class="mono">52</td><td class="good">24.0%</td><td>District competency floor</td></tr>
+        </tbody>
+      </table>
+
+      <p class="sec-sub" style="margin-top:28px;">Participation-to-competency gap</p>
+      <table class="bp-table">
+        <thead>
+          <tr><th>Store</th><th>Landed &ge;1</th><th>At Goal</th><th>Gap</th><th>Read</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="store">Hanes</td><td>55%</td><td>35%</td><td>20 pts</td><td class="good">Tightest winner alignment</td></tr>
+          <tr><td class="store">Crabtree Valley</td><td>70%</td><td>45%</td><td>25 pts</td><td class="good">Scalable team model</td></tr>
+          <tr><td class="store">Short Pump</td><td>52%</td><td>24%</td><td>28 pts</td><td>Hero-dependent (77% from top 3)</td></tr>
+          <tr><td class="store">Streets @ Southpoint</td><td>64%</td><td>12%</td><td class="bad">52 pts</td><td>Severe competency leak</td></tr>
+          <tr><td class="store">Mall of Georgia</td><td>69%</td><td>12%</td><td class="bad">56 pts</td><td>False progress pattern</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">06</span><span class="sec-slash"></span>Insights</div>
+    <p class="sec-sub">Three findings that reframe how the district should read Encore Cup results.</p>
+    <div class="insight-grid">
+      <div class="insight-card">
+        <div class="insight-num">01</div>
+        <h3>Missed on capability, not traffic</h3>
+        <p>32,210 transactions produced 1.40% conversion. High-volume stores moved traffic but finished below goal because large portions of the floor never landed an application. Coaching must target the floor, not the register.</p>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">02</div>
+        <h3>Zero-landed is the biggest drag</h3>
+        <p>88 cashiers (40.6%) landed zero applications. 62 handled 20+ transactions; 43 handled 50+. At Avalon, 8 cashiers with 30+ txns each landed zero. Many had real opportunity.</p>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">03</div>
+        <h3>Winners aligned; losers created false progress</h3>
+        <p>Winners had smaller participation-to-competency gaps. Streets showed 64% landed vs 12% at goal — a 52-point leak. Activity-shaped outcomes without sustained performance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-label"><span class="sec-num">07</span><span class="sec-slash"></span>Recommendations</div>
+    <p class="sec-sub">How the district moves forward — tiered coaching, a new scorecard, and a replicable store profile.</p>
+    <div class="sec-body">
+      <div class="tier-grid">
+        <div class="tier-card">
+          <div class="tier-tag">Tier A &middot; Urgent</div>
+          <h4>Zero + Exposure</h4>
+          <p>Zero landed and 30+ transactions. 1:1 coaching, weekly check-in, manager ride-along.</p>
+        </div>
+        <div class="tier-card">
+          <div class="tier-tag">Tier B &middot; Skill</div>
+          <h4>Landed, Below Goal</h4>
+          <p>Proved conversion once. Pitch quality, close rate, and consistency coaching.</p>
+        </div>
+        <div class="tier-card">
+          <div class="tier-tag">Tier C &middot; Exposure</div>
+          <h4>Low-Opportunity Zeros</h4>
+          <p>Zero landed with &lt;20 txns. Scheduling review before accountability conversation.</p>
+        </div>
+      </div>
+
+      <div class="callout green">
+        <div class="callout-k">New district scorecard</div>
+        <div class="callout-v">Track % cashiers at goal, participation-to-competency gap, and zero-landed high-exposure count per store — weekly.</div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-k">Crabtree Profile — district standard</div>
+        <div class="callout-v">&ge;55% landed &ge;1 &middot; gap &le;10 pts &middot; &le;50% of cards from top 3 cashiers. Short Pump proves a hero can carry a store. Crabtree proves a team-shaped floor scales.</div>
+      </div>
+
+      <p><strong>Next build:</strong> Add shift-count to weekly exports so Tier A/B/C assignment is based on confirmed opportunity, not transaction proxy alone.</p>
+    </div>
+  </section>
+
+</main>
+
+<section class="closer">
+  <h2>See the <span class="accent">live data.</span></h2>
+  <p>Matchups, standings, zones, and the full five-week tournament — all running on the Encore Cup tracker.</p>
+  <a class="hero-cta" href="/encore-cup" target="_top">
+    Open Encore Cup &rsquo;26
+    <span class="arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <div class="footer-row">
+    <a class="closer-back" href="/encore-cup/case-study.html" target="_top">
+      <span aria-hidden="true">&larr;</span>
+      Case study
+    </a>
+    <span class="closer-sep" aria-hidden="true">&middot;</span>
+    <a class="closer-back" href="/" target="_top">bennpattara.com</a>
+    <span class="closer-sep" aria-hidden="true">&middot;</span>
+    <span>Encore Cup &rsquo;26 &middot; Gap Specialty Mid-Atlantic District</span>
+  </div>
+</section>
+
+</body>
+</html>
