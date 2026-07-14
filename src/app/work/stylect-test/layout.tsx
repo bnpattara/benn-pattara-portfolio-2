@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Stylect · Prose test draft · Benn Pattara",
     url: "/work/stylect-test",
     type: "website",
-    images: [{ url: "https://bennpattara.com/og/stylect.jpg", width: 1200, height: 630 }],
+    images: [{ url: "https://bennpattara.com/og/stylect.jpg?v=2", width: 1200, height: 630 }],
   },
 };
 

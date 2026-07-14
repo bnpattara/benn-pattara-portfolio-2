@@ -10,6 +10,8 @@
     "start": "next start",
     "lint": "eslint",
     "og:home": "node scripts/generate-og-home.mjs",
+    "og:case": "node scripts/generate-og-case.mjs",
+    "deck:stylect": "node scripts/capture-stylect-deck-screens.mjs && node scripts/generate-stylect-deck-pdf.mjs",
     "sync:saks": "cp ../vault_by_saks_case_study.html ./public/case-studies/saks/index.html"
   },
   "dependencies": {

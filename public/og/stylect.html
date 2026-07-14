@@ -62,15 +62,19 @@
       background: #e8e8e8;
     }
 
+    /* Centered so LinkedIn comment previews (square center-crop) keep the title visible */
     .main {
       position: absolute;
       top: 80px;
       bottom: 80px;
-      left: 80px;
-      right: 80px;
+      left: 0;
+      right: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 120px;
     }
 
     .project-name {
