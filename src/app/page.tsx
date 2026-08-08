@@ -591,7 +591,6 @@ export default function Home() {
                     <li>Operated as connective layer between institutional stakeholders, creative partners, and technical execution, aligning vision, brand standards, and delivery timelines.</li>
                   </ul>
                 </div>
-                <div className="role-highlight">ADAGE REBRAND OF THE YEAR 2026 &middot; ADAGE &middot; ADFORUM &middot; COMMUNICATION ARTS</div>
               </div>
             </div>
 
